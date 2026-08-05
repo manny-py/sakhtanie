@@ -2,34 +2,52 @@
   "schemaVersion": 1,
   "slug": "chatgpt",
   "name": {
-    "fa": "تایپ‌فرم",
-    "en": "Typeform"
+    "fa": "چت‌جی‌پی‌تی",
+    "en": "ChatGPT"
   },
-  "domain": "typeform.com",
+  "domain": "chatgpt.com",
   "origin": "global",
-  "status": "draft",
-  "category": "website-commerce",
-  "subcategory": "forms-and-surveys",
+  "status": "published",
+  "category": "ai-assistants",
+  "subcategory": "general-ai-assistants",
   "tags": [
     "فرم ساز",
-    "نظرسنجی"
+    "نظرسنجی",
+    "جمع‌آوری اطلاعات"
   ],
-  "summary": "ابزار ساخت فرم و نظرسنجی با تمرکز روی تجربه کاربری.",
+  "summary": "چت‌جی‌پی‌تی یک دستیار هوش مصنوعیه که برای گفتگو، تولید محتوا، برنامه‌نویسی و تحلیل اطلاعات استفاده می‌شه.",
   "verdict": {
-    "value": "yes",
+    "value": "no",
     "confidence": "high",
-    "short": "ساختنیه",
-    "reason": "نسخه شخصی فرم ساز قابل ساخت است."
+    "short": "ساخت چت‌بات شبیهش ممکنه، ولی ساخت ارزش اصلی ChatGPT منطقی نیست.",
+    "reason": "رابط گفتگو قابل ساخت است، اما مدل هوش مصنوعی، زیرساخت پردازشی، داده آموزشی و بهبود مداوم بخش اصلی ارزش محصول هستند."
   },
   "build": {
     "timeEstimate": "one-weekend",
     "skillLevel": "intermediate",
-    "coreLoop": "ساخت فرم و دریافت پاسخ.",
-    "requirements": [],
-    "limitations": [],
+    "coreLoop": "کاربر درخواست وارد می‌کند، مدل پردازش می‌کند و پاسخ دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط ساخت فرم"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره فرم‌ها و پاسخ‌ها"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت اطلاعات فرم"
+      }
+    ],
+    "limitations": [
+      "قالب‌های آماده کمتر خواهد بود.",
+      "تحلیل‌های پیشرفته وجود ندارد.",
+      "اتصال‌های آماده محدود هستند."
+    ],
     "prompt": {
-      "title": "ساخت فرم ساز",
-      "content": "Build a form builder",
+      "title": "ساخت فرم‌ساز شبیه Typeform",
+      "content": "Build a Persian RTL form builder with dynamic questions, public forms and response storage.",
       "language": "en",
       "tested": false,
       "testedWith": [],

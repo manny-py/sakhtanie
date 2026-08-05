@@ -7,29 +7,47 @@
   },
   "domain": "typeform.com",
   "origin": "global",
-  "status": "draft",
+  "status": "published",
   "category": "website-commerce",
   "subcategory": "forms-and-surveys",
   "tags": [
     "فرم ساز",
-    "نظرسنجی"
+    "نظرسنجی",
+    "جمع‌آوری اطلاعات"
   ],
-  "summary": "ابزار ساخت فرم و نظرسنجی با تمرکز روی تجربه کاربری.",
+  "summary": "تایپ‌فرم یک ابزار ساخت فرم و نظرسنجیه که تمرکزش روی طراحی زیبا و تجربه کاربری بهتره.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
-    "short": "ساختنیه",
-    "reason": "نسخه شخصی فرم ساز قابل ساخت است."
+    "short": "نسخه شخصی یک فرم‌ساز حرفه‌ای رو می‌تونی خودت بسازی.",
+    "reason": "هسته اصلی تایپ‌فرم شامل ساخت سؤال، نمایش فرم، ذخیره پاسخ و نمایش نتیجه است. برای استفاده شخصی یا کسب‌وکار کوچک ساخت نسخه مشابه کاملاً منطقیه."
   },
   "build": {
     "timeEstimate": "one-weekend",
     "skillLevel": "intermediate",
-    "coreLoop": "ساخت فرم و دریافت پاسخ.",
-    "requirements": [],
-    "limitations": [],
+    "coreLoop": "کاربر فرم می‌سازه، سؤال اضافه می‌کنه، لینک فرم رو منتشر می‌کنه و پاسخ‌ها رو دریافت می‌کنه.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط ساخت فرم"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره فرم‌ها و پاسخ‌ها"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت اطلاعات فرم"
+      }
+    ],
+    "limitations": [
+      "قالب‌های آماده کمتر خواهد بود.",
+      "تحلیل‌های پیشرفته وجود ندارد.",
+      "اتصال‌های آماده محدود هستند."
+    ],
     "prompt": {
-      "title": "ساخت فرم ساز",
-      "content": "Build a form builder",
+      "title": "ساخت فرم‌ساز شبیه Typeform",
+      "content": "Build a Persian RTL form builder with dynamic questions, public forms and response storage.",
       "language": "en",
       "tested": false,
       "testedWith": [],

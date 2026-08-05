@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import VerdictBadge from "../../components/VerdictBadge.astro";
 import { apps } from "../../lib/apps";
 
 export function getStaticPaths() {
@@ -15,78 +16,94 @@ export function getStaticPaths() {
 
 const { app } = Astro.props;
 
-const verdictMap = {
-  yes: "ساختنیه",
-  kinda: "ساختنیه، ولی...",
-  no: "نمی‌ارزه",
-};
-
+const verdict = app.verdict.value;
 ---
 
-<BaseLayout title={`${app.name.fa} | ساختنیه`}>
+<BaseLayout title={`${app.name.fa} | ساختنیه؟`}>
 
-<article style="max-width:800px;margin:auto;padding:40px;font-family:sans-serif">
+<main class="container">
+
+<article style="padding:40px 0">
 
 <h1>
-{app.name.fa}
-({app.name.en})
+{app.name.fa} ({app.name.en})
 </h1>
+
+<VerdictBadge verdict={verdict}/>
 
 <p>
 {app.summary}
 </p>
 
-<hr />
 
-<h2>
-نتیجه:
-{verdictMap[app.verdict.value]}
-</h2>
+<section class="card">
+<h2>چرا این نتیجه؟</h2>
+<p>{app.verdict.reason}</p>
+</section>
 
-<p>
-{app.verdict.short}
-</p>
 
-<h3>
-چرا؟
-</h3>
+<section class="card">
+<h2>نسخه‌ای که می‌سازیم</h2>
+<p>{app.build.coreLoop}</p>
+</section>
 
-<p>
-{app.verdict.reason}
-</p>
 
-<h3>
-نسخه‌ای که می‌سازیم
-</h3>
+<section class="card">
+<h2>اطلاعات ساخت</h2>
 
 <p>
-{app.build.coreLoop}
-</p>
-
-<h3>
-زمان ساخت
-</h3>
-
-<p>
+زمان:
 {app.build.timeEstimate}
 </p>
 
-<h3>
-سطح مهارت
-</h3>
-
 <p>
+سطح:
 {app.build.skillLevel}
 </p>
 
-<h3>
-پرامپت ساخت
-</h3>
+</section>
+
+
+<section class="card">
+<h2>چی لازم داری؟</h2>
+
+<ul>
+{
+app.build.requirements.map(item => (
+<li>{item.label}</li>
+))
+}
+</ul>
+
+</section>
+
+
+<section class="card">
+<h2>چه چیزهایی رو از دست می‌دی؟</h2>
+
+<ul>
+{
+app.build.limitations.map(item => (
+<li>{item}</li>
+))
+}
+</ul>
+
+</section>
+
+
+<section class="card">
+<h2>پرامپت ساخت</h2>
 
 <pre>
 {app.build.prompt.content}
 </pre>
 
+</section>
+
+
 </article>
+
+</main>
 
 </BaseLayout>

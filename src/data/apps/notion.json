@@ -2,34 +2,52 @@
   "schemaVersion": 1,
   "slug": "notion",
   "name": {
-    "fa": "تایپ‌فرم",
-    "en": "Typeform"
+    "fa": "نوشن",
+    "en": "Notion"
   },
-  "domain": "typeform.com",
+  "domain": "notion.so",
   "origin": "global",
-  "status": "draft",
-  "category": "website-commerce",
-  "subcategory": "forms-and-surveys",
+  "status": "published",
+  "category": "productivity",
+  "subcategory": "notes-and-workspace",
   "tags": [
     "فرم ساز",
-    "نظرسنجی"
+    "نظرسنجی",
+    "جمع‌آوری اطلاعات"
   ],
-  "summary": "ابزار ساخت فرم و نظرسنجی با تمرکز روی تجربه کاربری.",
+  "summary": "نوشن یک فضای کاری برای یادداشت، مدیریت دانش، ساخت دیتابیس و همکاری تیمیه.",
   "verdict": {
-    "value": "yes",
+    "value": "kinda",
     "confidence": "high",
-    "short": "ساختنیه",
-    "reason": "نسخه شخصی فرم ساز قابل ساخت است."
+    "short": "نسخه شخصی‌ش ساختنیه، ولی جایگزین کامل نوشن پروژه بزرگ‌تریه.",
+    "reason": "ساخت یک سیستم یادداشت و مدیریت اطلاعات شخصی شدنیه، اما همکاری تیمی، تجربه ویرایش، قالب‌ها و اکوسیستم نوشن به این راحتی بازسازی نمی‌شن."
   },
   "build": {
-    "timeEstimate": "one-weekend",
+    "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "ساخت فرم و دریافت پاسخ.",
-    "requirements": [],
-    "limitations": [],
+    "coreLoop": "کاربر اطلاعات ذخیره می‌کند، صفحه می‌سازد، دسته‌بندی می‌کند و دوباره به آن‌ها برمی‌گردد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط ساخت فرم"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره فرم‌ها و پاسخ‌ها"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت اطلاعات فرم"
+      }
+    ],
+    "limitations": [
+      "قالب‌های آماده کمتر خواهد بود.",
+      "تحلیل‌های پیشرفته وجود ندارد.",
+      "اتصال‌های آماده محدود هستند."
+    ],
     "prompt": {
-      "title": "ساخت فرم ساز",
-      "content": "Build a form builder",
+      "title": "ساخت فرم‌ساز شبیه Typeform",
+      "content": "Build a Persian RTL form builder with dynamic questions, public forms and response storage.",
       "language": "en",
       "tested": false,
       "testedWith": [],
