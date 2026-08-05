@@ -17,9 +17,23 @@ export function getStaticPaths() {
 const { app } = Astro.props;
 
 const verdict = app.verdict.value;
+
+
+const softwareSchema = {
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":app.name.en,
+  "applicationCategory":app.category,
+  "description":app.summary
+};
+
+
 ---
 
-<BaseLayout title={`${app.name.fa} | ساختنیه؟`}>
+<BaseLayout
+title={`آیا می‌شه ${app.name.fa} ساخت؟ | ساختنیه؟`}
+description={app.verdict.short}
+/>
 
 <main class="container">
 
@@ -106,4 +120,10 @@ app.build.limitations.map(item => (
 
 </main>
 
+
+<script type="application/ld+json">
+{JSON.stringify(softwareSchema)}
+</script>
+
 </BaseLayout>
+

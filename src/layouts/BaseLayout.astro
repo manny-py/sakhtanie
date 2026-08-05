@@ -3,23 +3,76 @@ import "../styles/global.css";
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "بررسی می‌کنیم کدام ابزارها را می‌شود با AI ساخت.",
+  image = "/og-default.png",
+  canonical = Astro.url.href
+} = Astro.props;
+
+const siteName = "ساختنیه؟";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": siteName,
+  "url": "https://sakhtanie.ir"
+};
+
 ---
 
 <!doctype html>
+
 <html lang="fa" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="description" content="بررسی می‌کنیم کدام ابزارها را می‌شود با AI ساخت." />
-  <title>{title}</title>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width" />
+
+<title>{title}</title>
+
+<meta name="description" content={description} />
+
+<link rel="canonical" href={canonical} />
+
+
+<meta property="og:type" content="website" />
+
+<meta property="og:title" content={title} />
+
+<meta property="og:description" content={description} />
+
+<meta property="og:image" content={image} />
+
+<meta property="og:locale" content="fa_IR" />
+
+
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="twitter:title" content={title} />
+
+<meta name="twitter:description" content={description} />
+
+
+<script type="application/ld+json">
+{JSON.stringify(jsonLd)}
+</script>
+
+
 </head>
+
 
 <body>
 
-  <slot />
+<slot />
 
 </body>
+
 </html>
