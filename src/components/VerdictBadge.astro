@@ -1,0 +1,19 @@
+---
+const { verdict } = Astro.props;
+
+const styles = {
+  yes: "color:#16a34a;background:#dcfce7",
+  kinda: "color:#d97706;background:#fef3c7",
+  no: "color:#dc2626;background:#fee2e2"
+};
+
+const labels = {
+  yes: "ساختنیه",
+  kinda: "ساختنیه، ولی...",
+  no: "نمی‌ارزه"
+};
+---
+
+<span style={`padding:8px 14px;border-radius:999px;font-weight:700;${styles[verdict]}`}>
+  {labels[verdict]}
+</span>

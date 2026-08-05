@@ -1,1 +1,47 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+
+  --yes: #16a34a;
+  --kinda: #d97706;
+  --no: #dc2626;
+
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  font-family: "Vazirmatn", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}

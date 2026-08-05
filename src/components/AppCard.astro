@@ -1,0 +1,23 @@
+---
+import VerdictBadge from "./VerdictBadge.astro";
+
+const { app } = Astro.props;
+---
+
+<a href={`/tools/${app.slug}`}>
+
+<div class="card">
+
+<h3>
+{app.name.fa}
+</h3>
+
+<p>
+{app.summary}
+</p>
+
+<VerdictBadge verdict={app.verdict.value} />
+
+</div>
+
+</a>

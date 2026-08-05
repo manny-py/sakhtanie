@@ -1,38 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AppCard from "../components/AppCard.astro";
+
 import { apps } from "../lib/apps";
 ---
 
 <BaseLayout title="ساختنیه؟">
 
-  <section style="padding:40px;font-family:sans-serif">
+<Header />
 
-    <h1>
-      ساختنیه؟
-    </h1>
+<main class="container">
 
-    <p>
-      بررسی می‌کنیم کدام ابزارها را می‌شود با AI ساخت.
-    </p>
+<section style="padding:50px 0">
+
+<h1 style="font-size:48px">
+این ابزار ساختنیه؟
+</h1>
+
+<p style="font-size:20px;color:#6b7280">
+بررسی می‌کنیم کدام ابزارها را می‌شود با AI ساخت و کدام‌ها ارزش ساختن ندارند.
+</p>
+
+</section>
 
 
-    <h2>
-      ابزارها
-    </h2>
+<section style="display:grid;gap:20px">
+
+{
+apps.map((app)=>(
+<AppCard app={app}/>
+))
+}
+
+</section>
+
+</main>
 
 
-    <ul>
-      {
-        apps.map((app) => (
-          <li>
-            <a href={`/tools/${app.slug}`}>
-              {app.name.fa}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-  </section>
+<Footer />
 
 </BaseLayout>
