@@ -1,0 +1,48 @@
+---
+import { apps } from "../lib/apps";
+
+const searchData = apps.map(app => ({
+slug: app.slug,
+name: app.name.fa,
+en: app.name.en,
+summary: app.summary
+}));
+---
+
+<input
+id="search"
+placeholder="جستجوی ابزار..."
+style="width:100%;padding:16px;border-radius:14px;border:1px solid #ddd"
+/>
+
+
+<div id="results"></div>
+
+
+<script define:vars={{searchData}}>
+const input = document.querySelector("#search");
+const results = document.querySelector("#results");
+
+input.addEventListener("input",()=>{
+
+const q=input.value.toLowerCase();
+
+const filtered=searchData.filter(item =>
+item.name.includes(q) ||
+item.en.toLowerCase().includes(q) ||
+item.summary.includes(q)
+);
+
+
+results.innerHTML = filtered.map(item => 
+`
+<div style="padding:10px">
+<a href="/tools/${item.slug}">
+${item.name}
+</a>
+</div>
+`
+).join("");
+
+});
+</script>

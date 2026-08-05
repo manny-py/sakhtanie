@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { categories } from "../../lib/categories";
+import { apps } from "../../lib/apps";
+import AppCard from "../../components/AppCard.astro";
+
+export function getStaticPaths(){
+
+return categories.map(category => ({
+params:{
+slug: category.slug
+},
+props:{
+category
+}
+}));
+
+}
+
+const {category}=Astro.props;
+
+const categoryApps = apps.filter(
+app => app.category === category.slug
+);
+
+---
+
+<BaseLayout title={`${category.name} | ساختنیه؟`}>
+
+<main class="container">
+
+<h1>
+{category.name}
+</h1>
+
+<p>
+{category.description}
+</p>
+
+
+<section style="display:grid;gap:20px">
+
+{
+categoryApps.map(app => (
+<AppCard app={app}/>
+))
+}
+
+</section>
+
+</main>
+
+</BaseLayout>
