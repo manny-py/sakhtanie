@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate:data": "tsx scripts/validate-data.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -18,6 +19,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "eslint": "^10.8.0"
+    "eslint": "^10.8.0",
+    "tsx": "^4.23.7"
   }
 }

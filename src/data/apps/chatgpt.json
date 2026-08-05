@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "slug": "typeform",
+  "name": {
+    "fa": "تایپ‌فرم",
+    "en": "Typeform"
+  },
+  "domain": "typeform.com",
+  "origin": "global",
+  "status": "draft",
+  "category": "website-commerce",
+  "subcategory": "forms-and-surveys",
+  "tags": [
+    "فرم ساز",
+    "نظرسنجی"
+  ],
+  "summary": "ابزار ساخت فرم و نظرسنجی با تمرکز روی تجربه کاربری.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "ساختنیه",
+    "reason": "نسخه شخصی فرم ساز قابل ساخت است."
+  },
+  "build": {
+    "timeEstimate": "one-weekend",
+    "skillLevel": "intermediate",
+    "coreLoop": "ساخت فرم و دریافت پاسخ.",
+    "requirements": [],
+    "limitations": [],
+    "prompt": {
+      "title": "ساخت فرم ساز",
+      "content": "Build a form builder",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-05"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 2,
+    "externalDependency": 1,
+    "proprietaryData": 0,
+    "infrastructure": 1,
+    "buildCost": 1,
+    "maintenanceCost": 2,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}
