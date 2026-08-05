@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { apps } from "../../lib/apps";
+
+export function getStaticPaths() {
+  return apps.map((app) => ({
+    params: {
+      slug: app.slug,
+    },
+    props: {
+      app,
+    },
+  }));
+}
+
+const { app } = Astro.props;
+
+const verdictMap = {
+  yes: "ساختنیه",
+  kinda: "ساختنیه، ولی...",
+  no: "نمی‌ارزه",
+};
+
+---
+
+<BaseLayout title={`${app.name.fa} | ساختنیه`}>
+
+<article style="max-width:800px;margin:auto;padding:40px;font-family:sans-serif">
+
+<h1>
+{app.name.fa}
+({app.name.en})
+</h1>
+
+<p>
+{app.summary}
+</p>
+
+<hr />
+
+<h2>
+نتیجه:
+{verdictMap[app.verdict.value]}
+</h2>
+
+<p>
+{app.verdict.short}
+</p>
+
+<h3>
+چرا؟
+</h3>
+
+<p>
+{app.verdict.reason}
+</p>
+
+<h3>
+نسخه‌ای که می‌سازیم
+</h3>
+
+<p>
+{app.build.coreLoop}
+</p>
+
+<h3>
+زمان ساخت
+</h3>
+
+<p>
+{app.build.timeEstimate}
+</p>
+
+<h3>
+سطح مهارت
+</h3>
+
+<p>
+{app.build.skillLevel}
+</p>
+
+<h3>
+پرامپت ساخت
+</h3>
+
+<pre>
+{app.build.prompt.content}
+</pre>
+
+</article>
+
+</BaseLayout>
