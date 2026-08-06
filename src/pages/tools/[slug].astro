@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import VerdictBadge from "../../components/VerdictBadge.astro";
+import FaqSection from "../../components/FaqSection.astro";
 import { apps } from "../../lib/apps";
 
 
@@ -26,6 +27,33 @@ app
 
 
 const { app } = Astro.props;
+
+
+
+const faqSchema = {
+
+"@context":"https://schema.org",
+
+"@type":"FAQPage",
+
+"mainEntity": app.seo.faq.map((item:any)=>({
+
+"@type":"Question",
+
+"name":item.question,
+
+"acceptedAnswer":{
+
+"@type":"Answer",
+
+"text":item.answer
+
+}
+
+}))
+
+};
+
 
 const softwareSchema = {
 
@@ -231,7 +259,7 @@ Prompt اولیه ساخت
 app.relatedTools.map((slug:string)=>(
 <li>
 <a href={`/tools/${slug}`}>
-{slug}
+{slug.replace("-", " ")}
 </a>
 </li>
 ))
@@ -240,19 +268,29 @@ app.relatedTools.map((slug:string)=>(
 </ul>
 
 
+
+<FaqSection faq={app.seo.faq} />
+
 </section>
 
 
 </main>
 
 
+
 <Footer />
+
 
 
 
 <script type="application/ld+json">
 {JSON.stringify(softwareSchema)}
 </script>
+
+<script type="application/ld+json">
+{JSON.stringify(faqSchema)}
+</script>
+
 
 
 </BaseLayout>

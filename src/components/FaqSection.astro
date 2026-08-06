@@ -1,0 +1,33 @@
+---
+const { faq } = Astro.props;
+---
+
+{
+faq?.length > 0 && (
+
+<section style="margin-top:40px">
+
+<h2>
+سوالات متداول
+</h2>
+
+{
+faq.map((item:any)=>(
+<div style="margin-bottom:20px">
+
+<h3>
+{item.question}
+</h3>
+
+<p>
+{item.answer}
+</p>
+
+</div>
+))
+}
+
+</section>
+
+)
+}
