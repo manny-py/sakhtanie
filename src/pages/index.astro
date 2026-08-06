@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
 import HeroTerminal from "../components/HeroTerminal.astro";
 import SearchBox from "../components/SearchBox.astro";
 import CategoryGrid from "../components/CategoryGrid.astro";
@@ -10,24 +9,23 @@ import FeaturedTools from "../components/FeaturedTools.astro";
 ---
 
 <BaseLayout
-title="ساختنیه؟ | بررسی ابزارهایی که می‌شود با AI ساخت"
-description="بررسی ابزارهای AI و اینکه آیا ساخت نسخه مشابه آن‌ها منطقی است."
+  title="ساختنیه؟ | بررسی ابزارهایی که می‌شود با AI ساخت"
+  description="بررسی می‌کنیم ساخت نسخه مشابه ابزارهای مختلف چقدر منطقی و عملی است."
 >
+  <Header />
 
-<Header />
+  <main class="container home-main">
+    <HeroTerminal />
+    <SearchBox />
+    <CategoryGrid />
+    <FeaturedTools />
+  </main>
 
-<main class="container">
-
-<HeroTerminal />
-
-<SearchBox />
-
-<CategoryGrid />
-
-<FeaturedTools />
-
-</main>
-
-<Footer />
-
+  <Footer />
 </BaseLayout>
+
+<style>
+  .home-main {
+    min-height: 100vh;
+  }
+</style>

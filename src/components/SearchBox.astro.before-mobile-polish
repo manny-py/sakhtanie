@@ -33,6 +33,7 @@ const searchableTools = apps.map((app) => ({
   domain: app.domain,
   summary: app.summary,
   category: categoryLabels[app.category] ?? app.category,
+  categoryRaw: app.category,
   verdict: app.verdict.value,
   timeEstimate:
     timeLabels[app.build.timeEstimate] ??
@@ -103,7 +104,6 @@ const searchableTools = apps.map((app) => ({
     let tools = [];
     let visibleMatches = [];
     let activeIndex = -1;
-    let queryPrefersPersian = false;
 
     try {
       tools = JSON.parse(root.dataset.tools || "[]");
@@ -124,15 +124,20 @@ const searchableTools = apps.map((app) => ({
 
     const escapeHtml = (value) =>
       String(value ?? "").replace(/[&<>"']/g, (character) => {
-        const entities = {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#039;",
-        };
-
-        return entities[character];
+        switch (character) {
+          case "&":
+            return "&amp;";
+          case "<":
+            return "&lt;";
+          case ">":
+            return "&gt;";
+          case '"':
+            return "&quot;";
+          case "'":
+            return "&#039;";
+          default:
+            return character;
+        }
       });
 
     const getVerdict = (value) => {
@@ -163,9 +168,10 @@ const searchableTools = apps.map((app) => ({
       const category = normalize(tool.category);
       const tags = (tool.tags || []).map(normalize);
       const summary = normalize(tool.summary);
-      const tokens = query.split(" ").filter(Boolean);
 
-      const searchableText = [
+      const queryTokens = query.split(" ").filter(Boolean);
+
+      const completeSearchText = [
         fa,
         en,
         slug,
@@ -174,11 +180,11 @@ const searchableTools = apps.map((app) => ({
         query.length >= 3 ? summary : "",
       ].join(" ");
 
-      if (
-        !tokens.every((token) =>
-          searchableText.includes(token)
-        )
-      ) {
+      const everyTokenMatches = queryTokens.every((token) =>
+        completeSearchText.includes(token)
+      );
+
+      if (!everyTokenMatches) {
         return -1;
       }
 
@@ -206,9 +212,7 @@ const searchableTools = apps.map((app) => ({
 
       if (tags.some((tag) => tag === query)) {
         score += 450;
-      } else if (
-        tags.some((tag) => tag.includes(query))
-      ) {
+      } else if (tags.some((tag) => tag.includes(query))) {
         score += 300;
       }
 
@@ -216,10 +220,7 @@ const searchableTools = apps.map((app) => ({
         score += 180;
       }
 
-      if (
-        query.length >= 3 &&
-        summary.includes(query)
-      ) {
+      if (query.length >= 3 && summary.includes(query)) {
         score += 80;
       }
 
@@ -272,15 +273,6 @@ const searchableTools = apps.map((app) => ({
       results.innerHTML = matches
         .map((tool, index) => {
           const verdict = getVerdict(tool.verdict);
-
-          const primaryName = queryPrefersPersian
-            ? tool.fa
-            : tool.en;
-
-          const secondaryName = queryPrefersPersian
-            ? tool.en
-            : "";
-
           const icon =
             String(tool.en || tool.fa)
               .trim()
@@ -305,27 +297,21 @@ const searchableTools = apps.map((app) => ({
 
                 <div class="sak-search__copy">
                   <div class="sak-search__name-row">
-                    <strong
-                      dir="${queryPrefersPersian ? "rtl" : "ltr"}"
-                    >
-                      ${escapeHtml(primaryName)}
+                    <strong>
+                      ${escapeHtml(tool.fa)}
                     </strong>
 
-                    ${
-                      secondaryName
-                        ? `
-                          <span
-                            class="sak-search__english-name"
-                            dir="ltr"
-                          >
-                            ${escapeHtml(secondaryName)}
-                          </span>
-                        `
-                        : ""
-                    }
+                    <span
+                      class="sak-search__english-name"
+                      dir="ltr"
+                    >
+                      ${escapeHtml(tool.en)}
+                    </span>
                   </div>
 
-                  <p>${escapeHtml(tool.summary)}</p>
+                  <p>
+                    ${escapeHtml(tool.summary)}
+                  </p>
 
                   <div class="sak-search__secondary-meta">
                     <span dir="ltr">
@@ -390,9 +376,6 @@ const searchableTools = apps.map((app) => ({
     const runSearch = () => {
       const query = normalize(input.value);
 
-      queryPrefersPersian =
-        /[\u0600-\u06FF]/.test(input.value);
-
       clearButton.classList.toggle(
         "is-hidden",
         query.length === 0
@@ -408,13 +391,7 @@ const searchableTools = apps.map((app) => ({
         return;
       }
 
-      const limit = window.matchMedia(
-        "(max-width: 720px)"
-      ).matches
-        ? 4
-        : 6;
-
-      const matches = tools
+      const rankedMatches = tools
         .map((tool) => ({
           tool,
           score: getToolScore(tool, query),
@@ -425,15 +402,15 @@ const searchableTools = apps.map((app) => ({
             return second.score - first.score;
           }
 
-          return String(first.tool.en).localeCompare(
-            String(second.tool.en),
-            "en"
+          return String(first.tool.fa).localeCompare(
+            String(second.tool.fa),
+            "fa"
           );
         })
-        .slice(0, limit)
+        .slice(0, 6)
         .map((entry) => entry.tool);
 
-      renderResults(matches);
+      renderResults(rankedMatches);
     };
 
     input.addEventListener("input", runSearch);
@@ -538,6 +515,9 @@ const searchableTools = apps.map((app) => ({
     background: #0e120f;
     border: 1px solid #263128;
     border-radius: 14px;
+    transition:
+      border-color 160ms ease,
+      box-shadow 160ms ease;
   }
 
   .sak-search__box:focus-within {
@@ -550,6 +530,7 @@ const searchableTools = apps.map((app) => ({
     color: #22e863;
     font-family: "JetBrains Mono", monospace;
     font-size: 20px;
+    line-height: 1;
   }
 
   .sak-search__input {
@@ -557,6 +538,7 @@ const searchableTools = apps.map((app) => ({
     min-width: 0;
     height: 58px;
     padding: 0 !important;
+    margin: 0;
     direction: rtl !important;
     text-align: right !important;
     background: transparent !important;
@@ -571,6 +553,7 @@ const searchableTools = apps.map((app) => ({
 
   .sak-search__input::placeholder {
     color: #737b74;
+    text-align: right;
   }
 
   .sak-search__input::-webkit-search-cancel-button {
@@ -602,6 +585,11 @@ const searchableTools = apps.map((app) => ({
     cursor: pointer;
   }
 
+  .sak-search__clear:hover {
+    background: #182019;
+    color: #ffffff;
+  }
+
   .sak-search__results {
     position: absolute;
     top: calc(100% + 10px);
@@ -617,6 +605,7 @@ const searchableTools = apps.map((app) => ({
     border-radius: 14px;
     box-shadow:
       0 24px 70px rgba(0, 0, 0, 0.55);
+    direction: rtl;
   }
 
   .sak-search__result {
@@ -631,6 +620,7 @@ const searchableTools = apps.map((app) => ({
     color: #f4f4f5;
     border-radius: 10px;
     text-decoration: none;
+    transition: background 130ms ease;
   }
 
   .sak-search__result + .sak-search__result {
@@ -668,15 +658,18 @@ const searchableTools = apps.map((app) => ({
 
   .sak-search__copy {
     min-width: 0;
+    direction: rtl;
     text-align: right;
   }
 
   .sak-search__name-row {
     display: flex;
     align-items: baseline;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 9px;
     margin-bottom: 7px;
+    direction: rtl;
   }
 
   .sak-search__name-row strong {
@@ -698,6 +691,7 @@ const searchableTools = apps.map((app) => ({
     color: #9ca59e;
     font-size: 13px;
     line-height: 1.85;
+    text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -716,7 +710,9 @@ const searchableTools = apps.map((app) => ({
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    justify-content: center;
     gap: 8px;
+    direction: rtl;
   }
 
   .sak-search__category,
@@ -740,19 +736,19 @@ const searchableTools = apps.map((app) => ({
     font-weight: 700;
   }
 
-  .verdict-yes {
+  .sak-search__verdict.verdict-yes {
     color: #22e863;
     border: 1px solid rgba(34, 232, 99, 0.35);
     background: rgba(34, 232, 99, 0.09);
   }
 
-  .verdict-kinda {
+  .sak-search__verdict.verdict-kinda {
     color: #f1c644;
     border: 1px solid rgba(241, 198, 68, 0.35);
     background: rgba(241, 198, 68, 0.09);
   }
 
-  .verdict-no {
+  .sak-search__verdict.verdict-no {
     color: #ff6464;
     border: 1px solid rgba(255, 100, 100, 0.35);
     background: rgba(255, 100, 100, 0.09);
@@ -760,6 +756,8 @@ const searchableTools = apps.map((app) => ({
 
   .sak-search__stats {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
     gap: 10px;
     color: #7f8981;
@@ -782,102 +780,41 @@ const searchableTools = apps.map((app) => ({
   }
 
   @media (max-width: 720px) {
-    .sak-search {
-      width: 100%;
-      margin-bottom: 24px;
-    }
-
     .sak-search__box {
-      min-height: 54px;
-      grid-template-columns:
-        auto minmax(0, 1fr) auto;
-      gap: 9px;
-      padding: 0 13px;
-      border-radius: 12px;
+      min-height: 56px;
+      padding: 0 14px;
     }
 
     .sak-search__input {
-      height: 52px;
+      height: 54px;
       font-size: 14px;
     }
 
     .sak-search__shortcut {
-      display: none !important;
-    }
-
-    .sak-search__results {
-      position: relative;
-      inset: auto;
-      width: 100%;
-      max-height: none;
-      margin-top: 8px;
-      padding: 4px;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-
-    .sak-search__result {
-      min-height: 0;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      padding: 12px;
-    }
-
-    .sak-search__result-main {
-      grid-template-columns: 36px minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    .sak-search__icon {
-      width: 36px;
-      height: 36px;
-      font-size: 15px;
-    }
-
-    .sak-search__name-row strong {
-      font-size: 14px;
-    }
-
-    .sak-search__copy p {
-      display: -webkit-box;
-      max-width: none;
-      overflow: hidden;
-      font-size: 12px;
-      line-height: 1.75;
-      white-space: normal;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-
-    .sak-search__result-side {
-      width: 100%;
-      align-items: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .sak-search__category,
-    .sak-search__verdict {
-      min-height: 24px;
-      padding: 3px 7px;
-      font-size: 9px;
-    }
-
-    .sak-search__stats {
-      margin-right: auto;
-      font-size: 9px;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .sak-search__secondary-meta {
       display: none;
     }
 
+    .sak-search__results {
+      max-height: 430px;
+    }
+
+    .sak-search__result {
+      grid-template-columns: 1fr;
+      gap: 13px;
+      min-height: auto;
+      padding: 15px;
+    }
+
+    .sak-search__copy p {
+      white-space: normal;
+    }
+
+    .sak-search__result-side {
+      align-items: flex-start;
+    }
+
     .sak-search__stats {
-      width: 100%;
-      margin-right: 0;
+      justify-content: flex-start;
     }
   }
 </style>

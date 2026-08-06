@@ -1,0 +1,188 @@
+<div class="search-container">
+  <div class="search-box">
+    <span class="prompt">></span>
+
+    <input
+      id="tool-search"
+      placeholder="جستجوی ابزار..."
+      autocomplete="off"
+    />
+
+    <span class="shortcut">⌘ K</span>
+  </div>
+
+  <div id="results" class="results hidden"></div>
+</div>
+
+<script>
+const input = document.querySelector("#tool-search");
+const results = document.querySelector("#results");
+
+const tools = [
+  {
+    name:"ChatGPT",
+    fa:"چت‌جی‌پی‌تی",
+    category:"AI Assistant",
+    slug:"chatgpt"
+  },
+  {
+    name:"Claude",
+    fa:"کلاد",
+    category:"AI Assistant",
+    slug:"claude"
+  },
+  {
+    name:"Gemini",
+    fa:"جمینای",
+    category:"AI Assistant",
+    slug:"gemini"
+  },
+  {
+    name:"Perplexity",
+    fa:"پرپلکسیتی",
+    category:"AI Search",
+    slug:"perplexity"
+  }
+];
+
+
+input.addEventListener("input",()=>{
+
+ const q=input.value.trim().toLowerCase();
+
+ if(!q){
+   results.innerHTML="";
+   results.classList.add("hidden");
+   return;
+ }
+
+ const matches=tools.filter(t=>
+ `${t.name} ${t.fa}`.toLowerCase().includes(q)
+ );
+
+
+ results.innerHTML=matches.map(t=>`
+
+ <a href="/tools/${t.slug}" class="result">
+   <div>
+    <strong>${t.fa}</strong>
+    <small>${t.name}</small>
+   </div>
+
+   <span>${t.category}</span>
+ </a>
+
+ `).join("");
+
+ results.classList.remove("hidden");
+
+});
+
+</script>
+
+
+
+<style>
+.search-container{
+ position:relative;
+ width:100%;
+ max-width:850px;
+ margin:auto;
+ direction:rtl;
+}
+
+.search-box{
+ height:58px;
+ display:flex;
+ align-items:center;
+ padding:0 18px;
+ background:#0d100e;
+ border:1px solid #273027;
+ border-radius:14px;
+ gap:12px;
+}
+
+.prompt{
+ color:#22ff66;
+ font-size:22px;
+}
+
+input{
+ flex:1;
+ background:none;
+ border:none;
+ outline:none;
+ color:white;
+ font-size:16px;
+ direction:rtl;
+}
+
+.shortcut{
+ color:#697169;
+ font-size:12px;
+ direction:ltr;
+}
+
+.results{
+ position:absolute;
+ top:68px;
+ right:0;
+ width:100%;
+ background:#101411;
+ border:1px solid #273027;
+ border-radius:14px;
+ overflow:hidden;
+ z-index:100;
+ box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+.hidden{
+ display:none;
+}
+
+.result{
+ min-height:74px;
+ padding:14px 22px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ text-decoration:none;
+ color:white;
+ border-bottom:1px solid #202520;
+}
+
+.result:last-child{
+ border-bottom:none;
+}
+
+.result:hover{
+ background:#151b16;
+}
+
+.tool-info{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+ align-items:flex-start;
+}
+
+.tool-info strong{
+ font-size:16px;
+}
+
+.tool-info small{
+ font-size:13px;
+ color:#8b948b;
+ direction:ltr;
+}
+
+.tool-meta span{
+ background:#182019;
+ border:1px solid #263326;
+ color:#22ff66;
+ padding:5px 10px;
+ border-radius:999px;
+ font-size:12px;
+}
+</style>
+

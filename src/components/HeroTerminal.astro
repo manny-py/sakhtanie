@@ -1,39 +1,168 @@
-<section class="hero-terminal">
+---
+import { apps } from "../lib/apps";
 
-<div class="terminal-label">
-> ساختنیه؟
-</div>
+const total = apps.length;
+const yesCount = apps.filter(
+  (app) => app.verdict.value === "yes"
+).length;
+const kindaCount = apps.filter(
+  (app) => app.verdict.value === "kinda"
+).length;
+const noCount = apps.filter(
+  (app) => app.verdict.value === "no"
+).length;
+---
 
-<h1>
-این ابزار ساختنیه؟
-</h1>
+<section class="hero">
+  <div class="hero__eyebrow">
+    <span>&gt;</span>
+    دیتابیس ساخت‌پذیری محصولات
+  </div>
 
-<p>
-بررسی می‌کنیم کدام ابزارهای AI قابل ساخت هستند،
-چقدر سخت‌اند و چه فرصتی پشت آن‌ها وجود دارد.
-</p>
+  <h1>
+    این ابزار <span>ساختنیه؟</span>
+  </h1>
 
+  <p class="hero__description">
+    ابزار را جست‌وجو کن؛ بررسی می‌کنیم نسخه مشابهش چقدر
+    ساختنی است، چه منابعی نیاز دارد و آیا ساختنش منطقی است.
+  </p>
+
+  <div class="hero__stats" aria-label="آمار ساختنیه">
+    <div>
+      <strong dir="ltr">{total}</strong>
+      <span>ابزار بررسی‌شده</span>
+    </div>
+
+    <div>
+      <strong class="stat-yes" dir="ltr">{yesCount}</strong>
+      <span>ساختنیه</span>
+    </div>
+
+    <div>
+      <strong class="stat-kinda" dir="ltr">{kindaCount}</strong>
+      <span>ساختنیه، ولی...</span>
+    </div>
+
+    <div>
+      <strong class="stat-no" dir="ltr">{noCount}</strong>
+      <span>نمی‌ارزه</span>
+    </div>
+  </div>
 </section>
 
 <style>
-.hero-terminal {
-padding:64px 0;
-}
+  .hero {
+    max-width: 900px;
+    padding: 74px 0 36px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-.terminal-label {
-font-family:"JetBrains Mono", monospace;
-color:var(--accent);
-margin-bottom:16px;
-}
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 21px;
+    color: #7f8a82;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+  }
 
-.hero-terminal h1 {
-font-size:48px;
-margin:0 0 20px;
-}
+  .hero__eyebrow span {
+    color: #22e863;
+  }
 
-.hero-terminal p {
-color:var(--muted);
-font-size:18px;
-max-width:650px;
-}
+  .hero h1 {
+    margin: 0;
+    color: #f5f5f4;
+    font-size: clamp(42px, 6vw, 78px);
+    font-weight: 850;
+    line-height: 1.2;
+    letter-spacing: -0.045em;
+  }
+
+  .hero h1 span {
+    display: inline-block;
+    color: #22e863;
+  }
+.hero__description {
+    max-width: 680px;
+    margin: 32px auto 0;
+    color: #929c94;
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 38px;
+    overflow: hidden;
+    border: 1px solid #202a22;
+    border-radius: 13px;
+    background: #0d110e;
+  }
+
+  .hero__stats > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 12px;
+  }
+
+  .hero__stats > div + div {
+    border-right: 1px solid #202a22;
+  }
+
+  .hero__stats strong {
+    color: #f4f4f5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+  }
+
+  .hero__stats span {
+    color: #768078;
+    font-size: 11px;
+  }
+
+  .hero__stats .stat-yes {
+    color: #22e863;
+  }
+
+  .hero__stats .stat-kinda {
+    color: #f1c644;
+  }
+
+  .hero__stats .stat-no {
+    color: #ff6464;
+  }
+
+  @media (max-width: 680px) {
+    .hero {
+      padding: 54px 0 28px;
+      text-align: right;
+    }
+
+    .hero__description {
+      margin-right: 0;
+      font-size: 15px;
+    }
+
+    .hero__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero__stats > div:nth-child(3) {
+      border-top: 1px solid #202a22;
+    }
+
+    .hero__stats > div:nth-child(4) {
+      border-top: 1px solid #202a22;
+    }
+
+    .hero__stats > div:nth-child(3) {
+      border-right: 0;
+    }
+  }
 </style>

@@ -1,15 +1,102 @@
-<header style="padding:24px 0">
-  <div class="container" style="display:flex;justify-content:space-between;align-items:center">
-
-    <a href="/" style="font-size:24px;font-weight:800">
-      ساختنیه؟
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/" aria-label="صفحه اصلی ساختنیه">
+      <span class="brand__mark">؟!</span>
+      <span class="brand__name">ساختنیه؟</span>
     </a>
 
-    <nav>
-      <a href="/about">
-        درباره پروژه
-      </a>
+    <nav class="site-nav" aria-label="ناوبری اصلی">
+      <a href="/#categories">دسته‌ها</a>
+      <a href="/about">درباره پروژه</a>
+      <a class="site-nav__rss" href="/rss.xml">RSS</a>
     </nav>
-
   </div>
 </header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 50;
+    border-bottom: 1px solid #1e2720;
+    background: rgba(8, 11, 9, 0.9);
+    backdrop-filter: blur(12px);
+  }
+
+  .site-header__inner {
+    width: min(1200px, calc(100% - 40px));
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .brand__mark {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #22e863;
+    border-radius: 9px;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 800;
+    direction: ltr;
+  }
+
+  .brand__name {
+    color: #f4f4f5;
+    font-size: 17px;
+    font-weight: 800;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    color: #8f9991;
+    font-size: 13px;
+  }
+
+  .site-nav a {
+    transition: color 150ms ease;
+  }
+
+  .site-nav a:hover {
+    color: #f4f4f5;
+  }
+
+  .site-nav__rss {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+  }
+
+  @media (max-width: 620px) {
+    .site-header__inner {
+      width: min(100% - 28px, 1200px);
+      min-height: 58px;
+    }
+
+    .site-nav {
+      gap: 13px;
+      font-size: 12px;
+    }
+
+    .site-nav__rss {
+      display: none;
+    }
+
+    .brand__name {
+      font-size: 16px;
+    }
+  }
+</style>

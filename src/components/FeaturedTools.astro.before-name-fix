@@ -38,9 +38,7 @@ const verdictLabels: Record<string, string> = {
 
 const featured = preferredSlugs
   .map((slug) => apps.find((app) => app.slug === slug))
-  .filter(
-    (app): app is (typeof apps)[number] => Boolean(app)
-  );
+  .filter(Boolean);
 ---
 
 <section class="featured-section">
@@ -75,12 +73,10 @@ const featured = preferredSlugs
               {String(index + 1).padStart(2, "0")}
             </span>
 
-            <strong
-              class="tool-row__name"
-              dir="ltr"
-            >
-              {app.name.en}
-            </strong>
+            <div>
+              <strong>{app.name.fa}</strong>
+              <small dir="ltr">{app.name.en}</small>
+            </div>
           </div>
 
           <span class="tool-row__category">
@@ -187,28 +183,32 @@ const featured = preferredSlugs
     grid-template-columns: 30px minmax(0, 1fr);
     align-items: center;
     gap: 13px;
-    direction: rtl;
   }
 
   .tool-row__rank {
     color: #667068;
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
-    text-align: center;
   }
 
-  .tool-row__name {
-    min-width: 0;
+  .tool-row__main strong {
+    display: block;
     overflow: hidden;
     color: #f4f4f5;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.5;
-    text-align: right;
+    font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    unicode-bidi: plaintext;
+  }
+
+  .tool-row__main small {
+    display: block;
+    margin-top: 3px;
+    overflow: hidden;
+    color: #717b73;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .tool-row__category,
@@ -251,32 +251,21 @@ const featured = preferredSlugs
   }
 
   @media (max-width: 760px) {
-    .featured-section {
-      padding-bottom: 56px;
-    }
-
     .tool-table__header {
       display: none;
     }
 
     .tool-row {
-      min-height: 88px;
       grid-template-columns: minmax(0, 1fr) auto;
-      gap: 14px;
-      padding: 15px 16px;
-    }
-
-    .tool-row__main {
-      grid-template-columns: 26px minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    .tool-row__name {
-      font-size: 13px;
+      gap: 12px;
+      padding: 14px;
     }
 
     .tool-row__category,
-    .tool-row__time,
+    .tool-row__time {
+      display: none;
+    }
+
     .tool-row__complexity {
       display: none;
     }
