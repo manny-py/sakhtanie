@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "verdict": {
+    "value": "yes",
+    "short": "نسخه تخصصی آن ساختنی است.",
+    "reason": "برای یک حوزه مشخص می‌توان اتوماسیون مشابه ساخت.",
+    "confidence": "high"
+  },
+  "slug": "zapier",
+  "name": {
+    "fa": "زپیر",
+    "en": "Zapier"
+  },
+  "domain": "zapier.com",
+  "category": "development-automation",
+  "subcategory": "automation",
+  "summary": "زپیر برای اتصال سرویس‌ها و ساخت اتوماسیون بدون کدنویسی استفاده می‌شود.",
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق سرویس"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "ساخت نسخه مشابه Zapier",
+      "content": "Build a simplified version of Zapier",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Zapier",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت زپیر",
+      "جایگزین زپیر"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت زپیر ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل بررسی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "tags": [
+    "زپیر",
+    "development-automation",
+    "AI"
+  ]
+}

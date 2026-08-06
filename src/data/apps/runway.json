@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "verdict": {
+    "value": "no",
+    "short": "ساخت مدل کامل آن سخت است.",
+    "reason": "پردازش ویدیو و مدل‌های مولد نیازمند زیرساخت سنگین هستند.",
+    "confidence": "high"
+  },
+  "slug": "runway",
+  "name": {
+    "fa": "ران‌وی",
+    "en": "Runway"
+  },
+  "domain": "runwayml.com",
+  "category": "ai-assistants",
+  "subcategory": "video-generation",
+  "summary": "ران‌وی برای تولید و ویرایش ویدیو با هوش مصنوعی استفاده می‌شود.",
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق سرویس"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "ساخت نسخه مشابه Runway",
+      "content": "Build a simplified version of Runway",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Runway",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ران‌وی",
+      "جایگزین ران‌وی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت ران‌وی ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل بررسی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "tags": [
+    "ران‌وی",
+    "ai-assistants",
+    "AI"
+  ]
+}

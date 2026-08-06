@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "verdict": {
+    "value": "yes",
+    "short": "نسخه محدود برای بازار خاص قابل ساخت است.",
+    "reason": "هسته طراحی، قالب و خروجی گرفتن قابل پیاده‌سازی است.",
+    "confidence": "high"
+  },
+  "slug": "canva",
+  "name": {
+    "fa": "کانوا",
+    "en": "Canva"
+  },
+  "domain": "canva.com",
+  "category": "website-commerce",
+  "subcategory": "design-tools",
+  "summary": "کانوا ابزار طراحی آنلاین برای ساخت محتوای تصویری است.",
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق سرویس"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "ساخت نسخه مشابه Canva",
+      "content": "Build a simplified version of Canva",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Canva",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کانوا",
+      "جایگزین کانوا"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت کانوا ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل بررسی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "tags": [
+    "کانوا",
+    "website-commerce",
+    "AI"
+  ]
+}

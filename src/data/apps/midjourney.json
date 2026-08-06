@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "verdict": {
+    "value": "no",
+    "short": "ساخت مدل مشابه ارزش بالایی ندارد.",
+    "reason": "هزینه آموزش مدل تصویر بسیار زیاد است.",
+    "confidence": "high"
+  },
+  "slug": "midjourney",
+  "name": {
+    "fa": "میدجرنی",
+    "en": "Midjourney"
+  },
+  "domain": "midjourney.com",
+  "category": "ai-assistants",
+  "subcategory": "image-generation",
+  "summary": "میدجرنی برای تولید تصویر با هوش مصنوعی استفاده می‌شود.",
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق سرویس"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "ساخت نسخه مشابه Midjourney",
+      "content": "Build a simplified version of Midjourney",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Midjourney",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت میدجرنی",
+      "جایگزین میدجرنی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت میدجرنی ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل بررسی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "tags": [
+    "میدجرنی",
+    "ai-assistants",
+    "AI"
+  ]
+}

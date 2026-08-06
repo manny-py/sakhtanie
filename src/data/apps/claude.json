@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "verdict": {
+    "value": "kinda",
+    "short": "نسخه ساده‌ترش ساختنیه، ولی مدل اصلی نه.",
+    "reason": "ساخت رابط گفتگو ممکنه، اما مدل زبانی و زیرساخت اصلی بخش سخت محصوله.",
+    "confidence": "high"
+  },
+  "slug": "claude",
+  "name": {
+    "fa": "کلود",
+    "en": "Claude"
+  },
+  "domain": "claude.ai",
+  "category": "ai-assistants",
+  "subcategory": "general-ai-assistants",
+  "summary": "کلود یک دستیار هوش مصنوعیه که برای گفتگو، تحلیل متن، برنامه‌نویسی و کارهای فکری استفاده می‌شه.",
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق سرویس"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "ساخت نسخه مشابه Claude",
+      "content": "Build a simplified version of Claude",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Claude",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کلود",
+      "جایگزین کلود"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت کلود ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل بررسی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "tags": [
+    "کلود",
+    "ai-assistants",
+    "AI"
+  ]
+}
