@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "slug": "framer",
+  "name": {
+    "fa": "فرِیمر",
+    "en": "Framer"
+  },
+  "domain": "framer.com",
+  "category": "website-commerce",
+  "subcategory": "website-builder",
+  "tags": [
+    "طراحی سایت",
+    "landing page"
+  ],
+  "summary": "فرِیمر ابزاری برای طراحی و ساخت سایت‌های مدرن است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه ساده آن قابل ساخت است.",
+    "reason": "هسته طراحی صفحه و انتشار سایت قابل پیاده‌سازی است."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق برنامه"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "Build Framer alternative",
+      "content": "Build a simplified version of Framer",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Framer",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت فرِیمر",
+      "جایگزین فرِیمر"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت فرِیمر ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

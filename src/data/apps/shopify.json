@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "slug": "shopify",
+  "name": {
+    "fa": "شاپیفای",
+    "en": "Shopify"
+  },
+  "domain": "shopify.com",
+  "category": "website-commerce",
+  "subcategory": "ecommerce",
+  "tags": [
+    "فروشگاه",
+    "ecommerce",
+    "no-code"
+  ],
+  "summary": "شاپیفای یک پلتفرم ساخت فروشگاه اینترنتی و مدیریت فروش آنلاین است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه تخصصی آن قابل ساخت است.",
+    "reason": "هسته فروشگاه، محصول، سفارش و پرداخت قابل پیاده‌سازی است."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق برنامه"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "Build Shopify alternative",
+      "content": "Build a simplified version of Shopify",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Shopify",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت شاپیفای",
+      "جایگزین شاپیفای"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت شاپیفای ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

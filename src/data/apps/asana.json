@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "slug": "asana",
+  "name": {
+    "fa": "آسانا",
+    "en": "Asana"
+  },
+  "domain": "asana.com",
+  "category": "productivity",
+  "subcategory": "project-management",
+  "tags": [
+    "مدیریت پروژه",
+    "تیم"
+  ],
+  "summary": "آسانا ابزار مدیریت پروژه و همکاری تیمی است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه مشابه آن قابل ساخت است.",
+    "reason": "وظایف، پروژه‌ها و همکاری تیمی هسته اصلی هستند."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق برنامه"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "Build Asana alternative",
+      "content": "Build a simplified version of Asana",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Asana",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آسانا",
+      "جایگزین آسانا"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت آسانا ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

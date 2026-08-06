@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "slug": "calendly",
+  "name": {
+    "fa": "کلندلی",
+    "en": "Calendly"
+  },
+  "domain": "calendly.com",
+  "category": "productivity",
+  "subcategory": "scheduling",
+  "tags": [
+    "رزرو",
+    "تقویم"
+  ],
+  "summary": "کلندلی برای زمان‌بندی جلسات و رزرو آنلاین استفاده می‌شود.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه تخصصی آن ساده‌تر قابل ساخت است.",
+    "reason": "تقویم، زمان‌های آزاد و رزرو هسته محصول هستند."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق برنامه"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "Build Calendly alternative",
+      "content": "Build a simplified version of Calendly",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Calendly",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کلندلی",
+      "جایگزین کلندلی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت کلندلی ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

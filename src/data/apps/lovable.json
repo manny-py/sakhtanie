@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "slug": "lovable",
+  "name": {
+    "fa": "لاوِیبل",
+    "en": "Lovable"
+  },
+  "domain": "lovable.dev",
+  "category": "development-automation",
+  "subcategory": "app-builders",
+  "tags": [
+    "ساخت اپ",
+    "AI"
+  ],
+  "summary": "لاوِیبل برای ساخت اپلیکیشن با کمک هوش مصنوعی استفاده می‌شود.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه تخصصی آن ساختنی است.",
+    "reason": "ساخت ابزار تولید اپ برای یک حوزه مشخص امکان‌پذیر است."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق برنامه"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "Build Lovable alternative",
+      "content": "Build a simplified version of Lovable",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Lovable",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت لاوِیبل",
+      "جایگزین لاوِیبل"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت لاوِیبل ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

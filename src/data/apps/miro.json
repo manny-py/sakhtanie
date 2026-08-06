@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 2,
+  "status": "published",
+  "origin": "global",
+  "slug": "miro",
+  "name": {
+    "fa": "میرو",
+    "en": "Miro"
+  },
+  "domain": "miro.com",
+  "category": "productivity",
+  "subcategory": "collaboration",
+  "tags": [
+    "وایت برد",
+    "همکاری"
+  ],
+  "summary": "میرو یک فضای وایت‌برد آنلاین برای همکاری تیمی است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "نسخه ساده شدنی است.",
+    "reason": "همکاری لحظه‌ای و امکانات پیشرفته بخش سخت محصول هستند."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "رابط کاربری"
+      },
+      {
+        "type": "backend",
+        "label": "منطق برنامه"
+      }
+    ],
+    "limitations": [
+      "امکانات نسخه اصلی کامل نخواهد بود."
+    ],
+    "prompt": {
+      "title": "Build Miro alternative",
+      "content": "Build a simplified version of Miro",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "comparison": {
+    "original": "Miro",
+    "buildableVersion": "نسخه محدود برای یک نیاز مشخص",
+    "missing": [
+      "امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "سازنده مستقل",
+    "استارتاپ کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت میرو",
+      "جایگزین میرو"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت میرو ممکن است؟",
+        "answer": "نسخه محدود آن با توجه به هدف پروژه قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}
