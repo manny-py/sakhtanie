@@ -1,0 +1,729 @@
+{
+  "ticket": "SAK-020.1",
+  "version": 1,
+  "targetToolCount": 100,
+  "existingToolCount": 23,
+  "plannedNewToolCount": 77,
+  "primaryCategoryPolicy": "Each tool has one primary category. Secondary discovery remains tag-based.",
+  "publishingPolicy": {
+    "initialStatus": "draft",
+    "promotionOrder": [
+      "draft",
+      "review",
+      "published"
+    ],
+    "maximumPublishedPerBatch": 15,
+    "publishGate": [
+      "content audit",
+      "logo asset",
+      "data validation",
+      "production build",
+      "accessibility audit",
+      "live deployment QA"
+    ]
+  },
+  "legacyCategoryRedirects": {
+    "website-commerce": "app-website-builders",
+    "development-automation": "ai-coding"
+  },
+  "categories": [
+    {
+      "slug": "ai-assistants",
+      "title": "دستیارهای هوش مصنوعی و جست‌وجو",
+      "shortTitle": "دستیار و جست‌وجو",
+      "code": "ASK",
+      "target": 10,
+      "description": "ابزارهای گفتگو، پاسخ‌گویی، پژوهش و جست‌وجوی مبتنی بر هوش مصنوعی."
+    },
+    {
+      "slug": "ai-coding",
+      "title": "برنامه‌نویسی با هوش مصنوعی",
+      "shortTitle": "برنامه‌نویسی AI",
+      "code": "CODE",
+      "target": 10,
+      "description": "دستیارهای کدنویسی، محیط‌های توسعه هوشمند و عامل‌های نرم‌افزاری."
+    },
+    {
+      "slug": "app-website-builders",
+      "title": "ساخت سایت و اپلیکیشن",
+      "shortTitle": "سایت و اپ",
+      "code": "BUILD",
+      "target": 10,
+      "description": "ابزارهای ساخت سایت، رابط کاربری و اپلیکیشن با کدنویسی یا بدون کد."
+    },
+    {
+      "slug": "design-image",
+      "title": "طراحی و تولید تصویر",
+      "shortTitle": "طراحی و تصویر",
+      "code": "VIS",
+      "target": 9,
+      "description": "ابزارهای طراحی رابط، تولید تصویر، ویرایش عکس و ساخت محتوای بصری."
+    },
+    {
+      "slug": "video-audio-music",
+      "title": "ویدیو، صدا و موسیقی",
+      "shortTitle": "رسانه",
+      "code": "MEDIA",
+      "target": 9,
+      "description": "ابزارهای تولید و ویرایش ویدیو، صدا، گفتار و موسیقی."
+    },
+    {
+      "slug": "writing-seo",
+      "title": "نویسندگی، محتوا و سئو",
+      "shortTitle": "محتوا و سئو",
+      "code": "COPY",
+      "target": 8,
+      "description": "ابزارهای نگارش، بازنویسی، تولید محتوا، تحقیق کلمه کلیدی و سئو."
+    },
+    {
+      "slug": "productivity",
+      "title": "مدیریت کار و بهره‌وری",
+      "shortTitle": "بهره‌وری",
+      "code": "WORK",
+      "target": 9,
+      "description": "ابزارهای مدیریت پروژه، وظایف، همکاری تیمی و برنامه‌ریزی کار."
+    },
+    {
+      "slug": "notes-knowledge",
+      "title": "یادداشت، دانش و جلسه",
+      "shortTitle": "دانش و جلسه",
+      "code": "KNOW",
+      "target": 8,
+      "description": "ابزارهای یادداشت‌برداری، مدیریت دانش، وایت‌برد و ثبت جلسات."
+    },
+    {
+      "slug": "automation-no-code",
+      "title": "اتوماسیون و بدون کد",
+      "shortTitle": "اتوماسیون",
+      "code": "AUTO",
+      "target": 8,
+      "description": "ابزارهای اتصال سرویس‌ها، ساخت گردش‌کار و خودکارسازی فرایندها."
+    },
+    {
+      "slug": "commerce-forms-scheduling",
+      "title": "فروش، فرم و زمان‌بندی",
+      "shortTitle": "فروش و فرم",
+      "code": "BIZ",
+      "target": 7,
+      "description": "ابزارهای فروش آنلاین، پرداخت، فرم‌ساز، رزرو و زمان‌بندی."
+    },
+    {
+      "slug": "marketing-crm-support",
+      "title": "بازاریابی، CRM و پشتیبانی",
+      "shortTitle": "بازاریابی و CRM",
+      "code": "GROW",
+      "target": 6,
+      "description": "ابزارهای جذب مشتری، ارتباطات بازاریابی، فروش و پشتیبانی."
+    },
+    {
+      "slug": "data-analytics",
+      "title": "داده، تحلیل و گزارش‌گیری",
+      "shortTitle": "داده و تحلیل",
+      "code": "DATA",
+      "target": 6,
+      "description": "ابزارهای تحلیل رفتار، داشبورد، هوش تجاری و گزارش‌گیری داده."
+    }
+  ],
+  "tools": [
+    {
+      "slug": "chatgpt",
+      "nameEn": "ChatGPT",
+      "category": "ai-assistants",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "claude",
+      "nameEn": "Claude",
+      "category": "ai-assistants",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "gemini",
+      "nameEn": "Gemini",
+      "category": "ai-assistants",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "perplexity",
+      "nameEn": "Perplexity",
+      "category": "ai-assistants",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "microsoft-copilot",
+      "nameEn": "Microsoft Copilot",
+      "category": "ai-assistants",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "grok",
+      "nameEn": "Grok",
+      "category": "ai-assistants",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "deepseek",
+      "nameEn": "DeepSeek",
+      "category": "ai-assistants",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "le-chat",
+      "nameEn": "Le Chat",
+      "category": "ai-assistants",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "poe",
+      "nameEn": "Poe",
+      "category": "ai-assistants",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "you-com",
+      "nameEn": "You.com",
+      "category": "ai-assistants",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "cursor",
+      "nameEn": "Cursor",
+      "category": "ai-coding",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "github-copilot",
+      "nameEn": "GitHub Copilot",
+      "category": "ai-coding",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "claude-code",
+      "nameEn": "Claude Code",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "openai-codex",
+      "nameEn": "OpenAI Codex",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "replit",
+      "nameEn": "Replit",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "windsurf",
+      "nameEn": "Windsurf",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "amazon-q-developer",
+      "nameEn": "Amazon Q Developer",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "tabnine",
+      "nameEn": "Tabnine",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "qodo",
+      "nameEn": "Qodo",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "sourcegraph-cody",
+      "nameEn": "Sourcegraph Cody",
+      "category": "ai-coding",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "bolt",
+      "nameEn": "Bolt",
+      "category": "app-website-builders",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "lovable",
+      "nameEn": "Lovable",
+      "category": "app-website-builders",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "v0",
+      "nameEn": "v0",
+      "category": "app-website-builders",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "framer",
+      "nameEn": "Framer",
+      "category": "app-website-builders",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "webflow",
+      "nameEn": "Webflow",
+      "category": "app-website-builders",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "wix",
+      "nameEn": "Wix",
+      "category": "app-website-builders",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "squarespace",
+      "nameEn": "Squarespace",
+      "category": "app-website-builders",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "bubble",
+      "nameEn": "Bubble",
+      "category": "app-website-builders",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "softr",
+      "nameEn": "Softr",
+      "category": "app-website-builders",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "glide",
+      "nameEn": "Glide",
+      "category": "app-website-builders",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "canva",
+      "nameEn": "Canva",
+      "category": "design-image",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "midjourney",
+      "nameEn": "Midjourney",
+      "category": "design-image",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "figma",
+      "nameEn": "Figma",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "adobe-firefly",
+      "nameEn": "Adobe Firefly",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "leonardo-ai",
+      "nameEn": "Leonardo AI",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "ideogram",
+      "nameEn": "Ideogram",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "krea",
+      "nameEn": "Krea",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "clipdrop",
+      "nameEn": "Clipdrop",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "remove-bg",
+      "nameEn": "remove.bg",
+      "category": "design-image",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "runway",
+      "nameEn": "Runway",
+      "category": "video-audio-music",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "suno",
+      "nameEn": "Suno",
+      "category": "video-audio-music",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "elevenlabs",
+      "nameEn": "ElevenLabs",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "descript",
+      "nameEn": "Descript",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "capcut",
+      "nameEn": "CapCut",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "veed",
+      "nameEn": "VEED",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "synthesia",
+      "nameEn": "Synthesia",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "heygen",
+      "nameEn": "HeyGen",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "pika",
+      "nameEn": "Pika",
+      "category": "video-audio-music",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "jasper",
+      "nameEn": "Jasper",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "copy-ai",
+      "nameEn": "Copy.ai",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "grammarly",
+      "nameEn": "Grammarly",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "quillbot",
+      "nameEn": "QuillBot",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "writesonic",
+      "nameEn": "Writesonic",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "surfer-seo",
+      "nameEn": "Surfer SEO",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "semrush",
+      "nameEn": "Semrush",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "ahrefs",
+      "nameEn": "Ahrefs",
+      "category": "writing-seo",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "asana",
+      "nameEn": "Asana",
+      "category": "productivity",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "trello",
+      "nameEn": "Trello",
+      "category": "productivity",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "clickup",
+      "nameEn": "ClickUp",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "monday",
+      "nameEn": "monday.com",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "linear",
+      "nameEn": "Linear",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "todoist",
+      "nameEn": "Todoist",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "basecamp",
+      "nameEn": "Basecamp",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "airtable",
+      "nameEn": "Airtable",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "slack",
+      "nameEn": "Slack",
+      "category": "productivity",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "notion",
+      "nameEn": "Notion",
+      "category": "notes-knowledge",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "miro",
+      "nameEn": "Miro",
+      "category": "notes-knowledge",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "obsidian",
+      "nameEn": "Obsidian",
+      "category": "notes-knowledge",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "evernote",
+      "nameEn": "Evernote",
+      "category": "notes-knowledge",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "notebooklm",
+      "nameEn": "NotebookLM",
+      "category": "notes-knowledge",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "otter-ai",
+      "nameEn": "Otter.ai",
+      "category": "notes-knowledge",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "fireflies-ai",
+      "nameEn": "Fireflies.ai",
+      "category": "notes-knowledge",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "granola",
+      "nameEn": "Granola",
+      "category": "notes-knowledge",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "zapier",
+      "nameEn": "Zapier",
+      "category": "automation-no-code",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "make",
+      "nameEn": "Make",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "n8n",
+      "nameEn": "n8n",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "ifttt",
+      "nameEn": "IFTTT",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "power-automate",
+      "nameEn": "Microsoft Power Automate",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "pabbly-connect",
+      "nameEn": "Pabbly Connect",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "activepieces",
+      "nameEn": "Activepieces",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "bardeen",
+      "nameEn": "Bardeen",
+      "category": "automation-no-code",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "shopify",
+      "nameEn": "Shopify",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "typeform",
+      "nameEn": "Typeform",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "calendly",
+      "nameEn": "Calendly",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "existing"
+    },
+    {
+      "slug": "stripe",
+      "nameEn": "Stripe",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "gumroad",
+      "nameEn": "Gumroad",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "tally",
+      "nameEn": "Tally",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "jotform",
+      "nameEn": "Jotform",
+      "category": "commerce-forms-scheduling",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "hubspot",
+      "nameEn": "HubSpot",
+      "category": "marketing-crm-support",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "salesforce",
+      "nameEn": "Salesforce",
+      "category": "marketing-crm-support",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "mailchimp",
+      "nameEn": "Mailchimp",
+      "category": "marketing-crm-support",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "intercom",
+      "nameEn": "Intercom",
+      "category": "marketing-crm-support",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "zendesk",
+      "nameEn": "Zendesk",
+      "category": "marketing-crm-support",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "buffer",
+      "nameEn": "Buffer",
+      "category": "marketing-crm-support",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "google-analytics",
+      "nameEn": "Google Analytics",
+      "category": "data-analytics",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "mixpanel",
+      "nameEn": "Mixpanel",
+      "category": "data-analytics",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "amplitude",
+      "nameEn": "Amplitude",
+      "category": "data-analytics",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "tableau",
+      "nameEn": "Tableau",
+      "category": "data-analytics",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "power-bi",
+      "nameEn": "Microsoft Power BI",
+      "category": "data-analytics",
+      "catalogState": "planned"
+    },
+    {
+      "slug": "metabase",
+      "nameEn": "Metabase",
+      "category": "data-analytics",
+      "catalogState": "planned"
+    }
+  ]
+}
