@@ -1,129 +1,236 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
 import VerdictBadge from "../../components/VerdictBadge.astro";
 import { apps } from "../../lib/apps";
 
-export function getStaticPaths() {
-  return apps.map((app) => ({
-    params: {
-      slug: app.slug,
-    },
-    props: {
-      app,
-    },
-  }));
+
+export async function getStaticPaths() {
+
+const appsList = apps;
+
+return appsList.map((app:any)=>({
+
+params:{
+slug:app.slug
+},
+
+props:{
+app
 }
+
+}));
+
+}
+
 
 const { app } = Astro.props;
 
-const verdict = app.verdict.value;
-
-
 const softwareSchema = {
-  "@context":"https://schema.org",
-  "@type":"SoftwareApplication",
-  "name":app.name.en,
-  "applicationCategory":app.category,
-  "description":app.summary
-};
 
+"@context":"https://schema.org",
+
+"@type":"SoftwareApplication",
+
+"name":app.name.en,
+
+"description":app.summary
+
+};
 
 ---
 
 <BaseLayout
 title={`آیا می‌شه ${app.name.fa} ساخت؟ | ساختنیه؟`}
-description={app.verdict.short}
-/>
+description={app.summary}
+>
+
+<Header />
+
 
 <main class="container">
 
-<article style="padding:40px 0">
+
+<section style="padding:40px 0">
+
 
 <h1>
-{app.name.fa} ({app.name.en})
+آیا می‌شه {app.name.fa} ساخت؟
 </h1>
 
-<VerdictBadge verdict={verdict}/>
 
 <p>
 {app.summary}
 </p>
 
 
-<section class="card">
-<h2>چرا این نتیجه؟</h2>
-<p>{app.verdict.reason}</p>
-</section>
+
+<VerdictBadge verdict={app.verdict.value}/>
 
 
-<section class="card">
-<h2>نسخه‌ای که می‌سازیم</h2>
-<p>{app.build.coreLoop}</p>
-</section>
-
-
-<section class="card">
-<h2>اطلاعات ساخت</h2>
+<h2>
+جواب کوتاه
+</h2>
 
 <p>
-زمان:
-{app.build.timeEstimate}
+{app.verdict.short}
 </p>
+
+
+<h2>
+چرا؟
+</h2>
 
 <p>
-سطح:
-{app.build.skillLevel}
+{app.verdict.reason}
 </p>
 
-</section>
 
 
-<section class="card">
-<h2>چی لازم داری؟</h2>
+<h2>
+نسخه‌ای که می‌شود ساخت
+</h2>
 
-<ul>
-{
-app.build.requirements.map(item => (
-<li>{item.label}</li>
-))
-}
-</ul>
-
-</section>
+<p>
+{app.comparison.buildableVersion}
+</p>
 
 
-<section class="card">
-<h2>چه چیزهایی رو از دست می‌دی؟</h2>
+<h2>
+چه چیزهایی سخت هستند؟
+</h2>
 
 <ul>
+
 {
-app.build.limitations.map(item => (
+app.comparison.missing.map((item:string)=>(
 <li>{item}</li>
 ))
 }
+
 </ul>
 
-</section>
 
 
-<section class="card">
-<h2>پرامپت ساخت</h2>
+<h2>
+چه کسانی باید این ابزار را بسازند؟
+</h2>
+
+
+<ul>
+
+{
+app.audience.map((item:string)=>(
+<li>{item}</li>
+))
+}
+
+</ul>
+
+
+
+<h2>
+مدل درآمدی احتمالی
+</h2>
+
+
+<ul>
+
+{
+app.monetization.models.map((item:string)=>(
+<li>{item}</li>
+))
+}
+
+</ul>
+
+
+
+<h2>
+نیازمندی‌های ساخت
+</h2>
+
+
+<ul>
+
+{
+app.build.requirements.map((item:any)=>(
+<li>{item.label}</li>
+))
+}
+
+</ul>
+
+
+
+<h2>
+محدودیت‌ها
+</h2>
+
+
+<ul>
+
+{
+app.build.limitations.map((item:string)=>(
+<li>{item}</li>
+))
+}
+
+</ul>
+
+
+
+<h2>
+امتیاز ساخت
+</h2>
+
+
+<ul>
+
+<li>
+پیچیدگی فنی:
+{app.scores.technicalComplexity}/5
+</li>
+
+<li>
+ارزش اقتصادی:
+{app.scores.economicValue}/5
+</li>
+
+<li>
+ریسک ایران:
+{app.scores.iranRisk}/5
+</li>
+
+</ul>
+
+
+
+<h2>
+Prompt اولیه ساخت
+</h2>
+
 
 <pre>
 {app.build.prompt.content}
 </pre>
 
+
+
 </section>
 
 
-</article>
-
 </main>
+
+
+<Footer />
+
 
 
 <script type="application/ld+json">
 {JSON.stringify(softwareSchema)}
 </script>
 
-</BaseLayout>
 
+</BaseLayout>
