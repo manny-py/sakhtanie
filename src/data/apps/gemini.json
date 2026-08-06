@@ -16,7 +16,7 @@
   "domain": "gemini.google.com",
   "category": "ai-assistants",
   "subcategory": "general-ai-assistants",
-  "summary": "جمینای دستیار هوش مصنوعی گوگل برای گفتگو، جستجو و پردازش اطلاعاته.",
+  "summary": "جمینای دستیار هوش مصنوعی گوگل برای گفتگو، تحلیل متن و تصویر، جست‌وجوی اطلاعات، تولید محتوا و انجام وظایف چندمرحله‌ای است.",
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",

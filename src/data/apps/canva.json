@@ -16,7 +16,7 @@
   "domain": "canva.com",
   "category": "website-commerce",
   "subcategory": "design-tools",
-  "summary": "کانوا ابزار طراحی آنلاین برای ساخت محتوای تصویری است.",
+  "summary": "کانوا یک ویرایشگر طراحی آنلاین و قالب‌محور است که برای ساخت پست، ارائه، پوستر و محتوای تصویری بدون نیاز به مهارت حرفه‌ای طراحی استفاده می‌شود.",
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",

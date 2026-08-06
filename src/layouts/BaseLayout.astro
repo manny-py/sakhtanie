@@ -3,12 +3,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  robots?: string;
 }
 
 const {
   title = "ساختنیه؟ | بررسی ابزارهایی که می‌شود با AI ساخت",
-  description = "بررسی ابزارهایی که می‌شود با AI ساخت.",
-  image = "/og-image.png"
+  description = "ساختنیه امکان ساخت نسخه مشابه ابزارهای دیجیتال را از نظر پیچیدگی فنی، زمان، هزینه، محدودیت‌ها و ارزش واقعی محصول بررسی می‌کند.",
+  image = "/og-image.png",
+  robots = "index, follow"
 } = Astro.props;
 
 const siteUrl = "https://sakhtanie.ir";
@@ -41,6 +43,8 @@ href="/apple-touch-icon.png"
 name="description"
 content={description}
 />
+
+<meta name="robots" content={robots} />
 
 <link rel="canonical" href={canonical} />
 

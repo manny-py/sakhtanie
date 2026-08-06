@@ -16,7 +16,7 @@
   "domain": "runwayml.com",
   "category": "ai-assistants",
   "subcategory": "video-generation",
-  "summary": "ران‌وی برای تولید و ویرایش ویدیو با هوش مصنوعی استفاده می‌شود.",
+  "summary": "ران‌وی مجموعه‌ای از ابزارهای هوش مصنوعی برای تولید و ویرایش ویدیو است که تبدیل متن یا تصویر به ویدیو و پردازش خلاقانه کلیپ‌ها را ارائه می‌دهد.",
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
