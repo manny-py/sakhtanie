@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "chatgpt",
   "name": {
     "fa": "چت‌جی‌پی‌تی",
@@ -65,5 +65,36 @@
     "gapFromOriginal": 2,
     "iranRisk": 1,
     "economicValue": 5
+  },
+  "comparison": {
+    "original": "ChatGPT",
+    "buildableVersion": "نسخه ساده‌تر با تمرکز روی نیاز اصلی",
+    "missing": [
+      "برخی امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "برنامه‌نویس",
+    "استارتاپ کوچک",
+    "سازنده مستقل"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت چت‌جی‌پی‌تی",
+      "جایگزین چت‌جی‌پی‌تی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه مشابه چت‌جی‌پی‌تی ممکن است؟",
+        "answer": "بسته به امکانات مورد نیاز، نسخه محدود آن قابل ساخت است."
+      }
+    ]
   }
 }

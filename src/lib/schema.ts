@@ -71,6 +71,29 @@ export const appSchema = z.object({
     }),
   }),
 
+  comparison: z.object({
+    original: z.string(),
+    buildableVersion: z.string(),
+    missing: z.array(z.string())
+  }),
+
+  audience: z.array(z.string()),
+
+  monetization: z.object({
+    possible: z.boolean(),
+    models: z.array(z.string())
+  }),
+
+  seo: z.object({
+    keywords: z.array(z.string()),
+    faq: z.array(
+      z.object({
+        question: z.string(),
+        answer: z.string()
+      })
+    )
+  }),
+
   scores: z.object({
     technicalComplexity: z.number().min(0).max(5),
     externalDependency: z.number().min(0).max(5),

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "slug": "typeform",
   "name": {
     "fa": "تایپ‌فرم",
@@ -65,5 +65,36 @@
     "gapFromOriginal": 2,
     "iranRisk": 1,
     "economicValue": 5
+  },
+  "comparison": {
+    "original": "Typeform",
+    "buildableVersion": "نسخه ساده‌تر با تمرکز روی نیاز اصلی",
+    "missing": [
+      "برخی امکانات پیشرفته نسخه اصلی"
+    ]
+  },
+  "audience": [
+    "برنامه‌نویس",
+    "استارتاپ کوچک",
+    "سازنده مستقل"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت تایپ‌فرم",
+      "جایگزین تایپ‌فرم"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه مشابه تایپ‌فرم ممکن است؟",
+        "answer": "بسته به امکانات مورد نیاز، نسخه محدود آن قابل ساخت است."
+      }
+    ]
   }
 }
