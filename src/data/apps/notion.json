@@ -25,7 +25,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر اطلاعات ذخیره می‌کند، صفحه می‌سازد، دسته‌بندی می‌کند و دوباره به آن‌ها برمی‌گردد.",
+    "coreLoop": "کاربر صفحه یا پایگاه‌داده می‌سازد، بلوک‌های محتوا را اضافه و مرتب می‌کند، نماها و ویژگی‌ها را تنظیم می‌کند و تغییرات به‌صورت خودکار ذخیره می‌شوند.",
     "requirements": [
       {
         "type": "frontend",
@@ -46,8 +46,8 @@
       "اتصال‌های آماده محدود هستند."
     ],
     "prompt": {
-      "title": "ساخت فرم‌ساز شبیه Typeform",
-      "content": "Build a Persian RTL form builder with dynamic questions, public forms and response storage.",
+      "title": "ساخت فضای کاری ماژولار شبیه Notion",
+      "content": "Build a Persian RTL modular workspace inspired by Notion. Include nested pages, a block-based rich-text editor, drag-and-drop block ordering, lightweight databases with table and board views, task properties, full-text search, authentication, workspace roles, autosave, responsive layouts, and PostgreSQL persistence. Keep the editor extensible and store all workspace data through secure server-side API routes.",
       "language": "en",
       "tested": false,
       "testedWith": [],
@@ -68,7 +68,7 @@
   },
   "comparison": {
     "original": "Notion",
-    "buildableVersion": "نسخه ساده‌تر با تمرکز روی نیاز اصلی",
+    "buildableVersion": "یک فضای کاری ماژولار برای یادداشت، مدیریت وظایف، پایگاه‌داده‌های سبک و صفحات تیمی",
     "missing": [
       "برخی امکانات پیشرفته نسخه اصلی"
     ]
