@@ -1,0 +1,25 @@
+<script is:inline>
+(function(){
+
+  window.trackEvent = function(event, payload = {}) {
+
+    console.log(
+      "[analytics]",
+      {
+        event,
+        payload
+      }
+    );
+
+  };
+
+
+  window.trackEvent(
+    "page_view",
+    {
+      path: window.location.pathname
+    }
+  );
+
+})();
+</script>
