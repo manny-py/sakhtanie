@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="صفحه پیدا نشد | ساختنیه؟">
+
+<Header />
+
+<main class="container">
+
+<section style="padding:80px 0;text-align:center">
+
+<h1>
+این صفحه هنوز ساخته نشده.
+</h1>
+
+<p>
+احتمالاً این ابزار یا موضوع هنوز به ساختنیه اضافه نشده.
+</p>
+
+<a
+href="/"
+style="
+display:inline-block;
+margin-top:24px;
+padding:12px 24px;
+border-radius:12px;
+background:#111827;
+color:white;
+"
+>
+برگشت به صفحه اصلی
+</a>
+
+</section>
+
+</main>
+
+<Footer />
+
+</BaseLayout>
