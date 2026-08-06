@@ -63,6 +63,12 @@ content={description}
 
 <body>
 
+  <!-- SAK-016.1 SKIP LINK START -->
+  <a class="skip-link" href="#main-content">
+    رفتن به محتوای اصلی
+  </a>
+  <!-- SAK-016.1 SKIP LINK END -->
+
 <slot />
 
 </body>
@@ -71,4 +77,35 @@ content={description}
 
 <style is:global>
 @import "../styles/global.css";
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 12px;
+  inset-inline-start: 12px;
+  z-index: 10000;
+  padding: 10px 14px;
+  border: 1px solid #22e863;
+  border-radius: 9px;
+  background: #0d110e;
+  color: #22e863;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-160%);
+  transition:
+    transform 140ms ease,
+    opacity 140ms ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  outline: 3px solid rgba(34, 232, 99, 0.35);
+  outline-offset: 3px;
+}
+
 </style>
