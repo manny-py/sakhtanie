@@ -1,81 +1,57 @@
 ---
-import "../styles/global.css";
-import Analytics from "../components/Analytics.astro";
-
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
-  canonical?: string;
 }
 
 const {
-  title,
-  description = "بررسی می‌کنیم کدام ابزارها را می‌شود با AI ساخت.",
-  image = "/og-default.png",
-  canonical = Astro.url.href
+  title = "ساختنیه؟ | بررسی ابزارهایی که می‌شود با AI ساخت",
+  description = "بررسی ابزارهایی که می‌شود با AI ساخت.",
+  image = "/og-image.png"
 } = Astro.props;
 
-const siteName = "ساختنیه؟";
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": siteName,
-  "url": "https://sakhtanie.ir"
-};
-
+const siteUrl = "https://sakhtanie.ir";
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!doctype html>
-
 <html lang="fa" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8" />
-
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>{title}</title>
 
-<meta name="description" content={description} />
+<meta
+name="description"
+content={description}
+/>
 
 <link rel="canonical" href={canonical} />
 
-
 <meta property="og:type" content="website" />
-
 <meta property="og:title" content={title} />
-
 <meta property="og:description" content={description} />
-
-<meta property="og:image" content={image} />
-
-<meta property="og:locale" content="fa_IR" />
-
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={`${siteUrl}${image}`} />
 
 <meta name="twitter:card" content="summary_large_image" />
-
 <meta name="twitter:title" content={title} />
-
 <meta name="twitter:description" content={description} />
-
-
-<script type="application/ld+json">
-{JSON.stringify(jsonLd)}
-</script>
-
+<meta name="twitter:image" content={`${siteUrl}${image}`} />
 
 </head>
-
 
 <body>
 
 <slot />
 
-<Analytics />
-
 </body>
 
 </html>
+
+<style is:global>
+@import "../styles/global.css";
+</style>

@@ -283,13 +283,15 @@ app.relatedTools.map((slug:string)=>(
 
 
 
-<script type="application/ld+json">
-{JSON.stringify(softwareSchema)}
-</script>
+<script
+type="application/ld+json"
+set:html={JSON.stringify(softwareSchema)}
+></script>
 
-<script type="application/ld+json">
-{JSON.stringify(faqSchema)}
-</script>
+<script
+type="application/ld+json"
+set:html={JSON.stringify(faqSchema)}
+></script>
 
 
 
