@@ -8,9 +8,14 @@ const appFiles = import.meta.glob(
   }
 );
 
-export const apps: SakhtanieApp[] = Object.values(appFiles)
-  .map((app) => app as SakhtanieApp);
+export const allApps: SakhtanieApp[] =
+  Object.values(appFiles)
+    .map((app) => app as SakhtanieApp);
 
+export const apps: SakhtanieApp[] =
+  allApps.filter(
+    (app) => app.status === "published"
+  );
 
 export function getAppBySlug(slug: string) {
   return apps.find(

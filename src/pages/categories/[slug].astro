@@ -6,14 +6,20 @@ import { apps } from "../../lib/apps";
 import { categoryDefinitions } from "../../lib/categories";
 
 export function getStaticPaths() {
-  return categoryDefinitions.map((category) => ({
-    params: {
-      slug: category.slug,
-    },
-    props: {
-      category,
-    },
-  }));
+  return categoryDefinitions
+    .filter((category) =>
+      apps.some(
+        (app) => app.category === category.slug
+      )
+    )
+    .map((category) => ({
+      params: {
+        slug: category.slug,
+      },
+      props: {
+        category,
+      },
+    }));
 }
 
 const { category } = Astro.props;
@@ -292,9 +298,15 @@ const noCount = categoryApps.filter(
 
       <div class="other-categories__list">
         {
-          categoryDefinitions.filter(
-            (item) => item.slug !== category.slug
-          )
+          categoryDefinitions
+            .filter(
+              (item) =>
+                item.slug !== category.slug &&
+                apps.some(
+                  (app) =>
+                    app.category === item.slug
+                )
+            )
             .map((item) => {
               const count = apps.filter(
                 (app) => app.category === item.slug

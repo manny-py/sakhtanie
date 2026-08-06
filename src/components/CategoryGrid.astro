@@ -1,35 +1,15 @@
 ---
 import { apps } from "../lib/apps";
+import { categoryDefinitions } from "../lib/categories";
 
-const categoryDefinitions = [
-  {
-    slug: "ai-assistants",
-    title: "دستیارهای هوش مصنوعی",
-    symbol: "AI",
-  },
-  {
-    slug: "productivity",
-    title: "بهره‌وری",
-    symbol: "PX",
-  },
-  {
-    slug: "development-automation",
-    title: "توسعه و اتوماسیون",
-    symbol: "DEV",
-  },
-  {
-    slug: "website-commerce",
-    title: "وب و کسب‌وکار",
-    symbol: "WEB",
-  },
-];
-
-const categories = categoryDefinitions.map((category) => ({
-  ...category,
-  count: apps.filter(
-    (app) => app.category === category.slug
-  ).length,
-}));
+const categories = categoryDefinitions
+  .map((category) => ({
+    ...category,
+    count: apps.filter(
+      (app) => app.category === category.slug
+    ).length,
+  }))
+  .filter((category) => category.count > 0);
 ---
 
 <section id="categories" class="categories-section">

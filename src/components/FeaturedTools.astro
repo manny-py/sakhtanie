@@ -1,5 +1,6 @@
 ---
 import { apps } from "../lib/apps";
+import { categoryDefinitions } from "../lib/categories";
 
 const preferredSlugs = [
   "chatgpt",
@@ -12,12 +13,12 @@ const preferredSlugs = [
   "shopify",
 ];
 
-const categoryLabels: Record<string, string> = {
-  "ai-assistants": "هوش مصنوعی",
-  productivity: "بهره‌وری",
-  "website-commerce": "وب و کسب‌وکار",
-  "development-automation": "توسعه",
-};
+const categoryLabels = Object.fromEntries(
+  categoryDefinitions.map((category) => [
+    category.slug,
+    category.shortTitle,
+  ])
+) as Record<string, string>;
 
 const timeLabels: Record<string, string> = {
   "few-hours": "چند ساعت",

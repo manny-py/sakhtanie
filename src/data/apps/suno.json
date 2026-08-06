@@ -14,7 +14,7 @@
     "en": "Suno"
   },
   "domain": "suno.com",
-  "category": "ai-assistants",
+  "category": "video-audio-music",
   "subcategory": "music-generation",
   "summary": "سرویس تولید موسیقی با هوش مصنوعی که از توضیح متنی، قطعه کامل شامل آهنگ، تنظیم و آواز می‌سازد.",
   "build": {
