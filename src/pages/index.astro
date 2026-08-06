@@ -2,67 +2,31 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import AppCard from "../components/AppCard.astro";
+
+import HeroTerminal from "../components/HeroTerminal.astro";
 import SearchBox from "../components/SearchBox.astro";
-import { apps } from "../lib/apps";
-import { categories } from "../lib/categories";
+import CategoryGrid from "../components/CategoryGrid.astro";
+import FeaturedTools from "../components/FeaturedTools.astro";
 ---
 
-<BaseLayout title="ساختنیه؟">
+<BaseLayout
+title="ساختنیه؟ | بررسی ابزارهایی که می‌شود با AI ساخت"
+description="بررسی ابزارهای AI و اینکه آیا ساخت نسخه مشابه آن‌ها منطقی است."
+>
 
 <Header />
 
 <main class="container">
 
-<section style="padding:50px 0">
-
-<h1>
-این ابزار ساختنیه؟
-</h1>
-
-<p>
-بررسی می‌کنیم کدام ابزارها را می‌شود با AI ساخت.
-</p>
+<HeroTerminal />
 
 <SearchBox />
 
-</section>
+<CategoryGrid />
 
-
-<h2>
-دسته‌ها
-</h2>
-
-<div style="display:grid;gap:15px">
-
-{
-categories.map(category=>(
-<a class="card" href={`/categories/${category.slug}`}>
-{category.name}
-</a>
-))
-}
-
-</div>
-
-
-<h2 style="margin-top:40px">
-ابزارها
-</h2>
-
-<section style="display:grid;gap:20px">
-
-{
-apps.map(app=>(
-<AppCard app={app}/>
-))
-}
-
-</section>
-
+<FeaturedTools />
 
 </main>
-
 
 <Footer />
 
