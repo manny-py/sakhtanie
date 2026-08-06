@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { apps } from "../../lib/apps";
+import { categoryDefinitions } from "../../lib/categories";
 
 export function getStaticPaths() {
   return apps.map((app) => ({
@@ -17,12 +18,12 @@ export function getStaticPaths() {
 
 const { app } = Astro.props;
 
-const categoryLabels: Record<string, string> = {
-  "ai-assistants": "دستیار هوش مصنوعی",
-  productivity: "بهره‌وری",
-  "website-commerce": "وب و کسب‌وکار",
-  "development-automation": "توسعه و اتوماسیون",
-};
+const categoryLabels = Object.fromEntries(
+  categoryDefinitions.map((category) => [
+    category.slug,
+    category.shortTitle,
+  ])
+) as Record<string, string>;
 
 const timeLabels: Record<string, string> = {
   "few-hours": "چند ساعت",

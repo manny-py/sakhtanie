@@ -1,12 +1,13 @@
 ---
 import { apps } from "../lib/apps";
+import { categoryDefinitions } from "../lib/categories";
 
-const categoryLabels: Record<string, string> = {
-  "ai-assistants": "دستیار هوش مصنوعی",
-  productivity: "بهره‌وری",
-  "website-commerce": "وب و کسب‌وکار",
-  "development-automation": "توسعه و اتوماسیون",
-};
+const categoryLabels = Object.fromEntries(
+  categoryDefinitions.map((category) => [
+    category.slug,
+    category.shortTitle,
+  ])
+) as Record<string, string>;
 
 const timeLabels: Record<string, string> = {
   "few-hours": "چند ساعت",
