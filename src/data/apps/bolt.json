@@ -88,5 +88,10 @@
     "gapFromOriginal": 3,
     "iranRisk": 2,
     "economicValue": 4
-  }
+  },
+  "relatedTools": [
+    "lovable",
+    "v0",
+    "cursor"
+  ]
 }

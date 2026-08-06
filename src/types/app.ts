@@ -25,6 +25,8 @@ export interface SakhtanieApp {
 
   tags: string[];
 
+  relatedTools: string[];
+
   summary: string;
 
 

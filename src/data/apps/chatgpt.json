@@ -96,5 +96,10 @@
         "answer": "بسته به امکانات مورد نیاز، نسخه محدود آن قابل ساخت است."
       }
     ]
-  }
+  },
+  "relatedTools": [
+    "claude",
+    "gemini",
+    "perplexity"
+  ]
 }

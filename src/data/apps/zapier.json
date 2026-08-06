@@ -89,5 +89,10 @@
     "زپیر",
     "development-automation",
     "AI"
+  ],
+  "relatedTools": [
+    "make",
+    "n8n",
+    "trello"
   ]
 }

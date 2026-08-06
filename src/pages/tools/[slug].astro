@@ -218,6 +218,28 @@ Prompt اولیه ساخت
 
 
 
+
+
+<h2>
+ابزارهای مشابه
+</h2>
+
+
+<ul>
+
+{
+app.relatedTools.map((slug:string)=>(
+<li>
+<a href={`/tools/${slug}`}>
+{slug}
+</a>
+</li>
+))
+}
+
+</ul>
+
+
 </section>
 
 

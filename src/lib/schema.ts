@@ -30,6 +30,8 @@ export const appSchema = z.object({
 
   tags: z.array(z.string()),
 
+  relatedTools: z.array(z.string()),
+
   summary: z.string(),
 
   verdict: z.object({

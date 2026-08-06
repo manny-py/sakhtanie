@@ -89,5 +89,10 @@
     "gapFromOriginal": 3,
     "iranRisk": 2,
     "economicValue": 4
-  }
+  },
+  "relatedTools": [
+    "webflow",
+    "canva",
+    "typeform"
+  ]
 }
