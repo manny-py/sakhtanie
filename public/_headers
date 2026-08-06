@@ -1,0 +1,22 @@
+# SAK-018 — Cloudflare Pages security and delivery headers
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=86400
+
+# Astro generates fingerprinted assets inside /_astro/.
+# These filenames change when their contents change.
+/_astro/*
+  Cache-Control: public, max-age=31556952, immutable
+
+# Prevent temporary Cloudflare Pages addresses from competing
+# with the canonical production domain in search results.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
