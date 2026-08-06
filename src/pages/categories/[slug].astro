@@ -1,53 +1,957 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { categories } from "../../lib/categories";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
 import { apps } from "../../lib/apps";
-import AppCard from "../../components/AppCard.astro";
+import { categoryDefinitions } from "../../lib/categories";
 
-export function getStaticPaths(){
-
-return categories.map(category => ({
-params:{
-slug: category.slug
-},
-props:{
-category
-}
-}));
-
+export function getStaticPaths() {
+  return categoryDefinitions.map((category) => ({
+    params: {
+      slug: category.slug,
+    },
+    props: {
+      category,
+    },
+  }));
 }
 
-const {category}=Astro.props;
+const { category } = Astro.props;
 
-const categoryApps = apps.filter(
-app => app.category === category.slug
-);
+const categoryApps = apps
+  .filter((app) => app.category === category.slug)
+  .sort((first, second) =>
+    first.name.en.localeCompare(second.name.en, "en")
+  );
 
+const verdictLabels: Record<string, string> = {
+  yes: "ساختنیه",
+  kinda: "ساختنیه، ولی...",
+  no: "نمی‌ارزه",
+};
+
+const timeLabels: Record<string, string> = {
+  "few-hours": "چند ساعت",
+  "one-day": "یک روز",
+  "few-days": "چند روز",
+  "one-weekend": "یک آخر هفته",
+  "one-week": "یک هفته",
+  "few-weeks": "چند هفته",
+  "one-month": "یک ماه",
+  "few-months": "چند ماه",
+};
+
+const skillLabels: Record<string, string> = {
+  beginner: "مقدماتی",
+  intermediate: "متوسط",
+  advanced: "پیشرفته",
+  expert: "حرفه‌ای",
+};
+
+const yesCount = categoryApps.filter(
+  (app) => app.verdict.value === "yes"
+).length;
+
+const kindaCount = categoryApps.filter(
+  (app) => app.verdict.value === "kinda"
+).length;
+
+const noCount = categoryApps.filter(
+  (app) => app.verdict.value === "no"
+).length;
 ---
 
-<BaseLayout title={`${category.name} | ساختنیه؟`}>
+<BaseLayout
+  title={`${category.title} | ساختنیه؟`}
+  description={category.description}
+>
+  <Header />
 
-<main class="container">
+  <main class="category-page">
+    <section class="category-hero">
+      <div class="category-breadcrumb">
+        <a href="/">ساختنیه؟</a>
+        <span>/</span>
+        <span>دسته‌بندی‌ها</span>
+        <span>/</span>
+        <strong>{category.code}</strong>
+      </div>
 
-<h1>
-{category.name}
-</h1>
+      <div class="category-heading">
+        <div>
+          <span class="category-code">
+            {category.code}
+          </span>
 
-<p>
-{category.description}
-</p>
+          <h1>{category.title}</h1>
 
+          <p>{category.description}</p>
+        </div>
 
-<section style="display:grid;gap:20px">
+        <div class="category-total">
+          <strong dir="ltr">{categoryApps.length}</strong>
+          <span>ابزار</span>
+        </div>
+      </div>
 
-{
-categoryApps.map(app => (
-<AppCard app={app}/>
-))
-}
+      <div class="category-stats">
+        <div>
+          <strong dir="ltr">{categoryApps.length}</strong>
+          <span>کل ابزارها</span>
+        </div>
 
-</section>
+        <div>
+          <strong class="stat-yes" dir="ltr">
+            {yesCount}
+          </strong>
+          <span>ساختنیه</span>
+        </div>
 
-</main>
+        <div>
+          <strong class="stat-kinda" dir="ltr">
+            {kindaCount}
+          </strong>
+          <span>ساختنیه، ولی...</span>
+        </div>
 
+        <div>
+          <strong class="stat-no" dir="ltr">
+            {noCount}
+          </strong>
+          <span>نمی‌ارزه</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-database">
+      <div class="database-toolbar">
+        <div>
+          <span class="database-kicker">
+            CATEGORY DATABASE
+          </span>
+
+          <h2>فهرست ابزارها</h2>
+        </div>
+
+        <div
+          class="verdict-filters"
+          aria-label="فیلتر نتیجه ساخت"
+        >
+          <button
+            class="filter-button is-active"
+            type="button"
+            data-filter="all"
+          >
+            همه
+            <span dir="ltr">{categoryApps.length}</span>
+          </button>
+
+          <button
+            class="filter-button"
+            type="button"
+            data-filter="yes"
+          >
+            ساختنیه
+            <span dir="ltr">{yesCount}</span>
+          </button>
+
+          <button
+            class="filter-button"
+            type="button"
+            data-filter="kinda"
+          >
+            ولی...
+            <span dir="ltr">{kindaCount}</span>
+          </button>
+
+          <button
+            class="filter-button"
+            type="button"
+            data-filter="no"
+          >
+            نمی‌ارزه
+            <span dir="ltr">{noCount}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="category-table">
+        <div class="category-table__header">
+          <span>ابزار</span>
+          <span>نتیجه</span>
+          <span>زمان ساخت</span>
+          <span>سطح مهارت</span>
+          <span>پیچیدگی</span>
+        </div>
+
+        <div id="category-tool-list">
+          {
+            categoryApps.map((app, index) => (
+              <a
+                class="category-row"
+                href={`/tools/${app.slug}`}
+                data-tool-row
+                data-verdict={app.verdict.value}
+              >
+                <div class="category-row__tool">
+                  <span
+                    class="category-row__rank"
+                    dir="ltr"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span
+                    class="category-row__icon"
+                    dir="ltr"
+                    aria-hidden="true"
+                  >
+                    {app.name.en.charAt(0).toUpperCase()}
+                  </span>
+
+                  <div class="category-row__identity">
+                    <strong dir="ltr">
+                      {app.name.en}
+                    </strong>
+
+                    <span dir="ltr">
+                      {app.domain}
+                    </span>
+                  </div>
+                </div>
+
+                <span
+                  class:list={[
+                    "category-row__verdict",
+                    `verdict-${app.verdict.value}`,
+                  ]}
+                >
+                  {verdictLabels[app.verdict.value]}
+                </span>
+
+                <span class="category-row__time">
+                  {timeLabels[app.build.timeEstimate] ??
+                    app.build.timeEstimate}
+                </span>
+
+                <span class="category-row__skill">
+                  {skillLabels[app.build.skillLevel] ??
+                    app.build.skillLevel}
+                </span>
+
+                <span
+                  class="category-row__complexity"
+                  dir="ltr"
+                >
+                  {app.scores.technicalComplexity}/5
+                </span>
+
+                <div class="category-row__mobile-meta">
+                  <span>
+                    زمان:
+                    <strong>
+                      {timeLabels[app.build.timeEstimate] ??
+                        app.build.timeEstimate}
+                    </strong>
+                  </span>
+
+                  <span>
+                    سطح:
+                    <strong>
+                      {skillLabels[app.build.skillLevel] ??
+                        app.build.skillLevel}
+                    </strong>
+                  </span>
+
+                  <span>
+                    پیچیدگی:
+                    <strong dir="ltr">
+                      {app.scores.technicalComplexity}/5
+                    </strong>
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        <div
+          id="category-empty-state"
+          class="category-empty is-hidden"
+        >
+          ابزاری با این نتیجه در این دسته وجود ندارد.
+        </div>
+      </div>
+    </section>
+
+    <section class="other-categories">
+      <div class="other-categories__heading">
+        <span>OTHER CATEGORIES</span>
+        <h2>دسته‌های دیگر</h2>
+      </div>
+
+      <div class="other-categories__list">
+        {
+          categoryDefinitions.filter(
+            (item) => item.slug !== category.slug
+          )
+            .map((item) => {
+              const count = apps.filter(
+                (app) => app.category === item.slug
+              ).length;
+
+              return (
+                <a
+                  class="other-category"
+                  href={`/categories/${item.slug}`}
+                >
+                  <span class="other-category__code">
+                    {item.code}
+                  </span>
+
+                  <span>{item.shortTitle}</span>
+
+                  <strong dir="ltr">{count}</strong>
+                </a>
+              );
+            })
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </BaseLayout>
+
+<script is:inline>
+  const filterButtons = [
+    ...document.querySelectorAll("[data-filter]"),
+  ];
+
+  const toolRows = [
+    ...document.querySelectorAll("[data-tool-row]"),
+  ];
+
+  const emptyState = document.querySelector(
+    "#category-empty-state"
+  );
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedFilter =
+        button.dataset.filter || "all";
+
+      filterButtons.forEach((item) => {
+        item.classList.toggle(
+          "is-active",
+          item === button
+        );
+      });
+
+      let visibleCount = 0;
+
+      toolRows.forEach((row) => {
+        const shouldShow =
+          selectedFilter === "all" ||
+          row.dataset.verdict === selectedFilter;
+
+        row.classList.toggle(
+          "is-filtered-out",
+          !shouldShow
+        );
+
+        if (shouldShow) {
+          visibleCount += 1;
+        }
+      });
+
+      emptyState?.classList.toggle(
+        "is-hidden",
+        visibleCount > 0
+      );
+    });
+  });
+</script>
+
+<style>
+  .category-page {
+    width: min(1100px, calc(100% - 40px));
+    min-height: 100vh;
+    margin: 0 auto;
+  }
+
+  .category-hero {
+    padding: 68px 0 40px;
+  }
+
+  .category-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px;
+    color: #69736b;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .category-breadcrumb a:hover {
+    color: #22e863;
+  }
+
+  .category-breadcrumb strong {
+    color: #22e863;
+    font-weight: 500;
+  }
+
+  .category-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .category-code {
+    display: inline-flex;
+    padding: 5px 9px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(34, 232, 99, 0.35);
+    border-radius: 7px;
+    background: rgba(34, 232, 99, 0.08);
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+  }
+
+  .category-heading h1 {
+    margin: 0;
+    color: #f5f5f4;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.35;
+  }
+
+  .category-heading p {
+    max-width: 720px;
+    margin: 18px 0 0;
+    color: #919b93;
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  .category-total {
+    min-width: 128px;
+    min-height: 128px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #253027;
+    border-radius: 18px;
+    background: #0d110e;
+  }
+
+  .category-total strong {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 36px;
+  }
+
+  .category-total span {
+    margin-top: 5px;
+    color: #778078;
+    font-size: 11px;
+  }
+
+  .category-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 38px;
+    overflow: hidden;
+    border: 1px solid #202a22;
+    border-radius: 14px;
+    background: #0d110e;
+  }
+
+  .category-stats > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 17px 12px;
+  }
+
+  .category-stats > div + div {
+    border-right: 1px solid #202a22;
+  }
+
+  .category-stats strong {
+    color: #f4f4f5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+  }
+
+  .category-stats span {
+    color: #737d75;
+    font-size: 10px;
+  }
+
+  .category-stats .stat-yes {
+    color: #22e863;
+  }
+
+  .category-stats .stat-kinda {
+    color: #f1c644;
+  }
+
+  .category-stats .stat-no {
+    color: #ff6464;
+  }
+
+  .category-database {
+    padding: 36px 0 70px;
+  }
+
+  .database-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 18px;
+  }
+
+  .database-kicker {
+    color: #687269;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .database-toolbar h2 {
+    margin: 5px 0 0;
+    color: #f4f4f5;
+    font-size: 24px;
+  }
+
+  .verdict-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .filter-button {
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px;
+    border: 1px solid #263028;
+    border-radius: 8px;
+    background: #0d110e;
+    color: #89938b;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .filter-button span {
+    color: #616b63;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .filter-button:hover {
+    border-color: #39463b;
+    color: #f4f4f5;
+  }
+
+  .filter-button.is-active {
+    border-color: rgba(34, 232, 99, 0.45);
+    background: rgba(34, 232, 99, 0.08);
+    color: #22e863;
+  }
+
+  .filter-button.is-active span {
+    color: #22e863;
+  }
+
+  .category-table {
+    overflow: hidden;
+    border: 1px solid #202a22;
+    border-radius: 14px;
+    background: #0d110e;
+  }
+
+  .category-table__header,
+  .category-row {
+    display: grid;
+    grid-template-columns:
+      minmax(260px, 1.8fr)
+      minmax(110px, 0.85fr)
+      minmax(100px, 0.8fr)
+      minmax(90px, 0.7fr)
+      70px;
+    align-items: center;
+    gap: 18px;
+    padding: 0 18px;
+  }
+
+  .category-table__header {
+    min-height: 49px;
+    color: #687269;
+    border-bottom: 1px solid #202a22;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .category-row {
+    min-height: 82px;
+    color: #f4f4f5;
+    transition: background 140ms ease;
+  }
+
+  .category-row + .category-row {
+    border-top: 1px solid #1e2720;
+  }
+
+  .category-row:hover {
+    background: #141a15;
+  }
+
+  .category-row.is-filtered-out {
+    display: none;
+  }
+
+  .category-row__tool {
+    min-width: 0;
+    display: grid;
+    grid-template-columns:
+      28px 40px minmax(0, 1fr);
+    align-items: center;
+    gap: 11px;
+  }
+
+  .category-row__rank {
+    color: #626c64;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .category-row__icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2a372d;
+    border-radius: 10px;
+    background: #172019;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .category-row__identity {
+    min-width: 0;
+  }
+
+  .category-row__identity strong {
+    display: block;
+    overflow: hidden;
+    color: #f4f4f5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .category-row__identity span {
+    display: block;
+    margin-top: 4px;
+    overflow: hidden;
+    color: #687269;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .category-row__verdict {
+    width: fit-content;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .verdict-yes {
+    color: #22e863;
+    border: 1px solid rgba(34, 232, 99, 0.3);
+    background: rgba(34, 232, 99, 0.09);
+  }
+
+  .verdict-kinda {
+    color: #f1c644;
+    border: 1px solid rgba(241, 198, 68, 0.3);
+    background: rgba(241, 198, 68, 0.09);
+  }
+
+  .verdict-no {
+    color: #ff6464;
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    background: rgba(255, 100, 100, 0.09);
+  }
+
+  .category-row__time,
+  .category-row__skill {
+    color: #969f98;
+    font-size: 11px;
+  }
+
+  .category-row__complexity {
+    color: #a2aba4;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+  }
+
+  .category-row__mobile-meta {
+    display: none;
+  }
+
+  .category-empty {
+    padding: 38px 18px;
+    color: #828c84;
+    text-align: center;
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+
+  .other-categories {
+    padding: 0 0 80px;
+  }
+
+  .other-categories__heading span {
+    color: #687269;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .other-categories__heading h2 {
+    margin: 5px 0 18px;
+    color: #f4f4f5;
+    font-size: 23px;
+  }
+
+  .other-categories__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .other-category {
+    min-height: 62px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 13px;
+    border: 1px solid #253027;
+    border-radius: 12px;
+    background: #0d110e;
+    color: #c3cbc5;
+  }
+
+  .other-category:hover {
+    border-color: rgba(34, 232, 99, 0.42);
+    background: #141a15;
+  }
+
+  .other-category__code {
+    min-width: 35px;
+    padding: 5px 6px;
+    border-radius: 7px;
+    background: #182019;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .other-category > span:nth-child(2) {
+    font-size: 12px;
+  }
+
+  .other-category strong {
+    color: #69736b;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  @media (max-width: 760px) {
+    .category-page {
+      width: min(100% - 28px, 1100px);
+    }
+
+    .category-hero {
+      padding: 45px 0 25px;
+    }
+
+    .category-breadcrumb {
+      margin-bottom: 22px;
+    }
+
+    .category-heading {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .category-heading h1 {
+      font-size: 36px;
+    }
+
+    .category-heading p {
+      font-size: 14px;
+    }
+
+    .category-total {
+      min-width: 0;
+      min-height: 74px;
+      align-items: baseline;
+      flex-direction: row;
+      gap: 8px;
+    }
+
+    .category-total strong {
+      font-size: 25px;
+    }
+
+    .category-stats {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 26px;
+    }
+
+    .category-stats > div:nth-child(3),
+    .category-stats > div:nth-child(4) {
+      border-top: 1px solid #202a22;
+    }
+
+    .category-stats > div:nth-child(3) {
+      border-right: 0;
+    }
+
+    .database-toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .verdict-filters {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .filter-button {
+      justify-content: center;
+    }
+
+    .category-table__header {
+      display: none;
+    }
+
+    .category-row {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 13px;
+      padding: 15px 14px;
+    }
+
+    .category-row__tool {
+      grid-template-columns: 24px 36px minmax(0, 1fr);
+      gap: 9px;
+    }
+
+    .category-row__icon {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+    }
+
+    .category-row__identity strong {
+      font-size: 12px;
+    }
+
+    .category-row__time,
+    .category-row__skill,
+    .category-row__complexity {
+      display: none;
+    }
+
+    .category-row__mobile-meta {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-right: 69px;
+      color: #727c74;
+      font-size: 9px;
+    }
+
+    .category-row__mobile-meta strong {
+      color: #adb5af;
+      font-weight: 500;
+    }
+
+    .other-categories__list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .category-row {
+      grid-template-columns: 1fr;
+    }
+
+    .category-row__verdict {
+      margin-right: 69px;
+    }
+
+    .category-row__mobile-meta {
+      padding-right: 69px;
+    }
+  }
+
+  /* SAK CATEGORY TOTAL MOBILE ALIGN START */
+  @media (max-width: 760px) {
+    .category-total {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 10px;
+      min-height: 74px;
+      padding: 0 16px;
+    }
+
+    .category-total strong {
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .category-total span {
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      line-height: 1.2;
+    }
+  }
+  /* SAK CATEGORY TOTAL MOBILE ALIGN END */
+
+</style>
