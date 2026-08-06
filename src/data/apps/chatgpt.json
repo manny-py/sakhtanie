@@ -11,9 +11,11 @@
   "category": "ai-assistants",
   "subcategory": "general-ai-assistants",
   "tags": [
-    "فرم ساز",
-    "نظرسنجی",
-    "جمع‌آوری اطلاعات"
+    "دستیار هوش مصنوعی",
+    "چت‌بات",
+    "مدل زبانی",
+    "تولید محتوا",
+    "برنامه‌نویسی"
   ],
   "summary": "چت‌جی‌پی‌تی یک دستیار هوش مصنوعیه که برای گفتگو، تولید محتوا، برنامه‌نویسی و تحلیل اطلاعات استفاده می‌شه.",
   "verdict": {
@@ -25,29 +27,29 @@
   "build": {
     "timeEstimate": "one-weekend",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر درخواست وارد می‌کند، مدل پردازش می‌کند و پاسخ دریافت می‌کند.",
+    "coreLoop": "کاربر پیام خود را وارد می‌کند، درخواست به مدل زبانی ارسال می‌شود و پاسخ به‌صورت جریانی در گفتگو نمایش داده می‌شود.",
     "requirements": [
       {
         "type": "frontend",
-        "label": "رابط ساخت فرم"
-      },
-      {
-        "type": "database",
-        "label": "ذخیره فرم‌ها و پاسخ‌ها"
+        "label": "رابط چت راست‌چین با نمایش جریانی پاسخ"
       },
       {
         "type": "backend",
-        "label": "مدیریت اطلاعات فرم"
+        "label": "مدیریت گفتگو، نشست کاربر و ارتباط با مدل زبانی"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره تاریخچه گفتگوها، تنظیمات و بازخوردها"
       }
     ],
     "limitations": [
-      "قالب‌های آماده کمتر خواهد بود.",
-      "تحلیل‌های پیشرفته وجود ندارد.",
-      "اتصال‌های آماده محدود هستند."
+      "کیفیت پاسخ‌ها به مدل زبانی و سرویس خارجی انتخاب‌شده وابسته است.",
+      "مدل پایه اختصاصی و زیرساخت آموزشی در مقیاس ChatGPT ساخته نمی‌شود.",
+      "حافظه بلندمدت، ابزارهای پیشرفته و قابلیت‌های چندرسانه‌ای محدودتر خواهند بود."
     ],
     "prompt": {
-      "title": "ساخت فرم‌ساز شبیه Typeform",
-      "content": "Build a Persian RTL form builder with dynamic questions, public forms and response storage.",
+      "title": "ساخت دستیار هوش مصنوعی شبیه ChatGPT",
+      "content": "Build a Persian RTL AI chat assistant using an LLM API. Include streaming responses, conversation history, Markdown rendering, code blocks with copy buttons, session management, error handling, and a responsive dark interface. Store conversations in a database and keep the model provider behind a server-side API route.",
       "language": "en",
       "tested": false,
       "testedWith": [],
@@ -68,9 +70,11 @@
   },
   "comparison": {
     "original": "ChatGPT",
-    "buildableVersion": "نسخه ساده‌تر با تمرکز روی نیاز اصلی",
+    "buildableVersion": "دستیار هوش مصنوعی تخصصی مبتنی بر API با رابط چت، تاریخچه گفتگو و قابلیت‌های محدود",
     "missing": [
-      "برخی امکانات پیشرفته نسخه اصلی"
+      "مدل پایه اختصاصی و آموزش در مقیاس ChatGPT",
+      "زیرساخت پردازشی و سرویس‌دهی جهانی",
+      "ابزارها، حافظه و قابلیت‌های چندرسانه‌ای کامل نسخه اصلی"
     ]
   },
   "audience": [

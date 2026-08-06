@@ -2,297 +2,1394 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import VerdictBadge from "../../components/VerdictBadge.astro";
-import FaqSection from "../../components/FaqSection.astro";
 import { apps } from "../../lib/apps";
 
-
-export async function getStaticPaths() {
-
-const appsList = apps;
-
-return appsList.map((app:any)=>({
-
-params:{
-slug:app.slug
-},
-
-props:{
-app
+export function getStaticPaths() {
+  return apps.map((app) => ({
+    params: {
+      slug: app.slug,
+    },
+    props: {
+      app,
+    },
+  }));
 }
-
-}));
-
-}
-
 
 const { app } = Astro.props;
 
-
-
-const faqSchema = {
-
-"@context":"https://schema.org",
-
-"@type":"FAQPage",
-
-"mainEntity": app.seo.faq.map((item:any)=>({
-
-"@type":"Question",
-
-"name":item.question,
-
-"acceptedAnswer":{
-
-"@type":"Answer",
-
-"text":item.answer
-
-}
-
-}))
-
+const categoryLabels: Record<string, string> = {
+  "ai-assistants": "دستیار هوش مصنوعی",
+  productivity: "بهره‌وری",
+  "website-commerce": "وب و کسب‌وکار",
+  "development-automation": "توسعه و اتوماسیون",
 };
 
+const timeLabels: Record<string, string> = {
+  "few-hours": "چند ساعت",
+  "one-day": "یک روز",
+  "few-days": "چند روز",
+  "one-weekend": "یک آخر هفته",
+  "one-week": "یک هفته",
+  "few-weeks": "چند هفته",
+  "one-month": "یک ماه",
+  "few-months": "چند ماه",
+};
+
+const skillLabels: Record<string, string> = {
+  beginner: "مقدماتی",
+  intermediate: "متوسط",
+  advanced: "پیشرفته",
+  expert: "حرفه‌ای",
+};
+
+const requirementLabels: Record<string, string> = {
+  frontend: "رابط کاربری",
+  backend: "بک‌اند",
+  database: "دیتابیس",
+  api: "API",
+  ai: "هوش مصنوعی",
+  infrastructure: "زیرساخت",
+  authentication: "احراز هویت",
+  automation: "اتوماسیون",
+  storage: "ذخیره‌سازی",
+};
+
+const monetizationLabels: Record<string, string> = {
+  subscription: "اشتراک",
+  service: "فروش خدمات",
+  commission: "کمیسیون",
+  advertising: "تبلیغات",
+  freemium: "فریمیوم",
+  marketplace: "مارکت‌پلیس",
+  licensing: "لایسنس",
+  "one-time-payment": "پرداخت یک‌باره",
+};
+
+const verdictMeta: Record<
+  string,
+  {
+    label: string;
+    className: string;
+    code: string;
+  }
+> = {
+  yes: {
+    label: "ساختنیه",
+    className: "verdict-yes",
+    code: "YES",
+  },
+  kinda: {
+    label: "ساختنیه، ولی...",
+    className: "verdict-kinda",
+    code: "KINDA",
+  },
+  no: {
+    label: "نمی‌ارزه",
+    className: "verdict-no",
+    code: "NOT REALLY",
+  },
+};
+
+const verdict =
+  verdictMeta[app.verdict.value] ?? verdictMeta.kinda;
+
+const relatedTools = (app.relatedTools ?? []).flatMap(
+  (slug: string) => {
+    const related = apps.find((item) => item.slug === slug);
+    return related ? [related] : [];
+  }
+);
+
+const faqItems = app.seo?.faq ?? [];
+
+const scoreEntries = [
+  {
+    label: "پیچیدگی فنی",
+    value: app.scores.technicalComplexity,
+  },
+  {
+    label: "وابستگی خارجی",
+    value: app.scores.externalDependency,
+  },
+  {
+    label: "نیاز به داده اختصاصی",
+    value: app.scores.proprietaryData,
+  },
+  {
+    label: "نیاز زیرساختی",
+    value: app.scores.infrastructure,
+  },
+  {
+    label: "هزینه ساخت",
+    value: app.scores.buildCost,
+  },
+  {
+    label: "هزینه نگهداری",
+    value: app.scores.maintenanceCost,
+  },
+  {
+    label: "ارزش شخصی",
+    value: app.scores.personalValue,
+  },
+  {
+    label: "ارزش اقتصادی",
+    value: app.scores.economicValue,
+  },
+  {
+    label: "ریسک ایران",
+    value: app.scores.iranRisk,
+  },
+];
 
 const softwareSchema = {
-
-"@context":"https://schema.org",
-
-"@type":"SoftwareApplication",
-
-"name":app.name.en,
-
-"description":app.summary
-
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: app.name.en,
+  alternateName: app.name.fa,
+  description: app.summary,
+  applicationCategory:
+    categoryLabels[app.category] ?? app.category,
+  url: `https://sakhtanie.ir/tools/${app.slug}`,
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map(
+    (item: { question: string; answer: string }) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })
+  ),
+};
 ---
 
 <BaseLayout
-title={`آیا می‌شه ${app.name.fa} ساخت؟ | ساختنیه؟`}
-description={app.summary}
+  title={`آیا می‌شه ${app.name.en} ساخت؟ | ساختنیه؟`}
+  description={app.summary}
 >
-
-<Header />
-
-
-<main class="container">
-
-
-<section style="padding:40px 0">
-
-
-<h1>
-آیا می‌شه {app.name.fa} ساخت؟
-</h1>
-
-
-<p>
-{app.summary}
-</p>
-
-
-
-<VerdictBadge verdict={app.verdict.value}/>
-
-
-<h2>
-جواب کوتاه
-</h2>
-
-<p>
-{app.verdict.short}
-</p>
-
-
-<h2>
-چرا؟
-</h2>
-
-<p>
-{app.verdict.reason}
-</p>
-
-
-
-<h2>
-نسخه‌ای که می‌شود ساخت
-</h2>
-
-<p>
-{app.comparison.buildableVersion}
-</p>
-
-
-<h2>
-چه چیزهایی سخت هستند؟
-</h2>
-
-<ul>
-
-{
-app.comparison.missing.map((item:string)=>(
-<li>{item}</li>
-))
-}
-
-</ul>
-
-
-
-<h2>
-چه کسانی باید این ابزار را بسازند؟
-</h2>
-
-
-<ul>
-
-{
-app.audience.map((item:string)=>(
-<li>{item}</li>
-))
-}
-
-</ul>
-
-
-
-<h2>
-مدل درآمدی احتمالی
-</h2>
-
-
-<ul>
-
-{
-app.monetization.models.map((item:string)=>(
-<li>{item}</li>
-))
-}
-
-</ul>
-
-
-
-<h2>
-نیازمندی‌های ساخت
-</h2>
-
-
-<ul>
-
-{
-app.build.requirements.map((item:any)=>(
-<li>{item.label}</li>
-))
-}
-
-</ul>
-
-
-
-<h2>
-محدودیت‌ها
-</h2>
-
-
-<ul>
-
-{
-app.build.limitations.map((item:string)=>(
-<li>{item}</li>
-))
-}
-
-</ul>
-
-
-
-<h2>
-امتیاز ساخت
-</h2>
-
-
-<ul>
-
-<li>
-پیچیدگی فنی:
-{app.scores.technicalComplexity}/5
-</li>
-
-<li>
-ارزش اقتصادی:
-{app.scores.economicValue}/5
-</li>
-
-<li>
-ریسک ایران:
-{app.scores.iranRisk}/5
-</li>
-
-</ul>
-
-
-
-<h2>
-Prompt اولیه ساخت
-</h2>
-
-
-<pre>
-{app.build.prompt.content}
-</pre>
-
-
-
-
-
-<h2>
-ابزارهای مشابه
-</h2>
-
-
-<ul>
-
-{
-app.relatedTools.map((slug:string)=>(
-<li>
-<a href={`/tools/${slug}`}>
-{slug.replace("-", " ")}
-</a>
-</li>
-))
-}
-
-</ul>
-
-
-
-<FaqSection faq={app.seo.faq} />
-
-</section>
-
-
-</main>
-
-
-
-<Footer />
-
-
-
-
-<script
-type="application/ld+json"
-set:html={JSON.stringify(softwareSchema)}
-></script>
-
-<script
-type="application/ld+json"
-set:html={JSON.stringify(faqSchema)}
-></script>
-
-
-
+  <Header />
+
+  <main class="tool-page">
+    <div class="tool-breadcrumb">
+      <a href="/">ساختنیه؟</a>
+      <span>/</span>
+
+      <a href={`/categories/${app.category}`}>
+        {categoryLabels[app.category] ?? app.category}
+      </a>
+
+      <span>/</span>
+      <strong dir="ltr">{app.name.en}</strong>
+    </div>
+
+    <section class="tool-hero">
+      <div class="tool-hero__main">
+        <div class="tool-identity">
+          <span
+            class="tool-icon"
+            dir="ltr"
+            aria-hidden="true"
+          >
+            {app.name.en.charAt(0).toUpperCase()}
+          </span>
+
+          <div>
+            <span class="tool-domain" dir="ltr">
+              {app.domain}
+            </span>
+
+            <h1>
+              آیا می‌شه
+              <bdi class="tool-name" dir="ltr">
+                {app.name.en}
+              </bdi>
+              ساخت؟
+            </h1>
+          </div>
+        </div>
+
+        <p class="tool-summary">{app.summary}</p>
+
+        <div class="tool-meta">
+          <span>
+            دسته:
+            <strong>
+              {categoryLabels[app.category] ?? app.category}
+            </strong>
+          </span>
+
+          <span>
+            زمان ساخت:
+            <strong>
+              {timeLabels[app.build.timeEstimate] ??
+                app.build.timeEstimate}
+            </strong>
+          </span>
+
+          <span>
+            سطح:
+            <strong>
+              {skillLabels[app.build.skillLevel] ??
+                app.build.skillLevel}
+            </strong>
+          </span>
+
+          <span>
+            پیچیدگی:
+            <strong dir="ltr">
+              {app.scores.technicalComplexity}/5
+            </strong>
+          </span>
+        </div>
+      </div>
+
+      <aside class:list={["hero-verdict", verdict.className]}>
+        <span class="hero-verdict__code">
+          {verdict.code}
+        </span>
+
+        <strong>{verdict.label}</strong>
+
+        <p>{app.verdict.short}</p>
+      </aside>
+    </section>
+
+    <section class="tool-layout">
+      <article class="tool-content">
+        <section id="verdict" class="content-panel">
+          <span class="panel-kicker">VERDICT</span>
+          <h2>جواب کوتاه</h2>
+
+          <p class="lead-copy">
+            {app.verdict.short}
+          </p>
+
+          <div class="reason-box">
+            <strong>چرا؟</strong>
+            <p>{app.verdict.reason}</p>
+          </div>
+        </section>
+
+        <section id="comparison" class="content-panel">
+          <span class="panel-kicker">COMPARISON</span>
+          <h2>چه نسخه‌ای می‌شود ساخت؟</h2>
+
+          <div class="comparison-grid">
+            <div>
+              <span>محصول اصلی</span>
+              <strong dir="ltr">
+                {app.comparison.original}
+              </strong>
+            </div>
+
+            <div class="comparison-buildable">
+              <span>نسخه قابل ساخت</span>
+              <strong>
+                {app.comparison.buildableVersion}
+              </strong>
+            </div>
+          </div>
+
+          {
+            app.comparison.missing.length > 0 && (
+              <div class="missing-block">
+                <h3>چه چیزهایی حذف یا محدود می‌شوند؟</h3>
+
+                <ul>
+                  {app.comparison.missing.map(
+                    (item: string) => (
+                      <li>{item}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )
+          }
+        </section>
+
+        <section id="build" class="content-panel">
+          <span class="panel-kicker">BUILD PLAN</span>
+          <h2>مسیر ساخت</h2>
+
+          <div class="core-loop">
+            <span>CORE LOOP</span>
+            <p>{app.build.coreLoop}</p>
+          </div>
+
+          <h3>نیازمندی‌های اصلی</h3>
+
+          <div class="requirements-grid">
+            {
+              app.build.requirements.map(
+                (
+                  requirement: {
+                    type: string;
+                    label: string;
+                  },
+                  index: number
+                ) => (
+                  <div class="requirement-card">
+                    <span dir="ltr">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <div>
+                      <small>
+                        {requirementLabels[requirement.type] ??
+                          requirement.type}
+                      </small>
+
+                      <strong>{requirement.label}</strong>
+                    </div>
+                  </div>
+                )
+              )
+            }
+          </div>
+
+          {
+            app.build.limitations.length > 0 && (
+              <div class="limitations-block">
+                <h3>محدودیت‌های نسخه قابل ساخت</h3>
+
+                <ul>
+                  {app.build.limitations.map(
+                    (item: string) => (
+                      <li>{item}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )
+          }
+        </section>
+
+        <section id="prompt" class="content-panel prompt-panel">
+          <div class="prompt-heading">
+            <div>
+              <span class="panel-kicker">STARTER PROMPT</span>
+              <h2>{app.build.prompt.title}</h2>
+            </div>
+
+            <button
+              class="copy-prompt"
+              type="button"
+              data-copy-prompt
+            >
+              کپی Prompt
+            </button>
+          </div>
+
+          <pre><code data-prompt-content>{app.build.prompt.content}</code></pre>
+
+          <div class="prompt-meta">
+            <span>
+              زبان:
+              <strong dir="ltr">
+                {app.build.prompt.language}
+              </strong>
+            </span>
+
+            <span>
+              وضعیت:
+              <strong>
+                {app.build.prompt.tested
+                  ? "تست‌شده"
+                  : "تست‌نشده"}
+              </strong>
+            </span>
+
+            <span>
+              آخرین به‌روزرسانی:
+              <strong dir="ltr">
+                {app.build.prompt.lastUpdated}
+              </strong>
+            </span>
+          </div>
+        </section>
+
+        <section id="scores" class="content-panel">
+          <span class="panel-kicker">SCORES</span>
+          <h2>امتیازهای ساخت</h2>
+
+          <div class="scores-grid">
+            {
+              scoreEntries.map((score) => (
+                <div
+                  class="score-row"
+                  style={`--score: ${score.value}`}
+                >
+                  <div>
+                    <span>{score.label}</span>
+
+                    <strong dir="ltr">
+                      {score.value}/5
+                    </strong>
+                  </div>
+
+                  <div class="score-track">
+                    <span></span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="content-panel">
+          <span class="panel-kicker">PRODUCT FIT</span>
+          <h2>برای چه کسانی و با چه مدل درآمدی؟</h2>
+
+          <div class="fit-grid">
+            <div>
+              <h3>مخاطبان مناسب</h3>
+
+              <div class="tag-list">
+                {
+                  app.audience.map((item: string) => (
+                    <span>{item}</span>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div>
+              <h3>مدل‌های درآمدی</h3>
+
+              {
+                app.monetization.possible ? (
+                  <div class="tag-list">
+                    {app.monetization.models.map(
+                      (item: string) => (
+                        <span>
+                          {monetizationLabels[item] ?? item}
+                        </span>
+                      )
+                    )}
+                  </div>
+                ) : (
+                  <p class="muted-copy">
+                    مدل درآمدی مشخصی برای این نسخه ثبت نشده است.
+                  </p>
+                )
+              }
+            </div>
+          </div>
+        </section>
+
+        {
+          faqItems.length > 0 && (
+            <section id="faq" class="content-panel">
+              <span class="panel-kicker">FAQ</span>
+              <h2>سوالات متداول</h2>
+
+              <div class="faq-list">
+                {faqItems.map(
+                  (
+                    item: {
+                      question: string;
+                      answer: string;
+                    },
+                    index: number
+                  ) => (
+                    <details open={index === 0}>
+                      <summary>{item.question}</summary>
+                      <p>{item.answer}</p>
+                    </details>
+                  )
+                )}
+              </div>
+            </section>
+          )
+        }
+
+        {
+          relatedTools.length > 0 && (
+            <section class="content-panel related-panel">
+              <span class="panel-kicker">RELATED TOOLS</span>
+              <h2>ابزارهای مشابه</h2>
+
+              <div class="related-grid">
+                {relatedTools.map((tool) => {
+                  const relatedVerdict =
+                    verdictMeta[tool.verdict.value] ??
+                    verdictMeta.kinda;
+
+                  return (
+                    <a href={`/tools/${tool.slug}`}>
+                      <div>
+                        <span
+                          class="related-icon"
+                          dir="ltr"
+                        >
+                          {tool.name.en
+                            .charAt(0)
+                            .toUpperCase()}
+                        </span>
+
+                        <strong dir="ltr">
+                          {tool.name.en}
+                        </strong>
+                      </div>
+
+                      <span
+                        class:list={[
+                          "related-verdict",
+                          relatedVerdict.className,
+                        ]}
+                      >
+                        {relatedVerdict.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </section>
+          )
+        }
+      </article>
+
+      <aside class="tool-sidebar">
+        <nav class="sidebar-panel">
+          <span>ON THIS PAGE</span>
+
+          <a href="#verdict">جواب کوتاه</a>
+          <a href="#comparison">نسخه قابل ساخت</a>
+          <a href="#build">مسیر ساخت</a>
+          <a href="#prompt">Prompt اولیه</a>
+          <a href="#scores">امتیازها</a>
+
+          {
+            faqItems.length > 0 && (
+              <a href="#faq">سوالات متداول</a>
+            )
+          }
+        </nav>
+
+        <div class="sidebar-panel">
+          <span>TAGS</span>
+
+          <div class="sidebar-tags">
+            {
+              app.tags.map((tag: string) => (
+                <small>{tag}</small>
+              ))
+            }
+          </div>
+        </div>
+
+        <a
+          class="external-link"
+          href={`https://${app.domain}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          مشاهده وب‌سایت اصلی
+          <span dir="ltr">↗</span>
+        </a>
+      </aside>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(softwareSchema)}
+  />
+
+  {
+    faqItems.length > 0 && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(faqSchema)}
+      />
+    )
+  }
 </BaseLayout>
+
+<script is:inline>
+  document
+    .querySelectorAll("[data-copy-prompt]")
+    .forEach((button) => {
+      button.addEventListener("click", async () => {
+        const panel = button.closest(".prompt-panel");
+        const prompt = panel?.querySelector(
+          "[data-prompt-content]"
+        );
+
+        if (!prompt) {
+          return;
+        }
+
+        const originalText = button.textContent;
+
+        try {
+          await navigator.clipboard.writeText(
+            prompt.textContent.trim()
+          );
+
+          button.textContent = "کپی شد";
+
+          window.setTimeout(() => {
+            button.textContent = originalText;
+          }, 1500);
+        } catch {
+          button.textContent = "خطا در کپی";
+
+          window.setTimeout(() => {
+            button.textContent = originalText;
+          }, 1500);
+        }
+      });
+    });
+</script>
+
+<style>
+  .tool-page {
+    width: min(1120px, calc(100% - 40px));
+    min-height: 100vh;
+    margin: 0 auto;
+  }
+
+  .tool-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 46px;
+    color: #69736b;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .tool-breadcrumb a:hover {
+    color: #22e863;
+  }
+
+  .tool-breadcrumb strong {
+    color: #22e863;
+    font-weight: 500;
+  }
+
+  .tool-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 285px;
+    align-items: stretch;
+    gap: 26px;
+    padding: 38px 0 48px;
+  }
+
+  .tool-hero__main {
+    min-width: 0;
+  }
+
+  .tool-identity {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+  }
+
+  .tool-icon {
+    width: 62px;
+    height: 62px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2b392e;
+    border-radius: 15px;
+    background: #172019;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 23px;
+    font-weight: 800;
+  }
+
+  .tool-domain {
+    display: block;
+    margin-bottom: 8px;
+    color: #6f7971;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .tool-identity h1 {
+    margin: 0;
+    color: #f5f5f4;
+    font-size: clamp(34px, 4.5vw, 56px);
+    line-height: 1.35;
+  }
+
+  .tool-identity h1 span {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .tool-summary {
+    max-width: 760px;
+    margin: 26px 0 0;
+    color: #929c94;
+    font-size: 15px;
+    line-height: 2;
+  }
+
+  .tool-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 26px;
+  }
+
+  .tool-meta > span {
+    padding: 7px 10px;
+    border: 1px solid #253027;
+    border-radius: 8px;
+    background: #0e120f;
+    color: #778179;
+    font-size: 10px;
+  }
+
+  .tool-meta strong {
+    margin-right: 4px;
+    color: #c8d0ca;
+    font-weight: 500;
+  }
+
+  .hero-verdict {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 13px;
+    padding: 24px;
+    border: 1px solid;
+    border-radius: 16px;
+  }
+
+  .hero-verdict__code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .hero-verdict > strong {
+    font-size: 24px;
+  }
+
+  .hero-verdict p {
+    margin: 0;
+    color: #a0aaa2;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  .hero-verdict.verdict-yes {
+    border-color: rgba(34, 232, 99, 0.35);
+    background: rgba(34, 232, 99, 0.06);
+  }
+
+  .hero-verdict.verdict-kinda {
+    border-color: rgba(241, 198, 68, 0.35);
+    background: rgba(241, 198, 68, 0.06);
+  }
+
+  .hero-verdict.verdict-no {
+    border-color: rgba(255, 100, 100, 0.35);
+    background: rgba(255, 100, 100, 0.06);
+  }
+
+  .verdict-yes,
+  .verdict-yes strong,
+  .verdict-yes .hero-verdict__code {
+    color: #22e863;
+  }
+
+  .verdict-kinda,
+  .verdict-kinda strong,
+  .verdict-kinda .hero-verdict__code {
+    color: #f1c644;
+  }
+
+  .verdict-no,
+  .verdict-no strong,
+  .verdict-no .hero-verdict__code {
+    color: #ff6464;
+  }
+
+  .tool-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    align-items: start;
+    gap: 24px;
+    padding-bottom: 80px;
+  }
+
+  .tool-content {
+    min-width: 0;
+    display: grid;
+    gap: 16px;
+  }
+
+  .content-panel,
+  .sidebar-panel {
+    border: 1px solid #202a22;
+    border-radius: 15px;
+    background: #0d110e;
+  }
+
+  .content-panel {
+    padding: 27px;
+  }
+
+  .panel-kicker,
+  .sidebar-panel > span {
+    color: #687269;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .content-panel h2 {
+    margin: 7px 0 20px;
+    color: #f4f4f5;
+    font-size: 25px;
+  }
+
+  .content-panel h3 {
+    margin: 25px 0 13px;
+    color: #e5e8e6;
+    font-size: 16px;
+  }
+
+  .lead-copy {
+    margin: 0;
+    color: #d7dcd8;
+    font-size: 17px;
+    line-height: 2;
+  }
+
+  .reason-box,
+  .core-loop,
+  .limitations-block,
+  .missing-block {
+    margin-top: 22px;
+    padding: 18px;
+    border: 1px solid #263028;
+    border-radius: 12px;
+    background: #111612;
+  }
+
+  .reason-box > strong,
+  .core-loop > span {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+  }
+
+  .reason-box p,
+  .core-loop p {
+    margin: 9px 0 0;
+    color: #9ca59e;
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+  }
+
+  .comparison-grid > div {
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 11px;
+    padding: 18px;
+    border: 1px solid #253027;
+    border-radius: 12px;
+    background: #111612;
+  }
+
+  .comparison-grid span {
+    color: #737d75;
+    font-size: 10px;
+  }
+
+  .comparison-grid strong {
+    color: #f0f2f1;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .comparison-buildable {
+    border-color: rgba(34, 232, 99, 0.34) !important;
+    background: rgba(34, 232, 99, 0.05) !important;
+  }
+
+  .missing-block ul,
+  .limitations-block ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-right: 20px;
+    color: #9ca59e;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .requirements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .requirement-card {
+    min-height: 82px;
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #253027;
+    border-radius: 11px;
+    background: #111612;
+  }
+
+  .requirement-card > span {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .requirement-card small {
+    display: block;
+    color: #6f7971;
+    font-size: 9px;
+  }
+
+  .requirement-card strong {
+    display: block;
+    margin-top: 6px;
+    color: #e8ebe9;
+    font-size: 12px;
+  }
+
+  .prompt-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .copy-prompt {
+    min-height: 36px;
+    padding: 6px 12px;
+    border: 1px solid rgba(34, 232, 99, 0.42);
+    border-radius: 8px;
+    background: rgba(34, 232, 99, 0.08);
+    color: #22e863;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  .copy-prompt:hover {
+    background: rgba(34, 232, 99, 0.14);
+  }
+
+  .prompt-panel pre {
+    max-height: 480px;
+    margin: 4px 0 0;
+    padding: 20px;
+    overflow: auto;
+    direction: ltr;
+    border: 1px solid #253027;
+    border-radius: 12px;
+    background: #090d0a;
+    color: #d9dfda;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    text-align: left;
+    white-space: pre-wrap;
+  }
+
+  .prompt-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 13px;
+    color: #707a72;
+    font-size: 9px;
+  }
+
+  .prompt-meta strong {
+    color: #aab2ac;
+    font-weight: 500;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 24px;
+  }
+
+  .score-row > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+    color: #929c94;
+    font-size: 10px;
+  }
+
+  .score-row strong {
+    color: #dfe3e0;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+  }
+
+  .score-track {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #1c241e;
+  }
+
+  .score-track span {
+    width: calc(var(--score) * 20%);
+    height: 100%;
+    display: block;
+    border-radius: inherit;
+    background: #22e863;
+  }
+
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .fit-grid > div {
+    padding: 18px;
+    border: 1px solid #253027;
+    border-radius: 12px;
+    background: #111612;
+  }
+
+  .fit-grid h3 {
+    margin-top: 0;
+  }
+
+  .tag-list,
+  .sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .tag-list span,
+  .sidebar-tags small {
+    padding: 6px 9px;
+    border: 1px solid #2a342c;
+    border-radius: 7px;
+    background: #151b16;
+    color: #a8b0aa;
+    font-size: 10px;
+  }
+
+  .muted-copy {
+    color: #879189;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  .faq-list {
+    display: grid;
+  }
+
+  .faq-list details {
+    padding: 17px 0;
+    border-top: 1px solid #202a22;
+  }
+
+  .faq-list details:first-child {
+    border-top: 0;
+  }
+
+  .faq-list summary {
+    color: #e5e8e6;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .faq-list p {
+    margin: 13px 0 0;
+    color: #929c94;
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+  }
+
+  .related-grid a {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #253027;
+    border-radius: 11px;
+    background: #111612;
+  }
+
+  .related-grid a:hover {
+    border-color: rgba(34, 232, 99, 0.4);
+  }
+
+  .related-grid a > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .related-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #182019;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+  }
+
+  .related-grid strong {
+    color: #e8ebe9;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+  }
+
+  .related-verdict {
+    padding: 4px 7px;
+    border: 1px solid;
+    border-radius: 6px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .related-verdict.verdict-yes {
+    border-color: rgba(34, 232, 99, 0.3);
+    background: rgba(34, 232, 99, 0.07);
+  }
+
+  .related-verdict.verdict-kinda {
+    border-color: rgba(241, 198, 68, 0.3);
+    background: rgba(241, 198, 68, 0.07);
+  }
+
+  .related-verdict.verdict-no {
+    border-color: rgba(255, 100, 100, 0.3);
+    background: rgba(255, 100, 100, 0.07);
+  }
+
+  .tool-sidebar {
+    position: sticky;
+    top: 84px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .sidebar-panel {
+    display: grid;
+    gap: 5px;
+    padding: 16px;
+  }
+
+  .sidebar-panel > span {
+    margin-bottom: 8px;
+  }
+
+  .sidebar-panel > a {
+    padding: 8px 9px;
+    border-radius: 7px;
+    color: #8f9991;
+    font-size: 11px;
+  }
+
+  .sidebar-panel > a:hover {
+    background: #151b16;
+    color: #f4f4f5;
+  }
+
+  .external-link {
+    min-height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 13px;
+    border: 1px solid rgba(34, 232, 99, 0.35);
+    border-radius: 10px;
+    background: rgba(34, 232, 99, 0.06);
+    color: #22e863;
+    font-size: 11px;
+  }
+
+  @media (max-width: 860px) {
+    .tool-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-verdict {
+      min-height: 160px;
+    }
+
+    .tool-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .tool-sidebar {
+      position: static;
+      grid-row: 1;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .external-link {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .tool-page {
+      width: min(100% - 28px, 1120px);
+    }
+
+    .tool-breadcrumb {
+      padding-top: 28px;
+    }
+
+    .tool-hero {
+      padding: 28px 0 32px;
+    }
+
+    .tool-identity {
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .tool-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+
+    .tool-identity h1 {
+      font-size: 31px;
+    }
+
+    .tool-summary {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .tool-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-verdict {
+      min-height: 145px;
+      padding: 20px;
+    }
+
+    .tool-sidebar {
+      grid-template-columns: 1fr;
+    }
+
+    .content-panel {
+      padding: 20px 16px;
+    }
+
+    .content-panel h2 {
+      font-size: 22px;
+    }
+
+    .comparison-grid,
+    .requirements-grid,
+    .scores-grid,
+    .fit-grid,
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .prompt-heading {
+      flex-direction: column;
+    }
+
+    .copy-prompt {
+      width: 100%;
+    }
+
+    .prompt-panel pre {
+      padding: 15px;
+      font-size: 11px;
+    }
+  }
+
+  /* SAK-013.4 MOBILE FIX START */
+
+  .tool-name {
+    display: inline-block;
+    margin-inline: 0.14em;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    unicode-bidi: isolate;
+  }
+
+  @media (max-width: 860px) {
+    /*
+     * محتوای اصلی باید قبل از Sidebar نمایش داده شود.
+     * منوی پرش داخلی در موبایل فضای زیادی اشغال می‌کرد.
+     */
+    .tool-sidebar {
+      grid-row: auto;
+      grid-template-columns: 1fr;
+    }
+
+    .tool-sidebar .sidebar-panel:first-child {
+      display: none;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .tool-identity h1 {
+      display: block;
+      font-size: clamp(28px, 8.2vw, 34px);
+      line-height: 1.65;
+    }
+
+    .tool-name {
+      margin-inline: 0.12em;
+    }
+  }
+
+  /* SAK-013.4 MOBILE FIX END */
+
+</style>
