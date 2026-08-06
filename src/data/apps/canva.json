@@ -5,7 +5,7 @@
   "verdict": {
     "value": "yes",
     "short": "نسخه محدود برای بازار خاص قابل ساخت است.",
-    "reason": "هسته طراحی، قالب و خروجی گرفتن قابل پیاده‌سازی است.",
+    "reason": "یک ویرایشگر قالب‌محور برای طراحی محتوای ساده قابل ساخت است؛ ولی کتابخانه عظیم دارایی‌ها، موتور ویرایش حرفه‌ای، همکاری بلادرنگ و قابلیت‌های هوش مصنوعی محصول اصلی به زیرساخت و محتوای گسترده وابسته‌اند.",
     "confidence": "high"
   },
   "slug": "canva",
@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر یک قالب یا اندازه خروجی را انتخاب می‌کند، متن و عناصر تصویری را روی بوم ویرایش می‌کند، تنظیمات ظاهری را تغییر می‌دهد و طرح نهایی را به‌صورت فایل قابل اشتراک خروجی می‌گیرد.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Canva",
-      "content": "Build a simplified version of Canva",
+      "content": "Build a Persian RTL template-based design editor with a resizable canvas, text and image elements, drag-and-drop positioning, layers, alignment guides, reusable templates, undo and redo, asset uploads, autosave, collaboration-ready document storage, and PNG or PDF export.",
       "language": "en",
       "tested": false,
       "testedWith": [],

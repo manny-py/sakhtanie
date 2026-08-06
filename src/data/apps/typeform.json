@@ -47,7 +47,7 @@
     ],
     "prompt": {
       "title": "ساخت فرم‌ساز شبیه Typeform",
-      "content": "Build a Persian RTL form builder with dynamic questions, public forms and response storage.",
+      "content": "Build a Persian RTL conversational form builder with multiple question types, conditional branching, required-field rules, theme controls, public response pages, progress indicators, draft saving, response storage, CSV export, completion analytics, authentication, and secure server-side validation.",
       "language": "en",
       "tested": false,
       "testedWith": [],

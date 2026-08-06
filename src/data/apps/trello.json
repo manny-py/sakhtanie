@@ -5,7 +5,7 @@
   "verdict": {
     "value": "yes",
     "short": "نسخه مشابه آن کاملاً قابل ساخت است.",
-    "reason": "هسته اصلی شامل برد، کارت، کاربر و همکاری است.",
+    "reason": "نسخه کانبان با برد، فهرست، کارت، اعضا و فعالیت‌ها به‌سادگی قابل ساخت است؛ امکانات پیشرفته اتوماسیون، افزونه‌ها، سطح دسترسی سازمانی و همگام‌سازی گسترده را می‌توان به مراحل بعد منتقل کرد.",
     "confidence": "high"
   },
   "slug": "trello",
@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر برد و فهرست‌ها را می‌سازد، کارت‌ها را با توضیح، عضو و موعد ثبت می‌کند، کارت‌ها میان وضعیت‌ها جابه‌جا می‌شوند و فعالیت‌های تیم در تاریخچه برد ذخیره می‌گردند.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Trello",
-      "content": "Build a simplified version of Trello",
+      "content": "Build a Persian RTL kanban application with workspaces, boards, lists, draggable cards, members, labels, checklists, due dates, comments, attachments, activity history, filters, notifications, board permissions, autosave, and a responsive interface backed by PostgreSQL.",
       "language": "en",
       "tested": false,
       "testedWith": [],

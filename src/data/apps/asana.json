@@ -12,19 +12,21 @@
   "subcategory": "project-management",
   "tags": [
     "مدیریت پروژه",
-    "تیم"
+    "وظایف تیمی",
+    "همکاری تیمی",
+    "برنامه‌ریزی"
   ],
-  "summary": "آسانا ابزار مدیریت پروژه و همکاری تیمی است.",
+  "summary": "ابزار مدیریت پروژه و همکاری تیمی برای برنامه‌ریزی کارها، تعیین مسئول، پیگیری موعدها و مشاهده پیشرفت پروژه در نماهای مختلف.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
     "short": "نسخه مشابه آن قابل ساخت است.",
-    "reason": "وظایف، پروژه‌ها و همکاری تیمی هسته اصلی هستند."
+    "reason": "نسخه‌ای متمرکز بر مدیریت وظیفه، پروژه، مسئول و موعد را می‌توان با فناوری‌های رایج ساخت؛ اما امکانات سازمانی، گزارش‌گیری گسترده و اکوسیستم اتصال‌های محصول اصلی به زمان بیشتری نیاز دارند."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر یک پروژه می‌سازد، وظایف را با مسئول و موعد ثبت می‌کند، آن‌ها را در نماهای فهرست یا برد جابه‌جا می‌کند و پیشرفت تیم را از وضعیت هر کار پیگیری می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Asana alternative",
-      "content": "Build a simplified version of Asana",
+      "content": "Build a Persian RTL project-management application with workspaces, projects, tasks, assignees, due dates, comments, attachments, list and kanban views, activity history, role-based access, notifications, search, and PostgreSQL persistence. Include a responsive dashboard and secure server-side APIs.",
       "language": "en",
       "tested": false,
       "testedWith": [],

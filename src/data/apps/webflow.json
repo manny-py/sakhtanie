@@ -11,20 +11,22 @@
   "category": "website-commerce",
   "subcategory": "website-builder",
   "tags": [
-    "سایت ساز",
-    "طراحی وب"
+    "طراحی وب",
+    "سایت‌ساز بدون کد",
+    "CMS",
+    "انتشار سایت"
   ],
   "summary": "وب‌فلو ابزار طراحی و ساخت سایت بدون کدنویسی است.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
     "short": "نسخه محدود آن ساختنی است.",
-    "reason": "ساخت سایت‌ساز تخصصی برای یک بازار مشخص امکان‌پذیر است."
+    "reason": "یک سایت‌ساز بدون کد با کامپوننت‌های مشخص، CMS سبک و انتشار صفحات قابل ساخت است؛ ولی موتور چیدمان آزاد، تعاملات حرفه‌ای، میزبانی یکپارچه و خروجی پایدار محصول اصلی پروژه را بسیار پیچیده می‌کنند."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر ساختار صفحه را با عناصر بصری می‌چیند، استایل‌ها و Breakpointها را تنظیم می‌کند، محتوای پویا را به CMS متصل می‌سازد و سایت نهایی را پس از پیش‌نمایش منتشر می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Webflow alternative",
-      "content": "Build a simplified version of Webflow",
+      "content": "Build a Persian RTL no-code website builder with a visual box-model editor, reusable symbols, responsive breakpoints, style classes, page routing, a lightweight CMS, forms, SEO settings, live preview, project autosave, static export, and controlled publishing to a hosting target.",
       "language": "en",
       "tested": false,
       "testedWith": [],

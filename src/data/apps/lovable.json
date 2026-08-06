@@ -11,20 +11,22 @@
   "category": "development-automation",
   "subcategory": "app-builders",
   "tags": [
-    "ساخت اپ",
-    "AI"
+    "ساخت اپ با هوش مصنوعی",
+    "تولید کد",
+    "نمونه‌سازی سریع",
+    "توسعه فول‌استک"
   ],
   "summary": "لاوِیبل برای ساخت اپلیکیشن با کمک هوش مصنوعی استفاده می‌شود.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
     "short": "نسخه تخصصی آن ساختنی است.",
-    "reason": "ساخت ابزار تولید اپ برای یک حوزه مشخص امکان‌پذیر است."
+    "reason": "نسخه‌ای که از توضیح کاربر یک اپ وب محدود تولید و پیش‌نمایش کند قابل پیاده‌سازی است؛ ولی تولید پایدار پروژه‌های پیچیده، اصلاح چندمرحله‌ای، مدیریت وابستگی‌ها و استقرار قابل اعتماد نیازمند زیرساخت گسترده است."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر محصول موردنظر را با زبان طبیعی توضیح می‌دهد، سیستم صفحات و منطق اولیه را تولید می‌کند، پیش‌نمایش قابل تعامل ارائه می‌شود و تغییرات بعدی از طریق گفتگو روی همان پروژه اعمال می‌شوند.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Lovable alternative",
-      "content": "Build a simplified version of Lovable",
+      "content": "Build a Persian RTL AI application builder that converts a product brief into pages, components, database models and server routes, displays a sandboxed interactive preview, supports iterative edits through chat, records file changes, reports build failures, and exports a clean project archive.",
       "language": "en",
       "tested": false,
       "testedWith": [],

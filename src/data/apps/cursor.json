@@ -16,11 +16,11 @@
   "domain": "cursor.com",
   "category": "development-automation",
   "subcategory": "coding-tools",
-  "summary": "کرسور یک ادیتور کدنویسی مجهز به هوش مصنوعیه.",
+  "summary": "ویرایشگر کد مبتنی بر هوش مصنوعی که تولید، توضیح، بازنویسی و جست‌وجوی کد را مستقیماً داخل محیط توسعه انجام می‌دهد.",
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر فایل یا بخشی از کد را انتخاب و درخواست خود را می‌نویسد، مدل زمینه پروژه را تحلیل می‌کند، پیشنهاد یا Patch تولید می‌شود و کاربر تغییرات را بررسی و اعمال می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Cursor",
-      "content": "Build a simplified version of Cursor",
+      "content": "Build a desktop-oriented AI code editor prototype with a file tree, Monaco editor, project search, contextual chat, selected-code actions, patch previews, accept or reject controls, terminal output, local workspace persistence, and secure server-side requests to a language-model provider.",
       "language": "en",
       "tested": false,
       "testedWith": [],

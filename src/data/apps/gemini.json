@@ -5,7 +5,7 @@
   "verdict": {
     "value": "no",
     "short": "ساخت جایگزین کاملش منطقی نیست.",
-    "reason": "وابستگی به مدل بزرگ، داده و زیرساخت گوگل مانع اصلیه.",
+    "reason": "یک دستیار متنی یا چندرسانه‌ای محدود را می‌توان با API مدل‌های آماده ساخت؛ ولی مدل پایه، پنجره زمینه بزرگ، اتصال عمیق به سرویس‌ها و زیرساخت پردازشی محصول اصلی قابل بازتولید مستقل نیستند.",
     "confidence": "high"
   },
   "slug": "gemini",
@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر متن، تصویر یا فایل را همراه پرسش ارسال می‌کند، ورودی‌ها برای مدل چندرسانه‌ای آماده می‌شوند، پاسخ تولید و نمایش داده می‌شود و گفتگو برای درخواست‌های بعدی زمینه خود را حفظ می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Gemini",
-      "content": "Build a simplified version of Gemini",
+      "content": "Build a Persian RTL multimodal assistant that accepts text, images and documents, streams model responses, preserves conversation context, renders Markdown and code blocks, manages uploaded files, supports configurable model parameters, applies usage limits, and keeps all provider credentials server-side.",
       "language": "en",
       "tested": false,
       "testedWith": [],

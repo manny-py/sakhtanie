@@ -25,7 +25,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "فروشنده محصولات و موجودی را ثبت می‌کند، ویترین و روش‌های پرداخت و ارسال را تنظیم می‌کند، مشتری سفارش می‌دهد و سیستم پرداخت، وضعیت سفارش و گزارش فروش را مدیریت می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -41,7 +41,7 @@
     ],
     "prompt": {
       "title": "Build Shopify alternative",
-      "content": "Build a simplified version of Shopify",
+      "content": "Build a Persian RTL e-commerce platform with product and variant management, inventory, collections, storefront themes, cart and checkout, discount rules, order statuses, customer accounts, payment and shipping adapters, sales analytics, role-based administration, and secure PostgreSQL-backed APIs.",
       "language": "en",
       "tested": false,
       "testedWith": [],

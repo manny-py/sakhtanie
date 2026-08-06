@@ -5,7 +5,7 @@
   "verdict": {
     "value": "no",
     "short": "ساخت مدل مشابه ارزش بالایی ندارد.",
-    "reason": "هزینه آموزش مدل تصویر بسیار زیاد است.",
+    "reason": "می‌توان رابط تولید تصویر را روی یک مدل یا API آماده ساخت؛ اما کیفیت هنری، سبک‌پذیری، آموزش مدل اختصاصی، کنترل خروجی و ظرفیت پردازشی محصول اصلی خارج از محدوده یک نسخه مستقل کوچک است.",
     "confidence": "high"
   },
   "slug": "midjourney",
@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر Prompt و تنظیمات تصویر را وارد می‌کند، درخواست در صف تولید قرار می‌گیرد، چند خروجی اولیه نمایش داده می‌شود و کاربر یکی را برای تولید نسخه دقیق‌تر یا بزرگ‌تر انتخاب می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Midjourney",
-      "content": "Build a simplified version of Midjourney",
+      "content": "Build a Persian RTL AI image-generation service with prompt entry, aspect-ratio and style controls, queued generation jobs, progress states, a four-image result grid, variation and upscale actions, personal galleries, usage credits, moderation hooks, object storage, and secure provider-side execution.",
       "language": "en",
       "tested": false,
       "testedWith": [],

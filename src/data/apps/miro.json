@@ -11,20 +11,22 @@
   "category": "productivity",
   "subcategory": "collaboration",
   "tags": [
-    "وایت برد",
-    "همکاری"
+    "وایت‌برد آنلاین",
+    "همکاری تیمی",
+    "نقشه ذهنی",
+    "کارگاه آنلاین"
   ],
   "summary": "میرو یک فضای وایت‌برد آنلاین برای همکاری تیمی است.",
   "verdict": {
     "value": "kinda",
     "confidence": "high",
     "short": "نسخه ساده شدنی است.",
-    "reason": "همکاری لحظه‌ای و امکانات پیشرفته بخش سخت محصول هستند."
+    "reason": "وایت‌برد مشترک با یادداشت، شکل، اتصال و نشانگر کاربران قابل ساخت است؛ اما بوم نامحدود، همگام‌سازی بلادرنگ پایدار، مدیریت نسخه‌ها و ابزارهای سازمانی محصول اصلی پیچیدگی قابل توجهی ایجاد می‌کنند."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر یک بوم ایجاد می‌کند، یادداشت‌ها، اشکال و اتصال‌ها را اضافه یا جابه‌جا می‌کند، اعضای تیم هم‌زمان تغییرات را می‌بینند و نتیجه به‌صورت برد مشترک ذخیره و به اشتراک گذاشته می‌شود.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Miro alternative",
-      "content": "Build a simplified version of Miro",
+      "content": "Build a Persian RTL collaborative whiteboard with an infinite pan-and-zoom canvas, sticky notes, shapes, connectors, text blocks, selection tools, multiplayer cursors, real-time synchronization, board permissions, autosave, version snapshots, exports, and a responsive overview dashboard.",
       "language": "en",
       "tested": false,
       "testedWith": [],

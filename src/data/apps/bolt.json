@@ -11,8 +11,10 @@
   "category": "development-automation",
   "subcategory": "app-builders",
   "tags": [
-    "کدنویسی",
-    "AI"
+    "ساخت اپ با هوش مصنوعی",
+    "توسعه وب",
+    "تولید کد",
+    "نمونه‌سازی سریع"
   ],
   "summary": "بولت ابزاری برای ساخت سریع اپلیکیشن با هوش مصنوعی است.",
   "verdict": {
@@ -24,7 +26,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر ایده اپ را توضیح می‌دهد، سیستم ساختار پروژه و کد اولیه را تولید می‌کند، نتیجه در محیط زنده پیش‌نمایش می‌شود و کاربر با پیام‌های بعدی فایل‌ها و رفتار اپ را اصلاح می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Bolt alternative",
-      "content": "Build a simplified version of Bolt",
+      "content": "Build a Persian RTL AI web-app generator that accepts a product description, creates a structured full-stack project, edits files through follow-up instructions, shows a sandboxed live preview, records generation history, handles build errors, and exports the resulting code safely.",
       "language": "en",
       "tested": false,
       "testedWith": [],

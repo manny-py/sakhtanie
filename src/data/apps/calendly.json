@@ -11,20 +11,22 @@
   "category": "productivity",
   "subcategory": "scheduling",
   "tags": [
-    "رزرو",
-    "تقویم"
+    "رزرو آنلاین",
+    "زمان‌بندی جلسه",
+    "تقویم",
+    "اتوماسیون"
   ],
   "summary": "کلندلی برای زمان‌بندی جلسات و رزرو آنلاین استفاده می‌شود.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
     "short": "نسخه تخصصی آن ساده‌تر قابل ساخت است.",
-    "reason": "تقویم، زمان‌های آزاد و رزرو هسته محصول هستند."
+    "reason": "هسته رزرو زمان آزاد، اتصال تقویم و ارسال اعلان قابل پیاده‌سازی است؛ دشواری اصلی در هماهنگی دقیق چند تقویم، منطقه زمانی، پرداخت، قوانین لغو و اتصال پایدار به سرویس‌های خارجی قرار دارد."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر ساعات در دسترس و قوانین جلسه را تعریف می‌کند، مهمان یک زمان آزاد را انتخاب می‌کند، رزرو در تقویم ثبت می‌شود و اعلان و لینک جلسه برای طرفین ارسال می‌گردد.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Calendly alternative",
-      "content": "Build a simplified version of Calendly",
+      "content": "Build a Persian RTL scheduling platform with availability rules, event types, time-zone conversion, public booking pages, calendar synchronization, conflict prevention, cancellation and rescheduling flows, email reminders, meeting-link fields, authentication, and a responsive administration panel.",
       "language": "en",
       "tested": false,
       "testedWith": [],

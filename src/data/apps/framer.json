@@ -11,20 +11,22 @@
   "category": "website-commerce",
   "subcategory": "website-builder",
   "tags": [
-    "طراحی سایت",
-    "landing page"
+    "طراحی وب",
+    "سایت‌ساز",
+    "نمونه‌سازی",
+    "انتشار سایت"
   ],
   "summary": "فرِیمر ابزاری برای طراحی و ساخت سایت‌های مدرن است.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
     "short": "نسخه ساده آن قابل ساخت است.",
-    "reason": "هسته طراحی صفحه و انتشار سایت قابل پیاده‌سازی است."
+    "reason": "ساخت یک سایت‌ساز بصری با کامپوننت‌های محدود، ویرایش واکنش‌گرا و انتشار صفحات ممکن است؛ اما موتور طراحی آزاد، انیمیشن‌های پیشرفته، همکاری تیمی و کیفیت خروجی محصول اصلی دامنه پروژه را بسیار بزرگ می‌کنند."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر صفحه را از بخش‌ها و کامپوننت‌ها می‌سازد، چیدمان و استایل واکنش‌گرا را روی بوم تنظیم می‌کند، پیش‌نمایش را بررسی می‌کند و نسخه نهایی را روی دامنه منتشر می‌سازد.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build Framer alternative",
-      "content": "Build a simplified version of Framer",
+      "content": "Build a Persian RTL visual website builder with reusable sections, drag-and-drop page composition, responsive breakpoints, typography and spacing controls, component properties, page routing, live preview, project autosave, SEO fields, and static publishing through a secure deployment workflow.",
       "language": "en",
       "tested": false,
       "testedWith": [],

@@ -5,7 +5,7 @@
   "verdict": {
     "value": "yes",
     "short": "نسخه تخصصی قابل ساخت است.",
-    "reason": "می‌توان ابزار تولید موسیقی برای سبک یا بازار خاص ساخت.",
+    "reason": "رابط تولید موسیقی مبتنی بر API یا مدل آماده قابل ساخت است؛ اما تولید هم‌زمان آهنگ، تنظیم و آواز با کیفیت پایدار، کنترل سبک و زیرساخت پردازش صوت محصول اصلی به مدل و منابع اختصاصی نیاز دارد.",
     "confidence": "high"
   },
   "slug": "suno",
@@ -16,11 +16,11 @@
   "domain": "suno.com",
   "category": "ai-assistants",
   "subcategory": "music-generation",
-  "summary": "سانو ابزاری برای ساخت موسیقی با هوش مصنوعیه.",
+  "summary": "سرویس تولید موسیقی با هوش مصنوعی که از توضیح متنی، قطعه کامل شامل آهنگ، تنظیم و آواز می‌سازد.",
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر موضوع، سبک و در صورت نیاز متن ترانه را وارد می‌کند، سیستم چند نسخه موسیقی تولید می‌کند، نتیجه برای پخش و مقایسه نمایش داده می‌شود و کاربر قطعه منتخب را ذخیره یا بازتولید می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Suno",
-      "content": "Build a simplified version of Suno",
+      "content": "Build a Persian RTL AI music-generation service with style, topic and lyrics inputs, instrumental mode, queued generation jobs, audio previews, multiple candidate tracks, regeneration and variation actions, track libraries, usage credits, moderation hooks, object storage, and secure model-provider integration.",
       "language": "en",
       "tested": false,
       "testedWith": [],

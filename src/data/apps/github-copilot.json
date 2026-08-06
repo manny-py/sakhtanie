@@ -11,20 +11,22 @@
   "category": "development-automation",
   "subcategory": "coding-tools",
   "tags": [
-    "کدنویسی",
-    "AI"
+    "دستیار برنامه‌نویسی",
+    "تولید کد",
+    "تکمیل خودکار",
+    "توسعه نرم‌افزار"
   ],
   "summary": "گیت‌هاب کوپایلوت دستیار هوش مصنوعی برنامه‌نویسی است.",
   "verdict": {
     "value": "kinda",
     "confidence": "high",
     "short": "نسخه محدود قابل ساخت است.",
-    "reason": "اتصال مدل زبانی به محیط کدنویسی امکان‌پذیر است."
+    "reason": "دستیار کدنویسی مبتنی بر API با تکمیل، توضیح و تولید کد قابل ساخت است؛ اما یکپارچگی عمیق با ویرایشگرها، درک مخزنهای بزرگ، کیفیت پیشنهادها و مقیاس سرویس اصلی به مهندسی و داده بیشتری نیاز دارد."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر در ویرایشگر کد می‌نویسد یا دستور می‌دهد، سیستم فایل‌ها و زمینه نزدیک را جمع‌آوری می‌کند، تکمیل یا تغییر پیشنهادی تولید می‌شود و کاربر آن را می‌پذیرد، اصلاح می‌کند یا رد می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build GitHub Copilot alternative",
-      "content": "Build a simplified version of GitHub Copilot",
+      "content": "Build an AI coding-assistant extension prototype with inline completions, selected-code explanation, refactoring commands, test generation, repository-aware chat, diff previews, accept or reject actions, configurable context limits, telemetry controls, and secure server-side access to a code-capable model.",
       "language": "en",
       "tested": false,
       "testedWith": [],

@@ -5,7 +5,7 @@
   "verdict": {
     "value": "yes",
     "short": "نسخه تخصصی آن ساختنی است.",
-    "reason": "برای یک حوزه مشخص می‌توان اتوماسیون مشابه ساخت.",
+    "reason": "اتوماسیون چند سرویس با Trigger و Action محدود قابل پیاده‌سازی است؛ چالش اصلی نگهداری اتصال‌های متعدد، مدیریت خطا و Retry، احراز هویت سرویس‌ها و اجرای قابل اعتماد گردش‌کارها در مقیاس بالا است.",
     "confidence": "high"
   },
   "slug": "zapier",
@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر یک رویداد آغازگر و یک یا چند عملیات را انتخاب می‌کند، حساب سرویس‌ها را متصل می‌سازد، داده میان مراحل نگاشت می‌شود و گردش‌کار پس از هر رویداد به‌صورت خودکار اجرا می‌گردد.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Zapier",
-      "content": "Build a simplified version of Zapier",
+      "content": "Build a Persian RTL workflow-automation platform with trigger and action definitions, OAuth connection storage, field mapping, conditional steps, scheduled and webhook executions, retries, execution logs, failure notifications, encrypted credentials, worker queues, and a dashboard for enabling and testing workflows.",
       "language": "en",
       "tested": false,
       "testedWith": [],

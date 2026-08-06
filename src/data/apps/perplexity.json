@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر پرسش را وارد می‌کند، سیستم منابع مرتبط را بازیابی و رتبه‌بندی می‌کند، مدل پاسخ ترکیبی همراه ارجاع می‌سازد و کاربر می‌تواند با پرسش تکمیلی جست‌وجو را ادامه دهد.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Perplexity",
-      "content": "Build a simplified version of Perplexity",
+      "content": "Build a Persian RTL answer engine that accepts a question, retrieves relevant web or indexed documents, ranks sources, generates a concise cited response, displays source cards, supports follow-up questions, stores search sessions, handles retrieval failures, and separates evidence from generated interpretation.",
       "language": "en",
       "tested": false,
       "testedWith": [],

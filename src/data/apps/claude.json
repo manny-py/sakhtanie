@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر پیام یا فایل را وارد می‌کند، سیستم زمینه گفتگو را همراه درخواست به مدل می‌فرستد، پاسخ جریانی نمایش داده می‌شود و تاریخچه برای ادامه همان گفتگو ذخیره می‌گردد.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Claude",
-      "content": "Build a simplified version of Claude",
+      "content": "Build a Persian RTL AI conversation assistant with streaming responses, Markdown and code rendering, file attachments, long conversation history, editable system instructions, session management, model selection, usage limits, error recovery, secure server-side model calls, and responsive mobile layouts.",
       "language": "en",
       "tested": false,
       "testedWith": [],

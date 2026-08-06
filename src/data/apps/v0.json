@@ -11,20 +11,22 @@
   "category": "development-automation",
   "subcategory": "frontend-generation",
   "tags": [
-    "frontend",
-    "AI"
+    "تولید رابط کاربری",
+    "React",
+    "طراحی وب",
+    "هوش مصنوعی"
   ],
   "summary": "v0 ابزار تولید رابط کاربری با هوش مصنوعی است.",
   "verdict": {
     "value": "yes",
     "confidence": "high",
     "short": "نسخه تخصصی آن شدنی است.",
-    "reason": "تولید UI برای فریم‌ورک‌های مشخص قابل پیاده‌سازی است."
+    "reason": "تولید چند کامپوننت رابط کاربری از متن با کمک مدل آماده امکان‌پذیر است؛ اما حفظ انسجام طراحی، ویرایش تکرارشونده، تولید کد قابل استفاده و پیش‌نمایش امن برای سناریوهای متنوع نیازمند محدودسازی دقیق است."
   },
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود و قابلیت اصلی محصول را استفاده می‌کند.",
+    "coreLoop": "کاربر رابط موردنظر را توصیف می‌کند، سیستم ساختار کامپوننت و کد رابط را تولید می‌کند، پیش‌نمایش زنده ارائه می‌شود و کاربر با دستورهای بعدی طراحی یا رفتار اجزا را اصلاح می‌کند.",
     "requirements": [
       {
         "type": "frontend",
@@ -40,7 +42,7 @@
     ],
     "prompt": {
       "title": "Build v0 alternative",
-      "content": "Build a simplified version of v0",
+      "content": "Build a Persian RTL AI interface generator that converts a design request into reusable React components, renders them in a sandboxed preview, supports iterative visual changes, exposes generated files, validates builds, records version history, and exports a clean project using a defined design system.",
       "language": "en",
       "tested": false,
       "testedWith": [],

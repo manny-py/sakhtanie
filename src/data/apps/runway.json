@@ -20,7 +20,7 @@
   "build": {
     "timeEstimate": "few-days",
     "skillLevel": "intermediate",
-    "coreLoop": "کاربر وارد سرویس می‌شود، ارزش اصلی ابزار را دریافت می‌کند.",
+    "coreLoop": "کاربر متن، تصویر یا کلیپ مرجع را وارد می‌کند، تنظیمات تولید و مدت را انتخاب می‌کند، پردازش در صف انجام می‌شود و خروجی ویدیویی برای بازبینی، تغییر یا دانلود نمایش داده می‌شود.",
     "requirements": [
       {
         "type": "frontend",
@@ -36,7 +36,7 @@
     ],
     "prompt": {
       "title": "ساخت نسخه مشابه Runway",
-      "content": "Build a simplified version of Runway",
+      "content": "Build a Persian RTL AI video-generation dashboard with text and image inputs, model and duration settings, queued jobs, progress tracking, result previews, variation requests, project history, credit limits, moderation states, object storage, and secure server-side integration with a video-generation provider.",
       "language": "en",
       "tested": false,
       "testedWith": [],
