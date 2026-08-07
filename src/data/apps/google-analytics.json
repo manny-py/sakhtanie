@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "google-analytics",
+  "name": {
+    "fa": "گوگل آنالیتیکس",
+    "en": "Google Analytics"
+  },
+  "domain": "analytics.google.com",
+  "origin": "global",
+  "status": "review",
+  "category": "data-analytics",
+  "subcategory": "web-analytics",
+  "tags": [
+    "تحلیل وب",
+    "رویداد",
+    "ترافیک سایت",
+    "گزارش‌گیری"
+  ],
+  "summary": "گوگل آنالیتیکس سامانه‌ای برای جمع‌آوری رویدادهای وب و اپلیکیشن، تحلیل رفتار کاربران و تهیه گزارش‌های ترافیک و تبدیل است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "آنالیتیکس ساده ساختنیه، اما مقیاس جمع‌آوری، پردازش و گزارش‌گیری جهانی محصول اصلی قابل بازسازی سریع نیست.",
+    "reason": "ثبت Page View و چند رویداد ساده است، ولی Sessionization، پردازش انبوه، Attribution، اتصال تبلیغات و نگهداری داده بسیار پیچیده‌اند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "سایت رویدادها را ارسال می‌کند و مالک محصول گزارش‌هایی درباره کاربر، نشست، منبع ورودی و تبدیل مشاهده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "داشبورد گزارش و نمودار"
+      },
+      {
+        "type": "backend",
+        "label": "API دریافت رویداد و پردازش نشست"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره رویدادها و داده‌های تجمیعی"
+      },
+      {
+        "type": "infrastructure",
+        "label": "صف، پردازش انبوه و نگهداری داده"
+      }
+    ],
+    "limitations": [
+      "پردازش رویداد در حجم بالا هزینه‌بر است.",
+      "Attribution و تشخیص کاربر بین دستگاه‌ها محدود خواهد بود.",
+      "رعایت حریم خصوصی و رضایت کاربر الزامی است."
+    ],
+    "prompt": {
+      "title": "ساخت آنالیتیکس ساده و حریم‌خصوصی‌محور",
+      "content": "Build a privacy-focused web analytics service for a small number of sites. Include a lightweight JavaScript tracker, page views, custom events, referrers, UTM parameters, daily unique visitors, conversion goals, retention limits, and a Persian RTL dashboard. Exclude cross-device identity, ad attribution, demographic profiling, and unlimited raw data.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 3,
+    "infrastructure": 5,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Google Analytics",
+    "buildableVersion": "آنالیتیکس ساده و حریم‌خصوصی‌محور برای تعداد محدودی وب‌سایت",
+    "missing": [
+      "پردازش و نگهداری داده در مقیاس جهانی",
+      "Attribution و یکپارچه‌سازی تبلیغات",
+      "مدل‌سازی پیشرفته کاربر و تبدیل"
+    ]
+  },
+  "audience": [
+    "مالک سایت",
+    "توسعه‌دهنده محصول",
+    "تیم بازاریابی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Google Analytics",
+      "آنالیتیکس اختصاصی سایت"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت جایگزین Google Analytics ممکن است؟",
+        "answer": "آنالیتیکس سبک برای چند سایت ممکن است، اما مقیاس و قابلیت‌های کامل Google Analytics تکرار نمی‌شود."
+      }
+    ]
+  },
+  "relatedTools": [
+    "mixpanel",
+    "amplitude",
+    "metabase"
+  ]
+}

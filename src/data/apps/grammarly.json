@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "grammarly",
+  "name": {
+    "fa": "گرامرلی",
+    "en": "Grammarly"
+  },
+  "domain": "grammarly.com",
+  "origin": "global",
+  "status": "review",
+  "category": "writing-seo",
+  "subcategory": "writing-assistant",
+  "tags": [
+    "ویرایش متن",
+    "دستور زبان",
+    "بازنویسی",
+    "دستیار نویسندگی"
+  ],
+  "summary": "گرامرلی یک دستیار نوشتاری است که متن را از نظر دستور زبان، وضوح، لحن و کیفیت نگارش بررسی و پیشنهادهای اصلاحی ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "medium",
+    "short": "ویرایشگر هوشمند متن ساختنیه، ولی دقت زبانی و حضور یکپارچه در همه برنامه‌ها به‌سادگی قابل تکرار نیست.",
+    "reason": "تحلیل و بازنویسی متن با مدل زبانی ممکن است، اما کیفیت پایدار، افزونه‌های چندسکویی و پیشنهادهای لحظه‌ای نقطه فاصله هستند."
+  },
+  "build": {
+    "timeEstimate": "one-weekend",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر متن را وارد می‌کند و سامانه خطاها، پیشنهادهای بازنویسی و توضیح کوتاه برای هر اصلاح را نمایش می‌دهد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "ویرایشگر متن با Highlight و پیشنهادهای قابل قبول یا رد"
+      },
+      {
+        "type": "backend",
+        "label": "پردازش متن و مدیریت نسخه‌های اصلاح‌شده"
+      },
+      {
+        "type": "ai",
+        "label": "مدل زبانی برای تشخیص و بازنویسی"
+      },
+      {
+        "type": "storage",
+        "label": "ذخیره تنظیمات لحن و تاریخچه اسناد"
+      }
+    ],
+    "limitations": [
+      "اصلاحات ممکن است برای متن‌های تخصصی اشتباه باشند.",
+      "پشتیبانی هم‌زمان از همه برنامه‌ها و مرورگرها محدود خواهد بود.",
+      "تحلیل آفلاین و لحظه‌ای در مقیاس محصول اصلی دشوار است."
+    ],
+    "prompt": {
+      "title": "ساخت ویرایشگر هوشمند متن شبیه Grammarly",
+      "content": "Build a responsive Persian RTL writing assistant with an English text editor. Highlight grammar, clarity, tone, and concision suggestions, let users accept or reject each change, preserve document versions, and call an LLM only through a server route. Include a simple browser extension prototype but exclude native apps.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 2,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 1,
+    "buildCost": 1,
+    "maintenanceCost": 2,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 4
+  },
+  "comparison": {
+    "original": "Grammarly",
+    "buildableVersion": "ویرایشگر وب برای اصلاح دستور زبان، وضوح و لحن متن با پیشنهادهای قابل مدیریت",
+    "missing": [
+      "مدل‌های زبانی و قواعد اختصاصی در سطح محصول اصلی",
+      "یکپارچه‌سازی عمیق با سیستم‌عامل و نرم‌افزارها",
+      "پیشنهادهای کاملاً لحظه‌ای و کم‌خطا"
+    ]
+  },
+  "audience": [
+    "نویسنده",
+    "دانشجو",
+    "تولیدکننده محتوای انگلیسی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "freemium"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت گرامرلی",
+      "جایگزین Grammarly"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان ویرایشگری شبیه Grammarly ساخت؟",
+        "answer": "نسخه وب آن قابل ساخت است، اما دقت زبانی و یکپارچه‌سازی چندسکویی محصول اصلی تکرار نمی‌شود."
+      }
+    ]
+  },
+  "relatedTools": [
+    "quillbot",
+    "jasper",
+    "chatgpt"
+  ]
+}

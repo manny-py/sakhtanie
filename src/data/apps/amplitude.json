@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "amplitude",
+  "name": {
+    "fa": "امپلیتیود",
+    "en": "Amplitude"
+  },
+  "domain": "amplitude.com",
+  "origin": "global",
+  "status": "review",
+  "category": "data-analytics",
+  "subcategory": "product-intelligence",
+  "tags": [
+    "تحلیل محصول",
+    "آزمایش محصول",
+    "رفتار کاربر",
+    "داده رویداد"
+  ],
+  "summary": "امپلیتیود پلتفرمی برای تحلیل رفتار کاربران، ساخت Cohort، بررسی مسیرها و پشتیبانی از تصمیم‌گیری و آزمایش محصول است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "medium",
+    "short": "چند گزارش پایه ساختنیه، اما بازسازی پلتفرم کامل داده، آزمایش و تحلیل رفتاری آن منطقی نیست.",
+    "reason": "ارزش محصول در پردازش رویداد در مقیاس بالا، مدل‌سازی رفتار، حاکمیت داده و اتصال تحلیل به آزمایش‌های محصول قرار دارد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "تیم داده رویدادهای محصول را تحلیل می‌کند، گروه‌های رفتاری می‌سازد و اثر تغییرات محصول را بر فعال‌سازی و نگهداشت بررسی می‌کند.",
+    "requirements": [
+      {
+        "type": "api",
+        "label": "SDKها و API دریافت رویداد"
+      },
+      {
+        "type": "backend",
+        "label": "موتور Cohort، مسیر و Retention"
+      },
+      {
+        "type": "database",
+        "label": "انبار رویدادهای بزرگ و داده تجمیعی"
+      },
+      {
+        "type": "infrastructure",
+        "label": "پردازش جریانی و Query تعاملی"
+      }
+    ],
+    "limitations": [
+      "پشتیبانی از حجم بالا به زیرساخت تحلیلی تخصصی نیاز دارد.",
+      "آزمایش و Feature Flag دامنه جداگانه‌ای ایجاد می‌کنند.",
+      "مدیریت کیفیت و حاکمیت داده ساده نخواهد بود."
+    ],
+    "prompt": {
+      "title": "ساخت داشبورد محدود تحلیل محصول به‌جای Amplitude",
+      "content": "Build a constrained product analytics dashboard for one application. Collect events, validate them against a schema registry, provide funnels, retention, user paths, and saved cohorts, and document event quality issues. Exclude experimentation, feature flags, predictive analytics, enterprise governance, and unlimited event volume.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 3,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 2,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Amplitude",
+    "buildableVersion": "داشبورد محدود تحلیل محصول با Schema رویداد، قیف، Retention و مسیر کاربر",
+    "missing": [
+      "پردازش و Query در مقیاس سازمانی",
+      "آزمایش محصول و Feature Flag",
+      "حاکمیت داده و مدل‌های پیش‌بینی"
+    ]
+  },
+  "audience": [
+    "تیم محصول",
+    "تحلیلگر داده",
+    "استارتاپ داده‌محور"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Amplitude",
+      "پلتفرم تحلیل محصول"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان Amplitude را ساخت؟",
+        "answer": "چند قابلیت تحلیلی محدود قابل ساخت‌اند، اما پلتفرم کامل داده و آزمایش محصول پروژه‌ای بزرگ است."
+      }
+    ]
+  },
+  "relatedTools": [
+    "mixpanel",
+    "google-analytics",
+    "tableau"
+  ]
+}

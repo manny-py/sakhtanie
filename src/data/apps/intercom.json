@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "intercom",
+  "name": {
+    "fa": "اینترکام",
+    "en": "Intercom"
+  },
+  "domain": "intercom.com",
+  "origin": "global",
+  "status": "review",
+  "category": "marketing-crm-support",
+  "subcategory": "customer-messaging",
+  "tags": [
+    "پشتیبانی مشتری",
+    "چت آنلاین",
+    "تیکت",
+    "اتوماسیون پاسخ"
+  ],
+  "summary": "اینترکام ابزار ارتباط و پشتیبانی مشتری است که چت وب، صندوق پیام تیمی، راهنما و اتوماسیون پاسخ‌گویی را ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "medium",
+    "short": "چت پشتیبانی و Inbox تیمی ساختنیه، اما قابلیت اطمینان، اتوماسیون و اتصال گسترده محصول اصلی زمان‌بر است.",
+    "reason": "Widget چت، گفتگو و تخصیص پیام قابل ساخت هستند، ولی تحویل بلادرنگ، قواعد پیچیده، گزارش تیم و نگهداری یکپارچه‌سازی‌ها فاصله ایجاد می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "مشتری از Widget پیام می‌دهد و تیم پشتیبانی گفتگو را در Inbox مشترک مشاهده، پاسخ و به عضو مناسب واگذار می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Widget چت و Inbox تیمی"
+      },
+      {
+        "type": "backend",
+        "label": "پیام‌رسانی بلادرنگ و تخصیص گفتگو"
+      },
+      {
+        "type": "database",
+        "label": "مخاطبان، گفتگوها، پیام‌ها و وضعیت‌ها"
+      },
+      {
+        "type": "authentication",
+        "label": "نقش و دسترسی اعضای تیم"
+      }
+    ],
+    "limitations": [
+      "قابلیت اطمینان پیام‌رسانی بلادرنگ نیازمند عملیات مداوم است.",
+      "اتوماسیون و هوش مصنوعی پاسخ‌گو محدودتر خواهد بود.",
+      "SDKها و اتصال به پلتفرم‌های متعدد ساخته نمی‌شوند."
+    ],
+    "prompt": {
+      "title": "ساخت چت پشتیبانی شبیه Intercom",
+      "content": "Build a Persian RTL customer support chat system with an embeddable web widget and a shared team inbox. Include real-time messages, conversation assignment, statuses, internal notes, saved replies, customer profiles, and basic response-time reports. Exclude mobile SDKs, outbound campaigns, enterprise SLAs, and a large integration marketplace.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Intercom",
+    "buildableVersion": "Widget چت وب و Inbox مشترک تیم با تخصیص گفتگو، یادداشت و پاسخ آماده",
+    "missing": [
+      "SDKها و زیرساخت چندسکویی",
+      "اتوماسیون و گزارش‌های سازمانی",
+      "اکوسیستم بزرگ یکپارچه‌سازی‌ها"
+    ]
+  },
+  "audience": [
+    "تیم پشتیبانی کوچک",
+    "محصول SaaS",
+    "فروشگاه آنلاین"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت چت شبیه Intercom",
+      "سامانه پشتیبانی آنلاین"
+    ],
+    "faq": [
+      {
+        "question": "آیا چت پشتیبانی شبیه Intercom ساختنی است؟",
+        "answer": "نسخه محدود برای وب ساختنی است، ولی قابلیت اطمینان و مجموعه کامل اتوماسیون‌ها به کار بیشتری نیاز دارد."
+      }
+    ]
+  },
+  "relatedTools": [
+    "zendesk",
+    "hubspot",
+    "chatgpt"
+  ]
+}

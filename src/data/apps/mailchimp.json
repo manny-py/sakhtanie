@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "mailchimp",
+  "name": {
+    "fa": "میل‌چیمپ",
+    "en": "Mailchimp"
+  },
+  "domain": "mailchimp.com",
+  "origin": "global",
+  "status": "review",
+  "category": "marketing-crm-support",
+  "subcategory": "email-marketing",
+  "tags": [
+    "ایمیل مارکتینگ",
+    "خبرنامه",
+    "کمپین",
+    "اتوماسیون بازاریابی"
+  ],
+  "summary": "میل‌چیمپ پلتفرمی برای مدیریت مخاطبان، طراحی خبرنامه، ارسال کمپین و اجرای اتوماسیون‌های بازاریابی ایمیلی است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "ویرایشگر خبرنامه ساختنیه، اما تحویل‌پذیری ایمیل، اعتبار ارسال و زیرساخت ضداسپم بخش اصلی محصول هستند.",
+    "reason": "ارسال ایمیل در حجم بالا فقط یک قابلیت UI نیست و به مدیریت شهرت دامنه، صف ارسال، Bounce، شکایت، قوانین ضداسپم و عملیات دائمی نیاز دارد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر فهرست مخاطبان را مدیریت می‌کند، ایمیل را طراحی می‌کند و کمپین زمان‌بندی‌شده را همراه با گزارش ارسال می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "مدیریت مخاطب و ویرایشگر ایمیل"
+      },
+      {
+        "type": "backend",
+        "label": "صف کمپین، زمان‌بندی و پردازش رویدادها"
+      },
+      {
+        "type": "database",
+        "label": "مخاطبان، رضایت، لغو عضویت و آمار کمپین"
+      },
+      {
+        "type": "infrastructure",
+        "label": "زیرساخت ارسال و پایش تحویل‌پذیری ایمیل"
+      }
+    ],
+    "limitations": [
+      "ارسال مستقیم ایمیل در مقیاس بالا ریسک تحویل‌پذیری دارد.",
+      "رعایت قوانین رضایت و لغو عضویت ضروری است.",
+      "نسخه کوچک باید از ارائه‌دهنده تخصصی ایمیل استفاده کند."
+    ],
+    "prompt": {
+      "title": "ساخت مدیر خبرنامه محدود به‌جای Mailchimp",
+      "content": "Build a Persian RTL newsletter manager that uses a transactional email provider. Include subscriber consent records, CSV import, segmentation, a block-based email editor, test sends, campaign scheduling, unsubscribe handling, and webhook-based delivery reports. Do not operate your own mail servers or promise bulk deliverability.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 2,
+    "gapFromOriginal": 4,
+    "iranRisk": 3,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Mailchimp",
+    "buildableVersion": "مدیر خبرنامه متکی به سرویس ارسال ایمیل با مخاطبان، کمپین و گزارش پایه",
+    "missing": [
+      "شبکه و اعتبار ارسال ایمیل در مقیاس جهانی",
+      "اتوماسیون پیشرفته بازاریابی",
+      "اکوسیستم گسترده قالب‌ها و یکپارچه‌سازی‌ها"
+    ]
+  },
+  "audience": [
+    "خبرنامه کوچک",
+    "فروشگاه آنلاین",
+    "تیم بازاریابی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ابزار شبیه Mailchimp",
+      "سامانه ایمیل مارکتینگ"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت Mailchimp شخصی ممکن است؟",
+        "answer": "مدیریت خبرنامه با استفاده از سرویس ارسال خارجی ممکن است، اما زیرساخت تحویل ایمیل محصول اصلی ساخته نمی‌شود."
+      }
+    ]
+  },
+  "relatedTools": [
+    "hubspot",
+    "buffer",
+    "typeform"
+  ]
+}

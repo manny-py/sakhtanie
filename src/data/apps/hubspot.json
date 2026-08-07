@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "hubspot",
+  "name": {
+    "fa": "هاب‌اسپات",
+    "en": "HubSpot"
+  },
+  "domain": "hubspot.com",
+  "origin": "global",
+  "status": "review",
+  "category": "marketing-crm-support",
+  "subcategory": "crm",
+  "tags": [
+    "CRM",
+    "فروش",
+    "بازاریابی",
+    "مدیریت مشتری"
+  ],
+  "summary": "هاب‌اسپات مجموعه‌ای از ابزارهای CRM، فروش، بازاریابی، محتوا و پشتیبانی مشتری را در یک پلتفرم یکپارچه ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "یک CRM کوچک ساختنیه، اما بازسازی کل اکوسیستم فروش، بازاریابی و پشتیبانی هاب‌اسپات پروژه‌ای بسیار بزرگ است.",
+    "reason": "ثبت مشتری و Pipeline فروش قابل پیاده‌سازی است، ولی اتوماسیون، گزارش‌گیری، یکپارچه‌سازی‌ها و عمق چندین محصول مستقل فاصله زیادی ایجاد می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم مخاطبان و شرکت‌ها را ثبت می‌کند، تعاملات را دنبال می‌کند و فرصت‌های فروش را در مراحل Pipeline جابه‌جا می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "فهرست مخاطب، شرکت و Pipeline فروش"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت فعالیت‌ها، وظایف و گردش‌کار"
+      },
+      {
+        "type": "database",
+        "label": "مدل ارتباطی مشتریان، معاملات و تعاملات"
+      },
+      {
+        "type": "authentication",
+        "label": "نقش‌ها و دسترسی اعضای تیم"
+      }
+    ],
+    "limitations": [
+      "یکپارچه‌سازی ایمیل و سرویس‌های متعدد محدود خواهد بود.",
+      "اتوماسیون بازاریابی کامل پیچیده است.",
+      "مهاجرت و همگام‌سازی داده در مقیاس سازمانی دشوار است."
+    ],
+    "prompt": {
+      "title": "ساخت CRM کوچک شبیه HubSpot",
+      "content": "Build a Persian RTL CRM for a small sales team. Include contacts, companies, deals, a Kanban sales pipeline, notes, tasks, activity history, CSV import, role-based access, and basic reports. Use PostgreSQL and server-side authentication. Exclude bulk email delivery, ad management, CMS, enterprise workflows, and third-party app marketplaces.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "HubSpot",
+    "buildableVersion": "CRM تیم کوچک با مخاطبان، شرکت‌ها، معاملات، Pipeline و گزارش‌های پایه",
+    "missing": [
+      "مجموعه کامل ابزارهای بازاریابی و پشتیبانی",
+      "بازار و اکوسیستم بزرگ یکپارچه‌سازی‌ها",
+      "اتوماسیون و گزارش‌گیری سازمانی"
+    ]
+  },
+  "audience": [
+    "تیم فروش کوچک",
+    "استارتاپ",
+    "کسب‌وکار خدماتی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت CRM شبیه HubSpot",
+      "جایگزین فارسی هاب اسپات"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت CRM شبیه HubSpot ممکن است؟",
+        "answer": "نسخه کوچک برای مدیریت فروش ممکن است، اما بازسازی کل مجموعه محصولات HubSpot منطقی نیست."
+      }
+    ]
+  },
+  "relatedTools": [
+    "mailchimp",
+    "intercom",
+    "zendesk"
+  ]
+}

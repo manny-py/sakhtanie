@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "tableau",
+  "name": {
+    "fa": "تبلو",
+    "en": "Tableau"
+  },
+  "domain": "tableau.com",
+  "origin": "global",
+  "status": "review",
+  "category": "data-analytics",
+  "subcategory": "business-intelligence",
+  "tags": [
+    "هوش تجاری",
+    "داشبورد",
+    "مصورسازی داده",
+    "گزارش"
+  ],
+  "summary": "تبلو یک پلتفرم هوش تجاری و مصورسازی داده است که امکان اتصال به منابع مختلف و ساخت داشبوردهای تعاملی را فراهم می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "داشبوردساز محدود ساختنیه، اما موتور مصورسازی، اتصال‌دهنده‌ها و تجربه تحلیلی کامل Tableau بسیار عمیق‌اند.",
+    "reason": "نمودار و داشبورد برای چند منبع مشخص قابل ساخت است، ولی رابط Drag-and-drop، مدل داده، Query بهینه و تنوع Connectorها هزینه بالایی دارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "تحلیلگر منبع داده را متصل می‌کند، فیلدها را روی نمودار قرار می‌دهد و داشبورد تعاملی قابل اشتراک می‌سازد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "سازنده داشبورد و نمودارهای تعاملی"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت Query، فیلتر و Cache"
+      },
+      {
+        "type": "database",
+        "label": "مدل متادیتای منبع، گزارش و دسترسی"
+      },
+      {
+        "type": "api",
+        "label": "اتصال‌دهنده برای منابع داده منتخب"
+      }
+    ],
+    "limitations": [
+      "ساخت رابط تحلیلی Drag-and-drop بسیار پیچیده است.",
+      "پشتیبانی از منابع متعدد نیازمند نگهداری دائمی است.",
+      "کارایی Query و امنیت سطح سطر محدود خواهند بود."
+    ],
+    "prompt": {
+      "title": "ساخت داشبوردساز محدود شبیه Tableau",
+      "content": "Build a Persian RTL business dashboard builder for PostgreSQL only. Let users register read-only data sources, define saved SQL queries, choose from a fixed chart library, compose dashboards, add filters, schedule CSV exports, and share read-only links. Exclude arbitrary visual analytics, desktop authoring, data preparation, and broad connectors.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Tableau",
+    "buildableVersion": "داشبوردساز برای PostgreSQL با Query ذخیره‌شده، نمودارهای ثابت و فیلتر",
+    "missing": [
+      "رابط آزاد و قدرتمند تحلیل بصری",
+      "اتصال‌دهنده‌های گسترده منابع داده",
+      "مدل داده و قابلیت‌های سازمانی"
+    ]
+  },
+  "audience": [
+    "تحلیلگر داده",
+    "تیم مدیریتی",
+    "کسب‌وکار داده‌محور"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service",
+      "licensing"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Tableau",
+      "داشبورد هوش تجاری"
+    ],
+    "faq": [
+      {
+        "question": "آیا داشبوردی شبیه Tableau ساختنی است؟",
+        "answer": "نسخه محدود برای یک منبع داده قابل ساخت است، اما تجربه کامل تحلیل بصری Tableau تکرار نمی‌شود."
+      }
+    ]
+  },
+  "relatedTools": [
+    "metabase",
+    "google-analytics",
+    "amplitude"
+  ]
+}

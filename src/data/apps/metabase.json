@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "metabase",
+  "name": {
+    "fa": "متابیس",
+    "en": "Metabase"
+  },
+  "domain": "metabase.com",
+  "origin": "open-source",
+  "status": "review",
+  "category": "data-analytics",
+  "subcategory": "open-source-bi",
+  "tags": [
+    "هوش تجاری",
+    "متن‌باز",
+    "داشبورد",
+    "پایگاه داده"
+  ],
+  "summary": "متابیس یک ابزار متن‌باز هوش تجاری است که برای پرس‌وجوی پایگاه داده، ساخت نمودار و انتشار داشبوردهای داخلی استفاده می‌شود.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "یک نسخه محدود برای یک پایگاه داده با Query و داشبوردهای پایه در چند روز قابل ساخت است.",
+    "reason": "برای استفاده شخصی یا تیم کوچک، اتصال فقط‌خواندنی به پایگاه داده، Query ذخیره‌شده و چند نمودار ارزش اصلی موردنیاز را پوشش می‌دهد."
+  },
+  "build": {
+    "timeEstimate": "few-days",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر منبع داده را متصل می‌کند، پرسش یا Query می‌سازد و نتیجه را به نمودار یا داشبورد قابل اشتراک تبدیل می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "ویرایشگر Query و سازنده داشبورد"
+      },
+      {
+        "type": "backend",
+        "label": "اجرای امن Query و مدیریت Cache"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره کاربران، منابع، پرسش‌ها و داشبوردها"
+      },
+      {
+        "type": "authentication",
+        "label": "دسترسی به داشبورد و منبع داده"
+      }
+    ],
+    "limitations": [
+      "فقط تعداد محدودی منبع داده پشتیبانی می‌شود.",
+      "سازنده بدون کد Query ساده‌تر خواهد بود.",
+      "امنیت سطح سطر و Embedding پیشرفته محدود هستند."
+    ],
+    "prompt": {
+      "title": "ساخت ابزار هوش تجاری ساده شبیه Metabase",
+      "content": "Build a self-hosted Persian RTL analytics dashboard for PostgreSQL. Support read-only database connections, a guarded SQL editor, tabular results, six chart types, saved questions, dashboards, filters, role-based access, query timeouts, and CSV export. Exclude multi-database drivers, visual query builders, embedding SDKs, and enterprise SSO.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 1,
+    "proprietaryData": 0,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  },
+  "comparison": {
+    "original": "Metabase",
+    "buildableVersion": "ابزار Self-hosted برای PostgreSQL با SQL، نمودار، داشبورد و دسترسی پایه",
+    "missing": [
+      "پشتیبانی از منابع داده متعدد",
+      "سازنده Query بدون کد کامل",
+      "Embedding، SSO و امنیت سازمانی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهنده",
+    "تحلیلگر داده",
+    "تیم کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "service",
+      "licensing",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Metabase",
+      "داشبورد متن باز داده"
+    ],
+    "faq": [
+      {
+        "question": "آیا نسخه مشابه Metabase قابل ساخت است؟",
+        "answer": "نسخه محدود برای PostgreSQL و چند نوع نمودار قابل ساخت است، هرچند محصول اصلی امکانات بسیار بیشتری دارد."
+      }
+    ]
+  },
+  "relatedTools": [
+    "tableau",
+    "google-analytics",
+    "mixpanel"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "mixpanel",
+  "name": {
+    "fa": "میکس‌پنل",
+    "en": "Mixpanel"
+  },
+  "domain": "mixpanel.com",
+  "origin": "global",
+  "status": "review",
+  "category": "data-analytics",
+  "subcategory": "product-analytics",
+  "tags": [
+    "تحلیل محصول",
+    "قیف تبدیل",
+    "Retention",
+    "رویداد"
+  ],
+  "summary": "میکس‌پنل یک ابزار تحلیل محصول مبتنی بر رویداد است که برای بررسی قیف‌ها، نگهداشت کاربران، مسیرها و رفتار گروه‌های مختلف استفاده می‌شود.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "نسخه محدود برای رویداد و قیف ساختنیه، اما Query سریع، مقیاس داده و انعطاف تحلیلی محصول اصلی دشوار است.",
+    "reason": "جمع‌آوری رویداد و چند گزارش استاندارد قابل ساخت است، ولی پردازش تعاملی داده‌های بزرگ و Cohortهای پیچیده زیرساخت جدی می‌خواهد."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "محصول رویدادهای کاربر را ارسال می‌کند و تیم قیف تبدیل، Retention و Segmentهای رفتاری را تحلیل می‌کند.",
+    "requirements": [
+      {
+        "type": "api",
+        "label": "API دریافت رویداد و SDK ساده وب"
+      },
+      {
+        "type": "backend",
+        "label": "پردازش قیف، Cohort و Retention"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره رویداد و داده تجمیعی"
+      },
+      {
+        "type": "frontend",
+        "label": "سازنده گزارش و نمودارهای تعاملی"
+      }
+    ],
+    "limitations": [
+      "Query روی رویدادهای بسیار زیاد کند یا پرهزینه خواهد بود.",
+      "Cohort و فرمول‌های پیشرفته محدود می‌شوند.",
+      "کیفیت نتایج به طراحی درست رویدادها وابسته است."
+    ],
+    "prompt": {
+      "title": "ساخت ابزار تحلیل محصول شبیه Mixpanel",
+      "content": "Build an event-based product analytics app for one product. Include a JavaScript SDK, identified and anonymous users, event properties, funnels, weekly retention, saved segments, date filters, CSV export, and a Persian RTL dashboard. Use PostgreSQL with documented scale limits and exclude enterprise-scale streaming and arbitrary query builders.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 3,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Mixpanel",
+    "buildableVersion": "تحلیل محصول محدود با رویداد، قیف، Retention و Segmentهای ذخیره‌شده",
+    "missing": [
+      "Query تعاملی در مقیاس بسیار بزرگ",
+      "Cohort و تحلیل‌های بسیار انعطاف‌پذیر",
+      "SDKها و یکپارچه‌سازی‌های کامل"
+    ]
+  },
+  "audience": [
+    "مدیر محصول",
+    "توسعه‌دهنده",
+    "استارتاپ"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Mixpanel",
+      "تحلیل رفتار کاربران محصول"
+    ],
+    "faq": [
+      {
+        "question": "آیا ابزار تحلیل محصول شبیه Mixpanel ساختنی است؟",
+        "answer": "نسخه محدود برای یک محصول قابل ساخت است، اما مقیاس و انعطاف تحلیلی محصول اصلی را ندارد."
+      }
+    ]
+  },
+  "relatedTools": [
+    "amplitude",
+    "google-analytics",
+    "metabase"
+  ]
+}

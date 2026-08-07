@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "semrush",
+  "name": {
+    "fa": "سمراش",
+    "en": "Semrush"
+  },
+  "domain": "semrush.com",
+  "origin": "global",
+  "status": "review",
+  "category": "writing-seo",
+  "subcategory": "seo-research",
+  "tags": [
+    "سئو",
+    "تحقیق کلمه کلیدی",
+    "تحلیل رقبا",
+    "داده بازاریابی"
+  ],
+  "summary": "سمراش یک پلتفرم داده‌محور برای تحقیق کلمات کلیدی، تحلیل رقبا، بررسی بک‌لینک و پایش عملکرد بازاریابی دیجیتال است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "رابط داشبورد ساختنیه، اما ارزش اصلی محصول در داده، خزش وب و زیرساخت جمع‌آوری اطلاعات آن قرار دارد.",
+    "reason": "بدون پایگاه داده بزرگ کلمات کلیدی، بک‌لینک‌ها، دامنه‌ها و تاریخچه رتبه‌ها، نسخه ساخته‌شده تنها پوسته‌ای از محصول اصلی خواهد بود."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر دامنه یا کلمه کلیدی را وارد می‌کند و سامانه گزارش‌هایی درباره رقابت، رتبه، فرصت‌های محتوا و وضعیت فنی ارائه می‌دهد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "داشبورد گزارش و فیلترهای تحلیلی"
+      },
+      {
+        "type": "backend",
+        "label": "پردازش گزارش‌ها و مدیریت پروژه‌های پایش"
+      },
+      {
+        "type": "database",
+        "label": "پایگاه داده عظیم دامنه‌ها، کلمات و تاریخچه رتبه"
+      },
+      {
+        "type": "infrastructure",
+        "label": "خزش وب، زمان‌بندی جمع‌آوری و پردازش داده"
+      }
+    ],
+    "limitations": [
+      "ساخت پایگاه داده جهانی سئو بسیار پرهزینه است.",
+      "داده محدود یا API شخص ثالث جای محصول اصلی را نمی‌گیرد.",
+      "پایش قابل اعتماد رتبه و بک‌لینک نیازمند زیرساخت مداوم است."
+    ],
+    "prompt": {
+      "title": "ساخت داشبورد محدود سئو به‌جای Semrush",
+      "content": "Build a Persian RTL SEO project dashboard for one website. Use Google Search Console and PageSpeed APIs, accept manually imported keyword CSV files, track technical audit issues, and show simple trend charts. Do not claim global keyword volumes, backlink indexes, competitor intelligence, or independent rank tracking.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 5,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 2,
+    "gapFromOriginal": 5,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Semrush",
+    "buildableVersion": "داشبورد محدود سئوی یک سایت با داده Search Console، PageSpeed و فایل‌های واردشده",
+    "missing": [
+      "فهرست جهانی دامنه‌ها و بک‌لینک‌ها",
+      "داده مستقل کلمات کلیدی و رقبا",
+      "خزش و پایش رتبه در مقیاس وسیع"
+    ]
+  },
+  "audience": [
+    "کارشناس سئو",
+    "مالک سایت",
+    "آژانس بازاریابی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ابزار شبیه Semrush",
+      "جایگزین سمراش"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان Semrush را با هوش مصنوعی ساخت؟",
+        "answer": "رابط و چند گزارش محدود قابل ساخت است، اما داده و زیرساخت اصلی Semrush قابل جایگزینی سریع نیست."
+      }
+    ]
+  },
+  "relatedTools": [
+    "writesonic",
+    "google-analytics",
+    "hubspot"
+  ]
+}

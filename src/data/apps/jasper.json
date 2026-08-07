@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "jasper",
+  "name": {
+    "fa": "جسپر",
+    "en": "Jasper"
+  },
+  "domain": "jasper.ai",
+  "origin": "global",
+  "status": "review",
+  "category": "writing-seo",
+  "subcategory": "ai-copywriting",
+  "tags": [
+    "تولید محتوا",
+    "کپی‌رایتینگ",
+    "هوش مصنوعی",
+    "لحن برند"
+  ],
+  "summary": "جسپر یک پلتفرم تولید محتوای بازاریابی با هوش مصنوعی است که روی ساخت متن، حفظ لحن برند و گردش‌کار تیم‌های محتوا تمرکز دارد.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "medium",
+    "short": "نسخه شخصی تولید محتوا ساختنیه، اما مدیریت برند و گردش‌کار تیمی کامل‌تر از یک چت‌بات ساده است.",
+    "reason": "هسته تولید متن با API مدل زبانی قابل ساخت است، اما کتابخانه برند، قالب‌های تخصصی، همکاری تیمی و کنترل کیفیت مداوم فاصله ایجاد می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "one-weekend",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر نوع محتوا، موضوع و لحن برند را مشخص می‌کند و سامانه پیش‌نویس قابل ویرایش تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "ویرایشگر محتوای راست‌چین و انتخاب نوع محتوا"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت پروژه‌ها، قالب‌ها و درخواست‌های تولید متن"
+      },
+      {
+        "type": "ai",
+        "label": "اتصال امن به یک مدل زبانی"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره لحن برند، اسناد و تاریخچه خروجی‌ها"
+      }
+    ],
+    "limitations": [
+      "کیفیت خروجی به مدل زبانی و پرامپت‌ها وابسته است.",
+      "هماهنگی تیمی و کنترل برند ساده‌تر از محصول اصلی خواهد بود.",
+      "بررسی صحت ادعاها و ویرایش نهایی همچنان به انسان نیاز دارد."
+    ],
+    "prompt": {
+      "title": "ساخت دستیار تولید محتوای بازاریابی شبیه Jasper",
+      "content": "Build a Persian RTL AI marketing writing workspace. Include brand voice profiles, content templates, project folders, an editable document view, prompt history, server-side LLM calls, usage limits, and export to Markdown. Keep collaboration limited to simple shared projects and exclude enterprise approval workflows.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 2,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 1,
+    "buildCost": 1,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 2,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "comparison": {
+    "original": "Jasper",
+    "buildableVersion": "دستیار شخصی تولید محتوای بازاریابی با پروفایل لحن برند، قالب‌های آماده و ویرایشگر متن",
+    "missing": [
+      "گردش‌کار کامل تیم‌های بازاریابی",
+      "کتابخانه گسترده قالب‌ها و یکپارچه‌سازی‌ها",
+      "کنترل برند و حاکمیت سازمانی"
+    ]
+  },
+  "audience": [
+    "تولیدکننده محتوا",
+    "کپی‌رایتر",
+    "تیم بازاریابی کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ابزار شبیه جسپر",
+      "جایگزین فارسی Jasper"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه مشابه Jasper ممکن است؟",
+        "answer": "نسخه شخصی و محدود آن با API مدل زبانی قابل ساخت است، اما امکانات سازمانی و همکاری تیمی کامل نخواهد بود."
+      }
+    ]
+  },
+  "relatedTools": [
+    "writesonic",
+    "grammarly",
+    "chatgpt"
+  ]
+}

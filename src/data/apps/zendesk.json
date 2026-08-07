@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "zendesk",
+  "name": {
+    "fa": "زندسک",
+    "en": "Zendesk"
+  },
+  "domain": "zendesk.com",
+  "origin": "global",
+  "status": "review",
+  "category": "marketing-crm-support",
+  "subcategory": "customer-support",
+  "tags": [
+    "تیکت پشتیبانی",
+    "Help Desk",
+    "خدمات مشتری",
+    "SLA"
+  ],
+  "summary": "زندسک یک سامانه مدیریت خدمات مشتری است که تیکت‌ها، کانال‌های ارتباطی، دانش‌نامه، SLA و گزارش عملکرد تیم پشتیبانی را مدیریت می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "Help Desk کوچک ساختنیه، اما مدیریت چندکاناله، SLA و فرایندهای سازمانی کامل محصول اصلی نیست.",
+    "reason": "ثبت و تخصیص تیکت ساده است، ولی اتصال پایدار به ایمیل، چت، تلفن، قواعد سازمانی و گزارش‌گیری عمیق دامنه پروژه را بزرگ می‌کند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "درخواست مشتری به تیکت تبدیل می‌شود، به کارشناس واگذار می‌شود و تا حل نهایی همراه با تاریخچه و وضعیت پیگیری می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Inbox تیکت، فیلترها و نمای جزئیات"
+      },
+      {
+        "type": "backend",
+        "label": "گردش وضعیت، تخصیص و قواعد SLA"
+      },
+      {
+        "type": "database",
+        "label": "تیکت‌ها، پیام‌ها، کاربران و رخدادها"
+      },
+      {
+        "type": "automation",
+        "label": "قواعد ساده اولویت و ارجاع"
+      }
+    ],
+    "limitations": [
+      "پشتیبانی چندکاناله کامل پیاده نمی‌شود.",
+      "اتصال ایمیل و جلوگیری از ایجاد تیکت تکراری دشوار است.",
+      "گزارش‌ها و SLAهای سازمانی محدود خواهند بود."
+    ],
+    "prompt": {
+      "title": "ساخت Help Desk کوچک شبیه Zendesk",
+      "content": "Build a Persian RTL help desk for a small support team. Include customer and agent accounts, email-to-ticket ingestion through one provider, ticket statuses, priorities, assignment, tags, internal notes, saved replies, SLA timers, and basic reports. Exclude telephony, social channels, enterprise routing, and marketplace integrations.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "comparison": {
+    "original": "Zendesk",
+    "buildableVersion": "Help Desk تیم کوچک با تیکت، اولویت، تخصیص، یادداشت داخلی و SLA پایه",
+    "missing": [
+      "پشتیبانی کامل چندکاناله",
+      "قواعد مسیریابی و SLA سازمانی",
+      "بازار یکپارچه‌سازی‌ها و گزارش‌های پیشرفته"
+    ]
+  },
+  "audience": [
+    "تیم پشتیبانی",
+    "شرکت خدماتی",
+    "محصول آنلاین"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Zendesk",
+      "سامانه تیکت پشتیبانی"
+    ],
+    "faq": [
+      {
+        "question": "آیا سیستم تیکت شبیه Zendesk قابل ساخت است؟",
+        "answer": "نسخه محدود برای یک تیم کوچک قابل ساخت است، اما امکانات چندکاناله و سازمانی کامل نخواهد بود."
+      }
+    ]
+  },
+  "relatedTools": [
+    "intercom",
+    "hubspot",
+    "mailchimp"
+  ]
+}

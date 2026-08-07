@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "buffer",
+  "name": {
+    "fa": "بافر",
+    "en": "Buffer"
+  },
+  "domain": "buffer.com",
+  "origin": "global",
+  "status": "review",
+  "category": "marketing-crm-support",
+  "subcategory": "social-scheduling",
+  "tags": [
+    "شبکه اجتماعی",
+    "زمان‌بندی محتوا",
+    "تقویم محتوا",
+    "بازاریابی"
+  ],
+  "summary": "بافر برای برنامه‌ریزی، زمان‌بندی و انتشار محتوای شبکه‌های اجتماعی و مشاهده گزارش‌های پایه عملکرد استفاده می‌شود.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "تقویم و صف انتشار ساختنیه، اما APIهای شبکه‌های اجتماعی و تغییرات دائمی آن‌ها هزینه نگهداری بالایی دارند.",
+    "reason": "مدیریت محتوا و زمان‌بندی ساده است، ولی انتشار واقعی به مجوزها، OAuth، محدودیت پلتفرم‌ها و سازگاری مداوم وابسته است."
+  },
+  "build": {
+    "timeEstimate": "one-weekend",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر حساب اجتماعی را متصل می‌کند، پست می‌سازد و آن را در یک صف یا تقویم برای انتشار زمان‌بندی می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "ویرایشگر پست و تقویم محتوایی"
+      },
+      {
+        "type": "backend",
+        "label": "صف زمان‌بندی و مدیریت انتشار"
+      },
+      {
+        "type": "database",
+        "label": "پست‌ها، حساب‌ها و وضعیت انتشار"
+      },
+      {
+        "type": "api",
+        "label": "OAuth و API رسمی شبکه‌های اجتماعی"
+      }
+    ],
+    "limitations": [
+      "همه شبکه‌ها API یکسان یا دسترسی عمومی ندارند.",
+      "مجوزها و محدودیت‌های انتشار مرتب تغییر می‌کنند.",
+      "تحلیل عملکرد محدود به داده قابل دریافت از API است."
+    ],
+    "prompt": {
+      "title": "ساخت زمان‌بند شبکه اجتماعی شبیه Buffer",
+      "content": "Build a Persian RTL social content calendar for one supported platform. Include OAuth, draft posts, media attachments, a publishing queue, timezone-aware scheduling, retries, failure logs, and simple engagement reports. Keep the provider adapter modular and exclude unsupported scraping, unofficial APIs, team approvals, and AI content generation.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 2,
+    "externalDependency": 4,
+    "proprietaryData": 0,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 3
+  },
+  "comparison": {
+    "original": "Buffer",
+    "buildableVersion": "تقویم محتوا و صف انتشار برای یک شبکه اجتماعی دارای API رسمی",
+    "missing": [
+      "پشتیبانی پایدار از شبکه‌های متعدد",
+      "تحلیل کامل و مقایسه بین پلتفرم‌ها",
+      "گردش‌کار تیمی و تأیید محتوا"
+    ]
+  },
+  "audience": [
+    "مدیر شبکه اجتماعی",
+    "کسب‌وکار کوچک",
+    "تولیدکننده محتوا"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Buffer",
+      "زمان‌بندی پست شبکه اجتماعی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت ابزار زمان‌بندی شبیه Buffer ممکن است؟",
+        "answer": "برای یک پلتفرم دارای API رسمی ممکن است، ولی پشتیبانی هم‌زمان و پایدار از چند شبکه دشوارتر است."
+      }
+    ]
+  },
+  "relatedTools": [
+    "mailchimp",
+    "hubspot",
+    "canva"
+  ]
+}

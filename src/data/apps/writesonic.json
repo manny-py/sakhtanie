@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "writesonic",
+  "name": {
+    "fa": "رایت‌سونیک",
+    "en": "Writesonic"
+  },
+  "domain": "writesonic.com",
+  "origin": "global",
+  "status": "review",
+  "category": "writing-seo",
+  "subcategory": "seo-content",
+  "tags": [
+    "تولید مقاله",
+    "محتوای سئو",
+    "هوش مصنوعی",
+    "بازاریابی محتوا"
+  ],
+  "summary": "رایت‌سونیک مجموعه‌ای از ابزارهای تولید محتوای بازاریابی و سئو است که برای مقاله، صفحه فرود و متن تبلیغاتی استفاده می‌شود.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "medium",
+    "short": "تولیدکننده مقاله و متن تبلیغاتی ساختنیه، اما پژوهش، سئو و گردش‌کار کامل محصول اصلی فاصله ایجاد می‌کند.",
+    "reason": "تولید پیش‌نویس با مدل زبانی ساده است، ولی گردآوری منابع، ساختاردهی طولانی، کنترل کیفیت و ابزارهای بازاریابی زمان بیشتری می‌خواهند."
+  },
+  "build": {
+    "timeEstimate": "one-weekend",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر موضوع، کلمات کلیدی و نوع محتوا را تعیین می‌کند و سامانه طرح اولیه و سپس پیش‌نویس قابل ویرایش تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "فرم Brief محتوا و ویرایشگر مقاله"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت مراحل تولید و ذخیره پروژه"
+      },
+      {
+        "type": "ai",
+        "label": "مدل زبانی برای طرح و نگارش"
+      },
+      {
+        "type": "database",
+        "label": "ذخیره پروژه‌ها، منابع و نسخه‌ها"
+      }
+    ],
+    "limitations": [
+      "اطلاعات تولیدشده باید از نظر صحت بررسی شوند.",
+      "تحقیق کلمه کلیدی حرفه‌ای به داده خارجی نیاز دارد.",
+      "محتوای طولانی بدون ویرایش انسانی کیفیت یکنواخت ندارد."
+    ],
+    "prompt": {
+      "title": "ساخت تولیدکننده محتوای سئو شبیه Writesonic",
+      "content": "Build a Persian RTL SEO content workspace. Let users enter a topic, audience, keywords, tone, and desired length, then generate an outline and editable article in separate steps. Include source notes, version history, Markdown export, and server-side LLM requests. Exclude proprietary keyword databases and rank tracking.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 2,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 1,
+    "buildCost": 1,
+    "maintenanceCost": 2,
+    "personalValue": 4,
+    "gapFromOriginal": 2,
+    "iranRisk": 2,
+    "economicValue": 4
+  },
+  "comparison": {
+    "original": "Writesonic",
+    "buildableVersion": "تولیدکننده مرحله‌ای طرح مقاله و پیش‌نویس سئو با ویرایشگر داخلی",
+    "missing": [
+      "پایگاه داده اختصاصی کلمات کلیدی",
+      "تحقیق و ارزیابی رقبا در مقیاس محصول اصلی",
+      "گردش‌کار کامل بازاریابی محتوا"
+    ]
+  },
+  "audience": [
+    "کارشناس سئو",
+    "نویسنده محتوا",
+    "آژانس کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Writesonic",
+      "تولید مقاله سئو با هوش مصنوعی"
+    ],
+    "faq": [
+      {
+        "question": "آیا نسخه مشابه Writesonic قابل ساخت است؟",
+        "answer": "بخش تولید مقاله قابل ساخت است، اما داده‌های سئو و ابزارهای پژوهشی کامل به منابع خارجی وابسته‌اند."
+      }
+    ]
+  },
+  "relatedTools": [
+    "jasper",
+    "semrush",
+    "chatgpt"
+  ]
+}

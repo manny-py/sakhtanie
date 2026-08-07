@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "slug": "quillbot",
+  "name": {
+    "fa": "کویل‌بات",
+    "en": "QuillBot"
+  },
+  "domain": "quillbot.com",
+  "origin": "global",
+  "status": "review",
+  "category": "writing-seo",
+  "subcategory": "paraphrasing",
+  "tags": [
+    "بازنویسی متن",
+    "خلاصه‌سازی",
+    "پارافریز",
+    "نویسندگی"
+  ],
+  "summary": "کویل‌بات ابزاری برای بازنویسی، خلاصه‌سازی و تغییر لحن متن است که چند حالت متفاوت برای تولید نسخه جدید ارائه می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه شخصی و کاربردی آن با یک مدل زبانی و رابط مناسب در زمان کوتاه قابل ساخت است.",
+    "reason": "گردش اصلی محصول شامل دریافت متن، انتخاب سبک و تولید نسخه بازنویسی‌شده است و برای استفاده شخصی وابستگی ساختاری دشواری ندارد."
+  },
+  "build": {
+    "timeEstimate": "one-day",
+    "skillLevel": "beginner",
+    "coreLoop": "کاربر متن و سبک بازنویسی را انتخاب می‌کند و سامانه نسخه جدید را همراه با امکان مقایسه و کپی ارائه می‌دهد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "ورودی و خروجی متنی با مقایسه دو نسخه"
+      },
+      {
+        "type": "backend",
+        "label": "مسیر امن برای پردازش متن"
+      },
+      {
+        "type": "ai",
+        "label": "مدل زبانی برای بازنویسی و خلاصه‌سازی"
+      }
+    ],
+    "limitations": [
+      "خروجی ممکن است معنی یا اصطلاحات تخصصی را تغییر دهد.",
+      "تشخیص سرقت ادبی حرفه‌ای جزو نسخه ساده نیست.",
+      "کیفیت زبان‌های مختلف به مدل انتخاب‌شده بستگی دارد."
+    ],
+    "prompt": {
+      "title": "ساخت ابزار بازنویسی متن شبیه QuillBot",
+      "content": "Build a Persian RTL paraphrasing web app with side-by-side input and output. Support formal, simple, concise, creative, and academic modes, sentence highlighting, summarization, copy and download actions, character limits, and server-side LLM calls. Do not add accounts, payments, plagiarism detection, or browser extensions.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-06"
+    }
+  },
+  "scores": {
+    "technicalComplexity": 1,
+    "externalDependency": 1,
+    "proprietaryData": 1,
+    "infrastructure": 1,
+    "buildCost": 1,
+    "maintenanceCost": 1,
+    "personalValue": 4,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 3
+  },
+  "comparison": {
+    "original": "QuillBot",
+    "buildableVersion": "ابزار بازنویسی و خلاصه‌سازی متن با چند سبک و رابط مقایسه‌ای",
+    "missing": [
+      "مدل‌های اختصاصی بهینه‌شده برای بازنویسی",
+      "تشخیص سرقت ادبی",
+      "افزونه‌ها و یکپارچه‌سازی‌های محصول اصلی"
+    ]
+  },
+  "audience": [
+    "دانشجو",
+    "نویسنده",
+    "تولیدکننده محتوا"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "freemium",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کویل بات",
+      "ابزار بازنویسی متن با هوش مصنوعی"
+    ],
+    "faq": [
+      {
+        "question": "ساخت ابزار بازنویسی شبیه QuillBot چقدر دشوار است؟",
+        "answer": "نسخه شخصی آن نسبتاً ساده است و با یک رابط متنی و API مدل زبانی قابل پیاده‌سازی است."
+      }
+    ]
+  },
+  "relatedTools": [
+    "grammarly",
+    "chatgpt",
+    "writesonic"
+  ]
+}
