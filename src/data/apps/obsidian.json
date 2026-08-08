@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "obsidian",
+  "name": {
+    "fa": "آبسیدین",
+    "en": "Obsidian"
+  },
+  "domain": "obsidian.md",
+  "origin": "global",
+  "status": "published",
+  "category": "notes-knowledge",
+  "subcategory": "personal-knowledge-management",
+  "tags": [
+    "Markdown",
+    "Notes",
+    "Knowledge Graph",
+    "Local-first"
+  ],
+  "relatedTools": [
+    "notion"
+  ],
+  "summary": "آبسیدین یک ابزار مدیریت دانش شخصی local-first است که یادداشت‌های Markdown، لینک‌های داخلی، graph، canvas و pluginها را ترکیب می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته local-first Markdown notes با backlinks، graph و search قابل ساخت است؛ plugin ecosystem و polish editor نسخه اصلی نیازمند زمان بیشتری است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر فایل‌های Markdown می‌سازد، یادداشت‌ها را با لینک به هم متصل می‌کند و از search، backlinks و graph برای مرور دانش استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Markdown editor"
+      },
+      {
+        "type": "filesystem",
+        "label": "Local note storage"
+      },
+      {
+        "type": "indexing",
+        "label": "Search و backlink index"
+      },
+      {
+        "type": "visualization",
+        "label": "Knowledge graph"
+      }
+    ],
+    "limitations": [
+      "Plugin ecosystem کامل حذف می‌شود.",
+      "Mobile sync پیشرفته ساده خواهد بود.",
+      "Canvas حرفه‌ای محدود است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Obsidian",
+      "content": "Build a local-first knowledge app with Markdown notes, folders, wiki links, backlinks, tags, full-text search, graph visualization, command palette, themes, simple canvas boards, and optional encrypted sync.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Obsidian",
+    "buildableVersion": "Local-first Markdown knowledge base",
+    "missing": [
+      "plugin ecosystem کامل",
+      "sync چندپلتفرمی کامل"
+    ]
+  },
+  "audience": [
+    "نویسندگان",
+    "پژوهشگران",
+    "دانشجویان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "license"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آبسیدین",
+      "ساخت مشابه Obsidian",
+      "Obsidian clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه آبسیدین ساخت؟",
+        "answer": "هسته local-first Markdown notes با backlinks، graph و search قابل ساخت است؛ plugin ecosystem و polish editor نسخه اصلی نیازمند زمان بیشتری است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 1,
+    "proprietaryData": 1,
+    "infrastructure": 1,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  }
+}

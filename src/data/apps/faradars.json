@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "faradars",
+  "name": {
+    "fa": "فرادرس",
+    "en": "FaraDars"
+  },
+  "domain": "faradars.org",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "online-learning",
+  "tags": [
+    "آموزش آنلاین",
+    "دوره آموزشی",
+    "ویدیو آموزشی",
+    "مهارت"
+  ],
+  "relatedTools": [
+    "quera"
+  ],
+  "summary": "فرادرس یک پلتفرم ایرانی آموزش آنلاین با مجموعه گسترده‌ای از دوره‌های ویدیویی در موضوعات دانشگاهی، فنی، برنامه‌نویسی، داده، کسب‌وکار و مهارت‌های تخصصی است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "ساخت LMS و فروش دوره کاملاً ممکن است، اما ارزش نسخه اصلی به حجم بسیار زیاد محتوای آموزشی، مدرس‌ها، اعتبار برند و شبکه تولید محتوا وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر موضوع یا دوره را پیدا می‌کند، آموزش ویدیویی را خریداری یا مشاهده می‌کند، پیشرفت خود را دنبال می‌کند و به مجموعه‌ای از محتوای آموزشی دسترسی دارد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "کاتالوگ دوره و صفحه پخش"
+      },
+      {
+        "type": "backend",
+        "label": "کاربر، دوره، خرید و دسترسی"
+      },
+      {
+        "type": "storage",
+        "label": "ویدیو و فایل آموزشی"
+      },
+      {
+        "type": "database",
+        "label": "دوره‌ها، پیشرفت و تراکنش‌ها"
+      }
+    ],
+    "limitations": [
+      "تولید هزاران ساعت محتوای آموزشی قابل کپی نیست.",
+      "شبکه مدرس‌ها و برند آموزشی به مرور زمان ایجاد می‌شود.",
+      "Streaming در مقیاس بالا نیازمند CDN است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by FaraDars",
+      "content": "Build a Persian online-learning platform with course catalogs, instructors, video lessons, sections, purchases, subscriptions, progress tracking, certificates, reviews, search, categories, and learner dashboards. Use externally hosted video or object storage and exclude a large proprietary content library.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "FaraDars",
+    "buildableVersion": "LMS فارسی با فروش دوره، اشتراک و پیگیری پیشرفت",
+    "missing": [
+      "کتابخانه محتوای بزرگ",
+      "شبکه مدرس‌ها",
+      "برند و بازار تثبیت‌شده"
+    ]
+  },
+  "audience": [
+    "دانشجویان",
+    "متخصصان",
+    "مدرس‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "course-sales",
+      "commission"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت فرادرس",
+      "ساخت مشابه FaraDars",
+      "FaraDars clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه فرادرس ساخت؟",
+        "answer": "ساخت LMS و فروش دوره کاملاً ممکن است، اما ارزش نسخه اصلی به حجم بسیار زیاد محتوای آموزشی، مدرس‌ها، اعتبار برند و شبکه تولید محتوا وابسته است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 3,
+    "proprietaryData": 5,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

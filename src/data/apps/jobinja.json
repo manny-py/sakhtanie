@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "jobinja",
+  "name": {
+    "fa": "جابینجا",
+    "en": "Jobinja"
+  },
+  "domain": "jobinja.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "job-marketplace",
+  "tags": [
+    "استخدام",
+    "کاریابی",
+    "آگهی استخدام",
+    "رزومه"
+  ],
+  "relatedTools": [
+    "jobvision"
+  ],
+  "summary": "جابینجا یک پلتفرم کاریابی ایرانی برای جست‌وجوی فرصت‌های شغلی، انتشار آگهی استخدام و اتصال متخصصان به شرکت‌ها است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته فنی یک سامانه آگهی استخدام و ارسال رزومه نسبتاً مستقیم است؛ سخت‌ترین بخش محصول رسیدن به شبکه کافی از شرکت‌ها و کارجویان است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "کارفرما فرصت شغلی منتشر می‌کند، کارجو میان آگهی‌ها جست‌وجو می‌کند و برای موقعیت موردنظر درخواست می‌فرستد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Job listing و company pages"
+      },
+      {
+        "type": "backend",
+        "label": "Posting و application workflow"
+      },
+      {
+        "type": "database",
+        "label": "Jobs، users و applications"
+      },
+      {
+        "type": "search",
+        "label": "Job filtering"
+      }
+    ],
+    "limitations": [
+      "Network effect قابل کدنویسی نیست.",
+      "سیستم recommendation بدون داده محدود خواهد بود.",
+      "فرایند moderation آگهی‌ها نیازمند عملیات است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Jobinja",
+      "content": "Build a Persian job board with employer profiles, company pages, job listings, search filters, candidate accounts, resumes, applications, saved jobs, email alerts, recruiter dashboards, and simple application status tracking.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Jobinja",
+    "buildableVersion": "سامانه کاریابی فارسی با آگهی و درخواست استخدام",
+    "missing": [
+      "شبکه کاربران موجود",
+      "داده بازار کار",
+      "برند تثبیت‌شده"
+    ]
+  },
+  "audience": [
+    "کارجویان",
+    "شرکت‌ها",
+    "Recruiterها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "job-posting",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت جابینجا",
+      "ساخت مشابه Jobinja",
+      "Jobinja clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه جابینجا ساخت؟",
+        "answer": "هسته فنی یک سامانه آگهی استخدام و ارسال رزومه نسبتاً مستقیم است؛ سخت‌ترین بخش محصول رسیدن به شبکه کافی از شرکت‌ها و کارجویان است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 4,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

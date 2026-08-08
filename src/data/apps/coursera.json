@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "coursera",
+  "name": {
+    "fa": "کورسرا",
+    "en": "Coursera"
+  },
+  "domain": "coursera.org",
+  "origin": "global",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "online-learning",
+  "tags": [
+    "Courses",
+    "Certificates",
+    "Degrees",
+    "Skills"
+  ],
+  "relatedTools": [
+    "faradars",
+    "maktabkhooneh"
+  ],
+  "summary": "کورسرا یک پلتفرم آموزش آنلاین با دوره‌ها، گواهی‌نامه‌ها و برنامه‌های آموزشی ارائه‌شده توسط دانشگاه‌ها و شرکت‌ها است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "پلتفرم LMS و marketplace دوره قابل ساخت است، اما شبکه دانشگاه‌ها، شرکت‌ها، محتوای معتبر و credentialهای رسمی بخش غیرقابل کپی سریع محصول هستند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر دوره یا مسیر آموزشی را انتخاب می‌کند، درس‌ها و ارزیابی‌ها را تکمیل می‌کند و در برخی برنامه‌ها گواهی دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Course catalog و learning UI"
+      },
+      {
+        "type": "backend",
+        "label": "Enrollment و progress"
+      },
+      {
+        "type": "database",
+        "label": "Courses و assessments"
+      },
+      {
+        "type": "storage",
+        "label": "Learning media"
+      }
+    ],
+    "limitations": [
+      "Partnershipهای دانشگاهی قابل بازسازی نیست.",
+      "Degree programها خارج از MVP هستند.",
+      "اعتبار credential نیازمند شریک آموزشی است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Coursera",
+      "content": "Build an online learning marketplace with organizations, instructors, courses, modules, video lessons, quizzes, assignments, enrollments, learner progress, certificates, reviews, search, subscriptions, and instructor analytics.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Coursera",
+    "buildableVersion": "Learning marketplace با course و certificate",
+    "missing": [
+      "University network",
+      "degree programs",
+      "official credentials"
+    ]
+  },
+  "audience": [
+    "دانشجویان",
+    "متخصصان",
+    "شرکت‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "course-sales",
+      "commission"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کورسرا",
+      "ساخت مشابه Coursera",
+      "Coursera clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه کورسرا ساخت؟",
+        "answer": "پلتفرم LMS و marketplace دوره قابل ساخت است، اما شبکه دانشگاه‌ها، شرکت‌ها، محتوای معتبر و credentialهای رسمی بخش غیرقابل کپی سریع محصول هستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 3,
+    "proprietaryData": 5,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

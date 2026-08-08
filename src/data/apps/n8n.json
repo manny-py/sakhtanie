@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "n8n",
+  "name": {
+    "fa": "اِن‌اِیت‌اِن",
+    "en": "n8n"
+  },
+  "domain": "n8n.io",
+  "origin": "global",
+  "status": "published",
+  "category": "automation-no-code",
+  "subcategory": "workflow-automation",
+  "tags": [
+    "Automation",
+    "Workflow",
+    "Integrations",
+    "Low-code"
+  ],
+  "relatedTools": [
+    "zapier",
+    "make",
+    "ifttt"
+  ],
+  "summary": "n8n یک پلتفرم اتوماسیون workflow است که triggerها، actionها، integrationها و منطق قابل برنامه‌ریزی را در یک editor گرافیکی ترکیب می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "یک workflow engine با node graph، trigger/action و connectorهای محدود کاملاً قابل ساخت است؛ بخش سخت‌تر ecosystem بزرگ integrationها و execution reliability است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر workflow می‌سازد، trigger تعریف می‌کند، nodeها را به هم وصل می‌کند و execution به‌صورت خودکار یا دستی اجرا می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Visual workflow editor"
+      },
+      {
+        "type": "backend",
+        "label": "Execution engine"
+      },
+      {
+        "type": "database",
+        "label": "Workflow و credential data"
+      },
+      {
+        "type": "integrations",
+        "label": "Connector framework"
+      }
+    ],
+    "limitations": [
+      "صدها integration آماده در MVP وجود ندارد.",
+      "Distributed execution و queue scale محدود است.",
+      "Credential management باید با دقت امنیتی پیاده شود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by n8n",
+      "content": "Build a workflow automation platform with a visual node editor, webhook and schedule triggers, HTTP/API actions, branching, conditions, retries, execution logs, credentials, variables, reusable workflows, and a small connector SDK.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "n8n",
+    "buildableVersion": "Workflow automation engine با node editor",
+    "missing": [
+      "integration ecosystem بزرگ",
+      "distributed execution کامل"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "تیم عملیات",
+    "کسب‌وکارها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت اِن‌اِیت‌اِن",
+      "ساخت مشابه n8n",
+      "n8n clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه اِن‌اِیت‌اِن ساخت؟",
+        "answer": "یک workflow engine با node graph، trigger/action و connectorهای محدود کاملاً قابل ساخت است؛ بخش سخت‌تر ecosystem بزرگ integrationها و execution reliability است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

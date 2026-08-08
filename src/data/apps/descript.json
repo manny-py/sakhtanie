@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "slug": "descript",
+  "name": {
+    "fa": "دیسکریپت",
+    "en": "Descript"
+  },
+  "domain": "descript.com",
+  "origin": "global",
+  "status": "published",
+  "category": "video-audio-music",
+  "subcategory": "media-editor",
+  "tags": [
+    "Video Editing",
+    "Podcast",
+    "Transcription",
+    "AI"
+  ],
+  "relatedTools": [
+    "runway"
+  ],
+  "summary": "دیسکریپت یک ویرایشگر ویدیو و صدا مبتنی بر متن است که transcription، editing، ضبط و قابلیت‌های AI را برای محتوای ویدیویی و پادکست ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "نسخه‌ای با transcription و edit مبتنی بر timeline/text قابل ساخت است، اما media processing، کیفیت transcription و AI editing نسخه اصلی پیچیده‌اند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر فایل رسانه را وارد می‌کند، transcript تولید می‌شود و با ویرایش متن یا timeline، خروجی ویدیو یا صدا تغییر می‌کند.",
+    "requirements": [
+      {
+        "type": "media",
+        "label": "Audio/video processing"
+      },
+      {
+        "type": "ai",
+        "label": "Speech-to-text"
+      },
+      {
+        "type": "frontend",
+        "label": "Transcript/timeline editor"
+      },
+      {
+        "type": "storage",
+        "label": "Media assets"
+      }
+    ],
+    "limitations": [
+      "کیفیت transcription وابسته به مدل خارجی است.",
+      "ویرایش حرفه‌ای ویدیو محدود است.",
+      "AI voice و avatar کامل حذف می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Descript",
+      "content": "Build a transcript-first media editor with uploads, speech-to-text, word-level timestamps, text-based cuts, a basic timeline, subtitles, screen recording, simple audio cleanup, exports, projects, and collaborative comments.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Descript",
+    "buildableVersion": "Transcript-first audio/video editor",
+    "missing": [
+      "AI media suite کامل",
+      "ویرایش حرفه‌ای کامل"
+    ]
+  },
+  "audience": [
+    "پادکسترها",
+    "تولیدکنندگان ویدیو",
+    "مارکترها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت دیسکریپت",
+      "ساخت مشابه Descript",
+      "Descript clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه دیسکریپت ساخت؟",
+        "answer": "نسخه‌ای با transcription و edit مبتنی بر timeline/text قابل ساخت است، اما media processing، کیفیت transcription و AI editing نسخه اصلی پیچیده‌اند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

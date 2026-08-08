@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "aparat",
+  "name": {
+    "fa": "آپارات",
+    "en": "Aparat"
+  },
+  "domain": "aparat.com",
+  "origin": "iranian",
+  "status": "published",
+  "category": "video-audio-music",
+  "subcategory": "video-platform",
+  "tags": [
+    "ویدیو",
+    "استریم",
+    "کانال",
+    "انتشار محتوا"
+  ],
+  "relatedTools": [],
+  "summary": "آپارات یک پلتفرم ایرانی میزبانی، انتشار و تماشای ویدیو است که کاربران و تولیدکنندگان محتوا می‌توانند کانال بسازند و ویدیو منتشر کنند.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "بازسازی محصول اصلی در این مقیاس برای یک پروژه مستقل منطقی نیست.",
+    "reason": "ساخت سایت اشتراک ویدیو ممکن است، اما بازسازی محصولی در مقیاس آپارات نیازمند storage، transcoding، CDN، moderation، recommendation و هزینه زیرساخت بسیار بالا است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر ویدیو بارگذاری می‌کند، سامانه آن را پردازش و منتشر می‌کند و مخاطب از طریق feed، جست‌وجو یا کانال آن را تماشا می‌کند.",
+    "requirements": [
+      {
+        "type": "storage",
+        "label": "Video object storage"
+      },
+      {
+        "type": "media",
+        "label": "Transcoding pipeline"
+      },
+      {
+        "type": "infrastructure",
+        "label": "CDN و delivery"
+      },
+      {
+        "type": "backend",
+        "label": "Channels، videos و engagement"
+      }
+    ],
+    "limitations": [
+      "Streaming در مقیاس بالا هزینه‌بر است.",
+      "Recommendation با داده زیاد کیفیت پیدا می‌کند.",
+      "Moderation محتوای کاربر نیازمند عملیات مداوم است.",
+      "Live streaming دامنه زیرساختی جداگانه‌ای دارد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Aparat",
+      "content": "Build a constrained video-sharing platform with user channels, uploads, video transcoding jobs, thumbnails, playback, playlists, likes, comments, follows, search, categories, creator dashboards, and basic moderation. Use third-party object storage and CDN.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Aparat",
+    "buildableVersion": "پلتفرم اشتراک ویدیو محدود با upload و transcoding",
+    "missing": [
+      "مقیاس ترافیک اصلی",
+      "Recommendation data",
+      "Live infrastructure",
+      "شبکه تولیدکنندگان محتوا"
+    ]
+  },
+  "audience": [
+    "تولیدکنندگان محتوا",
+    "رسانه‌ها",
+    "مخاطبان ویدیو"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "advertising",
+      "subscription",
+      "revenue-share"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آپارات",
+      "ساخت مشابه Aparat",
+      "Aparat clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه آپارات ساخت؟",
+        "answer": "ساخت سایت اشتراک ویدیو ممکن است، اما بازسازی محصولی در مقیاس آپارات نیازمند storage، transcoding، CDN، moderation، recommendation و هزینه زیرساخت بسیار بالا است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 5,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 5,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

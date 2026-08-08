@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "udemy",
+  "name": {
+    "fa": "یودمی",
+    "en": "Udemy"
+  },
+  "domain": "udemy.com",
+  "origin": "global",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "course-marketplace",
+  "tags": [
+    "Courses",
+    "Marketplace",
+    "Instructor",
+    "Skills"
+  ],
+  "relatedTools": [
+    "coursera",
+    "faradars"
+  ],
+  "summary": "یودمی یک marketplace آموزش آنلاین است که مدرس‌ها می‌توانند دوره منتشر کنند و کاربران از میان کاتالوگ بزرگی از آموزش‌های مهارتی دوره خریداری کنند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "Marketplace و LMS قابل ساخت است، اما حجم کاتالوگ، شبکه مدرس‌ها، marketplace liquidity و recommendation نسخه اصلی قابل بازسازی سریع نیست."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "مدرس دوره ایجاد و منتشر می‌کند، کاربر آن را پیدا و خریداری می‌کند و درس‌ها و پیشرفت خود را در حساب کاربری دنبال می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Course marketplace"
+      },
+      {
+        "type": "backend",
+        "label": "Instructor و enrollment flow"
+      },
+      {
+        "type": "database",
+        "label": "Course و purchase data"
+      },
+      {
+        "type": "storage",
+        "label": "Video lessons"
+      }
+    ],
+    "limitations": [
+      "Marketplace بزرگ قابل ایجاد فوری نیست.",
+      "Recommendation بدون داده محدود است.",
+      "شبکه مدرس‌ها زمان‌بر است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Udemy",
+      "content": "Build a course marketplace with instructor onboarding, course creation, sections and lessons, video hosting, pricing, purchases, coupons, reviews, search, categories, learner progress, certificates, payouts metadata, and instructor dashboards.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Udemy",
+    "buildableVersion": "Course marketplace با instructor dashboard",
+    "missing": [
+      "کاتالوگ عظیم",
+      "شبکه مدرس‌ها",
+      "marketplace liquidity"
+    ]
+  },
+  "audience": [
+    "مدرس‌ها",
+    "دانشجویان",
+    "متخصصان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "commission",
+      "course-sales",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت یودمی",
+      "ساخت مشابه Udemy",
+      "Udemy clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه یودمی ساخت؟",
+        "answer": "Marketplace و LMS قابل ساخت است، اما حجم کاتالوگ، شبکه مدرس‌ها، marketplace liquidity و recommendation نسخه اصلی قابل بازسازی سریع نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 3,
+    "proprietaryData": 5,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

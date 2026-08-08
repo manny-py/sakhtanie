@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "ifttt",
+  "name": {
+    "fa": "آی‌اِف‌تی‌تی‌تی",
+    "en": "IFTTT"
+  },
+  "domain": "ifttt.com",
+  "origin": "global",
+  "status": "published",
+  "category": "automation-no-code",
+  "subcategory": "consumer-automation",
+  "tags": [
+    "Automation",
+    "Applet",
+    "Trigger",
+    "Smart Home"
+  ],
+  "relatedTools": [
+    "zapier",
+    "n8n",
+    "make"
+  ],
+  "summary": "IFTTT یک سرویس اتوماسیون مبتنی بر Applet است که رخدادهای یک سرویس را به action در سرویس دیگر متصل می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "مدل trigger-action ساده از نظر فنی قابل ساخت است؛ چالش اصلی تعداد integrationهای رسمی و نگهداری اتصال به سرویس‌های خارجی است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر trigger و action را انتخاب می‌کند، حساب سرویس‌ها را متصل می‌کند و Applet هنگام رخداد به‌طور خودکار اجرا می‌شود.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "Trigger/action engine"
+      },
+      {
+        "type": "integrations",
+        "label": "OAuth/API connectors"
+      },
+      {
+        "type": "database",
+        "label": "Applet configuration"
+      },
+      {
+        "type": "scheduler",
+        "label": "Polling و jobs"
+      }
+    ],
+    "limitations": [
+      "تعداد سرویس‌های پشتیبانی‌شده محدود است.",
+      "APIهای third-party ممکن است تغییر کنند.",
+      "Smart-home integration گسترده حذف می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by IFTTT",
+      "content": "Build a simple trigger-action automation service with user accounts, applets, scheduled and webhook triggers, API actions, OAuth connections, execution history, retries, notifications, and a small connector catalog.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "IFTTT",
+    "buildableVersion": "Trigger-action automation با Applet",
+    "missing": [
+      "integration catalog بزرگ",
+      "smart-home ecosystem"
+    ]
+  },
+  "audience": [
+    "کاربران عمومی",
+    "تیم کوچک",
+    "سازندگان اتوماسیون"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آی‌اِف‌تی‌تی‌تی",
+      "ساخت مشابه IFTTT",
+      "IFTTT clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه آی‌اِف‌تی‌تی‌تی ساخت؟",
+        "answer": "مدل trigger-action ساده از نظر فنی قابل ساخت است؛ چالش اصلی تعداد integrationهای رسمی و نگهداری اتصال به سرویس‌های خارجی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 4,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "porsline",
+  "name": {
+    "fa": "پرس‌لاین",
+    "en": "Porsline"
+  },
+  "domain": "porsline.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "commerce-forms-scheduling",
+  "subcategory": "forms-surveys",
+  "tags": [
+    "فرم‌ساز",
+    "پرسشنامه",
+    "نظرسنجی",
+    "آزمون آنلاین"
+  ],
+  "relatedTools": [
+    "typeform"
+  ],
+  "summary": "پرس‌لاین یک پلتفرم ایرانی برای ساخت فرم آنلاین، پرسشنامه، نظرسنجی و آزمون با انواع سوال، انتشار فرم و تحلیل پاسخ‌ها است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته یک فرم‌ساز و survey platform شامل builder، logic، response collection و reporting کاملاً قابل پیاده‌سازی است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر فرم یا پرسشنامه می‌سازد، سوال‌ها و منطق را تعریف می‌کند، لینک را منتشر می‌کند و پاسخ‌ها و گزارش‌ها را در داشبورد می‌بیند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Form builder"
+      },
+      {
+        "type": "backend",
+        "label": "Form و response engine"
+      },
+      {
+        "type": "database",
+        "label": "Questions و responses"
+      },
+      {
+        "type": "analytics",
+        "label": "Reporting و export"
+      }
+    ],
+    "limitations": [
+      "Enterprise integrations در MVP محدود می‌شوند.",
+      "تحلیل آماری پیشرفته ساده خواهد بود.",
+      "On-premise و سازمانی خارج از نسخه اول است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Porsline",
+      "content": "Build a Persian online form and survey platform with drag-and-drop forms, multiple question types, conditional logic, answer piping, themes, share links, embeds, response collection, CSV/XLSX export, dashboards, templates, multilingual forms, and team workspaces.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Porsline",
+    "buildableVersion": "فرم‌ساز و survey SaaS فارسی با logic و analytics",
+    "missing": [
+      "Enterprise integrations گسترده",
+      "Advanced statistics",
+      "On-premise enterprise"
+    ]
+  },
+  "audience": [
+    "پژوهشگران",
+    "تیم منابع انسانی",
+    "مارکتینگ",
+    "کسب‌وکارها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت پرس‌لاین",
+      "ساخت مشابه Porsline",
+      "Porsline clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه پرس‌لاین ساخت؟",
+        "answer": "هسته یک فرم‌ساز و survey platform شامل builder، logic، response collection و reporting کاملاً قابل پیاده‌سازی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 1,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  }
+}

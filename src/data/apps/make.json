@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "make",
+  "name": {
+    "fa": "مِیک",
+    "en": "Make"
+  },
+  "domain": "make.com",
+  "origin": "global",
+  "status": "published",
+  "category": "automation-no-code",
+  "subcategory": "workflow-automation",
+  "tags": [
+    "Automation",
+    "Visual Workflow",
+    "Integration",
+    "No-code"
+  ],
+  "relatedTools": [
+    "zapier",
+    "n8n",
+    "ifttt"
+  ],
+  "summary": "میک یک پلتفرم بصری اتوماسیون برای اتصال اپ‌ها و طراحی scenarioهای چندمرحله‌ای با trigger، action، router و data mapping است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته visual automation با سناریو، ماژول، mapping و execution قابل ساخت است؛ مزیت اصلی نسخه اصلی تعداد integrationها و polish ابزار است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر scenario می‌سازد، trigger و moduleها را متصل می‌کند، داده را map می‌کند و workflow طبق زمان‌بندی یا رخداد اجرا می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Scenario editor"
+      },
+      {
+        "type": "backend",
+        "label": "Workflow runtime"
+      },
+      {
+        "type": "integrations",
+        "label": "App connector framework"
+      },
+      {
+        "type": "database",
+        "label": "Executions و configuration"
+      }
+    ],
+    "limitations": [
+      "Connectorهای گسترده حذف می‌شوند.",
+      "Data mapper پیشرفته ساده خواهد شد.",
+      "Execution scale محدود است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Make",
+      "content": "Build a visual no-code automation platform with scenarios, modules, triggers, actions, routers, filters, data mapping, schedules, webhooks, execution logs, retries, credentials, and a small set of reusable connectors.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Make",
+    "buildableVersion": "Visual automation platform با scenario و data mapping",
+    "missing": [
+      "connector library بزرگ",
+      "execution scale اصلی"
+    ]
+  },
+  "audience": [
+    "تیم مارکتینگ",
+    "عملیات",
+    "سازندگان no-code"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت مِیک",
+      "ساخت مشابه Make",
+      "Make clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه مِیک ساخت؟",
+        "answer": "هسته visual automation با سناریو، ماژول، mapping و execution قابل ساخت است؛ مزیت اصلی نسخه اصلی تعداد integrationها و polish ابزار است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

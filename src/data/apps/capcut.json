@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "capcut",
+  "name": {
+    "fa": "کپ‌کات",
+    "en": "CapCut"
+  },
+  "domain": "capcut.com",
+  "origin": "global",
+  "status": "published",
+  "category": "video-audio-music",
+  "subcategory": "video-editor",
+  "tags": [
+    "Video Editing",
+    "Templates",
+    "AI",
+    "Social Media"
+  ],
+  "relatedTools": [
+    "runway",
+    "descript"
+  ],
+  "summary": "کپ‌کات یک ویرایشگر ویدیو برای موبایل و وب با timeline، template، effects، subtitle و مجموعه‌ای از ابزارهای AI برای تولید محتوای اجتماعی است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "بازسازی محصول اصلی در این مقیاس برای یک پروژه مستقل منطقی نیست.",
+    "reason": "یک editor ساده قابل ساخت است، اما breadth بسیار زیاد ابزارها، engine ویرایش ویدیو، template ecosystem، asset library و AI suite نسخه اصلی پروژه را بسیار بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر media را وارد timeline می‌کند، cut، text، effect، audio و template اضافه می‌کند و خروجی مناسب شبکه‌های اجتماعی می‌گیرد.",
+    "requirements": [
+      {
+        "type": "media",
+        "label": "Video rendering pipeline"
+      },
+      {
+        "type": "frontend",
+        "label": "Timeline editor"
+      },
+      {
+        "type": "storage",
+        "label": "Media assets"
+      },
+      {
+        "type": "ai",
+        "label": "Subtitle و AI effects"
+      }
+    ],
+    "limitations": [
+      "Template ecosystem گسترده حذف می‌شود.",
+      "افکت‌های حرفه‌ای محدود هستند.",
+      "AI suite کامل قابل بازسازی نیست."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by CapCut",
+      "content": "Build a lightweight browser video editor with uploads, multi-track timeline basics, cuts, trim, text overlays, subtitles, transitions, audio tracks, aspect ratios, templates, simple effects, and export jobs.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "CapCut",
+    "buildableVersion": "Browser video editor سبک",
+    "missing": [
+      "asset ecosystem",
+      "AI suite کامل",
+      "editor حرفه‌ای کامل"
+    ]
+  },
+  "audience": [
+    "تولیدکنندگان محتوا",
+    "مارکترها",
+    "کاربران شبکه اجتماعی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کپ‌کات",
+      "ساخت مشابه CapCut",
+      "CapCut clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه کپ‌کات ساخت؟",
+        "answer": "یک editor ساده قابل ساخت است، اما breadth بسیار زیاد ابزارها، engine ویرایش ویدیو، template ecosystem، asset library و AI suite نسخه اصلی پروژه را بسیار بزرگ می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 3,
+    "proprietaryData": 4,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 5,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

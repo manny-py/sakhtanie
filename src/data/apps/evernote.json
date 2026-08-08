@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "evernote",
+  "name": {
+    "fa": "اورنوت",
+    "en": "Evernote"
+  },
+  "domain": "evernote.com",
+  "origin": "global",
+  "status": "published",
+  "category": "notes-knowledge",
+  "subcategory": "note-taking",
+  "tags": [
+    "Notes",
+    "Tasks",
+    "Calendar",
+    "Search"
+  ],
+  "relatedTools": [
+    "notion",
+    "obsidian"
+  ],
+  "summary": "اورنوت یک ابزار یادداشت‌برداری و سازمان‌دهی اطلاعات است که note، task، calendar، attachment و search را در workspace شخصی ترکیب می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "نسخه‌ای با note editor، notebook، tag، task و search کاملاً قابل ساخت است؛ OCR، AI و sync چندپلتفرمی بخش‌های دشوارتر هستند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر note می‌سازد، آن را در notebook سازمان‌دهی می‌کند، task و attachment اضافه می‌کند و از search برای بازیابی اطلاعات استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Rich text editor"
+      },
+      {
+        "type": "backend",
+        "label": "Notes و notebooks"
+      },
+      {
+        "type": "database",
+        "label": "Content metadata"
+      },
+      {
+        "type": "search",
+        "label": "Full-text search"
+      }
+    ],
+    "limitations": [
+      "OCR پیشرفته حذف می‌شود.",
+      "AI assistant کامل محدود است.",
+      "Offline sync چندپلتفرمی ساده خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Evernote",
+      "content": "Build a cross-platform notes SaaS with rich-text notes, notebooks, tags, attachments, tasks, reminders, calendar links, full-text search, sharing, web clipping basics, and version history.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Evernote",
+    "buildableVersion": "Notes app با task، notebook و search",
+    "missing": [
+      "OCR پیشرفته",
+      "AI کامل",
+      "sync پیچیده"
+    ]
+  },
+  "audience": [
+    "کاربران شخصی",
+    "دانشجویان",
+    "تیم کوچک"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت اورنوت",
+      "ساخت مشابه Evernote",
+      "Evernote clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه اورنوت ساخت؟",
+        "answer": "نسخه‌ای با note editor، notebook، tag، task و search کاملاً قابل ساخت است؛ OCR، AI و sync چندپلتفرمی بخش‌های دشوارتر هستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 4,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  }
+}

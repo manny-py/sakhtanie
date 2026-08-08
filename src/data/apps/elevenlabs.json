@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "slug": "elevenlabs",
+  "name": {
+    "fa": "الون‌لبز",
+    "en": "ElevenLabs"
+  },
+  "domain": "elevenlabs.io",
+  "origin": "global",
+  "status": "published",
+  "category": "video-audio-music",
+  "subcategory": "voice-ai",
+  "tags": [
+    "Text to Speech",
+    "Voice AI",
+    "Speech",
+    "Audio"
+  ],
+  "relatedTools": [],
+  "summary": "ElevenLabs یک پلتفرم هوش مصنوعی صوتی برای text-to-speech، تولید و مدیریت صدا، dubbing و workflowهای صوتی مبتنی بر مدل‌های گفتار است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "ساخت UI، API و workflow صوتی روی مدل‌های آماده ممکن است، اما کیفیت مدل‌های speech، voice cloning و داده آموزشی نسخه اصلی قابل بازسازی سریع نیست."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر متن یا فایل ورودی می‌دهد، voice و تنظیمات را انتخاب می‌کند و سیستم خروجی گفتاری یا صوتی تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "Speech model API"
+      },
+      {
+        "type": "backend",
+        "label": "Generation jobs"
+      },
+      {
+        "type": "storage",
+        "label": "Audio assets"
+      },
+      {
+        "type": "frontend",
+        "label": "Voice generation UI"
+      }
+    ],
+    "limitations": [
+      "مدل صوتی اختصاصی حذف می‌شود.",
+      "Voice cloning باید محدود و با رضایت انجام شود.",
+      "Dubbing پیشرفته ساده خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by ElevenLabs",
+      "content": "Build an AI voice SaaS on top of licensed speech APIs with text-to-speech, voice presets, projects, generation history, pronunciation controls, multilingual output, API keys, usage metering, and explicit consent controls for any custom voice feature.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "ElevenLabs",
+    "buildableVersion": "Voice AI SaaS روی مدل‌های speech موجود",
+    "missing": [
+      "مدل اختصاصی",
+      "voice cloning پیشرفته",
+      "dubbing کامل"
+    ]
+  },
+  "audience": [
+    "تولیدکنندگان محتوا",
+    "استودیوها",
+    "توسعه‌دهندگان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت الون‌لبز",
+      "ساخت مشابه ElevenLabs",
+      "ElevenLabs clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه الون‌لبز ساخت؟",
+        "answer": "ساخت UI، API و workflow صوتی روی مدل‌های آماده ممکن است، اما کیفیت مدل‌های speech، voice cloning و داده آموزشی نسخه اصلی قابل بازسازی سریع نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 4,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

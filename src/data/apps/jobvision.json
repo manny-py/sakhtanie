@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "jobvision",
+  "name": {
+    "fa": "جاب‌ویژن",
+    "en": "JobVision"
+  },
+  "domain": "jobvision.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "job-marketplace",
+  "tags": [
+    "استخدام",
+    "کاریابی",
+    "رزومه",
+    "آگهی شغلی"
+  ],
+  "relatedTools": [],
+  "summary": "جاب‌ویژن یک پلتفرم ایرانی استخدام و کاریابی برای اتصال کارجویان و شرکت‌ها، جست‌وجوی فرصت‌های شغلی، رزومه و ابزارهای جذب نیرو است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "ساخت یک Job Board با حساب کارجو و کارفرما، رزومه، آگهی، جست‌وجو و فرایند درخواست شغلی از نظر فنی کاملاً قابل انجام است؛ چالش اصلی ایجاد نقدشوندگی بازار دوطرفه است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "شرکت آگهی شغلی منتشر می‌کند، کارجو فرصت مناسب را جست‌وجو می‌کند و رزومه ارسال می‌کند و کارفرما درخواست‌ها را بررسی می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Job search و employer dashboard"
+      },
+      {
+        "type": "backend",
+        "label": "Job posting و application workflow"
+      },
+      {
+        "type": "database",
+        "label": "Jobs، profiles و applications"
+      },
+      {
+        "type": "search",
+        "label": "فیلتر و جست‌وجوی شغل"
+      }
+    ],
+    "limitations": [
+      "شبکه بزرگ کارجو و کارفرما قابل ساخت فوری نیست.",
+      "Matching هوشمند بدون داده کافی محدود است.",
+      "اعتبارسنجی شرکت‌ها نیازمند عملیات انسانی است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by JobVision",
+      "content": "Build a Persian job marketplace with candidate profiles, CVs, employer accounts, company pages, job postings, filters, applications, saved jobs, application tracking, recruiter dashboards, assessments, and notification workflows.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "JobVision",
+    "buildableVersion": "Job Board فارسی با رزومه، آگهی و ATS ساده",
+    "missing": [
+      "بازار بزرگ دوطرفه",
+      "داده Matching گسترده",
+      "برند کارفرمایی تثبیت‌شده"
+    ]
+  },
+  "audience": [
+    "کارجویان",
+    "کارفرمایان",
+    "Recruiterها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "job-posting",
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت جاب‌ویژن",
+      "ساخت مشابه JobVision",
+      "JobVision clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه جاب‌ویژن ساخت؟",
+        "answer": "ساخت یک Job Board با حساب کارجو و کارفرما، رزومه، آگهی، جست‌وجو و فرایند درخواست شغلی از نظر فنی کاملاً قابل انجام است؛ چالش اصلی ایجاد نقدشوندگی بازار دوطرفه است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 4,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

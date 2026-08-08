@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "devin",
+  "name": {
+    "fa": "دوین",
+    "en": "Devin"
+  },
+  "domain": "devin.ai",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-coding",
+  "subcategory": "software-engineering-agent",
+  "tags": [
+    "AI Agent",
+    "Software Engineering",
+    "Coding",
+    "Automation"
+  ],
+  "relatedTools": [
+    "cursor",
+    "github-copilot",
+    "replit"
+  ],
+  "summary": "دوین یک عامل هوش مصنوعی مهندسی نرم‌افزار است که می‌تواند taskهای توسعه را در محیط کاری خود تحلیل، اجرا، تست و پیگیری کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک coding agent محدود با workspace، terminal و task loop قابل ساخت است، اما autonomy، reliability، long-running reasoning و integrationهای مهندسی نسخه اصلی دشوارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر task مهندسی تعریف می‌کند، agent repository را بررسی می‌کند، تغییرات را اجرا می‌کند، command و test می‌زند و نتیجه را گزارش می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "Agent planning و coding"
+      },
+      {
+        "type": "infrastructure",
+        "label": "Sandbox execution"
+      },
+      {
+        "type": "backend",
+        "label": "Task orchestration"
+      },
+      {
+        "type": "git",
+        "label": "Repository operations"
+      }
+    ],
+    "limitations": [
+      "Autonomy در taskهای طولانی محدود خواهد بود.",
+      "پوشش کامل ابزارهای توسعه حذف می‌شود.",
+      "Reliability نیازمند evaluation مداوم است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Devin",
+      "content": "Build a software-engineering agent that accepts coding tasks, inspects a repository, plans changes, edits files, runs shell commands in a sandbox, executes tests, summarizes results, and keeps an auditable action log. Require user approval for sensitive operations.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Devin",
+    "buildableVersion": "Coding agent با sandbox و task execution محدود",
+    "missing": [
+      "Autonomy سطح بالا",
+      "Reliability محصول اصلی",
+      "integrationهای وسیع"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "تیم مهندسی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت دوین",
+      "ساخت مشابه Devin",
+      "Devin clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه دوین ساخت؟",
+        "answer": "یک coding agent محدود با workspace، terminal و task loop قابل ساخت است، اما autonomy، reliability، long-running reasoning و integrationهای مهندسی نسخه اصلی دشوارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "coda",
+  "name": {
+    "fa": "کودا",
+    "en": "Coda"
+  },
+  "domain": "coda.io",
+  "origin": "global",
+  "status": "published",
+  "category": "notes-knowledge",
+  "subcategory": "collaborative-docs",
+  "tags": [
+    "Docs",
+    "Tables",
+    "Automation",
+    "Collaboration"
+  ],
+  "relatedTools": [
+    "notion",
+    "airtable"
+  ],
+  "summary": "کودا یک پلتفرم اسناد مشارکتی است که متن، جدول‌های ساخت‌یافته، formula، button و automation را در یک document قابل برنامه‌ریزی ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک document editor با table و automation محدود قابل ساخت است، اما formula engine، pack ecosystem و flexibility بالای Coda دامنه را بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر doc ایجاد می‌کند، متن و table می‌سازد، relation و formula تعریف می‌کند و button یا automation برای فرایندهای کاری اضافه می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Document editor"
+      },
+      {
+        "type": "database",
+        "label": "Structured tables"
+      },
+      {
+        "type": "automation",
+        "label": "Actions و triggers"
+      },
+      {
+        "type": "formula",
+        "label": "Expression engine"
+      }
+    ],
+    "limitations": [
+      "Pack ecosystem کامل حذف می‌شود.",
+      "Formula language پیشرفته محدود است.",
+      "Scale documentهای پیچیده ساده خواهد شد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Coda",
+      "content": "Build a collaborative programmable document platform with pages, rich text, structured tables, relations, formulas, buttons, views, comments, sharing, simple automations, templates, and basic integrations.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Coda",
+    "buildableVersion": "Programmable docs با table و automation",
+    "missing": [
+      "Pack ecosystem",
+      "formula engine کامل"
+    ]
+  },
+  "audience": [
+    "تیم محصول",
+    "عملیات",
+    "مدیران پروژه"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کودا",
+      "ساخت مشابه Coda",
+      "Coda clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه کودا ساخت؟",
+        "answer": "یک document editor با table و automation محدود قابل ساخت است، اما formula engine، pack ecosystem و flexibility بالای Coda دامنه را بزرگ می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

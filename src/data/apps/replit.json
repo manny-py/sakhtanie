@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "replit",
+  "name": {
+    "fa": "ریپلیت",
+    "en": "Replit"
+  },
+  "domain": "replit.com",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-coding",
+  "subcategory": "ai-app-builder",
+  "tags": [
+    "AI Coding",
+    "App Builder",
+    "Deployment",
+    "Database"
+  ],
+  "relatedTools": [
+    "cursor",
+    "lovable",
+    "bolt"
+  ],
+  "summary": "ریپلیت یک محیط توسعه و ساخت اپ مبتنی بر مرورگر است که کدنویسی، Agentهای هوش مصنوعی، دیتابیس و انتشار پروژه را در یک پلتفرم ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک IDE ابری محدود با AI assistant و deploy قابل ساخت است، اما sandbox اجرای کد، چندزبانه‌بودن، collaboration، agent orchestration و زیرساخت hosting دامنه پروژه را بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر پروژه می‌سازد یا به Agent درخواست می‌دهد، کد تولید یا ویرایش می‌شود، در محیط ابری اجرا می‌شود و سپس همان پروژه منتشر می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Browser IDE"
+      },
+      {
+        "type": "infrastructure",
+        "label": "Sandbox اجرای کد"
+      },
+      {
+        "type": "ai",
+        "label": "Coding agent"
+      },
+      {
+        "type": "backend",
+        "label": "Project و deployment control plane"
+      }
+    ],
+    "limitations": [
+      "پشتیبانی کامل همه runtimeها حذف می‌شود.",
+      "Agent orchestration پیشرفته محدود است.",
+      "Hosting در مقیاس Replit قابل بازسازی نیست."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Replit",
+      "content": "Build a browser-based AI coding environment with projects, a code editor, terminal-like execution, isolated containers, AI-assisted code generation, file edits, preview URLs, environment variables, simple databases, deployment, and project sharing.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Replit",
+    "buildableVersion": "Browser IDE با AI و deploy محدود",
+    "missing": [
+      "زیرساخت چندزبانه عظیم",
+      "Agentهای پیشرفته",
+      "Hosting در مقیاس اصلی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "سازندگان AI",
+    "دانشجویان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ریپلیت",
+      "ساخت مشابه Replit",
+      "Replit clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ریپلیت ساخت؟",
+        "answer": "یک IDE ابری محدود با AI assistant و deploy قابل ساخت است، اما sandbox اجرای کد، چندزبانه‌بودن، collaboration، agent orchestration و زیرساخت hosting دامنه پروژه را بزرگ می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

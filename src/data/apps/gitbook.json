@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 2,
+  "slug": "gitbook",
+  "name": {
+    "fa": "گیت‌بوک",
+    "en": "GitBook"
+  },
+  "domain": "gitbook.com",
+  "origin": "global",
+  "status": "published",
+  "category": "notes-knowledge",
+  "subcategory": "documentation-platform",
+  "tags": [
+    "Documentation",
+    "Knowledge Base",
+    "Docs",
+    "Developer"
+  ],
+  "relatedTools": [
+    "notion"
+  ],
+  "summary": "گیت‌بوک یک پلتفرم مستندسازی و دانش فنی برای ساخت، سازمان‌دهی و انتشار documentation تیم‌ها و محصولات است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته docs editor، navigation، versioning و publish کاملاً قابل ساخت است؛ integrationهای Git و AI search می‌توانند بعداً اضافه شوند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم space می‌سازد، صفحات مستندات را ویرایش و سازمان‌دهی می‌کند و نسخه منتشرشده را روی دامنه یا فضای عمومی ارائه می‌دهد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Docs editor"
+      },
+      {
+        "type": "backend",
+        "label": "Spaces و permissions"
+      },
+      {
+        "type": "publishing",
+        "label": "Static/public docs output"
+      },
+      {
+        "type": "search",
+        "label": "Documentation search"
+      }
+    ],
+    "limitations": [
+      "AI search کامل محدود خواهد بود.",
+      "Git sync پیشرفته ساده می‌شود.",
+      "Enterprise permissions محدود هستند."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by GitBook",
+      "content": "Build a documentation platform with organizations, spaces, nested pages, a collaborative editor, code blocks, version history, search, comments, permissions, custom domains, public publishing, redirects, and basic Git synchronization.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "GitBook",
+    "buildableVersion": "Documentation SaaS با editor و public publishing",
+    "missing": [
+      "AI search کامل",
+      "Git sync پیشرفته"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "تیم محصول",
+    "شرکت‌های SaaS"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت گیت‌بوک",
+      "ساخت مشابه GitBook",
+      "GitBook clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه گیت‌بوک ساخت؟",
+        "answer": "هسته docs editor، navigation، versioning و publish کاملاً قابل ساخت است؛ integrationهای Git و AI search می‌توانند بعداً اضافه شوند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  }
+}

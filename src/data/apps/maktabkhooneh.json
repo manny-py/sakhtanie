@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "maktabkhooneh",
+  "name": {
+    "fa": "مکتب‌خونه",
+    "en": "Maktabkhooneh"
+  },
+  "domain": "maktabkhooneh.org",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "online-learning",
+  "tags": [
+    "آموزش آنلاین",
+    "دوره دانشگاهی",
+    "گواهی‌نامه",
+    "مهارت"
+  ],
+  "relatedTools": [
+    "faradars",
+    "quera"
+  ],
+  "summary": "مکتب‌خونه یک پلتفرم ایرانی آموزش آنلاین با دوره‌های ویدیویی، آموزش‌های دانشگاهی و برنامه‌های مهارتی همراه با قابلیت‌های یادگیری و گواهی‌نامه است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "هسته پلتفرم دوره و یادگیری قابل ساخت است، اما کاتالوگ محتوا، همکاری دانشگاهی و شبکه مدرس‌ها مزیت‌هایی هستند که صرفاً با توسعه نرم‌افزار بازسازی نمی‌شوند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر دوره را انتخاب می‌کند، ویدیوها و محتوای آموزشی را دنبال می‌کند، تمرین یا ارزیابی انجام می‌دهد و در برخی دوره‌ها گواهی‌نامه دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Course catalog و learning UI"
+      },
+      {
+        "type": "backend",
+        "label": "Enrollment و access"
+      },
+      {
+        "type": "storage",
+        "label": "Video/content storage"
+      },
+      {
+        "type": "database",
+        "label": "Progress و certificate data"
+      }
+    ],
+    "limitations": [
+      "محتوای دانشگاهی و قراردادهای آموزشی قابل بازسازی فوری نیست.",
+      "اعتبار گواهی‌نامه نیازمند شریک آموزشی است.",
+      "هزینه ویدیو و CDN با رشد کاربران افزایش می‌یابد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Maktabkhooneh",
+      "content": "Build a Persian MOOC platform with courses, instructors, enrollments, video lessons, assignments, quizzes, learner progress, certificates, paid and free courses, search, categories, and instructor dashboards.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Maktabkhooneh",
+    "buildableVersion": "پلتفرم MOOC فارسی با دوره، آزمون و گواهی",
+    "missing": [
+      "کاتالوگ بزرگ",
+      "روابط دانشگاهی",
+      "اعتبار رسمی گواهی‌ها"
+    ]
+  },
+  "audience": [
+    "دانشجویان",
+    "دانش‌آموزان",
+    "متخصصان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "course-sales",
+      "commission"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت مکتب‌خونه",
+      "ساخت مشابه Maktabkhooneh",
+      "Maktabkhooneh clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه مکتب‌خونه ساخت؟",
+        "answer": "هسته پلتفرم دوره و یادگیری قابل ساخت است، اما کاتالوگ محتوا، همکاری دانشگاهی و شبکه مدرس‌ها مزیت‌هایی هستند که صرفاً با توسعه نرم‌افزار بازسازی نمی‌شوند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 3,
+    "proprietaryData": 5,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}
