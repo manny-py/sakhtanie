@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "jira",
+  "name": {
+    "fa": "جیرا",
+    "en": "Jira"
+  },
+  "domain": "atlassian.com",
+  "origin": "global",
+  "status": "published",
+  "category": "productivity",
+  "subcategory": "project-tracking",
+  "tags": [
+    "مدیریت پروژه",
+    "Issue Tracking",
+    "Kanban",
+    "Scrum"
+  ],
+  "relatedTools": [
+    "trello",
+    "asana",
+    "linear"
+  ],
+  "summary": "جیرا یک سیستم مدیریت و پیگیری کار برای پروژه‌ها، issueها، workflowها، backlog، board و برنامه‌ریزی تیمی است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "نسخه‌ای متمرکز شامل project، work item، board، workflow و گزارش کاملاً قابل ساخت است؛ گستردگی configuration و ecosystem اصلی بخش دشوار آن است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم پروژه ایجاد می‌کند، work itemها را ثبت و assign می‌کند، workflow را روی board دنبال می‌کند و وضعیت و پیشرفت را گزارش می‌گیرد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Board، backlog و issue UI"
+      },
+      {
+        "type": "backend",
+        "label": "Workflow engine"
+      },
+      {
+        "type": "database",
+        "label": "Project و work item data"
+      },
+      {
+        "type": "automation",
+        "label": "Automation ruleهای پایه"
+      }
+    ],
+    "limitations": [
+      "Marketplace هزاران افزونه حذف می‌شود.",
+      "Workflow customization بسیار پیشرفته محدود می‌شود.",
+      "Enterprise reporting ساده خواهد شد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Jira",
+      "content": "Build a configurable project and issue tracking SaaS with projects, work items, statuses, priorities, custom workflows, Kanban boards, backlogs, comments, assignments, due dates, filters, dashboards, and simple automation rules.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Jira",
+    "buildableVersion": "سیستم مدیریت پروژه و issue با workflow قابل تنظیم",
+    "missing": [
+      "Marketplace",
+      "Enterprise configuration کامل"
+    ]
+  },
+  "audience": [
+    "تیم نرم‌افزار",
+    "مدیر پروژه",
+    "تیم عملیات"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت جیرا",
+      "ساخت مشابه Jira",
+      "Jira clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه جیرا ساخت؟",
+        "answer": "نسخه‌ای متمرکز شامل project، work item، board، workflow و گزارش کاملاً قابل ساخت است؛ گستردگی configuration و ecosystem اصلی بخش دشوار آن است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

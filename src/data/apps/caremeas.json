@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "caremeas",
+  "name": {
+    "fa": "کارمیز",
+    "en": "Caremeas"
+  },
+  "domain": "caremeas.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "productivity",
+  "subcategory": "project-management",
+  "tags": [
+    "مدیریت پروژه",
+    "مدیریت وظایف",
+    "اتوماسیون فرآیند",
+    "اهداف سازمانی"
+  ],
+  "summary": "کارمیز یک نرم‌افزار ایرانی مدیریت پروژه، وظایف، اهداف، جلسات و اتوماسیون فرآیندهای کاری برای تیم‌ها و سازمان‌ها است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز مدیریت پروژه و وظایف مشابه کارمیز کاملاً ساختنیه.",
+    "reason": "بخش عمده محصول از پروژه، وظیفه، مسئول، deadline، workflow، dashboard و گزارش تشکیل می‌شود که با معماری SaaS رایج قابل پیاده‌سازی است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "تیم پروژه می‌سازد، وظایف را به اعضا واگذار می‌کند، deadline و وضعیت را دنبال می‌کند و مدیر پیشرفت پروژه و اهداف را در داشبورد مشاهده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "داشبورد پروژه و وظایف"
+      },
+      {
+        "type": "backend",
+        "label": "منطق پروژه، Workflow و دسترسی"
+      },
+      {
+        "type": "database",
+        "label": "پروژه‌ها، وظایف و فعالیت‌ها"
+      },
+      {
+        "type": "automation",
+        "label": "یادآورها و گردش‌کار"
+      }
+    ],
+    "limitations": [
+      "اتوماسیون سازمانی پیشرفته در نسخه اول محدود می‌شود.",
+      "گزارش‌های سفارشی Enterprise ساده خواهند بود.",
+      "ماژول‌های جانبی متعدد در MVP حذف می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a Persian project-management platform inspired by Caremeas",
+      "content": "Build a Persian RTL project-management SaaS with workspaces, projects, phases, tasks, assignees, due dates, reminders, kanban boards, goals, meetings, files, activity logs, dashboards, and simple workflow automation. Include role-based access and PostgreSQL persistence. Exclude complex enterprise ERP modules.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Caremeas",
+    "buildableVersion": "SaaS فارسی مدیریت پروژه، وظایف و Workflow تیمی",
+    "missing": [
+      "اتوماسیون بسیار پیچیده سازمانی",
+      "ماژول‌های ERP",
+      "گزارش‌ساز Enterprise"
+    ]
+  },
+  "audience": [
+    "تیم پروژه",
+    "شرکت خدماتی",
+    "سازمان متوسط"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کارمیز",
+      "مدیریت پروژه ایرانی",
+      "نرم افزار مدیریت وظایف"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان کارمیز را ساخت؟",
+        "answer": "بله، هسته مدیریت پروژه، وظیفه، اهداف و گردش‌کار را می‌توان به‌صورت یک SaaS مستقل پیاده‌سازی کرد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  },
+  "relatedTools": [
+    "asana",
+    "trello",
+    "notion"
+  ]
+}

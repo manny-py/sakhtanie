@@ -88,6 +88,22 @@ export const categoryDefinitions = [
       "ابزارهای جذب مشتری، ارتباطات بازاریابی، فروش و پشتیبانی.",
   },
   {
+    slug: "learning-career",
+    title: "یادگیری، مهارت و مسیر شغلی",
+    shortTitle: "یادگیری و شغل",
+    code: "LEARN",
+    description:
+      "پلتفرم‌های آموزش مهارت، ارزیابی توانایی، رقابت، استخدام و توسعه مسیر حرفه‌ای.",
+  },
+  {
+    slug: "developer-cloud",
+    title: "توسعه، بک‌اند و زیرساخت ابری",
+    shortTitle: "توسعه و کلاد",
+    code: "CLOUD",
+    description:
+      "پلتفرم‌های استقرار، بک‌اند، دیتابیس، هاست ابری، زیرساخت توسعه و سرویس‌های Cloud.",
+  },
+  {
     slug: "data-analytics",
     title: "داده، تحلیل و گزارش‌گیری",
     shortTitle: "داده و تحلیل",

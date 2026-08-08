@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "yektanet",
+  "name": {
+    "fa": "یکتانت",
+    "en": "Yektanet"
+  },
+  "domain": "yektanet.com",
+  "origin": "iranian",
+  "status": "published",
+  "category": "marketing-crm-support",
+  "subcategory": "ad-network",
+  "tags": [
+    "تبلیغات آنلاین",
+    "Ad Network",
+    "کمپین تبلیغاتی",
+    "ناشر"
+  ],
+  "summary": "یکتانت یک پلتفرم تبلیغات آنلاین ایرانی برای اتصال تبلیغ‌دهندگان و ناشران، اجرای کمپین و توزیع هدفمند تبلیغات دیجیتال است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "پنل مدیریت کمپین ساختنیه، اما بازسازی شبکه تبلیغاتی واقعی یکتانت بدون شبکه ناشران و حجم داده منطقی نیست.",
+    "reason": "ارزش شبکه تبلیغاتی به inventory ناشران، داده رفتاری، سیستم مزایده و هدف‌گیری، اندازه‌گیری تبدیل و مقیاس سرویس‌دهی تبلیغات وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "تبلیغ‌دهنده کمپین و بودجه را تعریف می‌کند، سیستم تبلیغ مناسب را در inventory ناشران نمایش می‌دهد و عملکرد کمپین با impression، click و conversion اندازه‌گیری می‌شود.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "Campaign و ad-serving engine"
+      },
+      {
+        "type": "database",
+        "label": "رویدادهای impression و click"
+      },
+      {
+        "type": "data",
+        "label": "هدف‌گیری و گزارش کمپین"
+      },
+      {
+        "type": "infrastructure",
+        "label": "ثبت رویداد با throughput بالا"
+      }
+    ],
+    "limitations": [
+      "شبکه واقعی ناشران قابل کپی‌کردن نیست.",
+      "هدف‌گیری و مزایده به داده و حجم ترافیک نیاز دارند.",
+      "Attribution و مقابله با fraud دامنه تخصصی جداگانه‌ای است."
+    ],
+    "prompt": {
+      "title": "Build a constrained ad platform inspired by Yektanet",
+      "content": "Build a constrained advertising platform for a closed publisher network. Support advertisers, campaigns, creatives, budgets, CPC/CPM models, publisher placements, impression and click tracking, conversion events, basic targeting, frequency caps, and reporting. Exclude open-web scale, proprietary audience data, real-time bidding exchanges, and advanced fraud detection.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Yektanet",
+    "buildableVersion": "شبکه تبلیغاتی بسته برای چند ناشر مشخص با tracking و گزارش",
+    "missing": [
+      "شبکه بزرگ ناشران",
+      "داده مخاطب در مقیاس بالا",
+      "RTB",
+      "Fraud Detection پیشرفته"
+    ]
+  },
+  "audience": [
+    "رسانه آنلاین",
+    "آژانس دیجیتال",
+    "کسب‌وکار تبلیغ‌دهنده"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "commission",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت یکتانت",
+      "شبکه تبلیغاتی",
+      "پلتفرم تبلیغات آنلاین"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان یکتانت را ساخت؟",
+        "answer": "یک سیستم تبلیغاتی محدود برای شبکه‌ای بسته قابل ساخت است، اما مزیت شبکه و داده یک پلتفرم بزرگ تبلیغاتی قابل بازسازی سریع نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 5,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 5,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "relatedTools": [
+    "hubspot",
+    "mailchimp"
+  ]
+}

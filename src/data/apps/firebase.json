@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "firebase",
+  "name": {
+    "fa": "فایربیس",
+    "en": "Firebase"
+  },
+  "domain": "firebase.google.com",
+  "origin": "global",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "app-platform",
+  "tags": [
+    "Auth",
+    "Firestore",
+    "Hosting",
+    "Functions",
+    "Storage"
+  ],
+  "relatedTools": [
+    "supabase"
+  ],
+  "summary": "فایربیس پلتفرم توسعه اپ گوگل است که سرویس‌هایی مانند Authentication، Firestore، Hosting، Functions، Storage و ابزارهای عملیاتی اپ ارائه می‌کند.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "بازسازی محصول اصلی در این مقیاس برای یک پروژه مستقل منطقی نیست.",
+    "reason": "یک BaaS محدود قابل ساخت است، اما مجموعه کامل managed services، global infrastructure و integration با Google Cloud در مقیاس Firebase قابل بازسازی نیست."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده project ایجاد می‌کند و سرویس‌های database، authentication، hosting، functions و analytics را از SDKها به اپ متصل می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "Managed service platform"
+      },
+      {
+        "type": "database",
+        "label": "Realtime/Document database"
+      },
+      {
+        "type": "authentication",
+        "label": "Identity service"
+      },
+      {
+        "type": "serverless",
+        "label": "Function runtime"
+      }
+    ],
+    "limitations": [
+      "global managed infrastructure قابل بازسازی نیست.",
+      "Firestore-scale database خارج از MVP است.",
+      "اکوسیستم Google Cloud حذف می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Firebase",
+      "content": "Build a small backend platform for web applications with authentication, a document database, file storage, static hosting, event-triggered serverless functions, project API keys, usage dashboards, and SDK-style REST endpoints.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Firebase",
+    "buildableVersion": "BaaS محدود برای web apps",
+    "missing": [
+      "Google-scale infrastructure",
+      "Firestore واقعی",
+      "Cloud ecosystem"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان موبایل",
+    "توسعه‌دهندگان وب"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "usage",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت فایربیس",
+      "ساخت مشابه Firebase",
+      "Firebase clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه فایربیس ساخت؟",
+        "answer": "یک BaaS محدود قابل ساخت است، اما مجموعه کامل managed services، global infrastructure و integration با Google Cloud در مقیاس Firebase قابل بازسازی نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

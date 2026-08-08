@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "sentry",
+  "name": {
+    "fa": "سنتری",
+    "en": "Sentry"
+  },
+  "domain": "sentry.io",
+  "origin": "global",
+  "status": "published",
+  "category": "data-analytics",
+  "subcategory": "application-observability",
+  "tags": [
+    "Error Tracking",
+    "Observability",
+    "Tracing",
+    "Session Replay"
+  ],
+  "relatedTools": [
+    "posthog"
+  ],
+  "summary": "سنتری یک پلتفرم observability برای دریافت و تحلیل خطاهای اپلیکیشن، رخدادهای عملکردی و session replay جهت اشکال‌زدایی است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "error ingestion، grouping و dashboard اولیه قابل ساخت است، اما ingestion در مقیاس بالا، symbolication، tracing چندزبانه و SDK ecosystem پیچیدگی زیادی ایجاد می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "SDK رخداد خطا و performance را ارسال می‌کند، backend آن‌ها را ingest و group می‌کند و توسعه‌دهنده issue، stack trace و context را بررسی می‌کند.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "Event ingestion API"
+      },
+      {
+        "type": "database",
+        "label": "Issue و event storage"
+      },
+      {
+        "type": "data",
+        "label": "Grouping و aggregation"
+      },
+      {
+        "type": "frontend",
+        "label": "Issue/debug dashboard"
+      }
+    ],
+    "limitations": [
+      "SDKهای همه زبان‌ها حذف می‌شوند.",
+      "Symbolication پیشرفته محدود است.",
+      "Tracing در مقیاس بالا خارج از MVP است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Sentry",
+      "content": "Build an application error-monitoring SaaS with organizations, projects, DSNs, event ingestion, stack traces, issue grouping, releases, environments, breadcrumbs, basic performance transactions, alert rules, and simple session replay metadata.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Sentry",
+    "buildableVersion": "Error monitoring با ingestion، grouping و dashboard",
+    "missing": [
+      "SDK ecosystem کامل",
+      "Tracing عظیم",
+      "Symbolication کامل"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "DevOps",
+    "تیم محصول"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت سنتری",
+      "ساخت مشابه Sentry",
+      "Sentry clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه سنتری ساخت؟",
+        "answer": "error ingestion، grouping و dashboard اولیه قابل ساخت است، اما ingestion در مقیاس بالا، symbolication، tracing چندزبانه و SDK ecosystem پیچیدگی زیادی ایجاد می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

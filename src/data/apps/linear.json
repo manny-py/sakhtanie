@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "linear",
+  "name": {
+    "fa": "لینیر",
+    "en": "Linear"
+  },
+  "domain": "linear.app",
+  "origin": "global",
+  "status": "published",
+  "category": "productivity",
+  "subcategory": "product-development",
+  "tags": [
+    "مدیریت محصول",
+    "Issue Tracking",
+    "Sprint",
+    "Roadmap"
+  ],
+  "relatedTools": [
+    "trello",
+    "asana"
+  ],
+  "summary": "لینیر یک سیستم مدیریت توسعه محصول برای issue tracking، پروژه‌ها، roadmap و برنامه‌ریزی چرخه‌های کاری تیم‌های نرم‌افزاری است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته Linear شامل issues، projects، cycles، roadmap و workflow قابل پیاده‌سازی است؛ کیفیت تجربه کاربری و سرعت محصول اصلی سخت‌تر از منطق دامنه آن است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم issue ثبت می‌کند، آن را اولویت‌بندی و assign می‌کند، در cycle قرار می‌دهد و پیشرفت پروژه و roadmap را دنبال می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Issue و project UI سریع"
+      },
+      {
+        "type": "backend",
+        "label": "Workflow و cycle logic"
+      },
+      {
+        "type": "database",
+        "label": "Issueها و پروژه‌ها"
+      },
+      {
+        "type": "realtime",
+        "label": "به‌روزرسانی تیمی"
+      }
+    ],
+    "limitations": [
+      "AI و agent workflow کامل حذف می‌شود.",
+      "Integrationهای گسترده محدود هستند.",
+      "Performance سطح محصول اصلی نیازمند refinement زیاد است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Linear",
+      "content": "Build a fast issue and product-development tracker with teams, projects, issues, statuses, priorities, labels, cycles, roadmaps, comments, keyboard shortcuts, filters, notifications, and basic integrations.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Linear",
+    "buildableVersion": "Issue tracker سریع برای تیم محصول و نرم‌افزار",
+    "missing": [
+      "AI agentهای کامل",
+      "integration ecosystem گسترده"
+    ]
+  },
+  "audience": [
+    "تیم محصول",
+    "توسعه‌دهندگان",
+    "استارتاپ‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت لینیر",
+      "ساخت مشابه Linear",
+      "Linear clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه لینیر ساخت؟",
+        "answer": "هسته Linear شامل issues، projects، cycles، roadmap و workflow قابل پیاده‌سازی است؛ کیفیت تجربه کاربری و سرعت محصول اصلی سخت‌تر از منطق دامنه آن است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 4
+  }
+}

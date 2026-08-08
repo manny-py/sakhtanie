@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "slack",
+  "name": {
+    "fa": "اسلک",
+    "en": "Slack"
+  },
+  "domain": "slack.com",
+  "origin": "global",
+  "status": "published",
+  "category": "productivity",
+  "subcategory": "team-communication",
+  "tags": [
+    "پیام‌رسان تیمی",
+    "کانال",
+    "همکاری",
+    "جلسه آنلاین"
+  ],
+  "relatedTools": [
+    "notion",
+    "asana"
+  ],
+  "summary": "اسلک یک پلتفرم ارتباط و همکاری کاری مبتنی بر کانال‌ها، پیام‌ها، فایل‌ها، تماس‌های Huddle و اتصال به سرویس‌های دیگر است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "نسخه‌ای با workspace، channel، DM، thread، فایل و تماس ساده با معماری real-time متعارف قابل ساخت است؛ بخش دشوار اصلی مقیاس، جست‌وجوی عظیم و integration ecosystem است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر وارد workspace می‌شود، در channel یا DM گفتگو می‌کند، thread و فایل به اشتراک می‌گذارد و اعلان‌ها و ارتباطات تیمی را مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "realtime",
+        "label": "پیام‌رسانی WebSocket"
+      },
+      {
+        "type": "backend",
+        "label": "Workspace، channel و permissions"
+      },
+      {
+        "type": "database",
+        "label": "پیام‌ها و threadها"
+      },
+      {
+        "type": "storage",
+        "label": "فایل‌های اشتراکی"
+      }
+    ],
+    "limitations": [
+      "هزاران integration در MVP وجود ندارد.",
+      "جست‌وجوی سازمانی و AI پیشرفته محدود است.",
+      "Video/Huddle در نسخه اول ساده خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Slack",
+      "content": "Build a team communication SaaS with workspaces, public and private channels, direct messages, threads, reactions, mentions, file sharing, search, notifications, presence, basic audio rooms, and webhook integrations.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Slack",
+    "buildableVersion": "پیام‌رسان تیمی real-time با channel و thread",
+    "missing": [
+      "integration ecosystem بزرگ",
+      "Enterprise Search",
+      "AI کامل"
+    ]
+  },
+  "audience": [
+    "تیم‌ها",
+    "استارتاپ‌ها",
+    "شرکت‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت اسلک",
+      "ساخت مشابه Slack",
+      "Slack clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه اسلک ساخت؟",
+        "answer": "نسخه‌ای با workspace، channel، DM، thread، فایل و تماس ساده با معماری real-time متعارف قابل ساخت است؛ بخش دشوار اصلی مقیاس، جست‌وجوی عظیم و integration ecosystem است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

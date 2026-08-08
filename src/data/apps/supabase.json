@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "supabase",
+  "name": {
+    "fa": "سوپابیس",
+    "en": "Supabase"
+  },
+  "domain": "supabase.com",
+  "origin": "global",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "backend-platform",
+  "tags": [
+    "PostgreSQL",
+    "Auth",
+    "Storage",
+    "Realtime",
+    "Backend"
+  ],
+  "relatedTools": [
+    "firebase",
+    "liara"
+  ],
+  "summary": "سوپابیس یک backend platform مبتنی بر PostgreSQL با دیتابیس، API، احراز هویت، Storage، Realtime و Edge Functions است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "نسخه محدود BaaS با Postgres، auth و API قابل ساخت است، اما orchestration چندمستاجری، realtime، storage و functions در سطح سرویس ابری پیچیدگی بالایی دارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده project می‌سازد، database و auth را تنظیم می‌کند و از API، storage و backend functions داخل اپ خود استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "database",
+        "label": "PostgreSQL provisioning"
+      },
+      {
+        "type": "authentication",
+        "label": "Auth service"
+      },
+      {
+        "type": "backend",
+        "label": "Generated APIs"
+      },
+      {
+        "type": "infrastructure",
+        "label": "Project isolation"
+      }
+    ],
+    "limitations": [
+      "Managed Postgres در مقیاس بالا دشوار است.",
+      "Realtime و Edge Functions کامل نیازمند زیرساخت جداست.",
+      "Multi-tenant security بسیار حساس است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Supabase",
+      "content": "Build a constrained backend-as-a-service platform with projects, PostgreSQL databases, generated CRUD APIs, user authentication, row-level authorization concepts, basic file storage, realtime database notifications, API keys, and project dashboards.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Supabase",
+    "buildableVersion": "BaaS محدود با Postgres، Auth و API",
+    "missing": [
+      "Cloud-scale managed DB",
+      "Edge Functions کامل",
+      "Storage بزرگ"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "استارتاپ‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت سوپابیس",
+      "ساخت مشابه Supabase",
+      "Supabase clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه سوپابیس ساخت؟",
+        "answer": "نسخه محدود BaaS با Postgres، auth و API قابل ساخت است، اما orchestration چندمستاجری، realtime، storage و functions در سطح سرویس ابری پیچیدگی بالایی دارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "slug": "render",
+  "name": {
+    "fa": "رندر",
+    "en": "Render"
+  },
+  "domain": "render.com",
+  "origin": "global",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "application-hosting",
+  "tags": [
+    "Web Service",
+    "PostgreSQL",
+    "Workers",
+    "Cron",
+    "Deployment"
+  ],
+  "relatedTools": [
+    "railway",
+    "vercel",
+    "liara"
+  ],
+  "summary": "رندر یک cloud application platform برای deploy کردن web service، static site، private service، worker، cron job و datastoreهای مدیریت‌شده است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "نسخه محدود hosting platform با چند service type قابل ساخت است، اما orchestration، managed databases و reliability زیرساخت production پروژه را سنگین می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده repository را متصل می‌کند، service type می‌سازد و platform build، deploy، networking و lifecycle سرویس را مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "Container workloads"
+      },
+      {
+        "type": "backend",
+        "label": "Service control plane"
+      },
+      {
+        "type": "database",
+        "label": "Managed service metadata"
+      },
+      {
+        "type": "networking",
+        "label": "Public/private services"
+      }
+    ],
+    "limitations": [
+      "HA databases و autoscaling کامل حذف می‌شوند.",
+      "global infrastructure محدود است.",
+      "workflow engine پیشرفته خارج از MVP است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Render",
+      "content": "Build a cloud application hosting platform with Git deployments, web services, static sites, private services, background workers, cron jobs, managed PostgreSQL metadata, environment variables, logs, domains, and basic scaling controls.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Render",
+    "buildableVersion": "Hosting platform چندسرویسی محدود",
+    "missing": [
+      "HA واقعی",
+      "autoscaling کامل",
+      "managed DB infrastructure کامل"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "DevOps",
+    "تیم‌های SaaS"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "usage",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت رندر",
+      "ساخت مشابه Render",
+      "Render clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه رندر ساخت؟",
+        "answer": "نسخه محدود hosting platform با چند service type قابل ساخت است، اما orchestration، managed databases و reliability زیرساخت production پروژه را سنگین می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

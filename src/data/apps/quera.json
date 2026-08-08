@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "quera",
+  "name": {
+    "fa": "کوئرا",
+    "en": "Quera"
+  },
+  "domain": "quera.org",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "developer-learning-career",
+  "tags": [
+    "آموزش برنامه‌نویسی",
+    "استخدام",
+    "مسابقه برنامه‌نویسی",
+    "ارزیابی مهارت"
+  ],
+  "summary": "کوئرا یک پلتفرم ایرانی جامعه برنامه‌نویسان است که آموزش تعاملی، تمرین و داوری کد، مسابقات برنامه‌نویسی و فرصت‌های استخدامی حوزه فناوری را ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته آموزش و داوری کد ساختنیه، اما بازسازی کل اکوسیستم آموزش، رقابت و استخدام به زمان و جامعه کاربری نیاز دارد.",
+    "reason": "Judge اجرای کد و سامانه دوره را می‌توان ساخت، ولی تنوع زبان‌ها، sandbox امن، بانک مسئله، مسابقات همزمان، شبکه شرکت‌ها و بازار استخدام دامنه محصول را بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر درس یا مسئله را می‌بیند، کد ارسال می‌کند، سامانه آن را در محیط ایزوله اجرا و ارزیابی می‌کند و نتیجه برای پروفایل مهارتی یا رقابت ثبت می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "محیط آموزش، مسئله و پروفایل"
+      },
+      {
+        "type": "backend",
+        "label": "سامانه دوره، مسابقه و submission"
+      },
+      {
+        "type": "infrastructure",
+        "label": "Sandbox امن اجرای کد"
+      },
+      {
+        "type": "database",
+        "label": "مسائل، پاسخ‌ها و سوابق مهارتی"
+      }
+    ],
+    "limitations": [
+      "اجرای امن چند زبان برنامه‌نویسی پیچیده است.",
+      "جامعه کاربری و بانک مسئله قابل تولید فوری نیست.",
+      "بازار استخدام به شبکه شرکت‌ها و داده واقعی نیاز دارد."
+    ],
+    "prompt": {
+      "title": "Build a constrained coding-learning platform inspired by Quera",
+      "content": "Build a Persian RTL coding-learning platform with courses, programming exercises, secure sandboxed submissions, automated test cases, progress tracking, coding contests, leaderboards, and basic company assessments. Exclude a full job marketplace, large community network, and massive concurrent contest infrastructure.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Quera",
+    "buildableVersion": "پلتفرم آموزش کدنویسی با Judge، دوره، تمرین و مسابقه محدود",
+    "missing": [
+      "بازار استخدام کامل",
+      "جامعه بزرگ کاربران",
+      "بانک مسئله گسترده",
+      "زیرساخت مسابقات بسیار بزرگ"
+    ]
+  },
+  "audience": [
+    "برنامه‌نویسان",
+    "دانشجویان",
+    "شرکت‌های استخدام‌کننده"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کوئرا",
+      "آموزش برنامه نویسی آنلاین",
+      "Online Judge فارسی"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان کوئرا را ساخت؟",
+        "answer": "نسخه‌ای با دوره، تمرین، Judge و مسابقه محدود قابل ساخت است، اما اکوسیستم کامل جامعه و استخدام نیازمند زمان و شبکه کاربری است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 2,
+    "proprietaryData": 4,
+    "infrastructure": 5,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 4
+  },
+  "relatedTools": []
+}

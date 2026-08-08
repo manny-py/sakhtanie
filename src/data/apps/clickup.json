@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "clickup",
+  "name": {
+    "fa": "کلیک‌آپ",
+    "en": "ClickUp"
+  },
+  "domain": "clickup.com",
+  "origin": "global",
+  "status": "published",
+  "category": "productivity",
+  "subcategory": "work-management",
+  "tags": [
+    "مدیریت پروژه",
+    "وظیفه",
+    "Docs",
+    "Goals",
+    "Chat"
+  ],
+  "relatedTools": [
+    "asana",
+    "trello",
+    "notion"
+  ],
+  "summary": "کلیک‌آپ یک پلتفرم مدیریت کار است که وظایف، پروژه‌ها، اسناد، اهداف، داشبورد، چت و اتوماسیون را در یک workspace ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "هسته task/project management ساختنیه، اما breadth بسیار زیاد ClickUp باعث می‌شود بازسازی همه ماژول‌ها و تجربه یکپارچه آن پروژه بزرگی باشد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم کارها را به task و project تبدیل می‌کند، وضعیت و deadline را مدیریت می‌کند و از viewها، Docs، اهداف و گزارش‌ها برای هماهنگی استفاده می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Task، board و dashboard UI"
+      },
+      {
+        "type": "backend",
+        "label": "Workspace و workflow"
+      },
+      {
+        "type": "database",
+        "label": "Tasks، docs و goals"
+      },
+      {
+        "type": "automation",
+        "label": "Automation ruleها"
+      }
+    ],
+    "limitations": [
+      "AI agentها حذف می‌شوند.",
+      "تمام viewها و ماژول‌های ClickUp بازسازی نمی‌شوند.",
+      "Chat/meeting پیشرفته محدود است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by ClickUp",
+      "content": "Build an all-in-one work management SaaS with workspaces, projects, tasks, custom statuses, list and board views, docs, goals, dashboards, comments, notifications, simple chat, time tracking, and automation rules.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "ClickUp",
+    "buildableVersion": "Work-management SaaS با task، docs و dashboard",
+    "missing": [
+      "AI کامل",
+      "تمام viewها",
+      "ecosystem وسیع"
+    ]
+  },
+  "audience": [
+    "تیم‌ها",
+    "مدیر پروژه",
+    "فریلنسرها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کلیک‌آپ",
+      "ساخت مشابه ClickUp",
+      "ClickUp clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه کلیک‌آپ ساخت؟",
+        "answer": "هسته task/project management ساختنیه، اما breadth بسیار زیاد ClickUp باعث می‌شود بازسازی همه ماژول‌ها و تجربه یکپارچه آن پروژه بزرگی باشد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

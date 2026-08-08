@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "arvancloud",
+  "name": {
+    "fa": "آروان‌کلاد",
+    "en": "ArvanCloud"
+  },
+  "domain": "arvancloud.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "cloud-infrastructure",
+  "tags": [
+    "CDN",
+    "سرور ابری",
+    "فضای ابری",
+    "زیرساخت ابری"
+  ],
+  "summary": "آروان‌کلاد مجموعه‌ای از خدمات زیرساخت ابری شامل CDN، رایانش، کانتینر، دیتابیس مدیریت‌شده، ذخیره‌سازی، شبکه و سرویس‌های امنیتی ارائه می‌کند.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "ساخت چند قابلیت محدود ممکن است، اما بازسازی یک Cloud Provider یکپارچه در مقیاس آروان‌کلاد منطقی نیست.",
+    "reason": "محصول اصلی مجموعه‌ای از سامانه‌های توزیع‌شده، شبکه، ذخیره‌سازی، رایانش، امنیت و عملیات زیرساختی است و ارزش آن به مقیاس و قابلیت اطمینان عملیاتی وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر سرویس ابری موردنیاز را ایجاد می‌کند، منابع و دامنه‌ها را تنظیم می‌کند و مصرف، وضعیت و تنظیمات زیرساخت را از پنل مرکزی مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "زیرساخت رایانش و شبکه توزیع‌شده"
+      },
+      {
+        "type": "backend",
+        "label": "Control Plane مدیریت منابع"
+      },
+      {
+        "type": "storage",
+        "label": "سامانه ذخیره‌سازی ابری"
+      },
+      {
+        "type": "database",
+        "label": "ثبت منابع، مصرف و پیکربندی"
+      }
+    ],
+    "limitations": [
+      "CDN جهانی و شبکه Anycast در MVP قابل بازسازی نیست.",
+      "زیرساخت Compute و Storage واقعی سرمایه‌بر است.",
+      "DDoS protection و امنیت شبکه نیازمند زیرساخت تخصصی هستند."
+    ],
+    "prompt": {
+      "title": "Build a narrow cloud control panel inspired by ArvanCloud",
+      "content": "Build a Persian RTL cloud control panel for a constrained infrastructure provider. Support customer accounts, projects, DNS zones, reverse-proxy/CDN configuration, usage metrics, basic object storage metadata, invoices, and API tokens. Do not implement a global CDN, physical compute infrastructure, DDoS network, or distributed object storage.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "ArvanCloud",
+    "buildableVersion": "پنل مدیریت محدود برای چند سرویس زیرساختی مبتنی بر providerهای موجود",
+    "missing": [
+      "شبکه CDN واقعی",
+      "زیرساخت دیتاسنتر",
+      "DDoS Protection در مقیاس شبکه",
+      "Cloud Compute و Storage مستقل"
+    ]
+  },
+  "audience": [
+    "تیم DevOps",
+    "شرکت‌های نرم‌افزاری",
+    "ارائه‌دهندگان زیرساخت"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آروان کلاد",
+      "CDN ایرانی",
+      "زیرساخت ابری"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان آروان‌کلاد را ساخت؟",
+        "answer": "یک پنل محدود روی زیرساخت‌های موجود قابل ساخت است، اما بازسازی خود شبکه و زیرساخت Cloud Provider در این مقیاس پروژه‌ای بسیار بزرگ است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 2,
+    "gapFromOriginal": 5,
+    "iranRisk": 3,
+    "economicValue": 5
+  },
+  "relatedTools": []
+}

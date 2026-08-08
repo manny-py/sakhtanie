@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "airtable",
+  "name": {
+    "fa": "ایرتیبل",
+    "en": "Airtable"
+  },
+  "domain": "airtable.com",
+  "origin": "global",
+  "status": "published",
+  "category": "automation-no-code",
+  "subcategory": "database-app-builder",
+  "tags": [
+    "No-code",
+    "Database",
+    "Automation",
+    "App Builder"
+  ],
+  "relatedTools": [
+    "notion",
+    "zapier"
+  ],
+  "summary": "ایرتیبل یک پلتفرم ساخت اپلیکیشن‌های کاری روی داده‌های ساخت‌یافته، interfaceهای سفارشی و automation است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "جدول relational، view، form، interface و automation محدود قابل ساخت است؛ موتور app-building انعطاف‌پذیر و مقیاس داده بزرگ نسخه اصلی دامنه را دشوار می‌کند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر base و table ایجاد می‌کند، داده و رابطه تعریف می‌کند، view و interface می‌سازد و automation روی تغییرات داده اجرا می‌کند.",
+    "requirements": [
+      {
+        "type": "database",
+        "label": "Relational data model"
+      },
+      {
+        "type": "frontend",
+        "label": "Table و interface builder"
+      },
+      {
+        "type": "automation",
+        "label": "Trigger/action engine"
+      },
+      {
+        "type": "backend",
+        "label": "Workspace و permissions"
+      }
+    ],
+    "limitations": [
+      "AI app builder کامل حذف می‌شود.",
+      "مقیاس دیتابیس Enterprise محدود است.",
+      "Extension ecosystem وجود ندارد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Airtable",
+      "content": "Build a no-code relational data and internal-app platform with workspaces, bases, tables, typed fields, linked records, grid and kanban views, forms, interfaces, permissions, and trigger-action automations.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Airtable",
+    "buildableVersion": "دیتابیس no-code با view، form و automation",
+    "missing": [
+      "AI builder کامل",
+      "Hyper-scale database",
+      "Extensions"
+    ]
+  },
+  "audience": [
+    "تیم عملیات",
+    "کسب‌وکارها",
+    "سازندگان no-code"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ایرتیبل",
+      "ساخت مشابه Airtable",
+      "Airtable clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ایرتیبل ساخت؟",
+        "answer": "جدول relational، view، form، interface و automation محدود قابل ساخت است؛ موتور app-building انعطاف‌پذیر و مقیاس داده بزرگ نسخه اصلی دامنه را دشوار می‌کند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

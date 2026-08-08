@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "didar",
+  "name": {
+    "fa": "دیدار",
+    "en": "Didar CRM"
+  },
+  "domain": "didar.me",
+  "origin": "iranian",
+  "status": "published",
+  "category": "marketing-crm-support",
+  "subcategory": "crm",
+  "tags": [
+    "CRM",
+    "فروش",
+    "سرنخ فروش",
+    "پیگیری مشتری"
+  ],
+  "summary": "دیدار یک CRM ابری ایرانی برای مدیریت سرنخ‌ها، فرصت‌های فروش، پیگیری مشتری، Pipeline فروش و گزارش عملکرد تیم فروش است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز و کاربردی CRM مشابه دیدار کاملاً قابل ساخت است.",
+    "reason": "مدل اصلی CRM بر داده ساخت‌یافته مشتری، Pipeline فروش، فعالیت‌ها، یادآوری‌ها و گزارش‌ها تکیه دارد که با معماری وب متعارف قابل پیاده‌سازی است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "تیم فروش سرنخ را ثبت می‌کند، آن را در مراحل Pipeline پیش می‌برد، تماس‌ها و پیگیری‌ها را ثبت می‌کند و عملکرد فروش را از گزارش‌ها می‌سنجد.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "پنل CRM و Pipeline فروش"
+      },
+      {
+        "type": "backend",
+        "label": "منطق مشتری، فرصت و فعالیت"
+      },
+      {
+        "type": "database",
+        "label": "داده مشتریان و تاریخچه فروش"
+      },
+      {
+        "type": "automation",
+        "label": "یادآوری و پیگیری خودکار"
+      }
+    ],
+    "limitations": [
+      "اتصال‌های گسترده سازمانی در نسخه اول حذف می‌شوند.",
+      "اتوماسیون پیچیده فروش محدود خواهد بود.",
+      "گزارش‌گیری Enterprise در MVP ساده می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a Persian CRM inspired by Didar",
+      "content": "Build a Persian RTL CRM for small sales teams with contacts, companies, leads, deals, customizable pipeline stages, activities, reminders, notes, sales ownership, filters, dashboards, and basic reporting. Use secure role-based access and PostgreSQL persistence. Exclude enterprise integrations and advanced forecasting.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Didar CRM",
+    "buildableVersion": "CRM فارسی برای مدیریت مشتری، سرنخ و Pipeline فروش",
+    "missing": [
+      "یکپارچه‌سازی‌های سازمانی گسترده",
+      "Forecasting پیشرفته",
+      "اکوسیستم کامل افزونه‌ها"
+    ]
+  },
+  "audience": [
+    "تیم فروش",
+    "کسب‌وکار کوچک",
+    "شرکت خدماتی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت CRM دیدار",
+      "CRM فارسی",
+      "نرم افزار فروش"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نرم‌افزاری شبیه دیدار ممکن است؟",
+        "answer": "بله، هسته CRM شامل مشتری، Pipeline، فعالیت، یادآوری و گزارش را می‌توان به‌صورت یک SaaS مستقل ساخت."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 5
+  },
+  "relatedTools": [
+    "hubspot"
+  ]
+}

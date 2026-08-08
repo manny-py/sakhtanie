@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "figma",
+  "name": {
+    "fa": "فیگما",
+    "en": "Figma"
+  },
+  "domain": "figma.com",
+  "origin": "global",
+  "status": "published",
+  "category": "design-image",
+  "subcategory": "collaborative-design",
+  "tags": [
+    "طراحی رابط",
+    "UI",
+    "UX",
+    "پروتوتایپ",
+    "همکاری تیمی"
+  ],
+  "relatedTools": [
+    "canva",
+    "miro"
+  ],
+  "summary": "فیگما یک پلتفرم طراحی مشارکتی برای طراحی رابط، سیستم‌های طراحی، پروتوتایپ و همکاری هم‌زمان تیم‌های محصول است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "یک editor برداری و collaborative محدود قابل ساخت است، اما موتور گرافیکی، multiplayer editing، ecosystem و عمق ابزارهای طراحی نسخه اصلی دامنه پروژه را بسیار بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربران وارد فایل طراحی می‌شوند، عناصر رابط را روی canvas می‌سازند، هم‌زمان ویرایش می‌کنند و prototype و feedback را به اشتراک می‌گذارند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Canvas و ابزارهای ویرایش طراحی"
+      },
+      {
+        "type": "realtime",
+        "label": "همکاری هم‌زمان چند کاربر"
+      },
+      {
+        "type": "backend",
+        "label": "فایل‌ها، پروژه‌ها و permissions"
+      },
+      {
+        "type": "storage",
+        "label": "ذخیره asset و نسخه‌های فایل"
+      }
+    ],
+    "limitations": [
+      "موتور طراحی حرفه‌ای کامل در MVP قابل بازسازی نیست.",
+      "Multiplayer با conflict resolution پیچیدگی بالایی دارد.",
+      "Plugin ecosystem و Dev Mode کامل حذف می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Figma",
+      "content": "Build a collaborative browser-based interface design tool with projects, files, frames, text, shapes, reusable components, comments, simple prototyping, version history, and multiplayer presence. Keep the graphics engine intentionally constrained and exclude a plugin marketplace and full professional vector tooling.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Figma",
+    "buildableVersion": "ابزار طراحی UI مشارکتی با canvas محدود و prototype ساده",
+    "missing": [
+      "موتور vector کامل",
+      "Plugin ecosystem",
+      "Dev Mode کامل"
+    ]
+  },
+  "audience": [
+    "طراحان محصول",
+    "تیم UI/UX",
+    "توسعه‌دهندگان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت فیگما",
+      "ساخت مشابه Figma",
+      "Figma clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه فیگما ساخت؟",
+        "answer": "یک editor برداری و collaborative محدود قابل ساخت است، اما موتور گرافیکی، multiplayer editing، ecosystem و عمق ابزارهای طراحی نسخه اصلی دامنه پروژه را بسیار بزرگ می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

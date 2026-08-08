@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "raychat",
+  "name": {
+    "fa": "رایچت",
+    "en": "Raychat"
+  },
+  "domain": "raychat.io",
+  "origin": "iranian",
+  "status": "published",
+  "category": "marketing-crm-support",
+  "subcategory": "customer-support",
+  "tags": [
+    "چت آنلاین",
+    "پشتیبانی مشتری",
+    "چت‌بات",
+    "هوش مصنوعی"
+  ],
+  "summary": "رایچت یک پلتفرم ایرانی چت آنلاین و پشتیبانی مشتری است که ابزارک سایت، مدیریت اپراتورها، ارتباط چندکاناله و قابلیت‌های هوش مصنوعی را در یک پنل ارائه می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه محدود چت آنلاین و Helpdesk مشابه رایچت ساختنیه.",
+    "reason": "هسته محصول بر WebSocket، inbox گفتگوها، widget سایت، اپراتورها و تاریخچه پیام تکیه دارد؛ قابلیت‌های AI و اتصال چندکاناله را می‌توان مرحله‌ای اضافه کرد."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "بازدیدکننده از Widget پیام می‌دهد، گفتگو وارد inbox اپراتورها می‌شود و تیم پشتیبانی پاسخ می‌دهد یا بخشی از پاسخ‌گویی توسط چت‌بات انجام می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Widget چت و پنل اپراتور"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت گفتگو و کاربران"
+      },
+      {
+        "type": "infrastructure",
+        "label": "ارتباط real-time با WebSocket"
+      },
+      {
+        "type": "ai",
+        "label": "پیشنهاد پاسخ و چت‌بات اختیاری"
+      }
+    ],
+    "limitations": [
+      "اتصال کامل واتس‌اپ و سایر کانال‌ها وابسته به APIهای خارجی است.",
+      "AI پیشرفته نیازمند مدل و هزینه inference است.",
+      "مقیاس بالای اتصال‌های همزمان به زیرساخت real-time نیاز دارد."
+    ],
+    "prompt": {
+      "title": "Build a Persian live-chat platform inspired by Raychat",
+      "content": "Build a Persian RTL live customer-support platform with an embeddable website widget, operator inbox, real-time messaging, visitor presence, conversation assignment, tags, canned replies, roles, basic reports, and optional AI-assisted replies. Exclude proprietary messaging-channel integrations in the first release.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Raychat",
+    "buildableVersion": "چت آنلاین فارسی با Widget، inbox اپراتورها و پاسخ‌گویی real-time",
+    "missing": [
+      "اتصال کامل چندکاناله",
+      "AI اختصاصی پیشرفته",
+      "مقیاس بسیار بالای WebSocket"
+    ]
+  },
+  "audience": [
+    "فروشگاه آنلاین",
+    "SaaS",
+    "تیم پشتیبانی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت رایچت",
+      "چت آنلاین فارسی",
+      "سیستم پشتیبانی مشتری"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان رایچت را ساخت؟",
+        "answer": "بله، هسته چت آنلاین و مدیریت اپراتورها قابل ساخت است؛ اتصال‌های چندکاناله و AI پیشرفته را می‌توان در مراحل بعد اضافه کرد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 4,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 5
+  },
+  "relatedTools": [
+    "intercom",
+    "zendesk"
+  ]
+}

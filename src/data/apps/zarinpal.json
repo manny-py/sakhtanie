@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "zarinpal",
+  "name": {
+    "fa": "زرین‌پال",
+    "en": "ZarinPal"
+  },
+  "domain": "zarinpal.com",
+  "origin": "iranian",
+  "status": "published",
+  "category": "commerce-forms-scheduling",
+  "subcategory": "payments",
+  "tags": [
+    "درگاه پرداخت",
+    "فین‌تک",
+    "پرداخت آنلاین",
+    "تراکنش"
+  ],
+  "summary": "زرین‌پال یک سرویس ایرانی پرداخت الکترونیک و درگاه پرداخت اینترنتی برای کسب‌وکارهای آنلاین است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "پنل و لایه نرم‌افزاری پرداخت ساختنیه، اما تبدیل‌شدن به پرداخت‌یار واقعی فقط مسئله کدنویسی نیست.",
+    "reason": "ساخت API، داشبورد تراکنش و checkout ممکن است، اما اتصال رسمی به شبکه پرداخت، الزامات حقوقی، امنیت مالی، تسویه و عملیات پرداخت واقعی به مجوز و همکاری زیرساخت بانکی وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "پذیرنده درگاه می‌سازد، درخواست پرداخت ایجاد می‌کند، مشتری پرداخت را انجام می‌دهد و نتیجه تراکنش و تسویه در داشبورد ثبت می‌شود.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "API امن ایجاد و تایید پرداخت"
+      },
+      {
+        "type": "database",
+        "label": "ثبت تراکنش و وضعیت مالی"
+      },
+      {
+        "type": "authentication",
+        "label": "احراز هویت پذیرنده"
+      },
+      {
+        "type": "infrastructure",
+        "label": "زیرساخت امن و قابل حسابرسی"
+      }
+    ],
+    "limitations": [
+      "بدون مجوز و اتصال رسمی بانکی درگاه واقعی ساخته نمی‌شود.",
+      "تسویه مالی و compliance خارج از MVP نرم‌افزاری است.",
+      "امنیت مالی و مدیریت تقلب نیازمند کنترل‌های تخصصی است."
+    ],
+    "prompt": {
+      "title": "Build a payment orchestration sandbox inspired by ZarinPal",
+      "content": "Build a Persian RTL payment-orchestration sandbox for developers. Support merchant accounts, payment requests, callback verification, transaction history, API keys, webhook delivery, test-mode checkout, reconciliation reports, and role-based access. Use simulated payment rails only and explicitly exclude real banking settlement or regulated payment processing.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "ZarinPal",
+    "buildableVersion": "Payment sandbox و orchestration layer بدون پردازش پول واقعی",
+    "missing": [
+      "اتصال رسمی شبکه بانکی",
+      "تسویه واقعی",
+      "مجوزهای پرداخت‌یاری",
+      "زیرساخت ضدتقلب بانکی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "فروشگاه اینترنتی",
+    "SaaS"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service",
+      "commission"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت زرین پال",
+      "درگاه پرداخت ایرانی",
+      "Payment Gateway"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان زرین‌پال را ساخت؟",
+        "answer": "بخش نرم‌افزاری و محیط آزمایشی قابل ساخت است، اما سرویس پرداخت واقعی نیازمند مجوزها و اتصال رسمی به شبکه پرداخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 5,
+    "economicValue": 5
+  },
+  "relatedTools": [
+    "shopify"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "vercel",
+  "name": {
+    "fa": "ورسل",
+    "en": "Vercel"
+  },
+  "domain": "vercel.com",
+  "origin": "global",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "deployment-platform",
+  "tags": [
+    "Deployment",
+    "Serverless",
+    "Frontend Cloud",
+    "Functions"
+  ],
+  "relatedTools": [
+    "liara",
+    "render",
+    "railway"
+  ],
+  "summary": "ورسل یک پلتفرم deployment برای اپلیکیشن‌های وب است که Git deployments، preview environments، Functions، شبکه توزیع‌شده و storageهای مدیریت‌شده ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "نسخه‌ای محدود برای build/deploy و preview قابل ساخت است، اما global delivery network، autoscaling و framework optimizationهای عمیق نسخه اصلی دشوارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده repository را متصل می‌کند، هر commit build و deploy می‌شود و preview یا production URL دریافت می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "Build و deployment workers"
+      },
+      {
+        "type": "backend",
+        "label": "Project/deployment control plane"
+      },
+      {
+        "type": "networking",
+        "label": "Routing و domains"
+      },
+      {
+        "type": "storage",
+        "label": "Build artifacts"
+      }
+    ],
+    "limitations": [
+      "Global edge network حذف می‌شود.",
+      "Framework optimization کامل وجود ندارد.",
+      "Serverless scaling در MVP محدود است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Vercel",
+      "content": "Build a Git-connected web deployment platform with projects, repositories, builds, immutable deployments, preview URLs, production promotion, environment variables, logs, custom domains, and lightweight serverless functions.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Vercel",
+    "buildableVersion": "Git deployment platform با preview deployments",
+    "missing": [
+      "Global network",
+      "autoscaling کامل",
+      "framework optimization اختصاصی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان وب",
+    "تیم محصول"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ورسل",
+      "ساخت مشابه Vercel",
+      "Vercel clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ورسل ساخت؟",
+        "answer": "نسخه‌ای محدود برای build/deploy و preview قابل ساخت است، اما global delivery network، autoscaling و framework optimizationهای عمیق نسخه اصلی دشوارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

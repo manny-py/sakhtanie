@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "posthog",
+  "name": {
+    "fa": "پست‌هاگ",
+    "en": "PostHog"
+  },
+  "domain": "posthog.com",
+  "origin": "global",
+  "status": "published",
+  "category": "data-analytics",
+  "subcategory": "product-analytics",
+  "tags": [
+    "Product Analytics",
+    "Session Replay",
+    "Feature Flags",
+    "Experiments"
+  ],
+  "relatedTools": [
+    "mixpanel",
+    "amplitude",
+    "sentry"
+  ],
+  "summary": "پست‌هاگ مجموعه ابزارهای product engineering شامل تحلیل رفتار محصول، session replay، feature flags، experiment، dashboard و ابزارهای مرتبط است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "نسخه متمرکز analytics + feature flags ساختنیه، اما ingestion حجیم، replay، experimentation و breadth کل suite دامنه پروژه را بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "SDK eventها را ثبت می‌کند، تیم funnel و dashboard می‌سازد، sessionها را بررسی می‌کند و feature flag یا experiment را برای کاربران فعال می‌کند.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "Event ingestion"
+      },
+      {
+        "type": "data",
+        "label": "Analytics query engine"
+      },
+      {
+        "type": "frontend",
+        "label": "Dashboard و funnel UI"
+      },
+      {
+        "type": "experimentation",
+        "label": "Feature flag engine"
+      }
+    ],
+    "limitations": [
+      "Data warehouse و CDP کامل حذف می‌شوند.",
+      "Session replay پیشرفته محدود است.",
+      "Query engine در مقیاس بالا ساده می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by PostHog",
+      "content": "Build a product analytics platform with event ingestion, persons, properties, funnels, trends, retention basics, dashboards, feature flags, experiments, simple session replay, error events, and SDK keys.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "PostHog",
+    "buildableVersion": "Product analytics با events، funnels و feature flags",
+    "missing": [
+      "Warehouse کامل",
+      "CDP کامل",
+      "Replay در مقیاس بالا"
+    ]
+  },
+  "audience": [
+    "تیم محصول",
+    "توسعه‌دهندگان",
+    "Growth"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت پست‌هاگ",
+      "ساخت مشابه PostHog",
+      "PostHog clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه پست‌هاگ ساخت؟",
+        "answer": "نسخه متمرکز analytics + feature flags ساختنیه، اما ingestion حجیم، replay، experimentation و breadth کل suite دامنه پروژه را بزرگ می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

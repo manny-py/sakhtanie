@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "stripe",
+  "name": {
+    "fa": "استرایپ",
+    "en": "Stripe"
+  },
+  "domain": "stripe.com",
+  "origin": "global",
+  "status": "published",
+  "category": "commerce-forms-scheduling",
+  "subcategory": "payments",
+  "tags": [
+    "پرداخت",
+    "API",
+    "Checkout",
+    "فین‌تک"
+  ],
+  "relatedTools": [
+    "zarinpal",
+    "shopify"
+  ],
+  "summary": "استرایپ یک پلتفرم زیرساخت پرداخت است که APIها و ابزارهای checkout و مدیریت چرخه پرداخت را برای کسب‌وکارها ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "ساخت sandbox، API orchestration و dashboard پرداخت ممکن است، اما شبکه پرداخت واقعی، acquiring، compliance و پوشش جهانی قابل بازسازی ساده نیست."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کسب‌وکار payment ایجاد می‌کند، مشتری checkout را تکمیل می‌کند و backend وضعیت payment، webhook و reconciliation را مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "Payment API و state machine"
+      },
+      {
+        "type": "security",
+        "label": "مدیریت امن payment flow"
+      },
+      {
+        "type": "database",
+        "label": "Transaction metadata"
+      },
+      {
+        "type": "webhooks",
+        "label": "Event delivery"
+      }
+    ],
+    "limitations": [
+      "پردازش پول واقعی نیازمند شبکه و مجوز است.",
+      "Fraud detection و global acquiring خارج از MVP است.",
+      "Compliance مالی گسترده قابل حذف نیست."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Stripe",
+      "content": "Build a payment-platform sandbox with merchants, API keys, PaymentIntent-like payment states, hosted checkout, payment methods, webhooks, refunds, test transactions, logs, and reconciliation dashboards. Never process real money.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Stripe",
+    "buildableVersion": "Payment API sandbox و checkout آزمایشی",
+    "missing": [
+      "پرداخت واقعی",
+      "Global acquiring",
+      "Fraud network"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "فین‌تک",
+    "SaaS"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "service",
+      "commission"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت استرایپ",
+      "ساخت مشابه Stripe",
+      "Stripe clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه استرایپ ساخت؟",
+        "answer": "ساخت sandbox، API orchestration و dashboard پرداخت ممکن است، اما شبکه پرداخت واقعی، acquiring، compliance و پوشش جهانی قابل بازسازی ساده نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

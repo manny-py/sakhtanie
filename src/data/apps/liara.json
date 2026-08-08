@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "liara",
+  "name": {
+    "fa": "لیارا",
+    "en": "Liara"
+  },
+  "domain": "liara.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "cloud-platform",
+  "tags": [
+    "رایانش ابری",
+    "PaaS",
+    "دیتابیس ابری",
+    "استقرار اپلیکیشن"
+  ],
+  "summary": "لیارا یک پلتفرم رایانش ابری ایرانی برای استقرار اپلیکیشن، دیتابیس مدیریت‌شده، ذخیره‌سازی فایل و سایر سرویس‌های زیرساختی توسعه نرم‌افزار است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "نسخه محدود PaaS ساختنیه، اما بازسازی کل پلتفرم ابری لیارا پروژه‌ای زیرساختی و سنگین است.",
+    "reason": "هسته ساده‌ی استقرار اپ و مدیریت محیط اجرا قابل ساخت است، اما دیتابیس مدیریت‌شده، ذخیره‌سازی، شبکه، مانیتورینگ، مقیاس‌پذیری و عملیات قابل اتکای ابری دامنه پروژه را بسیار بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده پروژه را ایجاد می‌کند، کد یا Docker Image را مستقر می‌کند، متغیرهای محیطی و دامنه را تنظیم می‌کند و وضعیت سرویس و منابع را از داشبورد مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "زیرساخت اجرای ایزوله و مدیریت منابع"
+      },
+      {
+        "type": "backend",
+        "label": "کنترل‌پلین برای ساخت و مدیریت سرویس‌ها"
+      },
+      {
+        "type": "database",
+        "label": "مدیریت وضعیت پروژه‌ها و deploymentها"
+      },
+      {
+        "type": "automation",
+        "label": "Pipeline استقرار و lifecycle سرویس"
+      }
+    ],
+    "limitations": [
+      "بازسازی DBaaS و Object Storage در مقیاس واقعی خارج از MVP است.",
+      "High Availability و autoscaling واقعی پیچیدگی عملیاتی بالایی دارند.",
+      "امنیت چندمستاجری و isolation نیازمند طراحی زیرساخت تخصصی است."
+    ],
+    "prompt": {
+      "title": "Build a constrained Iranian PaaS inspired by Liara",
+      "content": "Build a Persian RTL developer cloud platform focused on deploying containerized web applications. Support projects, environment variables, deployments, logs, custom domains, basic resource plans, health checks, and PostgreSQL-backed metadata. Exclude managed databases, object storage, IaaS, global high availability, and enterprise autoscaling.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Liara",
+    "buildableVersion": "PaaS محدود برای استقرار و مدیریت اپلیکیشن‌های Docker-based",
+    "missing": [
+      "DBaaS کامل",
+      "Object Storage",
+      "زیرساخت IaaS",
+      "مقیاس‌پذیری و HA در سطح ارائه‌دهنده Cloud"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "تیم‌های نرم‌افزاری",
+    "استارتاپ‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت لیارا",
+      "PaaS ایرانی",
+      "ساخت پلتفرم ابری"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه لیارا ساخت؟",
+        "answer": "نسخه‌ای محدود برای استقرار و مدیریت اپلیکیشن قابل ساخت است، اما مجموعه کامل سرویس‌های ابری لیارا پروژه‌ای زیرساختی و بزرگ است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 3,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 3,
+    "economicValue": 5
+  },
+  "relatedTools": []
+}

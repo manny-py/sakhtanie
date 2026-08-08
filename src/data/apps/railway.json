@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "railway",
+  "name": {
+    "fa": "ریلوِی",
+    "en": "Railway"
+  },
+  "domain": "railway.com",
+  "origin": "global",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "application-hosting",
+  "tags": [
+    "Deployment",
+    "Database",
+    "Docker",
+    "Volumes"
+  ],
+  "relatedTools": [
+    "render",
+    "vercel",
+    "liara"
+  ],
+  "summary": "ریلوِی یک پلتفرم استقرار سرویس‌ها و دیتابیس‌ها با build از کد یا Docker، networking، volumes، variables و templates است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به مقیاس و عمق نسخه اصلی دشوار است.",
+    "reason": "یک hosting control plane روی container infrastructure قابل ساخت است، اما reliability، networking، billing و orchestration در سطح پلتفرم اصلی پروژه بزرگی است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده project می‌سازد، service یا database اضافه می‌کند، variables را تنظیم می‌کند و code/container را deploy می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "Container runtime"
+      },
+      {
+        "type": "backend",
+        "label": "Control plane"
+      },
+      {
+        "type": "networking",
+        "label": "Private/public networking"
+      },
+      {
+        "type": "storage",
+        "label": "Persistent volumes"
+      }
+    ],
+    "limitations": [
+      "Region orchestration کامل حذف می‌شود.",
+      "HA database platform محدود است.",
+      "Marketplace گسترده وجود ندارد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Railway",
+      "content": "Build a container application platform with projects, services, Git or Docker deployments, environment variables, internal networking, persistent volumes, database templates, logs, domains, and usage metering.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Railway",
+    "buildableVersion": "Container PaaS محدود با service و database",
+    "missing": [
+      "Multi-region platform",
+      "HA کامل",
+      "template marketplace بزرگ"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "DevOps",
+    "استارتاپ‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "usage",
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ریلوِی",
+      "ساخت مشابه Railway",
+      "Railway clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ریلوِی ساخت؟",
+        "answer": "یک hosting control plane روی container infrastructure قابل ساخت است، اما reliability، networking، billing و orchestration در سطح پلتفرم اصلی پروژه بزرگی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 3,
+    "proprietaryData": 1,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}
