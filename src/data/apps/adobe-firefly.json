@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "adobe-firefly",
+  "name": {
+    "fa": "ادوبی فایرفلای",
+    "en": "Adobe Firefly"
+  },
+  "domain": "adobe.com",
+  "origin": "global",
+  "status": "published",
+  "category": "design-image",
+  "subcategory": "generative-creative-suite",
+  "tags": [
+    "Generative AI",
+    "Image",
+    "Video",
+    "Design"
+  ],
+  "relatedTools": [
+    "canva",
+    "leonardo"
+  ],
+  "summary": "Adobe Firefly مجموعه ابزارهای generative AI ادوبی برای تولید و ویرایش تصویر، ویدیو، صدا و محتوای خلاقانه است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "بازسازی محصول اصلی در این مقیاس برای یک پروژه مستقل منطقی نیست.",
+    "reason": "یک رابط generative creative روی APIهای موجود قابل ساخت است، اما breadth ابزارها، مدل‌ها و integration عمیق با ecosystem ادوبی قابل بازسازی نیست."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر نوع خروجی را انتخاب می‌کند، prompt یا asset ورودی می‌دهد و تصویر، ویدیو یا محتوای خلاقانه تولید و اصلاح می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "Generative model APIs"
+      },
+      {
+        "type": "media",
+        "label": "Image/video processing"
+      },
+      {
+        "type": "storage",
+        "label": "Creative assets"
+      },
+      {
+        "type": "frontend",
+        "label": "Creative workspace"
+      }
+    ],
+    "limitations": [
+      "مدل‌های Adobe قابل کپی نیستند.",
+      "Creative Cloud integration حذف می‌شود.",
+      "Video/audio suite کامل خارج از MVP است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Adobe Firefly",
+      "content": "Build a focused generative creative studio using licensed APIs with image generation, generative fill, image editing, style presets, text effects, simple video generation, asset history, projects, exports, and usage metering.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Adobe Firefly",
+    "buildableVersion": "Generative creative studio محدود",
+    "missing": [
+      "Adobe models",
+      "Creative Cloud ecosystem",
+      "media suite کامل"
+    ]
+  },
+  "audience": [
+    "طراحان",
+    "آژانس‌ها",
+    "تولیدکنندگان محتوا"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ادوبی فایرفلای",
+      "ساخت مشابه Adobe Firefly",
+      "Adobe Firefly clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ادوبی فایرفلای ساخت؟",
+        "answer": "یک رابط generative creative روی APIهای موجود قابل ساخت است، اما breadth ابزارها، مدل‌ها و integration عمیق با ecosystem ادوبی قابل بازسازی نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 5,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "grok",
+  "name": {
+    "fa": "گراک",
+    "en": "Grok"
+  },
+  "domain": "x.ai",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-assistants",
+  "subcategory": "general-ai-agent",
+  "tags": [
+    "AI Assistant",
+    "Research",
+    "Coding",
+    "Agents"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "claude",
+    "gemini"
+  ],
+  "summary": "Grok یک دستیار و عامل هوش مصنوعی عمومی برای reasoning، knowledge work، تحقیق، coding و اجرای taskهای agentic است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک assistant چندابزاره روی مدل‌های آماده قابل ساخت است، اما مدل frontier، product integrations و agent stack نسخه اصلی قابل بازسازی مستقیم نیست."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر سوال یا task می‌دهد و سیستم با reasoning، search و ابزارهای متصل پاسخ یا خروجی عملی تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "LLM API"
+      },
+      {
+        "type": "tools",
+        "label": "Search/tool execution"
+      },
+      {
+        "type": "backend",
+        "label": "Agent runtime"
+      },
+      {
+        "type": "database",
+        "label": "Conversation state"
+      }
+    ],
+    "limitations": [
+      "Frontier model اختصاصی حذف می‌شود.",
+      "Integrationهای اصلی محدود هستند.",
+      "Voice/media stack کامل حذف می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Grok",
+      "content": "Build a general-purpose AI assistant with chat, web research, citations, file analysis, code execution in a sandbox, image generation hooks, persistent conversations, tool calling, scheduled tasks, and configurable agents.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Grok",
+    "buildableVersion": "AI assistant چندابزاره روی APIهای موجود",
+    "missing": [
+      "frontier model",
+      "native ecosystem integrations",
+      "voice/media stack"
+    ]
+  },
+  "audience": [
+    "کاربران عمومی",
+    "دانش‌کارها",
+    "توسعه‌دهندگان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت گراک",
+      "ساخت مشابه Grok",
+      "Grok clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه گراک ساخت؟",
+        "answer": "یک assistant چندابزاره روی مدل‌های آماده قابل ساخت است، اما مدل frontier، product integrations و agent stack نسخه اصلی قابل بازسازی مستقیم نیست."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 4,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

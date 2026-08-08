@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "poe",
+  "name": {
+    "fa": "پو",
+    "en": "Poe"
+  },
+  "domain": "poe.com",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-assistants",
+  "subcategory": "multi-model-ai",
+  "tags": [
+    "AI Chat",
+    "Multiple Models",
+    "Bots",
+    "Agents"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "claude",
+    "perplexity"
+  ],
+  "summary": "Poe یک پلتفرم AI چندمدلی است که دسترسی به مدل‌ها و botهای مختلف و ساخت تجربه‌های AI سفارشی را در یک محیط فراهم می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک رابط multi-model با bot builder قابل ساخت است، اما قرارداد با مدل‌ها، routing، billing و ecosystem سازندگان دامنه محصول را بزرگ می‌کنند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر مدل یا bot را انتخاب می‌کند، گفتگو انجام می‌دهد و می‌تواند مدل‌های مختلف را برای یک مسئله مقایسه یا ترکیب کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "Multiple model APIs"
+      },
+      {
+        "type": "backend",
+        "label": "Conversation routing"
+      },
+      {
+        "type": "database",
+        "label": "Bots و conversations"
+      },
+      {
+        "type": "billing",
+        "label": "Usage metering"
+      }
+    ],
+    "limitations": [
+      "تعداد مدل‌ها محدود خواهد بود.",
+      "Creator ecosystem کامل حذف می‌شود.",
+      "Economics مدل‌ها وابسته به provider است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Poe",
+      "content": "Build a multi-model AI chat platform with model selection, conversations, file uploads, custom bots, system prompts, usage limits, model comparison, bot discovery, sharing, API keys, and subscription tiers.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Poe",
+    "buildableVersion": "Multi-model AI chat و bot platform",
+    "missing": [
+      "model catalog بزرگ",
+      "creator ecosystem",
+      "provider economics"
+    ]
+  },
+  "audience": [
+    "کاربران AI",
+    "سازندگان bot",
+    "تیم‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت پو",
+      "ساخت مشابه Poe",
+      "Poe clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه پو ساخت؟",
+        "answer": "یک رابط multi-model با bot builder قابل ساخت است، اما قرارداد با مدل‌ها، routing، billing و ecosystem سازندگان دامنه محصول را بزرگ می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 2,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

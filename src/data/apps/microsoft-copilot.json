@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "microsoft-copilot",
+  "name": {
+    "fa": "مایکروسافت کوپایلوت",
+    "en": "Microsoft Copilot"
+  },
+  "domain": "microsoft.com",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-assistants",
+  "subcategory": "general-ai-assistant",
+  "tags": [
+    "AI Assistant",
+    "Writing",
+    "Search",
+    "Images"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "gemini",
+    "grok"
+  ],
+  "summary": "Microsoft Copilot یک دستیار هوش مصنوعی عمومی برای پاسخ‌گویی، ایده‌پردازی، نوشتن و تولید محتوای تصویری در اکوسیستم مایکروسافت است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "هسته chat assistant و generation قابل ساخت است، اما integration گسترده با محصولات و داده‌های Microsoft مزیت غیرقابل بازسازی سریع آن است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر درخواست طبیعی وارد می‌کند و Copilot با استفاده از مدل و ابزارهای متصل پاسخ، متن، ایده یا محتوای موردنیاز را تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "LLM API"
+      },
+      {
+        "type": "search",
+        "label": "Grounded retrieval"
+      },
+      {
+        "type": "frontend",
+        "label": "Chat interface"
+      },
+      {
+        "type": "tools",
+        "label": "Optional integrations"
+      }
+    ],
+    "limitations": [
+      "Microsoft ecosystem integration حذف می‌شود.",
+      "مدل‌های اختصاصی و routing اصلی در دسترس نیستند.",
+      "Personalization محدود خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Microsoft Copilot",
+      "content": "Build a general AI copilot with conversational chat, web-grounded answers, writing assistance, image generation integration, file uploads, conversation history, personalization settings, voice input, and a small set of productivity connectors.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Microsoft Copilot",
+    "buildableVersion": "General AI copilot روی مدل‌های موجود",
+    "missing": [
+      "Microsoft ecosystem",
+      "native OS integrations",
+      "model stack اصلی"
+    ]
+  },
+  "audience": [
+    "کاربران عمومی",
+    "دانش‌کارها",
+    "تیم‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت مایکروسافت کوپایلوت",
+      "ساخت مشابه Microsoft Copilot",
+      "Microsoft Copilot clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه مایکروسافت کوپایلوت ساخت؟",
+        "answer": "هسته chat assistant و generation قابل ساخت است، اما integration گسترده با محصولات و داده‌های Microsoft مزیت غیرقابل بازسازی سریع آن است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

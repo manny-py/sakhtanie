@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "ahrefs",
+  "name": {
+    "fa": "اچرفس",
+    "en": "Ahrefs"
+  },
+  "domain": "ahrefs.com",
+  "origin": "global",
+  "status": "published",
+  "category": "writing-seo",
+  "subcategory": "seo-platform",
+  "tags": [
+    "SEO",
+    "Backlinks",
+    "Keywords",
+    "Search",
+    "AI Visibility"
+  ],
+  "relatedTools": [
+    "semrush"
+  ],
+  "summary": "Ahrefs یک پلتفرم داده و ابزارهای بازاریابی برای SEO، keyword research، backlink analysis، competitor research و visibility در search و AI است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "بازسازی محصول اصلی در این مقیاس برای یک پروژه مستقل منطقی نیست.",
+    "reason": "ساخت dashboard و crawler محدود ممکن است، اما ارزش اصلی Ahrefs به index عظیم وب، crawler، زیرساخت داده و تاریخچه طولانی وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر domain یا keyword را وارد می‌کند و داده‌های search، backlink، competitor و site health را برای تصمیم‌گیری بازاریابی تحلیل می‌کند.",
+    "requirements": [
+      {
+        "type": "crawler",
+        "label": "Web crawling infrastructure"
+      },
+      {
+        "type": "database",
+        "label": "Search/backlink index"
+      },
+      {
+        "type": "analytics",
+        "label": "SEO metrics"
+      },
+      {
+        "type": "frontend",
+        "label": "Research dashboards"
+      }
+    ],
+    "limitations": [
+      "Web index عظیم قابل بازسازی سریع نیست.",
+      "Keyword databases محدود خواهند بود.",
+      "Historical data وجود نخواهد داشت."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Ahrefs",
+      "content": "Build a focused SEO research platform using licensed search and backlink data APIs with domain analysis, keyword research, rank tracking, site audits, competitor comparisons, content opportunities, reports, and AI-search visibility tracking.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Ahrefs",
+    "buildableVersion": "SEO dashboard روی data providerهای موجود",
+    "missing": [
+      "web index اختصاصی",
+      "crawler scale",
+      "historical dataset"
+    ]
+  },
+  "audience": [
+    "SEOها",
+    "مارکترها",
+    "آژانس‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت اچرفس",
+      "ساخت مشابه Ahrefs",
+      "Ahrefs clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه اچرفس ساخت؟",
+        "answer": "ساخت dashboard و crawler محدود ممکن است، اما ارزش اصلی Ahrefs به index عظیم وب، crawler، زیرساخت داده و تاریخچه طولانی وابسته است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 5,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

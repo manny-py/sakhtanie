@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "slug": "ponisha",
+  "name": {
+    "fa": "پونیشا",
+    "en": "Ponisha"
+  },
+  "domain": "ponisha.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "freelance-marketplace",
+  "tags": [
+    "فریلنسری",
+    "پروژه",
+    "برون‌سپاری",
+    "بازار کار"
+  ],
+  "relatedTools": [
+    "jobvision",
+    "jobinja"
+  ],
+  "summary": "پونیشا یک marketplace فارسی برای اتصال کارفرماها به فریلنسرها، انتشار پروژه، دریافت پیشنهاد و انجام همکاری دورکاری است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "Marketplace پروژه با profile، bidding، contract و پرداخت قابل ساخت است، اما اعتماد، نقدشوندگی بازار دوطرفه، dispute resolution و شبکه کاربران نسخه اصلی به زمان نیاز دارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کارفرما پروژه منتشر می‌کند، فریلنسرها پیشنهاد می‌دهند، یک پیشنهاد انتخاب می‌شود و انجام کار و پرداخت در چارچوب پلتفرم پیگیری می‌شود.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Project marketplace و profiles"
+      },
+      {
+        "type": "backend",
+        "label": "Proposal و contract workflow"
+      },
+      {
+        "type": "payments",
+        "label": "Payment/escrow integration"
+      },
+      {
+        "type": "database",
+        "label": "Projects، proposals و users"
+      }
+    ],
+    "limitations": [
+      "Marketplace liquidity قابل کدنویسی نیست.",
+      "Escrow واقعی نیازمند الزامات مالی و حقوقی است.",
+      "Dispute resolution نیازمند عملیات انسانی است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Ponisha",
+      "content": "Build a Persian freelance marketplace with client and freelancer profiles, project postings, skill categories, proposals, budgets, milestones, messaging, contracts, ratings, notifications, portfolio pages, payment records, dispute workflows, and admin moderation.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Ponisha",
+    "buildableVersion": "Marketplace فریلنسری با پروژه و پیشنهاد",
+    "missing": [
+      "شبکه کاربران موجود",
+      "اعتماد بازار",
+      "escrow واقعی",
+      "عملیات حل اختلاف"
+    ]
+  },
+  "audience": [
+    "فریلنسرها",
+    "استارتاپ‌ها",
+    "کارفرماها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "commission",
+      "subscription",
+      "listing"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت پونیشا",
+      "ساخت مشابه Ponisha",
+      "Ponisha clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه پونیشا ساخت؟",
+        "answer": "Marketplace پروژه با profile، bidding، contract و پرداخت قابل ساخت است، اما اعتماد، نقدشوندگی بازار دوطرفه، dispute resolution و شبکه کاربران نسخه اصلی به زمان نیاز دارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 4,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

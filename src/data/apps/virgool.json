@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "virgool",
+  "name": {
+    "fa": "ویرگول",
+    "en": "Virgool"
+  },
+  "domain": "virgool.io",
+  "origin": "iranian",
+  "status": "published",
+  "category": "writing-seo",
+  "subcategory": "publishing-platform",
+  "tags": [
+    "وبلاگ",
+    "نویسندگی",
+    "محتوا",
+    "شبکه اجتماعی"
+  ],
+  "relatedTools": [],
+  "summary": "ویرگول یک پلتفرم فارسی برای نوشتن، خواندن، انتشار محتوا، دنبال‌کردن نویسندگان و تعامل پیرامون نوشته‌ها است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته یک پلتفرم publishing شامل editor، profile، follow، feed، tag و interaction از نظر فنی قابل ساخت است؛ چالش اصلی ایجاد جامعه نویسندگان و مخاطبان است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر نوشته‌ای منتشر می‌کند، مخاطبان آن را از طریق feed، موضوع یا پروفایل پیدا می‌کنند و با نویسنده و محتوا تعامل دارند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Editor، feed و profile"
+      },
+      {
+        "type": "backend",
+        "label": "Publishing و social graph"
+      },
+      {
+        "type": "database",
+        "label": "Posts، users و interactions"
+      },
+      {
+        "type": "search",
+        "label": "Search و topic discovery"
+      }
+    ],
+    "limitations": [
+      "جامعه نویسندگان قابل ایجاد فوری نیست.",
+      "Recommendation بدون داده کافی محدود است.",
+      "Moderation محتوای کاربر نیازمند عملیات مداوم است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Virgool",
+      "content": "Build a Persian publishing and social-reading platform with user profiles, a rich-text editor, drafts, posts, tags, topics, publications, follows, personalized feeds, likes, comments, bookmarks, search, reading-time estimates, post analytics, and moderation tools.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Virgool",
+    "buildableVersion": "شبکه انتشار محتوای فارسی با editor و feed",
+    "missing": [
+      "جامعه کاربران موجود",
+      "داده recommendation",
+      "برند و شبکه نویسندگان"
+    ]
+  },
+  "audience": [
+    "نویسندگان",
+    "تولیدکنندگان محتوا",
+    "کسب‌وکارها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "advertising",
+      "subscription",
+      "promotion"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ویرگول",
+      "ساخت مشابه Virgool",
+      "Virgool clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ویرگول ساخت؟",
+        "answer": "هسته یک پلتفرم publishing شامل editor، profile، follow، feed، tag و interaction از نظر فنی قابل ساخت است؛ چالش اصلی ایجاد جامعه نویسندگان و مخاطبان است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 1,
+    "proprietaryData": 4,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 4
+  }
+}

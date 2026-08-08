@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "tabnine",
+  "name": {
+    "fa": "تب‌ناین",
+    "en": "Tabnine"
+  },
+  "domain": "tabnine.com",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-coding",
+  "subcategory": "ai-code-assistant",
+  "tags": [
+    "AI Coding",
+    "Code Completion",
+    "Code Review",
+    "IDE"
+  ],
+  "relatedTools": [
+    "cursor",
+    "github-copilot",
+    "devin"
+  ],
+  "summary": "Tabnine یک دستیار هوش مصنوعی توسعه نرم‌افزار برای تولید و تکمیل کد، توضیح، refactoring و code review در محیط‌های توسعه است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "ساخت coding assistant روی مدل‌های موجود ممکن است، اما context عمیق repository، integrationهای متعدد IDE و کیفیت enterprise نسخه اصلی دشوارتر است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "توسعه‌دهنده در IDE کد یا درخواست طبیعی وارد می‌کند و سیستم completion، explanation، refactor یا review پیشنهاد می‌دهد.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "LLM coding API"
+      },
+      {
+        "type": "integration",
+        "label": "IDE extension"
+      },
+      {
+        "type": "backend",
+        "label": "Context service"
+      },
+      {
+        "type": "security",
+        "label": "Code privacy controls"
+      }
+    ],
+    "limitations": [
+      "مدل اختصاصی حذف می‌شود.",
+      "IDE coverage محدود است.",
+      "Repository personalization ساده خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Tabnine",
+      "content": "Build an AI coding assistant with IDE integration, inline completion, chat, code explanation, refactoring, test generation, code review, repository context retrieval, configurable coding rules, and privacy controls.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Tabnine",
+    "buildableVersion": "AI coding assistant روی مدل‌های موجود",
+    "missing": [
+      "مدل اختصاصی",
+      "IDE ecosystem کامل",
+      "enterprise context کامل"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "تیم‌های مهندسی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "seat-based"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت تب‌ناین",
+      "ساخت مشابه Tabnine",
+      "Tabnine clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه تب‌ناین ساخت؟",
+        "answer": "ساخت coding assistant روی مدل‌های موجود ممکن است، اما context عمیق repository، integrationهای متعدد IDE و کیفیت enterprise نسخه اصلی دشوارتر است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 3,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

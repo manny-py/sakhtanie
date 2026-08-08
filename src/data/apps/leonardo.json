@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "leonardo",
+  "name": {
+    "fa": "لئوناردو",
+    "en": "Leonardo AI"
+  },
+  "domain": "leonardo.ai",
+  "origin": "global",
+  "status": "published",
+  "category": "design-image",
+  "subcategory": "ai-image-generation",
+  "tags": [
+    "AI Image",
+    "Design",
+    "Image Editing",
+    "Creative AI"
+  ],
+  "relatedTools": [
+    "midjourney",
+    "canva"
+  ],
+  "summary": "Leonardo AI یک پلتفرم تولید و ویرایش تصویر مبتنی بر هوش مصنوعی با text-to-image، image guidance و ابزارهای creative workflow است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "ساخت SaaS روی image-generation APIها ممکن است، اما مدل‌ها، consistency و مجموعه ابزارهای اختصاصی نسخه اصلی قابل بازسازی سریع نیستند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر prompt یا تصویر مرجع می‌دهد، مدل و تنظیمات را انتخاب می‌کند، چند خروجی تولید و سپس آن‌ها را اصلاح می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "Image generation API"
+      },
+      {
+        "type": "frontend",
+        "label": "Generation workspace"
+      },
+      {
+        "type": "storage",
+        "label": "Generated assets"
+      },
+      {
+        "type": "backend",
+        "label": "Generation jobs"
+      }
+    ],
+    "limitations": [
+      "مدل اختصاصی حذف می‌شود.",
+      "Character consistency محدود است.",
+      "Advanced canvas ساده خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Leonardo AI",
+      "content": "Build an AI image creation SaaS using licensed image-model APIs with text-to-image, image-to-image, style references, generation history, prompt presets, variations, upscaling, background removal, collections, and usage metering.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Leonardo AI",
+    "buildableVersion": "AI image workspace روی مدل‌های موجود",
+    "missing": [
+      "مدل اختصاصی",
+      "advanced consistency",
+      "creative suite کامل"
+    ]
+  },
+  "audience": [
+    "طراحان",
+    "مارکترها",
+    "تولیدکنندگان محتوا"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت لئوناردو",
+      "ساخت مشابه Leonardo AI",
+      "Leonardo AI clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه لئوناردو ساخت؟",
+        "answer": "ساخت SaaS روی image-generation APIها ممکن است، اما مدل‌ها، consistency و مجموعه ابزارهای اختصاصی نسخه اصلی قابل بازسازی سریع نیستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 4,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

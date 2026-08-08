@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "najva",
+  "name": {
+    "fa": "نجوا",
+    "en": "Najva"
+  },
+  "domain": "najva.com",
+  "origin": "iranian",
+  "status": "published",
+  "category": "marketing-crm-support",
+  "subcategory": "retention-marketing",
+  "tags": [
+    "Retention Marketing",
+    "Push Notification",
+    "Email",
+    "SMS"
+  ],
+  "relatedTools": [
+    "mailchimp",
+    "yektanet"
+  ],
+  "summary": "نجوا یک سرویس ایرانی retention marketing برای اجرای ارتباطات بازگشت مشتری از طریق کانال‌هایی مانند پوش نوتیفیکیشن، ایمیل و پیامک است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "هسته campaign management، segmentation، scheduling و delivery روی providerهای خارجی یا داخلی قابل ساخت است؛ delivery در مقیاس و reputation management بخش سخت‌تر است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کسب‌وکار مخاطبان را جمع‌آوری یا segment می‌کند، کمپین می‌سازد و پیام را از یک یا چند کانال برای بازگرداندن کاربران ارسال می‌کند.",
+    "requirements": [
+      {
+        "type": "backend",
+        "label": "Campaign engine"
+      },
+      {
+        "type": "database",
+        "label": "Contacts و segments"
+      },
+      {
+        "type": "integrations",
+        "label": "Email/SMS/Push providers"
+      },
+      {
+        "type": "analytics",
+        "label": "Delivery و engagement reports"
+      }
+    ],
+    "limitations": [
+      "Email reputation در مقیاس نیازمند زیرساخت تخصصی است.",
+      "SMS وابسته به provider است.",
+      "Browser push به محدودیت‌های پلتفرم‌ها وابسته است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Najva",
+      "content": "Build a retention-marketing SaaS with contact lists, segments, campaigns, templates, scheduled sends, web push, email and SMS provider integrations, delivery logs, click tracking, unsubscribe management, automation journeys, and campaign analytics.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Najva",
+    "buildableVersion": "Retention marketing SaaS چندکاناله",
+    "missing": [
+      "delivery infrastructure در مقیاس",
+      "provider relationships",
+      "reputation data"
+    ]
+  },
+  "audience": [
+    "فروشگاه‌ها",
+    "مارکترها",
+    "SaaSها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت نجوا",
+      "ساخت مشابه Najva",
+      "Najva clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه نجوا ساخت؟",
+        "answer": "هسته campaign management، segmentation، scheduling و delivery روی providerهای خارجی یا داخلی قابل ساخت است؛ delivery در مقیاس و reputation management بخش سخت‌تر است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

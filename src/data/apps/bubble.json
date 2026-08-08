@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "bubble",
+  "name": {
+    "fa": "بابل",
+    "en": "Bubble"
+  },
+  "domain": "bubble.io",
+  "origin": "global",
+  "status": "published",
+  "category": "app-website-builders",
+  "subcategory": "no-code-app-builder",
+  "tags": [
+    "No-code",
+    "App Builder",
+    "Database",
+    "Workflow"
+  ],
+  "relatedTools": [
+    "webflow",
+    "softr",
+    "glide"
+  ],
+  "summary": "Bubble یک پلتفرم full-stack no-code برای ساخت اپ‌های وب و موبایل با UI بصری، دیتابیس، منطق workflow و قابلیت‌های AI است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک visual app builder محدود قابل ساخت است، اما runtime عمومی، responsive editor، workflow engine و plugin ecosystem دامنه بسیار بزرگی دارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر UI، data model و workflow را طراحی می‌کند و اپ را بدون نوشتن کد مستقیم منتشر می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Visual UI editor"
+      },
+      {
+        "type": "backend",
+        "label": "Workflow engine"
+      },
+      {
+        "type": "database",
+        "label": "Dynamic data model"
+      },
+      {
+        "type": "runtime",
+        "label": "Application runtime"
+      }
+    ],
+    "limitations": [
+      "Plugin ecosystem کامل حذف می‌شود.",
+      "Runtime عمومی محدود است.",
+      "Mobile builder کامل خارج از MVP است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Bubble",
+      "content": "Build a constrained no-code web app builder with drag-and-drop pages, responsive components, a relational data model, workflows, authentication, API calls, reusable components, preview, and deployment.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Bubble",
+    "buildableVersion": "No-code builder برای business web apps",
+    "missing": [
+      "runtime عمومی کامل",
+      "plugin ecosystem",
+      "native mobile کامل"
+    ]
+  },
+  "audience": [
+    "سازندگان no-code",
+    "استارتاپ‌ها",
+    "کسب‌وکارها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت بابل",
+      "ساخت مشابه Bubble",
+      "Bubble clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه بابل ساخت؟",
+        "answer": "یک visual app builder محدود قابل ساخت است، اما runtime عمومی، responsive editor، workflow engine و plugin ecosystem دامنه بسیار بزرگی دارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 2,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

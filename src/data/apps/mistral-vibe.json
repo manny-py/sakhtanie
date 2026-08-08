@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "slug": "mistral-vibe",
+  "name": {
+    "fa": "میسترال وایب",
+    "en": "Mistral Vibe"
+  },
+  "domain": "mistral.ai",
+  "origin": "global",
+  "status": "published",
+  "category": "ai-assistants",
+  "subcategory": "ai-work-agent",
+  "tags": [
+    "AI Agent",
+    "Research",
+    "Documents",
+    "Coding"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "claude",
+    "devin"
+  ],
+  "summary": "Mistral Vibe یک AI agent برای کارهای طولانی‌تر شامل تحقیق، تولید اسناد، تحلیل داده، automation و coding است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "یک work agent با research، files و tools قابل ساخت است، اما integrationهای سازمانی، مدل‌ها و agent runtime کامل نسخه اصلی پیچیده‌اند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر نتیجه موردنظر را تعریف می‌کند و agent با منابع، فایل‌ها و ابزارهای متصل مراحل لازم را انجام داده و deliverable تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "LLM/agent API"
+      },
+      {
+        "type": "tools",
+        "label": "Connected tools"
+      },
+      {
+        "type": "backend",
+        "label": "Long-running task runtime"
+      },
+      {
+        "type": "database",
+        "label": "Context و task state"
+      }
+    ],
+    "limitations": [
+      "مدل اختصاصی Mistral حذف می‌شود.",
+      "Enterprise integrations محدود هستند.",
+      "Long-running reliability ساده‌تر است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Mistral Vibe",
+      "content": "Build a work-focused AI agent with chat, deep research, file analysis, document generation, connected-tool actions, task plans, human approval checkpoints, reusable agent workflows, scheduled jobs, coding tools, and auditable execution history.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Mistral Vibe",
+    "buildableVersion": "Work agent با research و connected tools",
+    "missing": [
+      "Mistral models",
+      "enterprise integrations کامل",
+      "agent runtime کامل"
+    ]
+  },
+  "audience": [
+    "دانش‌کارها",
+    "توسعه‌دهندگان",
+    "تیم‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت میسترال وایب",
+      "ساخت مشابه Mistral Vibe",
+      "Mistral Vibe clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه میسترال وایب ساخت؟",
+        "answer": "یک work agent با research، files و tools قابل ساخت است، اما integrationهای سازمانی، مدل‌ها و agent runtime کامل نسخه اصلی پیچیده‌اند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

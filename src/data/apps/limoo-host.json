@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 2,
+  "slug": "limoo-host",
+  "name": {
+    "fa": "لیموهاست",
+    "en": "Limoo Host"
+  },
+  "domain": "limoo.host",
+  "origin": "iranian",
+  "status": "published",
+  "category": "developer-cloud",
+  "subcategory": "web-hosting",
+  "tags": [
+    "Hosting",
+    "VPS",
+    "Cloud",
+    "Domain"
+  ],
+  "relatedTools": [
+    "liara",
+    "arvancloud"
+  ],
+  "summary": "لیموهاست یک ارائه‌دهنده ایرانی خدمات میزبانی شامل هاست وب، سرور مجازی، سرور اختصاصی، سرویس ابری و ثبت دامنه است.",
+  "verdict": {
+    "value": "no",
+    "confidence": "high",
+    "short": "بازسازی محصول اصلی در این مقیاس برای یک پروژه مستقل منطقی نیست.",
+    "reason": "پنل فروش و مدیریت سرویس قابل ساخت است، اما خود محصول اصلی به شبکه، دیتاسنتر، سرورها، مانیتورینگ، امنیت، پشتیبانی و عملیات زیرساختی دائمی وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر سرویس میزبانی را انتخاب و خریداری می‌کند، سپس منابع، دامنه، وضعیت سرویس، صورتحساب و پشتیبانی را از پنل مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "Compute و hosting infrastructure"
+      },
+      {
+        "type": "backend",
+        "label": "Provisioning و billing control plane"
+      },
+      {
+        "type": "network",
+        "label": "DNS، networking و monitoring"
+      },
+      {
+        "type": "support",
+        "label": "Operational support tooling"
+      }
+    ],
+    "limitations": [
+      "دیتاسنتر و سخت‌افزار با نرم‌افزار جایگزین نمی‌شوند.",
+      "SLA واقعی نیازمند عملیات 24/7 است.",
+      "امنیت و شبکه در production پیچیدگی بالایی دارند.",
+      "Provisioning چندمحیطی در MVP محدود خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Limoo Host",
+      "content": "Build a hosting-provider control panel for a small infrastructure footprint with customer accounts, hosting plans, VPS products, orders, invoices, domain records, service status, provisioning jobs, usage metrics, support tickets, alerts, and admin operations. Integrate with existing infrastructure providers instead of operating a data center.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Limoo Host",
+    "buildableVersion": "پنل hosting reseller روی زیرساخت موجود",
+    "missing": [
+      "دیتاسنتر",
+      "شبکه فیزیکی",
+      "سخت‌افزار",
+      "عملیات 24/7"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان",
+    "کسب‌وکارها",
+    "مدیران سایت"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "hosting-sales"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت لیموهاست",
+      "ساخت مشابه Limoo Host",
+      "Limoo Host clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه لیموهاست ساخت؟",
+        "answer": "پنل فروش و مدیریت سرویس قابل ساخت است، اما خود محصول اصلی به شبکه، دیتاسنتر، سرورها، مانیتورینگ، امنیت، پشتیبانی و عملیات زیرساختی دائمی وابسته است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 2,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 3,
+    "gapFromOriginal": 5,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

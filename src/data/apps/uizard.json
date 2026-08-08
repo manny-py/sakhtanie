@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "uizard",
+  "name": {
+    "fa": "یوزارد",
+    "en": "Uizard"
+  },
+  "domain": "uizard.io",
+  "origin": "global",
+  "status": "published",
+  "category": "app-website-builders",
+  "subcategory": "ai-ui-design",
+  "tags": [
+    "UI Design",
+    "Prototype",
+    "AI",
+    "Wireframe"
+  ],
+  "relatedTools": [
+    "figma",
+    "canva"
+  ],
+  "summary": "Uizard یک ابزار طراحی UI مبتنی بر AI برای تولید mockup و prototype قابل ویرایش از prompt، screenshot یا wireframe است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "نسخه متمرکز با prompt-to-layout، component editor و prototype links روی مدل‌های موجود قابل ساخت است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر prompt یا تصویر می‌دهد، چند screen تولید می‌شود و سپس components و navigation را در editor ویرایش می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Visual UI editor"
+      },
+      {
+        "type": "ai",
+        "label": "Layout/design generation"
+      },
+      {
+        "type": "database",
+        "label": "Projects و screens"
+      },
+      {
+        "type": "collaboration",
+        "label": "Comments و sharing"
+      }
+    ],
+    "limitations": [
+      "Design intelligence نسخه اصلی محدود خواهد بود.",
+      "Screenshot parsing وابسته به مدل است.",
+      "Component library کوچک‌تر است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Uizard",
+      "content": "Build an AI UI prototyping tool with text-to-mockup generation, multi-screen projects, editable components, drag-and-drop layout, screenshot-to-design assistance, wireframes, themes, prototype links, comments, collaboration, and exports.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Uizard",
+    "buildableVersion": "AI UI prototype builder",
+    "missing": [
+      "design model اصلی",
+      "component ecosystem کامل"
+    ]
+  },
+  "audience": [
+    "طراحان",
+    "Product Managerها",
+    "بنیان‌گذاران"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت یوزارد",
+      "ساخت مشابه Uizard",
+      "Uizard clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه یوزارد ساخت؟",
+        "answer": "نسخه متمرکز با prompt-to-layout، component editor و prototype links روی مدل‌های موجود قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 3,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 2,
+    "economicValue": 5
+  }
+}

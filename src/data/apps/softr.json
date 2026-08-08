@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "softr",
+  "name": {
+    "fa": "سافتر",
+    "en": "Softr"
+  },
+  "domain": "softr.io",
+  "origin": "global",
+  "status": "published",
+  "category": "app-website-builders",
+  "subcategory": "business-app-builder",
+  "tags": [
+    "No-code",
+    "Portals",
+    "Internal Tools",
+    "AI Builder"
+  ],
+  "relatedTools": [
+    "glide",
+    "airtable",
+    "bubble"
+  ],
+  "summary": "Softr یک app builder بدون کد برای ساخت portal، internal tool، CRM و نرم‌افزارهای کسب‌وکار روی دیتابیس داخلی یا منابع داده خارجی است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "نسخه‌ای متمرکز بر portal و internal tool با blocks، database و permissions از نظر فنی قابل ساخت است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر app را با prompt یا editor می‌سازد، داده را متصل می‌کند، roleها را تعریف می‌کند و برنامه را منتشر می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Block-based builder"
+      },
+      {
+        "type": "database",
+        "label": "Application data"
+      },
+      {
+        "type": "auth",
+        "label": "Roles و permissions"
+      },
+      {
+        "type": "publishing",
+        "label": "Hosted app runtime"
+      }
+    ],
+    "limitations": [
+      "تعداد data connectorها محدود است.",
+      "Template ecosystem محدود خواهد بود.",
+      "Enterprise controls ساده هستند."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Softr",
+      "content": "Build a no-code portal and internal-tool builder with reusable blocks, native database tables, external data connectors, authentication, user groups, permissions, forms, dashboards, workflows, custom domains, and publishing.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Softr",
+    "buildableVersion": "Portal و internal-tool builder",
+    "missing": [
+      "integration catalog کامل",
+      "template ecosystem بزرگ"
+    ]
+  },
+  "audience": [
+    "SMBها",
+    "عملیات",
+    "تیم‌های داخلی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت سافتر",
+      "ساخت مشابه Softr",
+      "Softr clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه سافتر ساخت؟",
+        "answer": "نسخه‌ای متمرکز بر portal و internal tool با blocks، database و permissions از نظر فنی قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

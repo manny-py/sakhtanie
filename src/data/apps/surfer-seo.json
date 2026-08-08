@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "surfer-seo",
+  "name": {
+    "fa": "سرفر",
+    "en": "Surfer"
+  },
+  "domain": "surferseo.com",
+  "origin": "global",
+  "status": "published",
+  "category": "writing-seo",
+  "subcategory": "content-optimization",
+  "tags": [
+    "SEO",
+    "Content Optimization",
+    "Content Editor",
+    "AI"
+  ],
+  "relatedTools": [
+    "semrush",
+    "ahrefs"
+  ],
+  "summary": "Surfer یک پلتفرم بهینه‌سازی محتوای ارگانیک برای تحلیل صفحات، برنامه‌ریزی محتوا و بهبود visibility در search است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "Content editor و scoring مبتنی بر SERP قابل ساخت است، اما quality model، datasets و workflowهای کامل نسخه اصلی نیازمند داده و iteration زیاد هستند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر keyword یا محتوا را وارد می‌کند، سیستم نتایج و رقبا را تحلیل می‌کند و پیشنهادهایی برای ساختار و بهینه‌سازی محتوا ارائه می‌دهد.",
+    "requirements": [
+      {
+        "type": "search",
+        "label": "SERP data provider"
+      },
+      {
+        "type": "analysis",
+        "label": "Content scoring"
+      },
+      {
+        "type": "frontend",
+        "label": "Content editor"
+      },
+      {
+        "type": "ai",
+        "label": "Optimization assistance"
+      }
+    ],
+    "limitations": [
+      "Scoring model دقیق نسخه اصلی حذف می‌شود.",
+      "SERP data وابسته به provider است.",
+      "AI visibility dataset محدود خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Surfer",
+      "content": "Build an SEO content optimization tool with keyword input, SERP competitor analysis, content briefs, term recommendations, structure suggestions, content scoring, an editor, audit reports, AI-assisted drafting, and optimization history.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Surfer",
+    "buildableVersion": "SEO content editor و optimizer",
+    "missing": [
+      "scoring dataset اصلی",
+      "SERP infrastructure کامل"
+    ]
+  },
+  "audience": [
+    "نویسندگان",
+    "SEOها",
+    "تیم محتوا"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت سرفر",
+      "ساخت مشابه Surfer",
+      "Surfer clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه سرفر ساخت؟",
+        "answer": "Content editor و scoring مبتنی بر SERP قابل ساخت است، اما quality model، datasets و workflowهای کامل نسخه اصلی نیازمند داده و iteration زیاد هستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 3,
+    "infrastructure": 2,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

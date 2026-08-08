@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "glide",
+  "name": {
+    "fa": "گلاید",
+    "en": "Glide"
+  },
+  "domain": "glideapps.com",
+  "origin": "global",
+  "status": "published",
+  "category": "app-website-builders",
+  "subcategory": "business-app-builder",
+  "tags": [
+    "No-code",
+    "Business Apps",
+    "Data",
+    "Workflow"
+  ],
+  "relatedTools": [
+    "airtable",
+    "softr",
+    "bubble"
+  ],
+  "summary": "Glide یک پلتفرم no-code و AI برای تبدیل داده‌ها و فرایندهای کسب‌وکار به اپ‌های داخلی و عملیاتی است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه متمرکز این محصول قابل ساخت است.",
+    "reason": "نسخه متمرکز data-first app builder با components، roles و workflows کاملاً قابل پیاده‌سازی است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر data source را متصل می‌کند یا از prompt شروع می‌کند، UI و workflow می‌سازد و اپ داخلی را برای تیم منتشر می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Component-based builder"
+      },
+      {
+        "type": "database",
+        "label": "Data abstraction"
+      },
+      {
+        "type": "automation",
+        "label": "Workflow engine"
+      },
+      {
+        "type": "auth",
+        "label": "Roles و permissions"
+      }
+    ],
+    "limitations": [
+      "Connector catalog محدود است.",
+      "Component system ساده‌تر خواهد بود.",
+      "Enterprise governance محدود است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Glide",
+      "content": "Build a data-first no-code business app builder with tables, spreadsheet imports, forms, lists, dashboards, role-based access, computed columns, workflows, actions, integrations, themes, and publishing.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Glide",
+    "buildableVersion": "Data-first internal app builder",
+    "missing": [
+      "connector catalog بزرگ",
+      "enterprise governance کامل"
+    ]
+  },
+  "audience": [
+    "عملیات",
+    "SMBها",
+    "تیم‌های داخلی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت گلاید",
+      "ساخت مشابه Glide",
+      "Glide clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه گلاید ساخت؟",
+        "answer": "نسخه متمرکز data-first app builder با components، roles و workflows کاملاً قابل پیاده‌سازی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}

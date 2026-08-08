@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 2,
+  "slug": "copy-ai",
+  "name": {
+    "fa": "کپی دات ای‌آی",
+    "en": "Copy.ai"
+  },
+  "domain": "copy.ai",
+  "origin": "global",
+  "status": "published",
+  "category": "writing-seo",
+  "subcategory": "gtm-ai",
+  "tags": [
+    "AI Marketing",
+    "GTM",
+    "Workflows",
+    "Content"
+  ],
+  "relatedTools": [
+    "jasper",
+    "writesonic",
+    "hubspot"
+  ],
+  "summary": "Copy.ai یک GTM AI platform برای خودکارسازی workflowهای فروش و بازاریابی، تحقیق، تولید محتوا و فرایندهای go-to-market است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "Workflowهای AI برای marketing و sales قابل ساخت‌اند، اما breadth integrationها، enterprise data layer و playbookهای نسخه اصلی دامنه زیادی دارند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم workflow تعریف می‌کند، داده و context را وارد می‌کند و agentها فرایندهایی مانند research، content و campaign execution را انجام می‌دهند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "LLM orchestration"
+      },
+      {
+        "type": "automation",
+        "label": "Workflow engine"
+      },
+      {
+        "type": "integrations",
+        "label": "GTM connectors"
+      },
+      {
+        "type": "database",
+        "label": "Context و workflow state"
+      }
+    ],
+    "limitations": [
+      "Integrationهای enterprise محدود می‌شوند.",
+      "Data foundation ساده خواهد بود.",
+      "Agent library کامل حذف می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Copy.ai",
+      "content": "Build an AI go-to-market workflow platform with reusable workflows, research steps, content generation, brand voice, knowledge context, structured tables, approval steps, CRM integrations, campaign templates, execution logs, and usage controls.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Copy.ai",
+    "buildableVersion": "AI workflow platform برای marketing",
+    "missing": [
+      "enterprise integration breadth",
+      "GTM data layer کامل"
+    ]
+  },
+  "audience": [
+    "مارکترها",
+    "فروش",
+    "Revenue teams"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کپی دات ای‌آی",
+      "ساخت مشابه Copy.ai",
+      "Copy.ai clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه کپی دات ای‌آی ساخت؟",
+        "answer": "Workflowهای AI برای marketing و sales قابل ساخت‌اند، اما breadth integrationها، enterprise data layer و playbookهای نسخه اصلی دامنه زیادی دارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 3,
+    "economicValue": 5
+  }
+}

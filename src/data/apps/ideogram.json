@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 2,
+  "slug": "ideogram",
+  "name": {
+    "fa": "ایدئوگرام",
+    "en": "Ideogram"
+  },
+  "domain": "ideogram.ai",
+  "origin": "global",
+  "status": "published",
+  "category": "design-image",
+  "subcategory": "ai-image-generation",
+  "tags": [
+    "AI Image",
+    "Typography",
+    "Image Editing",
+    "Design"
+  ],
+  "relatedTools": [
+    "midjourney",
+    "leonardo"
+  ],
+  "summary": "Ideogram یک پلتفرم تولید و ویرایش تصویر AI است که روی prompt fidelity، طراحی و نمایش متن در تصاویر تمرکز ویژه دارد.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "لایه محصول و workflow قابل ساخت است، اما کیفیت مدل تولید تصویر و typography هسته مزیت اصلی محصول است."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر prompt وارد می‌کند، تصاویر تولید می‌شوند و سپس با remix، reference، edit یا upscale روی نتیجه کار می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "Image model API"
+      },
+      {
+        "type": "frontend",
+        "label": "Generation UI"
+      },
+      {
+        "type": "storage",
+        "label": "Generated images"
+      },
+      {
+        "type": "backend",
+        "label": "Generation queue"
+      }
+    ],
+    "limitations": [
+      "مدل اختصاصی حذف می‌شود.",
+      "کیفیت typography به provider وابسته خواهد بود.",
+      "Canvas کامل محدود است."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Ideogram",
+      "content": "Build an AI image generation workspace with prompt-based generation, style references, image remixing, editing, variations, typography-oriented presets, private generations, collections, sharing, downloads, and usage limits.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Ideogram",
+    "buildableVersion": "AI image generator با تمرکز بر design و text",
+    "missing": [
+      "مدل اختصاصی",
+      "typography quality اصلی"
+    ]
+  },
+  "audience": [
+    "طراحان",
+    "برندها",
+    "تولیدکنندگان محتوا"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ایدئوگرام",
+      "ساخت مشابه Ideogram",
+      "Ideogram clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه ایدئوگرام ساخت؟",
+        "answer": "لایه محصول و workflow قابل ساخت است، اما کیفیت مدل تولید تصویر و typography هسته مزیت اصلی محصول است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 4,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

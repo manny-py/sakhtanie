@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "slug": "danup",
+  "name": {
+    "fa": "داناپ",
+    "en": "Danup"
+  },
+  "domain": "danup.ir",
+  "origin": "iranian",
+  "status": "published",
+  "category": "learning-career",
+  "subcategory": "online-learning",
+  "tags": [
+    "آموزش آنلاین",
+    "دوره ویدیویی",
+    "مهارت",
+    "بازار کار"
+  ],
+  "relatedTools": [
+    "faradars",
+    "maktabkhooneh",
+    "udemy"
+  ],
+  "summary": "داناپ یک پلتفرم ایرانی آموزش آنلاین با دوره‌های ویدیویی در حوزه‌هایی مانند برنامه‌نویسی، کسب‌وکار، طراحی، فناوری و مهارت‌های تخصصی است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته محصول ساختنیه، اما رسیدن به عمق و مقیاس نسخه اصلی دشوار است.",
+    "reason": "LMS، فروش دوره و ارتباط مدرس و دانشجو قابل ساخت است، اما کتابخانه بزرگ محتوای آموزشی، مدرس‌ها و اعتبار بازار نسخه اصلی با کدنویسی صرف ایجاد نمی‌شود."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر دوره موردنظر را پیدا و خریداری می‌کند، محتوای آموزشی را مشاهده می‌کند و از طریق حساب خود روند یادگیری و ارتباط با مدرس را مدیریت می‌کند.",
+    "requirements": [
+      {
+        "type": "frontend",
+        "label": "Course catalog و learning UI"
+      },
+      {
+        "type": "backend",
+        "label": "Enrollment و purchase flow"
+      },
+      {
+        "type": "storage",
+        "label": "Video/course assets"
+      },
+      {
+        "type": "database",
+        "label": "Courses، users و progress"
+      }
+    ],
+    "limitations": [
+      "کتابخانه بزرگ محتوا قابل بازسازی فوری نیست.",
+      "شبکه مدرس‌ها نیازمند توسعه کسب‌وکار است.",
+      "هزینه storage و delivery ویدیو با مقیاس افزایش می‌یابد."
+    ],
+    "prompt": {
+      "title": "Build a focused product inspired by Danup",
+      "content": "Build a Persian online course marketplace with instructors, course pages, sections, video lessons, purchases, enrollments, progress tracking, reviews, learner dashboards, instructor profiles, support tickets, search, categories, and certificates.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-08"
+    }
+  },
+  "comparison": {
+    "original": "Danup",
+    "buildableVersion": "LMS و marketplace دوره فارسی",
+    "missing": [
+      "کاتالوگ موجود",
+      "شبکه مدرس‌ها",
+      "اعتبار بازار"
+    ]
+  },
+  "audience": [
+    "دانشجویان",
+    "متخصصان",
+    "مدرس‌ها"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "course-sales",
+      "subscription",
+      "commission"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت داناپ",
+      "ساخت مشابه Danup",
+      "Danup clone"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه داناپ ساخت؟",
+        "answer": "LMS، فروش دوره و ارتباط مدرس و دانشجو قابل ساخت است، اما کتابخانه بزرگ محتوای آموزشی، مدرس‌ها و اعتبار بازار نسخه اصلی با کدنویسی صرف ایجاد نمی‌شود."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 3,
+    "proprietaryData": 5,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 1,
+    "economicValue": 5
+  }
+}
