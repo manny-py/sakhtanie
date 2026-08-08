@@ -20,6 +20,7 @@ const timeLabels: Record<string, string> = {
   "few-months": "چند ماه",
 };
 
+
 const skillLabels: Record<string, string> = {
   beginner: "مقدماتی",
   intermediate: "متوسط",
@@ -91,7 +92,9 @@ const searchableTools = apps.map((app) => ({
   ></div>
 </div>
 
-<script is:inline>
+<script>
+  import { track } from "../lib/analytics";
+
   const root = document.querySelector("[data-sak-search]");
 
   if (root instanceof HTMLElement) {
@@ -388,6 +391,9 @@ const searchableTools = apps.map((app) => ({
         });
     };
 
+    let searchTrackTimer = 0;
+    let lastTrackedQuery = "";
+
     const runSearch = () => {
       const query = normalize(input.value);
 
@@ -434,7 +440,31 @@ const searchableTools = apps.map((app) => ({
         .slice(0, limit)
         .map((entry) => entry.tool);
 
-      renderResults(matches);
+
+      window.clearTimeout(searchTrackTimer);
+
+      if (
+        query.length >= 2 &&
+        query !== lastTrackedQuery
+      ) {
+        const queryToTrack = query;
+        const resultsCount = matches.length;
+
+        searchTrackTimer = window.setTimeout(() => {
+          if (queryToTrack === lastTrackedQuery) {
+            return;
+          }
+
+          lastTrackedQuery = queryToTrack;
+
+          track("search_used", {
+            query: queryToTrack,
+            results_count: resultsCount,
+          });
+        }, 700);
+      }
+
+renderResults(matches);
     };
 
     input.addEventListener("input", runSearch);

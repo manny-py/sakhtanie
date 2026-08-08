@@ -1,0 +1,493 @@
+<section class="card live-globe-card" data-live-globe>
+  <div class="live-globe-header">
+    <div>
+      <span class="live-kicker">LIVE PRESENCE</span>
+      <h2>بازدیدکنندگان آنلاین</h2>
+      <p class="muted">
+        موقعیت‌ها در سطح کشور نمایش داده می‌شوند و مکان دقیق کاربران ذخیره نمی‌شود.
+      </p>
+    </div>
+
+    <div class="live-counter" aria-live="polite">
+      <span class="live-indicator" aria-hidden="true"></span>
+      <strong data-live-count>0</strong>
+      <span>آنلاین</span>
+    </div>
+  </div>
+
+  <div class="globe-stage">
+    <canvas
+      class="live-globe-canvas"
+      data-live-canvas
+      aria-label="نمای زنده پراکندگی جغرافیایی کاربران آنلاین"
+    ></canvas>
+
+    <div class="globe-status muted" data-live-status>
+      در حال اتصال به داده زنده...
+    </div>
+  </div>
+
+  <div class="live-country-list" data-live-countries></div>
+</section>
+
+<script>
+  const ENDPOINT =
+    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev/v1/live";
+
+  const COUNTRY_CENTROIDS: Record<
+    string,
+    { name: string; lat: number; lng: number }
+  > = {
+    AE: { name: "امارات", lat: 23.42, lng: 53.85 },
+    AR: { name: "آرژانتین", lat: -38.42, lng: -63.62 },
+    AT: { name: "اتریش", lat: 47.52, lng: 14.55 },
+    AU: { name: "استرالیا", lat: -25.27, lng: 133.78 },
+    BE: { name: "بلژیک", lat: 50.50, lng: 4.47 },
+    BR: { name: "برزیل", lat: -14.24, lng: -51.93 },
+    CA: { name: "کانادا", lat: 56.13, lng: -106.35 },
+    CH: { name: "سوئیس", lat: 46.82, lng: 8.23 },
+    CN: { name: "چین", lat: 35.86, lng: 104.20 },
+    CZ: { name: "جمهوری چک", lat: 49.82, lng: 15.47 },
+    DE: { name: "آلمان", lat: 51.17, lng: 10.45 },
+    DK: { name: "دانمارک", lat: 56.26, lng: 9.50 },
+    ES: { name: "اسپانیا", lat: 40.46, lng: -3.75 },
+    FI: { name: "فنلاند", lat: 61.92, lng: 25.75 },
+    FR: { name: "فرانسه", lat: 46.23, lng: 2.21 },
+    GB: { name: "بریتانیا", lat: 55.38, lng: -3.44 },
+    GR: { name: "یونان", lat: 39.07, lng: 21.82 },
+    HK: { name: "هنگ‌کنگ", lat: 22.32, lng: 114.17 },
+    HU: { name: "مجارستان", lat: 47.16, lng: 19.50 },
+    ID: { name: "اندونزی", lat: -0.79, lng: 113.92 },
+    IE: { name: "ایرلند", lat: 53.14, lng: -7.69 },
+    IL: { name: "اسرائیل", lat: 31.05, lng: 34.85 },
+    IN: { name: "هند", lat: 20.59, lng: 78.96 },
+    IR: { name: "ایران", lat: 32.43, lng: 53.69 },
+    IT: { name: "ایتالیا", lat: 41.87, lng: 12.57 },
+    JP: { name: "ژاپن", lat: 36.20, lng: 138.25 },
+    KR: { name: "کره جنوبی", lat: 35.91, lng: 127.77 },
+    MX: { name: "مکزیک", lat: 23.63, lng: -102.55 },
+    NL: { name: "هلند", lat: 52.13, lng: 5.29 },
+    NO: { name: "نروژ", lat: 60.47, lng: 8.47 },
+    NZ: { name: "نیوزیلند", lat: -40.90, lng: 174.89 },
+    PL: { name: "لهستان", lat: 51.92, lng: 19.15 },
+    PT: { name: "پرتغال", lat: 39.40, lng: -8.22 },
+    RO: { name: "رومانی", lat: 45.94, lng: 24.97 },
+    RU: { name: "روسیه", lat: 61.52, lng: 105.32 },
+    SA: { name: "عربستان", lat: 23.89, lng: 45.08 },
+    SE: { name: "سوئد", lat: 60.13, lng: 18.64 },
+    SG: { name: "سنگاپور", lat: 1.35, lng: 103.82 },
+    TR: { name: "ترکیه", lat: 38.96, lng: 35.24 },
+    UA: { name: "اوکراین", lat: 48.38, lng: 31.17 },
+    US: { name: "آمریکا", lat: 37.09, lng: -95.71 },
+  };
+
+  interface LiveCountry {
+    country: string;
+    visitors: number;
+  }
+
+  interface LiveResponse {
+    success: boolean;
+    online: number;
+    countries: LiveCountry[];
+    window_seconds: number;
+  }
+
+  const root = document.querySelector<HTMLElement>("[data-live-globe]");
+  const canvas =
+    root?.querySelector<HTMLCanvasElement>("[data-live-canvas]");
+  const countElement =
+    root?.querySelector<HTMLElement>("[data-live-count]");
+  const statusElement =
+    root?.querySelector<HTMLElement>("[data-live-status]");
+  const countryList =
+    root?.querySelector<HTMLElement>("[data-live-countries]");
+
+  if (
+    root &&
+    canvas &&
+    countElement &&
+    statusElement &&
+    countryList
+  ) {
+    const context = canvas.getContext("2d");
+
+    let countries: LiveCountry[] = [];
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = Math.max(1, rect.width);
+      height = Math.max(1, rect.height);
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+
+      context?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const project = (
+      lat: number,
+      lng: number,
+      rotation: number,
+      radius: number
+    ) => {
+      const phi = (lat * Math.PI) / 180;
+      const lambda = (lng * Math.PI) / 180;
+      const delta = lambda - rotation;
+
+      const x = Math.cos(phi) * Math.sin(delta);
+      const y = Math.sin(phi);
+      const z = Math.cos(phi) * Math.cos(delta);
+
+      return {
+        x: x * radius,
+        y: -y * radius,
+        visible: z > 0,
+        depth: z,
+      };
+    };
+
+    const drawLine = (
+      coordinates: Array<[number, number]>,
+      rotation: number,
+      radius: number,
+      cx: number,
+      cy: number
+    ) => {
+      if (!context) return;
+
+      let drawing = false;
+
+      context.beginPath();
+
+      for (const [lat, lng] of coordinates) {
+        const point = project(lat, lng, rotation, radius);
+
+        if (!point.visible) {
+          drawing = false;
+          continue;
+        }
+
+        const x = cx + point.x;
+        const y = cy + point.y;
+
+        if (!drawing) {
+          context.moveTo(x, y);
+          drawing = true;
+        } else {
+          context.lineTo(x, y);
+        }
+      }
+
+      context.stroke();
+    };
+
+    const render = (time: number) => {
+      if (!context) return;
+
+      context.clearRect(0, 0, width, height);
+
+      const size = Math.min(width, height);
+      const radius = size * 0.39;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      const rotation = (time * 0.000045) % (Math.PI * 2);
+
+      const sphere = context.createRadialGradient(
+        cx - radius * 0.3,
+        cy - radius * 0.35,
+        radius * 0.1,
+        cx,
+        cy,
+        radius
+      );
+
+      sphere.addColorStop(0, "rgba(34, 197, 94, 0.10)");
+      sphere.addColorStop(0.55, "rgba(8, 20, 18, 0.94)");
+      sphere.addColorStop(1, "rgba(3, 9, 8, 1)");
+
+      context.beginPath();
+      context.arc(cx, cy, radius, 0, Math.PI * 2);
+      context.fillStyle = sphere;
+      context.fill();
+
+      context.save();
+      context.beginPath();
+      context.arc(cx, cy, radius, 0, Math.PI * 2);
+      context.clip();
+
+      context.strokeStyle = "rgba(74, 222, 128, 0.13)";
+      context.lineWidth = 1;
+
+      for (const latitude of [-60, -30, 0, 30, 60]) {
+        const coords: Array<[number, number]> = [];
+
+        for (let lng = -180; lng <= 180; lng += 3) {
+          coords.push([latitude, lng]);
+        }
+
+        drawLine(coords, rotation, radius, cx, cy);
+      }
+
+      for (let longitude = -180; longitude < 180; longitude += 30) {
+        const coords: Array<[number, number]> = [];
+
+        for (let lat = -90; lat <= 90; lat += 3) {
+          coords.push([lat, longitude]);
+        }
+
+        drawLine(coords, rotation, radius, cx, cy);
+      }
+
+      const pulse = 0.5 + Math.sin(time * 0.006) * 0.5;
+
+      for (const item of countries) {
+        const geo = COUNTRY_CENTROIDS[item.country];
+
+        if (!geo) continue;
+
+        const point = project(
+          geo.lat,
+          geo.lng,
+          rotation,
+          radius
+        );
+
+        if (!point.visible) continue;
+
+        const x = cx + point.x;
+        const y = cy + point.y;
+
+        const baseRadius =
+          Math.min(7, 3.5 + Math.log2(item.visitors + 1));
+
+        context.beginPath();
+        context.arc(
+          x,
+          y,
+          baseRadius + pulse * 6,
+          0,
+          Math.PI * 2
+        );
+        context.fillStyle = `rgba(250, 204, 21, ${
+          0.08 + pulse * 0.08
+        })`;
+        context.fill();
+
+        context.beginPath();
+        context.arc(x, y, baseRadius, 0, Math.PI * 2);
+        context.fillStyle = "#facc15";
+        context.shadowColor = "#facc15";
+        context.shadowBlur = 14;
+        context.fill();
+
+        context.shadowBlur = 0;
+      }
+
+      context.restore();
+
+      context.beginPath();
+      context.arc(cx, cy, radius, 0, Math.PI * 2);
+      context.strokeStyle = "rgba(74, 222, 128, 0.28)";
+      context.lineWidth = 1.2;
+      context.stroke();
+
+      requestAnimationFrame(render);
+    };
+
+    const renderCountries = () => {
+      countryList.replaceChildren();
+
+      for (const item of countries) {
+        const geo = COUNTRY_CENTROIDS[item.country];
+
+        const pill = document.createElement("span");
+        pill.className = "live-country-pill";
+
+        const name =
+          geo?.name ??
+          (item.country === "XX"
+            ? "نامشخص"
+            : item.country);
+
+        pill.textContent = `${name} · ${item.visitors}`;
+
+        countryList.appendChild(pill);
+      }
+    };
+
+    const updateLive = async () => {
+      try {
+        const response = await fetch(ENDPOINT, {
+          headers: {
+            Accept: "application/json",
+          },
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = (await response.json()) as LiveResponse;
+
+        if (!data.success) {
+          throw new Error("Live endpoint returned failure");
+        }
+
+        countries = data.countries;
+        countElement.textContent = String(data.online);
+
+        statusElement.textContent =
+          data.online > 0
+            ? `فعال در ${data.countries.length} کشور · به‌روزرسانی خودکار`
+            : "در ۹۰ ثانیه اخیر کاربر فعالی ثبت نشده است.";
+
+        renderCountries();
+      } catch {
+        statusElement.textContent =
+          "دریافت داده زنده موقتاً ممکن نیست.";
+      }
+    };
+
+    const observer = new ResizeObserver(resize);
+    observer.observe(canvas);
+
+    resize();
+    updateLive();
+    requestAnimationFrame(render);
+
+    const pollTimer = window.setInterval(updateLive, 15_000);
+
+    window.addEventListener(
+      "pagehide",
+      () => {
+        window.clearInterval(pollTimer);
+        observer.disconnect();
+      },
+      { once: true }
+    );
+  }
+</script>
+
+<style>
+  .live-globe-card {
+    overflow: hidden;
+  }
+
+  .live-globe-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .live-globe-header h2 {
+    margin: 0.35rem 0 0.35rem;
+  }
+
+  .live-kicker {
+    font-family: monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+  }
+
+  .live-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    font-family: monospace;
+  }
+
+  .live-counter strong {
+    font-size: 1.5rem;
+  }
+
+  .live-indicator {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: #facc15;
+    box-shadow: 0 0 14px rgba(250, 204, 21, 0.75);
+    animation: live-pulse 1.8s ease-in-out infinite;
+  }
+
+  .globe-stage {
+    position: relative;
+    min-height: 460px;
+    display: grid;
+    place-items: center;
+  }
+
+  .live-globe-canvas {
+    display: block;
+    width: 100%;
+    height: 460px;
+  }
+
+  .globe-status {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .live-country-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-height: 2rem;
+    margin-top: 0.75rem;
+  }
+
+  .live-country-pill {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.78rem;
+    font-family: monospace;
+  }
+
+  @keyframes live-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.85);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .live-globe-header {
+      flex-direction: column;
+    }
+
+    .globe-stage {
+      min-height: 340px;
+    }
+
+    .live-globe-canvas {
+      height: 340px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-indicator {
+      animation: none;
+    }
+  }
+</style>

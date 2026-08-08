@@ -1,25 +1,91 @@
-<script is:inline>
-(function(){
+<script>
+  import { track } from "../lib/analytics";
 
-  window.trackEvent = function(event, payload = {}) {
+  const ANALYTICS_ENDPOINT =
+    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev";
 
-    console.log(
-      "[analytics]",
-      {
-        event,
-        payload
-      }
-    );
+  function getSessionId() {
+    const key = "sak_session_id";
 
-  };
+    const existing = localStorage.getItem(key);
 
-
-  window.trackEvent(
-    "page_view",
-    {
-      path: window.location.pathname
+    if (existing) {
+      return existing;
     }
-  );
 
-})();
+    const id = crypto.randomUUID();
+    localStorage.setItem(key, id);
+
+    return id;
+  }
+
+  async function sendHeartbeat() {
+    if (document.visibilityState !== "visible") {
+      return;
+    }
+
+    try {
+      await fetch(`${ANALYTICS_ENDPOINT}/v1/heartbeat`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          session_id: getSessionId(),
+          path: window.location.pathname,
+        }),
+        keepalive: true,
+      });
+    } catch {
+      // Analytics must never affect site usage.
+    }
+  }
+
+  track("page_view", {
+    path: window.location.pathname,
+  });
+
+  window.addEventListener("error", (event) => {
+    track("client_error", {
+      error_type: "window_error",
+      message: String(event.message || "Unknown error").slice(0, 300),
+      source: event.filename
+        ? new URL(event.filename, window.location.href).pathname.slice(0, 300)
+        : "",
+      line: event.lineno || 0,
+      column: event.colno || 0,
+    });
+  });
+
+  window.addEventListener("unhandledrejection", (event) => {
+    const reason =
+      event.reason instanceof Error
+        ? event.reason.message
+        : String(event.reason ?? "Unhandled rejection");
+
+    track("client_error", {
+      error_type: "unhandled_rejection",
+      message: reason.slice(0, 300),
+    });
+  });
+
+  sendHeartbeat();
+
+  const heartbeatTimer = window.setInterval(() => {
+    sendHeartbeat();
+  }, 30_000);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      sendHeartbeat();
+    }
+  });
+
+  window.addEventListener(
+    "pagehide",
+    () => {
+      window.clearInterval(heartbeatTimer);
+    },
+    { once: true }
+  );
 </script>

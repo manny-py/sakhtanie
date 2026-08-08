@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AnalyticsDashboard from "../components/AnalyticsDashboard.astro";
+import LiveGlobe from "../components/LiveGlobe.astro";
+---
+
+<BaseLayout
+  title="Analytics Dashboard | ساختنیه؟"
+  description="داشبورد تحلیل رفتار کاربران و عملکرد کاتالوگ ابزارهای ساختنیه"
+>
+  <Header />
+
+  <main class="container analytics-page">
+    <section class="analytics-hero">
+      <h1>Analytics Dashboard</h1>
+      <p class="muted">
+        نمای کلی از فعالیت کاربران و عملکرد سایت
+      </p>
+    </section>
+
+    <AnalyticsDashboard />
+
+    <LiveGlobe />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .analytics-page {
+    padding: 48px 0;
+  }
+
+  .analytics-hero {
+    margin-bottom: 32px;
+  }
+
+  .analytics-hero h1 {
+    margin-bottom: 8px;
+  }
+
+  :global(.live-globe-card) {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 560px) {
+    .analytics-page {
+      padding: 32px 0;
+    }
+  }
+</style>

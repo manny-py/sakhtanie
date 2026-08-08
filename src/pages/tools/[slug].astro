@@ -175,7 +175,12 @@ const faqSchema = {
 >
   <Header />
 
-  <main tabindex="-1" id="main-content" class="tool-page">
+  <main
+    tabindex="-1"
+    id="main-content"
+    class="tool-page"
+    data-tool-slug={app.slug}
+  >
     <div class="tool-breadcrumb">
       <a href="/">ساختنیه؟</a>
       <span>/</span>
@@ -522,7 +527,10 @@ const faqSchema = {
                     verdictMeta.kinda;
 
                   return (
-                    <a href={`/tools/${tool.slug}`}>
+                    <a
+                      href={`/tools/${tool.slug}`}
+                      data-related-tool={tool.slug}
+                    >
                       <div>
                         <span
                           class="related-icon"
@@ -586,6 +594,7 @@ const faqSchema = {
 
         <a
           class="external-link"
+          data-tool-cta
           href={`https://${app.domain}`}
           target="_blank"
           rel="noreferrer"
@@ -650,6 +659,68 @@ const faqSchema = {
       });
     });
 </script>
+
+
+<script>
+  import { track } from "../../lib/analytics";
+
+  const toolPage =
+    document.querySelector<HTMLElement>("[data-tool-slug]");
+
+  const toolSlug = toolPage?.dataset.toolSlug;
+
+  if (toolSlug) {
+    track("tool_view", {
+      tool_slug: toolSlug,
+    });
+  }
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (!(event.target instanceof Element)) {
+        return;
+      }
+
+      const externalCta =
+        event.target.closest<HTMLAnchorElement>(
+          "[data-tool-cta]"
+        );
+
+      if (externalCta && toolSlug) {
+        track("tool_cta_click", {
+          tool_slug: toolSlug,
+          destination: externalCta.href,
+        });
+
+        return;
+      }
+
+      const relatedLink =
+        event.target.closest<HTMLAnchorElement>(
+          "[data-related-tool]"
+        );
+
+      if (relatedLink && toolSlug) {
+        const relatedSlug =
+          relatedLink.dataset.relatedTool;
+
+        if (!relatedSlug) {
+          return;
+        }
+
+        track("related_tool_click", {
+          tool_slug: toolSlug,
+          destination: relatedSlug,
+        });
+      }
+    },
+    {
+      capture: true,
+    }
+  );
+</script>
+
 
 <style>
   .tool-page {

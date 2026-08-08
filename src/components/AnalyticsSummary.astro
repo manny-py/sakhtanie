@@ -1,0 +1,213 @@
+---
+import { apps } from "../lib/apps";
+
+const publishedTools = apps.length;
+---
+
+<section
+  class="analytics-summary card"
+  data-analytics-summary
+  data-published-tools={publishedTools}
+>
+  <div class="analytics-summary__header">
+    <div>
+      <span class="analytics-summary__kicker">SITE ANALYTICS</span>
+      <h2>وضعیت سایت</h2>
+      <p class="muted">خلاصه فعالیت واقعی ۷ روز اخیر</p>
+    </div>
+
+    <a class="analytics-summary__link" href="/analytics">
+      داشبورد کامل →
+    </a>
+  </div>
+
+  <div class="analytics-summary__grid">
+    <div class="analytics-summary__metric">
+      <strong data-summary-views>—</strong>
+      <span>بازدید ۷ روز اخیر</span>
+    </div>
+
+    <div class="analytics-summary__metric">
+      <strong data-summary-tool-views>—</strong>
+      <span>مشاهده ابزارها</span>
+    </div>
+
+    <div class="analytics-summary__metric">
+      <strong data-summary-searches>—</strong>
+      <span>جست‌وجوهای انجام‌شده</span>
+    </div>
+
+    <div class="analytics-summary__metric">
+      <strong>{publishedTools}</strong>
+      <span>ابزارهای منتشرشده</span>
+    </div>
+  </div>
+
+  <p class="analytics-summary__status muted" data-summary-status>
+    در حال دریافت داده...
+  </p>
+</section>
+
+<script>
+  interface SummaryResponse {
+    success: boolean;
+    range_days: number;
+    summary: {
+      totalViews: number;
+      toolViews: number;
+      searches: number;
+      toolCtaClicks: number;
+      uniqueVisitors: number;
+    };
+  }
+
+  const ENDPOINT =
+    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev/v1/dashboard?days=7";
+
+  const root = document.querySelector<HTMLElement>(
+    "[data-analytics-summary]"
+  );
+
+  if (root) {
+    const views = root.querySelector<HTMLElement>(
+      "[data-summary-views]"
+    );
+
+    const toolViews = root.querySelector<HTMLElement>(
+      "[data-summary-tool-views]"
+    );
+
+    const searches = root.querySelector<HTMLElement>(
+      "[data-summary-searches]"
+    );
+
+    const status = root.querySelector<HTMLElement>(
+      "[data-summary-status]"
+    );
+
+    const load = async () => {
+      try {
+        const response = await fetch(ENDPOINT, {
+          headers: {
+            Accept: "application/json",
+          },
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = (await response.json()) as SummaryResponse;
+
+        if (!data.success) {
+          throw new Error("Analytics API failure");
+        }
+
+        if (views) {
+          views.textContent = String(data.summary.totalViews);
+        }
+
+        if (toolViews) {
+          toolViews.textContent = String(data.summary.toolViews);
+        }
+
+        if (searches) {
+          searches.textContent = String(data.summary.searches);
+        }
+
+        if (status) {
+          status.textContent =
+            `داده واقعی · ${data.summary.uniqueVisitors} بازدیدکننده یکتا`;
+        }
+      } catch {
+        if (status) {
+          status.textContent =
+            "دریافت آمار موقتاً ممکن نیست.";
+        }
+      }
+    };
+
+    load();
+
+    const timer = window.setInterval(load, 60_000);
+
+    window.addEventListener(
+      "pagehide",
+      () => window.clearInterval(timer),
+      { once: true }
+    );
+  }
+</script>
+
+<style>
+  .analytics-summary {
+    margin-top: 24px;
+  }
+
+  .analytics-summary__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .analytics-summary__header h2 {
+    margin: 6px 0;
+  }
+
+  .analytics-summary__kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+  }
+
+  .analytics-summary__link {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    color: var(--primary);
+  }
+
+  .analytics-summary__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .analytics-summary__metric {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+  }
+
+  .analytics-summary__metric strong {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.5rem;
+    color: var(--primary);
+  }
+
+  .analytics-summary__metric span {
+    font-size: 0.78rem;
+    opacity: 0.7;
+  }
+
+  .analytics-summary__status {
+    margin: 14px 0 0;
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 760px) {
+    .analytics-summary__header {
+      flex-direction: column;
+    }
+
+    .analytics-summary__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

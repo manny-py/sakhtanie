@@ -1,0 +1,479 @@
+<section class="analytics-dashboard-runtime" data-analytics-dashboard>
+  <section class="analytics-grid">
+    <div class="card analytics-card">
+      <strong data-total-views>0</strong>
+      <span class="muted">بازدید کل</span>
+    </div>
+
+    <div class="card analytics-card">
+      <strong data-tool-views>0</strong>
+      <span class="muted">مشاهده ابزارها</span>
+    </div>
+
+    <div class="card analytics-card">
+      <strong data-searches>0</strong>
+      <span class="muted">جست‌وجوها</span>
+    </div>
+
+    <div class="card analytics-card">
+      <strong data-unique-visitors>0</strong>
+      <span class="muted">بازدیدکننده یکتا</span>
+    </div>
+
+    <div class="card analytics-card">
+      <strong data-client-errors>0</strong>
+      <span class="muted">خطاهای Client</span>
+    </div>
+  </section>
+
+  <section class="card analytics-chart-section">
+    <div class="section-heading">
+      <h2>نمودار بازدید</h2>
+      <p class="muted">بازدید واقعی ۷ روز اخیر</p>
+    </div>
+
+    <div class="chart-wrap">
+      <svg
+        viewBox="0 0 600 220"
+        role="img"
+        aria-label="نمودار بازدید هفت روز اخیر"
+        data-chart
+      >
+        <polyline
+          data-chart-line
+          points=""
+          fill="none"
+          stroke="var(--primary)"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></polyline>
+
+        <g data-chart-points></g>
+      </svg>
+
+      <div class="chart-labels" data-chart-labels></div>
+    </div>
+
+    <p class="muted chart-status" data-dashboard-status>
+      در حال دریافت داده...
+    </p>
+  </section>
+
+  <section class="analytics-detail-grid">
+    <div class="card analytics-detail-card">
+      <div class="section-heading">
+        <h2>ابزارهای پربازدید</h2>
+        <p class="muted">بر اساس Tool View در ۷ روز اخیر</p>
+      </div>
+
+      <div class="analytics-list" data-popular-tools>
+        <p class="muted">در حال دریافت داده...</p>
+      </div>
+    </div>
+
+    <div class="card analytics-detail-card">
+      <div class="section-heading">
+        <h2>خطاهای اخیر</h2>
+        <p class="muted">خطاهای Client ثبت‌شده در ۷ روز اخیر</p>
+      </div>
+
+      <div class="analytics-list" data-recent-errors>
+        <p class="muted">در حال دریافت داده...</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<script>
+  interface DashboardPoint {
+    date: string;
+    views: number;
+  }
+
+  interface PopularTool {
+    slug: string;
+    views: number;
+  }
+
+  interface RecentError {
+    path: string;
+    payload: {
+      error_type?: string;
+      message?: string;
+      source?: string;
+      line?: number;
+      column?: number;
+    };
+    createdAt: string;
+  }
+
+  interface DashboardResponse {
+    success: boolean;
+    range_days: number;
+    summary: {
+      totalViews: number;
+      toolViews: number;
+      searches: number;
+      toolCtaClicks: number;
+      clientErrors: number;
+      uniqueVisitors: number;
+    };
+    viewsOverTime: DashboardPoint[];
+    popularTools: PopularTool[];
+    recentErrors: RecentError[];
+  }
+
+  const ENDPOINT =
+    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev/v1/dashboard?days=7";
+
+  const root = document.querySelector<HTMLElement>(
+    "[data-analytics-dashboard]"
+  );
+
+  if (root) {
+    const totalViews =
+      root.querySelector<HTMLElement>("[data-total-views]");
+
+    const toolViews =
+      root.querySelector<HTMLElement>("[data-tool-views]");
+
+    const searches =
+      root.querySelector<HTMLElement>("[data-searches]");
+
+    const uniqueVisitors =
+      root.querySelector<HTMLElement>("[data-unique-visitors]");
+
+    const clientErrors =
+      root.querySelector<HTMLElement>("[data-client-errors]");
+
+    const line =
+      root.querySelector<SVGPolylineElement>("[data-chart-line]");
+
+    const pointsGroup =
+      root.querySelector<SVGGElement>("[data-chart-points]");
+
+    const labels =
+      root.querySelector<HTMLElement>("[data-chart-labels]");
+
+    const status =
+      root.querySelector<HTMLElement>("[data-dashboard-status]");
+
+    const popularTools =
+      root.querySelector<HTMLElement>("[data-popular-tools]");
+
+    const recentErrors =
+      root.querySelector<HTMLElement>("[data-recent-errors]");
+
+    const renderChart = (data: DashboardPoint[]) => {
+      if (!line || !pointsGroup || !labels) return;
+
+      const max = Math.max(...data.map((item) => item.views), 1);
+
+      const coords = data.map((item, index) => {
+        const x =
+          data.length === 1
+            ? 300
+            : 30 + (index / (data.length - 1)) * 540;
+
+        const y = 180 - (item.views / max) * 140;
+
+        return { x, y, item };
+      });
+
+      line.setAttribute(
+        "points",
+        coords.map((point) => `${point.x},${point.y}`).join(" ")
+      );
+
+      pointsGroup.replaceChildren();
+
+      for (const point of coords) {
+        const circle = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle"
+        );
+
+        circle.setAttribute("cx", String(point.x));
+        circle.setAttribute("cy", String(point.y));
+        circle.setAttribute("r", "5");
+        circle.setAttribute("fill", "var(--primary)");
+
+        pointsGroup.appendChild(circle);
+      }
+
+      labels.replaceChildren();
+
+      for (const point of coords) {
+        const label = document.createElement("span");
+        label.textContent =
+          `${point.item.date.slice(5)} · ${point.item.views}`;
+        labels.appendChild(label);
+      }
+    };
+
+    const renderPopularTools = (tools: PopularTool[]) => {
+      if (!popularTools) return;
+
+      popularTools.replaceChildren();
+
+      if (tools.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "muted";
+        empty.textContent = "هنوز داده‌ای ثبت نشده است.";
+        popularTools.appendChild(empty);
+        return;
+      }
+
+      tools.forEach((tool, index) => {
+        const row = document.createElement("a");
+        row.className = "analytics-list-row";
+        row.href = `/tools/${encodeURIComponent(tool.slug)}`;
+
+        const name = document.createElement("span");
+        name.textContent = `${index + 1}. ${tool.slug}`;
+
+        const value = document.createElement("strong");
+        value.textContent = String(tool.views);
+
+        row.append(name, value);
+        popularTools.appendChild(row);
+      });
+    };
+
+    const renderRecentErrors = (errors: RecentError[]) => {
+      if (!recentErrors) return;
+
+      recentErrors.replaceChildren();
+
+      if (errors.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "muted";
+        empty.textContent = "خطایی در این بازه ثبت نشده است.";
+        recentErrors.appendChild(empty);
+        return;
+      }
+
+      errors.forEach((error) => {
+        const row = document.createElement("div");
+        row.className = "analytics-error-row";
+
+        const header = document.createElement("div");
+
+        const type = document.createElement("strong");
+        type.textContent =
+          error.payload.error_type ?? "client_error";
+
+        const path = document.createElement("code");
+        path.textContent = error.path;
+
+        header.append(type, path);
+
+        const message = document.createElement("p");
+        message.textContent =
+          error.payload.message ?? "Unknown client error";
+
+        const time = document.createElement("small");
+        time.className = "muted";
+        time.textContent = new Date(error.createdAt).toLocaleString(
+          "fa-IR"
+        );
+
+        row.append(header, message, time);
+        recentErrors.appendChild(row);
+      });
+    };
+
+    const loadDashboard = async () => {
+      try {
+        const response = await fetch(ENDPOINT, {
+          headers: {
+            Accept: "application/json",
+          },
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = (await response.json()) as DashboardResponse;
+
+        if (!data.success) {
+          throw new Error("Dashboard API failure");
+        }
+
+        if (totalViews) {
+          totalViews.textContent = String(data.summary.totalViews);
+        }
+
+        if (toolViews) {
+          toolViews.textContent = String(data.summary.toolViews);
+        }
+
+        if (searches) {
+          searches.textContent = String(data.summary.searches);
+        }
+
+        if (uniqueVisitors) {
+          uniqueVisitors.textContent =
+            String(data.summary.uniqueVisitors);
+        }
+
+        if (clientErrors) {
+          clientErrors.textContent =
+            String(data.summary.clientErrors);
+        }
+
+        renderChart(data.viewsOverTime);
+        renderPopularTools(data.popularTools);
+        renderRecentErrors(data.recentErrors);
+
+        if (status) {
+          status.textContent =
+            `داده واقعی · بازه ${data.range_days} روزه`;
+        }
+      } catch {
+        if (status) {
+          status.textContent =
+            "دریافت داده‌های داشبورد موقتاً ممکن نیست.";
+        }
+      }
+    };
+
+    loadDashboard();
+
+    const timer = window.setInterval(loadDashboard, 30_000);
+
+    window.addEventListener(
+      "pagehide",
+      () => window.clearInterval(timer),
+      { once: true }
+    );
+  }
+</script>
+
+<style>
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .analytics-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .analytics-card strong {
+    font-size: 2rem;
+    color: var(--primary);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .analytics-chart-section {
+    margin-top: 24px;
+  }
+
+  .section-heading {
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0 0 6px;
+  }
+
+  .chart-wrap {
+    overflow-x: auto;
+  }
+
+  .chart-wrap svg {
+    width: 100%;
+    min-width: 560px;
+    height: 220px;
+    display: block;
+  }
+
+  .chart-labels {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    min-width: 560px;
+    font-family: monospace;
+    font-size: 0.72rem;
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  .chart-status {
+    margin-top: 14px;
+    font-size: 0.8rem;
+  }
+
+  .analytics-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .analytics-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  :global(.analytics-list-row) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+  }
+
+  :global(.analytics-list-row strong) {
+    color: var(--primary);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  :global(.analytics-error-row) {
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+  }
+
+  :global(.analytics-error-row > div) {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  :global(.analytics-error-row code) {
+    color: var(--primary);
+  }
+
+  :global(.analytics-error-row p) {
+    margin: 8px 0;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 1000px) {
+    .analytics-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .analytics-detail-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .analytics-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

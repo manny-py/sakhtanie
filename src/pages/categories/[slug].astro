@@ -385,6 +385,23 @@ const noCount = categoryApps.filter(
   });
 </script>
 
+
+<script>
+  import { track } from "../../lib/analytics";
+
+  const match =
+    window.location.pathname.match(
+      /^\/categories\/([^/]+)\/?$/
+    );
+
+  if (match?.[1]) {
+    track("category_view", {
+      category_slug: decodeURIComponent(match[1]),
+    });
+  }
+</script>
+
+
 <style>
   .category-page {
     width: min(1100px, calc(100% - 40px));

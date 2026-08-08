@@ -1,4 +1,5 @@
 ---
+import Analytics from "../components/Analytics.astro";
 interface Props {
   title?: string;
   description?: string;
@@ -71,6 +72,7 @@ content={description}
 
 <slot />
 
+  <Analytics />
 </body>
 
 </html>
