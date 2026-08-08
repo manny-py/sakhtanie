@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="تبلیغ در ساختنیه؟"
+  description="معرفی برند، محصول یا سرویس شما به مخاطبان ساختنیه؟"
+>
+  <Header />
+
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="container advertise-page"
+  >
+    <span class="advertise-kicker">
+      ADVERTISE // SPONSORSHIP
+    </span>
+
+    <h1>تبلیغ در ساختنیه؟</h1>
+
+    <p class="advertise-lead">
+      جایگاه‌های تبلیغاتی ساختنیه؟ برای برندها،
+      سرویس‌های SaaS، ابزارهای توسعه، محصولات AI و
+      کسب‌وکارهایی طراحی شده که می‌خواهند در مقابل
+      مخاطب علاقه‌مند به ساخت محصولات دیجیتال دیده شوند.
+    </p>
+
+    <section class="advertise-grid">
+      <div class="card">
+        <strong>Featured Sponsor</strong>
+        <p>
+          جایگاه اصلی صفحه نخست با بیشترین میزان دیده‌شدن.
+        </p>
+      </div>
+
+      <div class="card">
+        <strong>Discovery Sponsor</strong>
+        <p>
+          جایگاه میان بخش‌های معرفی و کشف ابزارها.
+        </p>
+      </div>
+    </section>
+
+    <div class="advertise-contact card">
+      <span>CONTACT</span>
+      <h2>برای همکاری تبلیغاتی</h2>
+
+      <p>
+        اطلاعات تماس تجاری و تعرفه‌ها قبل از شروع فروش
+        تبلیغات در این بخش قرار می‌گیرند.
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .advertise-page {
+    max-width: 900px;
+    min-height: 70vh;
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+
+  .advertise-kicker {
+    color: #f1c644;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  h1 {
+    margin: 10px 0 14px;
+    font-size: clamp(32px, 5vw, 54px);
+  }
+
+  .advertise-lead {
+    max-width: 720px;
+    color: #9ba39d;
+    line-height: 2;
+  }
+
+  .advertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  .advertise-grid strong {
+    color: #f1c644;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .advertise-grid p,
+  .advertise-contact p {
+    color: #8b958d;
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  .advertise-contact {
+    margin-top: 16px;
+  }
+
+  .advertise-contact > span {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  @media (max-width: 620px) {
+    .advertise-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,241 @@
+---
+import type { Sponsor } from "../lib/sponsors";
+
+interface Props {
+  sponsor: Sponsor;
+  variant?: "primary" | "secondary";
+}
+
+const {
+  sponsor,
+  variant = "primary",
+} = Astro.props;
+---
+
+<section
+  class:list={[
+    "sponsor-slot",
+    `sponsor-slot--${variant}`,
+  ]}
+  data-sponsor-slot
+  data-sponsor-id={sponsor.id}
+  data-sponsor-active={String(sponsor.active)}
+>
+  {
+    sponsor.active ? (
+      <a
+        class="sponsor-content"
+        href={sponsor.href}
+        target="_blank"
+        rel="sponsored noreferrer"
+        data-sponsor-link
+      >
+        <div class="sponsor-copy">
+          <div class="sponsor-meta">
+            <span class="sponsor-label">
+              {sponsor.label ?? "SPONSORED"}
+            </span>
+
+            <span class="sponsor-brand">
+              {sponsor.brand}
+            </span>
+          </div>
+
+          <h2>{sponsor.title}</h2>
+          <p>{sponsor.description}</p>
+        </div>
+
+        <span class="sponsor-action" dir="ltr">
+          VISIT ↗
+        </span>
+      </a>
+    ) : (
+      <div class="sponsor-empty">
+        <div>
+          <span class="sponsor-label">
+            SPONSORSHIP
+          </span>
+
+          <h2>
+            این جایگاه می‌تواند برای برند شما باشد
+          </h2>
+
+          <p>
+            معرفی محصول، سرویس یا ابزار شما به مخاطبانی که
+            برای ساخت و انتخاب محصولات دیجیتال به ساختنیه؟
+            سر می‌زنند.
+          </p>
+        </div>
+
+        <a
+          href="/advertise"
+          class="sponsor-action"
+          data-advertise-cta
+        >
+          تبلیغ در ساختنیه؟ ←
+        </a>
+      </div>
+    )
+  }
+</section>
+
+<script>
+  import { track } from "../lib/analytics";
+
+  document
+    .querySelectorAll<HTMLElement>("[data-sponsor-slot]")
+    .forEach((slot) => {
+      const sponsorId = slot.dataset.sponsorId;
+      const active = slot.dataset.sponsorActive === "true";
+
+      if (!sponsorId) return;
+
+      if (active) {
+        let impressionSent = false;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (
+                entry.isIntersecting &&
+                entry.intersectionRatio >= 0.5 &&
+                !impressionSent
+              ) {
+                impressionSent = true;
+
+                track("sponsor_impression", {
+                  sponsor_id: sponsorId,
+                });
+
+                observer.disconnect();
+              }
+            }
+          },
+          {
+            threshold: [0.5],
+          }
+        );
+
+        observer.observe(slot);
+
+        slot
+          .querySelector<HTMLAnchorElement>(
+            "[data-sponsor-link]"
+          )
+          ?.addEventListener("click", () => {
+            track("sponsor_click", {
+              sponsor_id: sponsorId,
+            });
+          });
+      }
+
+      slot
+        .querySelector<HTMLAnchorElement>(
+          "[data-advertise-cta]"
+        )
+        ?.addEventListener("click", () => {
+          track("advertise_cta_click", {
+            placement: sponsorId,
+          });
+        });
+    });
+</script>
+
+<style>
+  .sponsor-slot {
+    max-width: 900px;
+    margin: 28px auto;
+    border: 1px solid rgba(241, 198, 68, 0.28);
+    border-radius: 14px;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(241, 198, 68, 0.07),
+        rgba(34, 232, 99, 0.025)
+      ),
+      #0d110e;
+    overflow: hidden;
+  }
+
+  .sponsor-slot--secondary {
+    margin-top: 44px;
+    margin-bottom: 44px;
+  }
+
+  .sponsor-content,
+  .sponsor-empty {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 24px;
+  }
+
+  .sponsor-content {
+    transition:
+      background 150ms ease,
+      border-color 150ms ease;
+  }
+
+  .sponsor-content:hover {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .sponsor-copy,
+  .sponsor-empty > div {
+    max-width: 650px;
+  }
+
+  .sponsor-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sponsor-label {
+    color: #f1c644;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .sponsor-brand {
+    color: #818b83;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  h2 {
+    margin: 9px 0 8px;
+    color: #f4f4f5;
+    font-size: 20px;
+  }
+
+  p {
+    max-width: 650px;
+    margin: 0;
+    color: #8d978f;
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  .sponsor-action {
+    flex: 0 0 auto;
+    padding: 10px 13px;
+    border: 1px solid rgba(241, 198, 68, 0.3);
+    border-radius: 8px;
+    color: #f1c644;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 650px) {
+    .sponsor-content,
+    .sponsor-empty {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

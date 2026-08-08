@@ -7,6 +7,12 @@ import SearchBox from "../components/SearchBox.astro";
 import CategoryGrid from "../components/CategoryGrid.astro";
 import FeaturedTools from "../components/FeaturedTools.astro";
 import AnalyticsSummary from "../components/AnalyticsSummary.astro";
+import SponsorSlot from "../components/SponsorSlot.astro";
+import HomeDiscovery from "../components/HomeDiscovery.astro";
+import {
+  homepagePrimarySponsor,
+  homepageSecondarySponsor,
+} from "../lib/sponsors";
 ---
 
 <BaseLayout
@@ -17,10 +23,26 @@ import AnalyticsSummary from "../components/AnalyticsSummary.astro";
 
   <main tabindex="-1" id="main-content" class="container home-main">
     <HeroTerminal />
+
     <SearchBox />
+
+    <SponsorSlot
+      sponsor={homepagePrimarySponsor}
+      variant="primary"
+    />
+
     <AnalyticsSummary />
+
     <CategoryGrid />
+
     <FeaturedTools />
+
+    <SponsorSlot
+      sponsor={homepageSecondarySponsor}
+      variant="secondary"
+    />
+
+    <HomeDiscovery />
   </main>
 
   <Footer />

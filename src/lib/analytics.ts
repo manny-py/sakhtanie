@@ -5,6 +5,9 @@ export type AnalyticsEvent =
   | "search_used"
   | "tool_cta_click"
   | "related_tool_click"
+  | "sponsor_impression"
+  | "sponsor_click"
+  | "advertise_cta_click"
   | "client_error";
 
 export interface AnalyticsPayload {

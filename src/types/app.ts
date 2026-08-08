@@ -15,7 +15,7 @@ export interface SakhtanieApp {
 
   domain: string;
 
-  origin: string;
+  origin: "iranian" | "global" | "open-source";
 
   status: string;
 

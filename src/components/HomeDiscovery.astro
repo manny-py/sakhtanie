@@ -1,0 +1,455 @@
+---
+import { apps } from "../lib/apps";
+import { categoryDefinitions } from "../lib/categories";
+
+const categoryLabels = Object.fromEntries(
+  categoryDefinitions.map((category) => [
+    category.slug,
+    category.shortTitle,
+  ])
+) as Record<string, string>;
+
+const verdictLabels: Record<string, string> = {
+  yes: "ساختنیه",
+  kinda: "ساختنیه، ولی...",
+  no: "نمی‌ارزه",
+};
+
+const preferred = [
+  "chatgpt",
+  "claude",
+  "cursor",
+  "lovable",
+  "bolt",
+  "v0",
+  "notion",
+  "canva",
+  "zapier",
+  "shopify",
+  "perplexity",
+  "suno",
+];
+
+const popular = preferred
+  .map((slug) => apps.find((app) => app.slug === slug))
+  .filter(
+    (app): app is (typeof apps)[number] => Boolean(app)
+  );
+
+const popularSlugs = new Set(
+  popular.map((app) => app.slug)
+);
+
+const latest = [...apps]
+  .filter((app) => !popularSlugs.has(app.slug))
+  .sort((a, b) =>
+    b.build.prompt.lastUpdated.localeCompare(
+      a.build.prompt.lastUpdated
+    )
+  )
+  .slice(0, 12);
+
+const iranianApps = apps
+  .filter((app) => app.origin === "iranian")
+  .slice(0, 12);
+
+const renderSections = [
+  {
+    kicker: "POPULAR",
+    title: "ابزارهای محبوب",
+    apps: popular,
+  },
+  {
+    kicker: "EXPLORE MORE",
+    title: "ابزارهای بیشتر",
+    apps: latest,
+  },
+];
+---
+
+<section class="discovery">
+  {
+    renderSections.map((section) => (
+      <div class="discovery-block">
+        <div class="discovery-heading">
+          <div>
+            <span>{section.kicker}</span>
+            <h2>{section.title}</h2>
+          </div>
+
+          <small>{section.apps.length} ابزار</small>
+        </div>
+
+        <div class="discovery-grid">
+          {section.apps.map((app) => (
+            <a
+              class="discovery-card"
+              href={`/tools/${app.slug}`}
+            >
+              <div class="discovery-card__top">
+                <span
+                  class="discovery-icon"
+                  dir="ltr"
+                  aria-hidden="true"
+                >
+                  {app.name.en
+                    .charAt(0)
+                    .toUpperCase()}
+                </span>
+
+                <span
+                  class:list={[
+                    "discovery-verdict",
+                    `verdict-${app.verdict.value}`,
+                  ]}
+                >
+                  {verdictLabels[app.verdict.value]}
+                </span>
+              </div>
+
+              <strong dir="ltr">
+                {app.name.en}
+              </strong>
+
+              <span class="discovery-fa">
+                {app.name.fa}
+              </span>
+
+              <p>{app.summary}</p>
+
+              <div class="discovery-meta">
+                <span>
+                  {categoryLabels[app.category] ??
+                    app.category}
+                </span>
+
+                <span dir="ltr">
+                  {app.scores.technicalComplexity}/5
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+
+  <div class="discovery-block iranian-block">
+    <div class="discovery-heading">
+      <div>
+        <span>MADE IN IRAN</span>
+        <h2>اپ‌ها و سایت‌های ایرانی</h2>
+      </div>
+
+      <small>{iranianApps.length} ابزار</small>
+    </div>
+
+    {
+      iranianApps.length > 0 ? (
+        <div class="discovery-grid">
+          {iranianApps.map((app) => (
+            <a
+              class="discovery-card"
+              href={`/tools/${app.slug}`}
+            >
+              <div class="discovery-card__top">
+                <span
+                  class="discovery-icon"
+                  dir="ltr"
+                  aria-hidden="true"
+                >
+                  {app.name.fa.charAt(0)}
+                </span>
+
+                <span
+                  class:list={[
+                    "discovery-verdict",
+                    `verdict-${app.verdict.value}`,
+                  ]}
+                >
+                  {verdictLabels[app.verdict.value]}
+                </span>
+              </div>
+
+              <strong>{app.name.fa}</strong>
+
+              <span class="discovery-fa" dir="ltr">
+                {app.name.en}
+              </span>
+
+              <p>{app.summary}</p>
+
+              <div class="discovery-meta">
+                <span>
+                  {categoryLabels[app.category] ??
+                    app.category}
+                </span>
+
+                <span dir="ltr">
+                  IR
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="iranian-empty">
+          <span dir="ltr">IRANIAN CATALOG // INCOMING</span>
+
+          <strong>
+            بخش محصولات ایرانی در حال آماده‌سازی است
+          </strong>
+
+          <p>
+            در موج بعدی کاتالوگ، سرویس‌ها، اپ‌ها و
+            وب‌سایت‌های ایرانی هم وارد دیتابیس ساختنیه؟
+            می‌شوند.
+          </p>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="catalog-progress">
+    <div>
+      <span>CATALOG TARGET</span>
+      <strong dir="ltr">{apps.length} / 100</strong>
+    </div>
+
+    <div class="catalog-progress__track">
+      <span
+        style={`width:${Math.min(
+          100,
+          (apps.length / 100) * 100
+        )}%`}
+      ></span>
+    </div>
+
+    <p>
+      هدف فعلی: بررسی ۱۰۰ محصول ایرانی و بین‌المللی.
+    </p>
+  </div>
+</section>
+
+<style>
+  .discovery {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+  }
+
+  .discovery-block + .discovery-block {
+    margin-top: 54px;
+  }
+
+  .discovery-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .discovery-heading span,
+  .discovery-heading small {
+    color: #6f7971;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+  }
+
+  .discovery-heading h2 {
+    margin: 5px 0 0;
+    color: #f4f4f5;
+    font-size: 23px;
+  }
+
+  .discovery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .discovery-card {
+    min-width: 0;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid #202a22;
+    border-radius: 12px;
+    background: #0d110e;
+    transition:
+      background 140ms ease,
+      border-color 140ms ease;
+  }
+
+  .discovery-card:hover {
+    border-color: rgba(34, 232, 99, 0.35);
+    background: #121713;
+  }
+
+  .discovery-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .discovery-icon {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #182019;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+  }
+
+  .discovery-verdict {
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .verdict-yes {
+    color: #22e863;
+    background: rgba(34, 232, 99, 0.09);
+  }
+
+  .verdict-kinda {
+    color: #f1c644;
+    background: rgba(241, 198, 68, 0.09);
+  }
+
+  .verdict-no {
+    color: #ff6464;
+    background: rgba(255, 100, 100, 0.09);
+  }
+
+  .discovery-card > strong {
+    overflow: hidden;
+    color: #f4f4f5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .discovery-fa {
+    margin-top: 4px;
+    color: #737d75;
+    font-size: 10px;
+  }
+
+  .discovery-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 12px 0 16px;
+    color: #8d978f;
+    font-size: 11px;
+    line-height: 1.9;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .discovery-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    color: #687269;
+    font-size: 9px;
+  }
+
+  .iranian-block {
+    padding-top: 8px;
+  }
+
+  .iranian-empty {
+    padding: 28px;
+    border: 1px dashed rgba(34, 232, 99, 0.28);
+    border-radius: 13px;
+    background: rgba(34, 232, 99, 0.025);
+  }
+
+  .iranian-empty span {
+    display: block;
+    margin-bottom: 8px;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .iranian-empty strong {
+    color: #f4f4f5;
+    font-size: 15px;
+  }
+
+  .iranian-empty p {
+    max-width: 650px;
+    margin: 8px 0 0;
+    color: #818b83;
+    font-size: 11px;
+    line-height: 2;
+  }
+
+  .catalog-progress {
+    margin-top: 54px;
+    padding: 20px;
+    border: 1px solid #202a22;
+    border-radius: 12px;
+    background: #0d110e;
+  }
+
+  .catalog-progress > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .catalog-progress span {
+    color: #747e76;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .catalog-progress strong {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .catalog-progress__track {
+    height: 5px;
+    margin-top: 14px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #182019;
+  }
+
+  .catalog-progress__track span {
+    height: 100%;
+    display: block;
+    background: #22e863;
+  }
+
+  .catalog-progress p {
+    margin: 10px 0 0;
+    color: #747e76;
+    font-size: 10px;
+  }
+
+  @media (max-width: 760px) {
+    .discovery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .discovery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
