@@ -142,7 +142,11 @@ const publishedTools = apps.length;
 
 <style>
   .analytics-summary {
-    margin-top: 24px;
+    margin-top: 16px;
+  }
+
+  .analytics-summary__header {
+    max-width: 100%;
   }
 
   .analytics-summary__header {
@@ -172,22 +176,22 @@ const publishedTools = apps.length;
   .analytics-summary__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 24px;
+    gap: 10px;
+    margin-top: 12px;
   }
 
   .analytics-summary__metric {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 16px;
+    gap: 3px;
+    padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
   }
 
   .analytics-summary__metric strong {
     font-family: "JetBrains Mono", monospace;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     color: var(--primary);
   }
 
@@ -197,7 +201,7 @@ const publishedTools = apps.length;
   }
 
   .analytics-summary__status {
-    margin: 14px 0 0;
+    margin: 8px 0 0;
     font-size: 0.75rem;
   }
 
