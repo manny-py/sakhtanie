@@ -6,6 +6,7 @@
     "en": "Railway"
   },
   "domain": "railway.com",
+  "logo": "/app-logos/railway.png",
   "origin": "global",
   "status": "published",
   "category": "developer-cloud",

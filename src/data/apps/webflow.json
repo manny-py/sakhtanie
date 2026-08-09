@@ -8,6 +8,7 @@
     "en": "Webflow"
   },
   "domain": "webflow.com",
+  "logo": "/app-logos/webflow.png",
   "category": "app-website-builders",
   "subcategory": "website-builder",
   "tags": [

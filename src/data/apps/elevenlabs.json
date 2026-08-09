@@ -6,6 +6,7 @@
     "en": "ElevenLabs"
   },
   "domain": "elevenlabs.io",
+  "logo": "/app-logos/elevenlabs.ico",
   "origin": "global",
   "status": "published",
   "category": "video-audio-music",

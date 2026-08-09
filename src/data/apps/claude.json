@@ -14,6 +14,7 @@
     "en": "Claude"
   },
   "domain": "claude.ai",
+  "logo": "/app-logos/claude.png",
   "category": "ai-assistants",
   "subcategory": "general-ai-assistants",
   "summary": "کلود یک دستیار هوش مصنوعیه که برای گفتگو، تحلیل متن، برنامه‌نویسی و کارهای فکری استفاده می‌شه.",

@@ -1,4 +1,5 @@
 ---
+import AppLogo from "../../components/AppLogo.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -212,8 +213,8 @@ const noCount = categoryApps.filter(
                     dir="ltr"
                     aria-hidden="true"
                   >
-                    {app.name.en.charAt(0).toUpperCase()}
-                  </span>
+                <AppLogo app={app} />
+              </span>
 
                   <div class="category-row__identity">
                     <strong dir="ltr">
@@ -670,7 +671,10 @@ const noCount = categoryApps.filter(
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    padding: 5px;
     border: 1px solid #2a372d;
+    box-sizing: border-box;
     border-radius: 10px;
     background: #172019;
     color: #22e863;

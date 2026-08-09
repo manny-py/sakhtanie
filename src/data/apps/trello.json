@@ -14,6 +14,7 @@
     "en": "Trello"
   },
   "domain": "trello.com",
+  "logo": "/app-logos/trello.png",
   "category": "productivity",
   "subcategory": "project-management",
   "summary": "ترلو ابزار مدیریت کار به روش کانبان است که پروژه‌ها را با برد، فهرست و کارت سازمان‌دهی می‌کند و پیگیری مسئول، موعد، چک‌لیست و فعالیت تیم را ممکن می‌سازد.",

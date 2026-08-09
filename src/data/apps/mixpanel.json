@@ -6,6 +6,7 @@
     "en": "Mixpanel"
   },
   "domain": "mixpanel.com",
+  "logo": "/app-logos/mixpanel.png",
   "origin": "global",
   "status": "published",
   "category": "data-analytics",

@@ -6,6 +6,7 @@
     "en": "Slack"
   },
   "domain": "slack.com",
+  "logo": "/app-logos/slack.png",
   "origin": "global",
   "status": "published",
   "category": "productivity",

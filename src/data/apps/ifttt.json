@@ -6,6 +6,7 @@
     "en": "IFTTT"
   },
   "domain": "ifttt.com",
+  "logo": "/app-logos/ifttt.png",
   "origin": "global",
   "status": "published",
   "category": "automation-no-code",

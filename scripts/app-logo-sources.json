@@ -1,0 +1,602 @@
+[
+  {
+    "slug": "adobe-firefly",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/adobe-firefly.png",
+    "local": "/app-logos/adobe-firefly.png"
+  },
+  {
+    "slug": "ahrefs",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/ahrefs.png",
+    "local": "/app-logos/ahrefs.png"
+  },
+  {
+    "slug": "airtable",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/airtable.png",
+    "local": "/app-logos/airtable.png"
+  },
+  {
+    "slug": "amplitude",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/amplitude.png",
+    "local": "/app-logos/amplitude.png"
+  },
+  {
+    "slug": "aparat",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/aparat.svg"
+  },
+  {
+    "slug": "arvancloud",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/arvancloud.svg"
+  },
+  {
+    "slug": "asana",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/asana.png",
+    "local": "/app-logos/asana.png"
+  },
+  {
+    "slug": "bolt",
+    "type": "canivibecodeit-alias",
+    "source": "public/icons/bolt-new.png",
+    "local": "/app-logos/bolt.png"
+  },
+  {
+    "slug": "bubble",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/bubble.png",
+    "local": "/app-logos/bubble.png"
+  },
+  {
+    "slug": "buffer",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/buffer.png",
+    "local": "/app-logos/buffer.png"
+  },
+  {
+    "slug": "calendly",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/calendly.png",
+    "local": "/app-logos/calendly.png"
+  },
+  {
+    "slug": "canva",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/canva.png",
+    "local": "/app-logos/canva.png"
+  },
+  {
+    "slug": "capcut",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/capcut.png",
+    "local": "/app-logos/capcut.png"
+  },
+  {
+    "slug": "caremeas",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/caremeas.svg"
+  },
+  {
+    "slug": "chatgpt",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/chatgpt.png",
+    "local": "/app-logos/chatgpt.png"
+  },
+  {
+    "slug": "claude",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/claude.png",
+    "local": "/app-logos/claude.png"
+  },
+  {
+    "slug": "clickup",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/clickup.png",
+    "local": "/app-logos/clickup.png"
+  },
+  {
+    "slug": "coda",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/coda.png",
+    "local": "/app-logos/coda.png"
+  },
+  {
+    "slug": "copy-ai",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/copy-ai.png",
+    "local": "/app-logos/copy-ai.png"
+  },
+  {
+    "slug": "coursera",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/coursera.svg"
+  },
+  {
+    "slug": "cursor",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/cursor.png",
+    "local": "/app-logos/cursor.png"
+  },
+  {
+    "slug": "danup",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/danup.svg"
+  },
+  {
+    "slug": "descript",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/descript.png",
+    "local": "/app-logos/descript.png"
+  },
+  {
+    "slug": "devin",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/devin.png",
+    "local": "/app-logos/devin.png"
+  },
+  {
+    "slug": "didar",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/didar.svg"
+  },
+  {
+    "slug": "elevenlabs",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/elevenlabs.png",
+    "local": "/app-logos/elevenlabs.ico"
+  },
+  {
+    "slug": "evernote",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/evernote.png",
+    "local": "/app-logos/evernote.png"
+  },
+  {
+    "slug": "faradars",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/faradars.svg"
+  },
+  {
+    "slug": "figma",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/figma.png",
+    "local": "/app-logos/figma.png"
+  },
+  {
+    "slug": "firebase",
+    "type": "canivibecodeit-alias",
+    "source": "public/icons/firebase-blaze.png",
+    "local": "/app-logos/firebase.png"
+  },
+  {
+    "slug": "framer",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/framer.png",
+    "local": "/app-logos/framer.png"
+  },
+  {
+    "slug": "gemini",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/gemini.png",
+    "local": "/app-logos/gemini.png"
+  },
+  {
+    "slug": "gitbook",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/gitbook.svg"
+  },
+  {
+    "slug": "github-copilot",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/github-copilot.png",
+    "local": "/app-logos/github-copilot.png"
+  },
+  {
+    "slug": "glide",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/glide.png",
+    "local": "/app-logos/glide.png"
+  },
+  {
+    "slug": "google-analytics",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/google-analytics.svg"
+  },
+  {
+    "slug": "grammarly",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/grammarly.png",
+    "local": "/app-logos/grammarly.png"
+  },
+  {
+    "slug": "grok",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/grok.svg"
+  },
+  {
+    "slug": "hubspot",
+    "type": "canivibecodeit-domain",
+    "source": "public/icons/alt/hubspot.com.png",
+    "local": "/app-logos/hubspot.png"
+  },
+  {
+    "slug": "ideogram",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/ideogram.png",
+    "local": "/app-logos/ideogram.png"
+  },
+  {
+    "slug": "ifttt",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/ifttt.png",
+    "local": "/app-logos/ifttt.png"
+  },
+  {
+    "slug": "intercom",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/intercom.png",
+    "local": "/app-logos/intercom.png"
+  },
+  {
+    "slug": "jasper",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/jasper.png",
+    "local": "/app-logos/jasper.png"
+  },
+  {
+    "slug": "jira",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/jira.svg"
+  },
+  {
+    "slug": "jobinja",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/jobinja.svg"
+  },
+  {
+    "slug": "jobvision",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/jobvision.svg"
+  },
+  {
+    "slug": "leonardo",
+    "type": "canivibecodeit-alias",
+    "source": "public/icons/leonardo-ai.png",
+    "local": "/app-logos/leonardo.png"
+  },
+  {
+    "slug": "liara",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/liara.svg"
+  },
+  {
+    "slug": "limoo-host",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/limoo-host.svg"
+  },
+  {
+    "slug": "linear",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/linear.png",
+    "local": "/app-logos/linear.png"
+  },
+  {
+    "slug": "lovable",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/lovable.png",
+    "local": "/app-logos/lovable.png"
+  },
+  {
+    "slug": "mailchimp",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/mailchimp.png",
+    "local": "/app-logos/mailchimp.png"
+  },
+  {
+    "slug": "make",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/make.png",
+    "local": "/app-logos/make.jpg"
+  },
+  {
+    "slug": "maktabkhooneh",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/maktabkhooneh.svg"
+  },
+  {
+    "slug": "metabase",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/metabase.svg"
+  },
+  {
+    "slug": "microsoft-copilot",
+    "type": "canivibecodeit-domain",
+    "source": "public/icons/alt/microsoft.com.png",
+    "local": "/app-logos/microsoft-copilot.ico"
+  },
+  {
+    "slug": "midjourney",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/midjourney.png",
+    "local": "/app-logos/midjourney.png"
+  },
+  {
+    "slug": "miro",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/miro.png",
+    "local": "/app-logos/miro.png"
+  },
+  {
+    "slug": "mistral-vibe",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/mistral-vibe.svg"
+  },
+  {
+    "slug": "mixpanel",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/mixpanel.png",
+    "local": "/app-logos/mixpanel.png"
+  },
+  {
+    "slug": "n8n",
+    "type": "canivibecodeit-domain",
+    "source": "public/icons/alt/n8n.io.png",
+    "local": "/app-logos/n8n.png"
+  },
+  {
+    "slug": "najva",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/najva.svg"
+  },
+  {
+    "slug": "notion",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/notion.png",
+    "local": "/app-logos/notion.png"
+  },
+  {
+    "slug": "obsidian",
+    "type": "canivibecodeit-domain",
+    "source": "public/icons/alt/obsidian.md.png",
+    "local": "/app-logos/obsidian.jpg"
+  },
+  {
+    "slug": "perplexity",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/perplexity.png",
+    "local": "/app-logos/perplexity.png"
+  },
+  {
+    "slug": "poe",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/poe.svg"
+  },
+  {
+    "slug": "ponisha",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/ponisha.svg"
+  },
+  {
+    "slug": "porsline",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/porsline.svg"
+  },
+  {
+    "slug": "posthog",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/posthog.png",
+    "local": "/app-logos/posthog.png"
+  },
+  {
+    "slug": "quera",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/quera.svg"
+  },
+  {
+    "slug": "quillbot",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/quillbot.png",
+    "local": "/app-logos/quillbot.png"
+  },
+  {
+    "slug": "railway",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/railway.png",
+    "local": "/app-logos/railway.png"
+  },
+  {
+    "slug": "raychat",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/raychat.svg"
+  },
+  {
+    "slug": "render",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/render.png",
+    "local": "/app-logos/render.png"
+  },
+  {
+    "slug": "replit",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/replit.png",
+    "local": "/app-logos/replit.png"
+  },
+  {
+    "slug": "runway",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/runway.png",
+    "local": "/app-logos/runway.png"
+  },
+  {
+    "slug": "semrush",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/semrush.png",
+    "local": "/app-logos/semrush.png"
+  },
+  {
+    "slug": "sentry",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/sentry.png",
+    "local": "/app-logos/sentry.png"
+  },
+  {
+    "slug": "shopify",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/shopify.png",
+    "local": "/app-logos/shopify.png"
+  },
+  {
+    "slug": "slack",
+    "type": "canivibecodeit-alias",
+    "source": "public/icons/slack-pro.png",
+    "local": "/app-logos/slack.png"
+  },
+  {
+    "slug": "softr",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/softr.png",
+    "local": "/app-logos/softr.png"
+  },
+  {
+    "slug": "stripe",
+    "type": "canivibecodeit-domain",
+    "source": "public/icons/alt/stripe.com.png",
+    "local": "/app-logos/stripe.png"
+  },
+  {
+    "slug": "suno",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/suno.svg"
+  },
+  {
+    "slug": "supabase",
+    "type": "canivibecodeit-domain",
+    "source": "public/icons/alt/supabase.com.png",
+    "local": "/app-logos/supabase.png"
+  },
+  {
+    "slug": "surfer-seo",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/surfer-seo.png",
+    "local": "/app-logos/surfer-seo.png"
+  },
+  {
+    "slug": "tableau",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/tableau.svg"
+  },
+  {
+    "slug": "tabnine",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/tabnine.png",
+    "local": "/app-logos/tabnine.png"
+  },
+  {
+    "slug": "trello",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/trello.png",
+    "local": "/app-logos/trello.png"
+  },
+  {
+    "slug": "typeform",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/typeform.png",
+    "local": "/app-logos/typeform.png"
+  },
+  {
+    "slug": "udemy",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/udemy.svg"
+  },
+  {
+    "slug": "uizard",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/uizard.svg"
+  },
+  {
+    "slug": "v0",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/v0.png",
+    "local": "/app-logos/v0.png"
+  },
+  {
+    "slug": "vercel",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/vercel.png",
+    "local": "/app-logos/vercel.png"
+  },
+  {
+    "slug": "virgool",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/virgool.svg"
+  },
+  {
+    "slug": "webflow",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/webflow.png",
+    "local": "/app-logos/webflow.png"
+  },
+  {
+    "slug": "writesonic",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/writesonic.png",
+    "local": "/app-logos/writesonic.png"
+  },
+  {
+    "slug": "yektanet",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/yektanet.svg"
+  },
+  {
+    "slug": "zapier",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/zapier.png",
+    "local": "/app-logos/zapier.png"
+  },
+  {
+    "slug": "zarinpal",
+    "type": "generated-fallback",
+    "source": null,
+    "local": "/app-logos/zarinpal.svg"
+  },
+  {
+    "slug": "zendesk",
+    "type": "canivibecodeit-direct",
+    "source": "public/icons/zendesk.png",
+    "local": "/app-logos/zendesk.jpg"
+  }
+]

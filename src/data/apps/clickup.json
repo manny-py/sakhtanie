@@ -6,6 +6,7 @@
     "en": "ClickUp"
   },
   "domain": "clickup.com",
+  "logo": "/app-logos/clickup.png",
   "origin": "global",
   "status": "published",
   "category": "productivity",

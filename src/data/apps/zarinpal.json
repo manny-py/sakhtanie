@@ -6,6 +6,7 @@
     "en": "ZarinPal"
   },
   "domain": "zarinpal.com",
+  "logo": "/app-logos/zarinpal.svg",
   "origin": "iranian",
   "status": "published",
   "category": "commerce-forms-scheduling",

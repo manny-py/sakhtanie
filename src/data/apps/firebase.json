@@ -6,6 +6,7 @@
     "en": "Firebase"
   },
   "domain": "firebase.google.com",
+  "logo": "/app-logos/firebase.png",
   "origin": "global",
   "status": "published",
   "category": "developer-cloud",

@@ -8,6 +8,7 @@
     "en": "Asana"
   },
   "domain": "asana.com",
+  "logo": "/app-logos/asana.png",
   "category": "productivity",
   "subcategory": "project-management",
   "tags": [

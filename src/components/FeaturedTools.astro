@@ -1,6 +1,7 @@
 ---
 import { apps } from "../lib/apps";
 import { categoryDefinitions } from "../lib/categories";
+import AppLogo from "./AppLogo.astro";
 
 const preferredSlugs = [
   "chatgpt",
@@ -17,6 +18,13 @@ const categoryLabels = Object.fromEntries(
   categoryDefinitions.map((category) => [
     category.slug,
     category.shortTitle,
+  ])
+) as Record<string, string>;
+
+const categorySymbols = Object.fromEntries(
+  categoryDefinitions.map((category) => [
+    category.slug,
+    category.symbol,
   ])
 ) as Record<string, string>;
 
@@ -76,6 +84,10 @@ const featured = preferredSlugs
               {String(index + 1).padStart(2, "0")}
             </span>
 
+            <span class="tool-row__logo">
+              <AppLogo app={app} />
+            </span>
+
             <strong
               class="tool-row__name"
               dir="ltr"
@@ -85,6 +97,14 @@ const featured = preferredSlugs
           </div>
 
           <span class="tool-row__category">
+            <span
+              class="tool-row__category-symbol"
+              dir="ltr"
+              aria-hidden="true"
+            >
+              {categorySymbols[app.category] ?? "·"}
+            </span>
+
             {categoryLabels[app.category] ?? app.category}
           </span>
 
@@ -185,7 +205,7 @@ const featured = preferredSlugs
   .tool-row__main {
     min-width: 0;
     display: grid;
-    grid-template-columns: 30px minmax(0, 1fr);
+    grid-template-columns: 30px 32px minmax(0, 1fr);
     align-items: center;
     gap: 13px;
     direction: rtl;
@@ -196,6 +216,17 @@ const featured = preferredSlugs
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
     text-align: center;
+  }
+
+  .tool-row__logo {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid #263028;
+    border-radius: 8px;
+    background: #182019;
+    box-sizing: border-box;
   }
 
   .tool-row__name {
@@ -216,6 +247,18 @@ const featured = preferredSlugs
   .tool-row__time {
     color: #99a29b;
     font-size: 11px;
+  }
+
+  .tool-row__category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tool-row__category-symbol {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
   }
 
   .tool-row__verdict {
@@ -268,7 +311,7 @@ const featured = preferredSlugs
     }
 
     .tool-row__main {
-      grid-template-columns: 26px minmax(0, 1fr);
+      grid-template-columns: 26px 32px minmax(0, 1fr);
       gap: 10px;
     }
 

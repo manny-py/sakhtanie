@@ -6,6 +6,7 @@
     "en": "Microsoft Copilot"
   },
   "domain": "microsoft.com",
+  "logo": "/app-logos/microsoft-copilot.ico",
   "origin": "global",
   "status": "published",
   "category": "ai-assistants",

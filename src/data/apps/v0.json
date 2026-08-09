@@ -8,6 +8,7 @@
     "en": "v0"
   },
   "domain": "v0.dev",
+  "logo": "/app-logos/v0.png",
   "category": "app-website-builders",
   "subcategory": "frontend-generation",
   "tags": [
