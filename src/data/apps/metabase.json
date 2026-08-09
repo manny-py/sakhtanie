@@ -6,6 +6,7 @@
     "en": "Metabase"
   },
   "domain": "metabase.com",
+  "logo": "/app-logos/metabase.svg",
   "origin": "open-source",
   "status": "published",
   "category": "data-analytics",

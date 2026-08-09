@@ -8,6 +8,7 @@
     "en": "Bolt"
   },
   "domain": "bolt.new",
+  "logo": "/app-logos/bolt.png",
   "category": "app-website-builders",
   "subcategory": "app-builders",
   "tags": [

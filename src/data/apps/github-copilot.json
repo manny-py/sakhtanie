@@ -8,6 +8,7 @@
     "en": "GitHub Copilot"
   },
   "domain": "github.com",
+  "logo": "/app-logos/github-copilot.png",
   "category": "ai-coding",
   "subcategory": "coding-tools",
   "tags": [

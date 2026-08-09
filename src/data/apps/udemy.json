@@ -6,6 +6,7 @@
     "en": "Udemy"
   },
   "domain": "udemy.com",
+  "logo": "/app-logos/udemy.svg",
   "origin": "global",
   "status": "published",
   "category": "learning-career",

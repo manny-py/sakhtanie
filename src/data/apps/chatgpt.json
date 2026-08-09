@@ -6,6 +6,7 @@
     "en": "ChatGPT"
   },
   "domain": "chatgpt.com",
+  "logo": "/app-logos/chatgpt.png",
   "origin": "global",
   "status": "published",
   "category": "ai-assistants",

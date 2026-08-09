@@ -6,6 +6,7 @@
     "en": "ArvanCloud"
   },
   "domain": "arvancloud.ir",
+  "logo": "/app-logos/arvancloud.svg",
   "origin": "iranian",
   "status": "published",
   "category": "developer-cloud",

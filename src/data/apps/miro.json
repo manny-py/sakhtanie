@@ -8,6 +8,7 @@
     "en": "Miro"
   },
   "domain": "miro.com",
+  "logo": "/app-logos/miro.png",
   "category": "notes-knowledge",
   "subcategory": "collaboration",
   "tags": [

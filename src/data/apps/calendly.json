@@ -8,6 +8,7 @@
     "en": "Calendly"
   },
   "domain": "calendly.com",
+  "logo": "/app-logos/calendly.png",
   "category": "commerce-forms-scheduling",
   "subcategory": "scheduling",
   "tags": [

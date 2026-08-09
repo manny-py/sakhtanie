@@ -6,6 +6,7 @@
     "en": "Tabnine"
   },
   "domain": "tabnine.com",
+  "logo": "/app-logos/tabnine.png",
   "origin": "global",
   "status": "published",
   "category": "ai-coding",

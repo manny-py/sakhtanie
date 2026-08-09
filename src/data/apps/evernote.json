@@ -6,6 +6,7 @@
     "en": "Evernote"
   },
   "domain": "evernote.com",
+  "logo": "/app-logos/evernote.png",
   "origin": "global",
   "status": "published",
   "category": "notes-knowledge",

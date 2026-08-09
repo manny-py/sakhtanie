@@ -6,6 +6,7 @@
     "en": "Airtable"
   },
   "domain": "airtable.com",
+  "logo": "/app-logos/airtable.png",
   "origin": "global",
   "status": "published",
   "category": "automation-no-code",

@@ -6,6 +6,7 @@
     "en": "Zendesk"
   },
   "domain": "zendesk.com",
+  "logo": "/app-logos/zendesk.jpg",
   "origin": "global",
   "status": "published",
   "category": "marketing-crm-support",

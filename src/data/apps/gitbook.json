@@ -6,6 +6,7 @@
     "en": "GitBook"
   },
   "domain": "gitbook.com",
+  "logo": "/app-logos/gitbook.svg",
   "origin": "global",
   "status": "published",
   "category": "notes-knowledge",

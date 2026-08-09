@@ -1,0 +1,52 @@
+---
+const { app } = Astro.props;
+
+const initial =
+  app?.name?.en?.charAt(0)?.toUpperCase() || "?";
+---
+
+<span class="app-logo" aria-hidden="true">
+  <span class="app-logo__fallback" dir="ltr">
+    {initial}
+  </span>
+
+  <img
+    src={app.logo}
+    alt=""
+    loading="lazy"
+    decoding="async"
+    onerror="this.hidden=true"
+  />
+</span>
+
+<style>
+  .app-logo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .app-logo__fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9em;
+    font-weight: 700;
+  }
+
+  .app-logo img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+</style>

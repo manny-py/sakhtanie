@@ -6,6 +6,7 @@
     "en": "Sentry"
   },
   "domain": "sentry.io",
+  "logo": "/app-logos/sentry.png",
   "origin": "global",
   "status": "published",
   "category": "data-analytics",

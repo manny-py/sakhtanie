@@ -1,11 +1,19 @@
 ---
 import { apps } from "../lib/apps";
 import { categoryDefinitions } from "../lib/categories";
+import AppLogo from "./AppLogo.astro";
 
 const categoryLabels = Object.fromEntries(
   categoryDefinitions.map((category) => [
     category.slug,
     category.shortTitle,
+  ])
+) as Record<string, string>;
+
+const categorySymbols = Object.fromEntries(
+  categoryDefinitions.map((category) => [
+    category.slug,
+    category.symbol,
   ])
 ) as Record<string, string>;
 
@@ -89,12 +97,9 @@ const renderSections = [
               <div class="discovery-card__top">
                 <span
                   class="discovery-icon"
-                  dir="ltr"
                   aria-hidden="true"
                 >
-                  {app.name.en
-                    .charAt(0)
-                    .toUpperCase()}
+                  <AppLogo app={app} />
                 </span>
 
                 <span
@@ -118,7 +123,15 @@ const renderSections = [
               <p>{app.summary}</p>
 
               <div class="discovery-meta">
-                <span>
+                <span class="discovery-category">
+                  <span
+                    class="discovery-category__symbol"
+                    dir="ltr"
+                    aria-hidden="true"
+                  >
+                    {categorySymbols[app.category] ?? "·"}
+                  </span>
+
                   {categoryLabels[app.category] ??
                     app.category}
                 </span>
@@ -155,10 +168,9 @@ const renderSections = [
               <div class="discovery-card__top">
                 <span
                   class="discovery-icon"
-                  dir="ltr"
                   aria-hidden="true"
                 >
-                  {app.name.fa.charAt(0)}
+                  <AppLogo app={app} />
                 </span>
 
                 <span
@@ -180,7 +192,15 @@ const renderSections = [
               <p>{app.summary}</p>
 
               <div class="discovery-meta">
-                <span>
+                <span class="discovery-category">
+                  <span
+                    class="discovery-category__symbol"
+                    dir="ltr"
+                    aria-hidden="true"
+                  >
+                    {categorySymbols[app.category] ?? "·"}
+                  </span>
+
                   {categoryLabels[app.category] ??
                     app.category}
                 </span>
@@ -300,11 +320,13 @@ const renderSections = [
     height: 32px;
     display: grid;
     place-items: center;
+    overflow: hidden;
+    padding: 5px;
+    border: 1px solid #263028;
     border-radius: 8px;
     background: #182019;
     color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
+    box-sizing: border-box;
   }
 
   .discovery-verdict {
@@ -361,6 +383,18 @@ const renderSections = [
     gap: 10px;
     margin-top: auto;
     color: #687269;
+    font-size: 9px;
+  }
+
+  .discovery-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .discovery-category__symbol {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
     font-size: 9px;
   }
 

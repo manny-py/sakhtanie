@@ -6,6 +6,7 @@
     "en": "Devin"
   },
   "domain": "devin.ai",
+  "logo": "/app-logos/devin.png",
   "origin": "global",
   "status": "published",
   "category": "ai-coding",

@@ -12,6 +12,8 @@ export const appSchema = z.object({
 
   domain: z.string(),
 
+  logo: z.string(),
+
   origin: z.enum([
     "iranian",
     "global",

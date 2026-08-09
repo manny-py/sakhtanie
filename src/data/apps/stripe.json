@@ -6,6 +6,7 @@
     "en": "Stripe"
   },
   "domain": "stripe.com",
+  "logo": "/app-logos/stripe.png",
   "origin": "global",
   "status": "published",
   "category": "commerce-forms-scheduling",

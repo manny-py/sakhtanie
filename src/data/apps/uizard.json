@@ -6,6 +6,7 @@
     "en": "Uizard"
   },
   "domain": "uizard.io",
+  "logo": "/app-logos/uizard.svg",
   "origin": "global",
   "status": "published",
   "category": "app-website-builders",

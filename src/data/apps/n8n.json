@@ -6,6 +6,7 @@
     "en": "n8n"
   },
   "domain": "n8n.io",
+  "logo": "/app-logos/n8n.png",
   "origin": "global",
   "status": "published",
   "category": "automation-no-code",

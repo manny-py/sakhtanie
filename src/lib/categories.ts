@@ -3,6 +3,7 @@ export const categoryDefinitions = [
     slug: "ai-assistants",
     title: "دستیارهای هوش مصنوعی و جست‌وجو",
     shortTitle: "دستیار و جست‌وجو",
+    symbol: "✦",
     code: "ASK",
     description:
       "ابزارهای گفتگو، پاسخ‌گویی، پژوهش و جست‌وجوی مبتنی بر هوش مصنوعی.",
@@ -11,6 +12,7 @@ export const categoryDefinitions = [
     slug: "ai-coding",
     title: "برنامه‌نویسی با هوش مصنوعی",
     shortTitle: "برنامه‌نویسی AI",
+    symbol: "</>",
     code: "CODE",
     description:
       "دستیارهای کدنویسی، محیط‌های توسعه هوشمند و عامل‌های نرم‌افزاری.",
@@ -19,6 +21,7 @@ export const categoryDefinitions = [
     slug: "app-website-builders",
     title: "ساخت سایت و اپلیکیشن",
     shortTitle: "سایت و اپ",
+    symbol: "▦",
     code: "BUILD",
     description:
       "ابزارهای ساخت سایت، رابط کاربری و اپلیکیشن با کدنویسی یا بدون کد.",
@@ -27,6 +30,7 @@ export const categoryDefinitions = [
     slug: "design-image",
     title: "طراحی و تولید تصویر",
     shortTitle: "طراحی و تصویر",
+    symbol: "◇",
     code: "VIS",
     description:
       "ابزارهای طراحی رابط، تولید تصویر، ویرایش عکس و ساخت محتوای بصری.",
@@ -35,6 +39,7 @@ export const categoryDefinitions = [
     slug: "video-audio-music",
     title: "ویدیو، صدا و موسیقی",
     shortTitle: "رسانه",
+    symbol: "▶",
     code: "MEDIA",
     description:
       "ابزارهای تولید و ویرایش ویدیو، صدا، گفتار و موسیقی.",
@@ -43,6 +48,7 @@ export const categoryDefinitions = [
     slug: "writing-seo",
     title: "نویسندگی، محتوا و سئو",
     shortTitle: "محتوا و سئو",
+    symbol: "✎",
     code: "COPY",
     description:
       "ابزارهای نگارش، بازنویسی، تولید محتوا، تحقیق کلمه کلیدی و سئو.",
@@ -51,6 +57,7 @@ export const categoryDefinitions = [
     slug: "productivity",
     title: "مدیریت کار و بهره‌وری",
     shortTitle: "بهره‌وری",
+    symbol: "✓",
     code: "WORK",
     description:
       "ابزارهای مدیریت پروژه، وظایف، همکاری تیمی و برنامه‌ریزی کار.",
@@ -59,6 +66,7 @@ export const categoryDefinitions = [
     slug: "notes-knowledge",
     title: "یادداشت، دانش و جلسه",
     shortTitle: "دانش و جلسه",
+    symbol: "◫",
     code: "KNOW",
     description:
       "ابزارهای یادداشت‌برداری، مدیریت دانش، وایت‌برد و ثبت جلسات.",
@@ -67,6 +75,7 @@ export const categoryDefinitions = [
     slug: "automation-no-code",
     title: "اتوماسیون و بدون کد",
     shortTitle: "اتوماسیون",
+    symbol: "↯",
     code: "AUTO",
     description:
       "ابزارهای اتصال سرویس‌ها، ساخت گردش‌کار و خودکارسازی فرایندها.",
@@ -75,6 +84,7 @@ export const categoryDefinitions = [
     slug: "commerce-forms-scheduling",
     title: "فروش، فرم و زمان‌بندی",
     shortTitle: "فروش و فرم",
+    symbol: "¤",
     code: "BIZ",
     description:
       "ابزارهای فروش آنلاین، پرداخت، فرم‌ساز، رزرو و زمان‌بندی.",
@@ -83,6 +93,7 @@ export const categoryDefinitions = [
     slug: "marketing-crm-support",
     title: "بازاریابی، CRM و پشتیبانی",
     shortTitle: "بازاریابی و CRM",
+    symbol: "↗",
     code: "GROW",
     description:
       "ابزارهای جذب مشتری، ارتباطات بازاریابی، فروش و پشتیبانی.",
@@ -91,6 +102,7 @@ export const categoryDefinitions = [
     slug: "learning-career",
     title: "یادگیری، مهارت و مسیر شغلی",
     shortTitle: "یادگیری و شغل",
+    symbol: "△",
     code: "LEARN",
     description:
       "پلتفرم‌های آموزش مهارت، ارزیابی توانایی، رقابت، استخدام و توسعه مسیر حرفه‌ای.",
@@ -99,6 +111,7 @@ export const categoryDefinitions = [
     slug: "developer-cloud",
     title: "توسعه، بک‌اند و زیرساخت ابری",
     shortTitle: "توسعه و کلاد",
+    symbol: "⌁",
     code: "CLOUD",
     description:
       "پلتفرم‌های استقرار، بک‌اند، دیتابیس، هاست ابری، زیرساخت توسعه و سرویس‌های Cloud.",
@@ -107,6 +120,7 @@ export const categoryDefinitions = [
     slug: "data-analytics",
     title: "داده، تحلیل و گزارش‌گیری",
     shortTitle: "داده و تحلیل",
+    symbol: "▥",
     code: "DATA",
     description:
       "ابزارهای تحلیل رفتار، داشبورد، هوش تجاری و گزارش‌گیری داده.",

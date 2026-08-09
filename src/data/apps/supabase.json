@@ -6,6 +6,7 @@
     "en": "Supabase"
   },
   "domain": "supabase.com",
+  "logo": "/app-logos/supabase.png",
   "origin": "global",
   "status": "published",
   "category": "developer-cloud",
