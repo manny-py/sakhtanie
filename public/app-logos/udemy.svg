@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="24" fill="#172019"/>
+  <rect
+    width="128"
+    height="128"
+    rx="28"
+    fill="#172019"
+  />
+  <rect
+    x="1"
+    y="1"
+    width="126"
+    height="126"
+    rx="27"
+    fill="none"
+    stroke="#2b392e"
+    stroke-width="2"
+  />
   <text
     x="64"
-    y="69"
+    y="68"
     text-anchor="middle"
     dominant-baseline="middle"
-    fill="#22e863"
-    font-family="Arial, sans-serif"
+    font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif"
     font-size="58"
-    font-weight="700"
-  >U</text>
+  >🎓</text>
 </svg>

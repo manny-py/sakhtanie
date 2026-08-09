@@ -152,153 +152,596 @@
       };
     };
 
-    const drawLine = (
-      coordinates: Array<[number, number]>,
-      rotation: number,
-      radius: number,
-      cx: number,
-      cy: number
+    type GeoCoordinate = [number, number];
+
+    interface LandPoint {
+      lat: number;
+      lng: number;
+      radius: number;
+    }
+
+    /*
+     * Simplified geographic silhouettes.
+     *
+     * These are only used as a rendering mask for the
+     * low-resolution point cloud. They are not used for
+     * analytics, geolocation, or country identification.
+     */
+    const LAND_POLYGONS: GeoCoordinate[][] = [
+      // North America
+      [
+        [72, -168],
+        [72, -145],
+        [68, -125],
+        [60, -110],
+        [54, -98],
+        [50, -85],
+        [46, -66],
+        [40, -61],
+        [29, -80],
+        [25, -82],
+        [18, -88],
+        [15, -94],
+        [20, -106],
+        [28, -115],
+        [38, -124],
+        [50, -130],
+        [58, -140],
+        [65, -165],
+      ],
+
+      // Greenland
+      [
+        [83, -73],
+        [82, -20],
+        [72, -18],
+        [60, -42],
+        [60, -55],
+        [70, -62],
+      ],
+
+      // Central America
+      [
+        [22, -106],
+        [23, -98],
+        [19, -90],
+        [16, -87],
+        [12, -84],
+        [8, -78],
+        [7, -82],
+        [12, -90],
+        [17, -97],
+      ],
+
+      // South America
+      [
+        [12, -81],
+        [9, -70],
+        [5, -60],
+        [1, -50],
+        [-8, -43],
+        [-20, -40],
+        [-32, -48],
+        [-45, -66],
+        [-55, -68],
+        [-50, -74],
+        [-34, -72],
+        [-18, -75],
+        [-5, -80],
+      ],
+
+      // Europe
+      [
+        [71, -10],
+        [71, 20],
+        [67, 32],
+        [60, 40],
+        [52, 40],
+        [45, 31],
+        [37, 27],
+        [36, 15],
+        [39, 4],
+        [44, -6],
+        [51, -10],
+        [58, -7],
+        [64, -12],
+      ],
+
+      // Africa
+      [
+        [36, -17],
+        [37, 8],
+        [32, 31],
+        [22, 38],
+        [12, 44],
+        [2, 42],
+        [-10, 40],
+        [-23, 34],
+        [-35, 20],
+        [-34, 10],
+        [-25, 2],
+        [-15, -10],
+        [0, -17],
+        [15, -17],
+        [28, -12],
+      ],
+
+      // Asia
+      [
+        [72, 25],
+        [76, 58],
+        [75, 95],
+        [71, 130],
+        [64, 170],
+        [54, 164],
+        [49, 145],
+        [43, 132],
+        [36, 125],
+        [23, 120],
+        [15, 108],
+        [7, 105],
+        [7, 96],
+        [15, 88],
+        [22, 78],
+        [24, 68],
+        [30, 58],
+        [38, 48],
+        [45, 42],
+        [55, 32],
+        [65, 28],
+      ],
+
+      // India
+      [
+        [30, 68],
+        [31, 80],
+        [26, 88],
+        [20, 88],
+        [8, 78],
+        [8, 73],
+        [20, 70],
+      ],
+
+      // South East Asia
+      [
+        [23, 96],
+        [22, 108],
+        [14, 112],
+        [5, 108],
+        [-3, 102],
+        [-7, 108],
+        [-4, 117],
+        [4, 119],
+        [12, 116],
+        [18, 108],
+      ],
+
+      // Japan
+      [
+        [45, 141],
+        [42, 145],
+        [35, 140],
+        [31, 131],
+        [34, 129],
+        [39, 136],
+      ],
+
+      // Australia
+      [
+        [-10, 113],
+        [-12, 130],
+        [-11, 143],
+        [-20, 153],
+        [-31, 153],
+        [-39, 146],
+        [-38, 132],
+        [-33, 115],
+        [-22, 112],
+      ],
+
+      // New Zealand
+      [
+        [-34, 172],
+        [-38, 177],
+        [-46, 170],
+        [-45, 166],
+        [-39, 169],
+      ],
+
+      // Madagascar
+      [
+        [-12, 48],
+        [-16, 50],
+        [-26, 47],
+        [-25, 44],
+        [-17, 43],
+      ],
+    ];
+
+    const pointInPolygon = (
+      lat: number,
+      lng: number,
+      polygon: GeoCoordinate[]
     ) => {
-      if (!context) return;
+      let inside = false;
 
-      let drawing = false;
+      for (
+        let i = 0, j = polygon.length - 1;
+        i < polygon.length;
+        j = i++
+      ) {
+        const [latI, lngI] = polygon[i];
+        const [latJ, lngJ] = polygon[j];
 
-      context.beginPath();
+        const intersects =
+          lngI > lng !== lngJ > lng &&
+          lat <
+            ((latJ - latI) * (lng - lngI)) /
+              (lngJ - lngI || Number.EPSILON) +
+              latI;
 
-      for (const [lat, lng] of coordinates) {
-        const point = project(lat, lng, rotation, radius);
-
-        if (!point.visible) {
-          drawing = false;
-          continue;
-        }
-
-        const x = cx + point.x;
-        const y = cy + point.y;
-
-        if (!drawing) {
-          context.moveTo(x, y);
-          drawing = true;
-        } else {
-          context.lineTo(x, y);
+        if (intersects) {
+          inside = !inside;
         }
       }
 
-      context.stroke();
+      return inside;
     };
+
+    const isLand = (
+      lat: number,
+      lng: number
+    ) =>
+      LAND_POLYGONS.some((polygon) =>
+        pointInPolygon(lat, lng, polygon)
+      );
+
+    const deterministicNoise = (
+      lat: number,
+      lng: number
+    ) => {
+      const value =
+        Math.sin(
+          lat * 12.9898 +
+            lng * 78.233
+        ) * 43758.5453;
+
+      return value - Math.floor(value);
+    };
+
+    const landPoints: LandPoint[] = [];
+
+    /*
+     * Staggered geographic grid:
+     * close to the point-map visual used by the reference.
+     */
+    const pointStep = 3.35;
+
+    let row = 0;
+
+    for (
+      let lat = -58;
+      lat <= 80;
+      lat += pointStep
+    ) {
+      const offset =
+        row % 2 === 0
+          ? 0
+          : pointStep / 2;
+
+      for (
+        let lng = -180 + offset;
+        lng <= 180;
+        lng += pointStep
+      ) {
+        if (!isLand(lat, lng)) {
+          continue;
+        }
+
+        const noise =
+          deterministicNoise(lat, lng);
+
+        landPoints.push({
+          lat,
+          lng,
+          radius:
+            1.05 + noise * 0.55,
+        });
+      }
+
+      row++;
+    }
 
     const render = (time: number) => {
       if (!context) return;
 
-      context.clearRect(0, 0, width, height);
-
-      const size = Math.min(width, height);
-      const radius = size * 0.39;
-      const cx = width / 2;
-      const cy = height / 2;
-
-      const rotation = (time * 0.000045) % (Math.PI * 2);
-
-      const sphere = context.createRadialGradient(
-        cx - radius * 0.3,
-        cy - radius * 0.35,
-        radius * 0.1,
-        cx,
-        cy,
-        radius
+      context.clearRect(
+        0,
+        0,
+        width,
+        height
       );
 
-      sphere.addColorStop(0, "rgba(34, 197, 94, 0.10)");
-      sphere.addColorStop(0.55, "rgba(8, 20, 18, 0.94)");
-      sphere.addColorStop(1, "rgba(3, 9, 8, 1)");
+      const size =
+        Math.min(width, height);
 
-      context.beginPath();
-      context.arc(cx, cy, radius, 0, Math.PI * 2);
-      context.fillStyle = sphere;
-      context.fill();
+      const radius =
+        size * 0.39;
 
-      context.save();
-      context.beginPath();
-      context.arc(cx, cy, radius, 0, Math.PI * 2);
-      context.clip();
+      const cx =
+        width / 2;
 
-      context.strokeStyle = "rgba(74, 222, 128, 0.13)";
-      context.lineWidth = 1;
+      const cy =
+        height / 2;
 
-      for (const latitude of [-60, -30, 0, 30, 60]) {
-        const coords: Array<[number, number]> = [];
+      const reducedMotion =
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-        for (let lng = -180; lng <= 180; lng += 3) {
-          coords.push([latitude, lng]);
-        }
+      const rotation =
+        reducedMotion
+          ? 0.55
+          : (
+              time * 0.000055 +
+              0.55
+            ) %
+            (Math.PI * 2);
 
-        drawLine(coords, rotation, radius, cx, cy);
-      }
-
-      for (let longitude = -180; longitude < 180; longitude += 30) {
-        const coords: Array<[number, number]> = [];
-
-        for (let lat = -90; lat <= 90; lat += 3) {
-          coords.push([lat, longitude]);
-        }
-
-        drawLine(coords, rotation, radius, cx, cy);
-      }
-
-      const pulse = 0.5 + Math.sin(time * 0.006) * 0.5;
-
-      for (const item of countries) {
-        const geo = COUNTRY_CENTROIDS[item.country];
-
-        if (!geo) continue;
-
-        const point = project(
-          geo.lat,
-          geo.lng,
-          rotation,
+      /*
+       * Dark sphere base.
+       * The reference is mostly black with only a
+       * restrained green atmospheric tint.
+       */
+      const sphere =
+        context.createRadialGradient(
+          cx - radius * 0.22,
+          cy - radius * 0.28,
+          radius * 0.03,
+          cx,
+          cy,
           radius
         );
 
-        if (!point.visible) continue;
+      sphere.addColorStop(
+        0,
+        "rgba(17, 40, 27, 0.55)"
+      );
 
-        const x = cx + point.x;
-        const y = cy + point.y;
+      sphere.addColorStop(
+        0.58,
+        "rgba(7, 18, 12, 0.94)"
+      );
 
-        const baseRadius =
-          Math.min(7, 3.5 + Math.log2(item.visitors + 1));
+      sphere.addColorStop(
+        1,
+        "rgba(3, 8, 5, 1)"
+      );
+
+      context.beginPath();
+
+      context.arc(
+        cx,
+        cy,
+        radius,
+        0,
+        Math.PI * 2
+      );
+
+      context.fillStyle =
+        sphere;
+
+      context.fill();
+
+      context.save();
+
+      context.beginPath();
+
+      context.arc(
+        cx,
+        cy,
+        radius,
+        0,
+        Math.PI * 2
+      );
+
+      context.clip();
+
+      /*
+       * Land point cloud.
+       */
+      for (
+        const land
+        of landPoints
+      ) {
+        const point =
+          project(
+            land.lat,
+            land.lng,
+            rotation,
+            radius
+          );
+
+        if (!point.visible) {
+          continue;
+        }
+
+        const x =
+          cx + point.x;
+
+        const y =
+          cy + point.y;
+
+        const perspective =
+          0.62 +
+          point.depth * 0.38;
+
+        const dotRadius =
+          land.radius *
+          perspective;
+
+        const alpha =
+          0.20 +
+          point.depth * 0.72;
 
         context.beginPath();
+
         context.arc(
           x,
           y,
-          baseRadius + pulse * 6,
+          dotRadius,
           0,
           Math.PI * 2
         );
-        context.fillStyle = `rgba(250, 204, 21, ${
-          0.08 + pulse * 0.08
-        })`;
+
+        context.fillStyle =
+          `rgba(34, 232, 99, ${alpha})`;
+
+        context.fill();
+      }
+
+      /*
+       * Live visitors.
+       */
+      const pulse =
+        0.5 +
+        Math.sin(
+          time * 0.006
+        ) *
+          0.5;
+
+      for (
+        const item
+        of countries
+      ) {
+        const geo =
+          COUNTRY_CENTROIDS[
+            item.country
+          ];
+
+        if (!geo) {
+          continue;
+        }
+
+        const point =
+          project(
+            geo.lat,
+            geo.lng,
+            rotation,
+            radius
+          );
+
+        if (!point.visible) {
+          continue;
+        }
+
+        const x =
+          cx + point.x;
+
+        const y =
+          cy + point.y;
+
+        const baseRadius =
+          Math.min(
+            6.5,
+            3 +
+              Math.log2(
+                item.visitors + 1
+              )
+          );
+
+        context.beginPath();
+
+        context.arc(
+          x,
+          y,
+          baseRadius +
+            pulse * 7,
+          0,
+          Math.PI * 2
+        );
+
+        context.fillStyle =
+          `rgba(250, 204, 21, ${
+            0.07 +
+            pulse * 0.1
+          })`;
+
         context.fill();
 
         context.beginPath();
-        context.arc(x, y, baseRadius, 0, Math.PI * 2);
-        context.fillStyle = "#facc15";
-        context.shadowColor = "#facc15";
-        context.shadowBlur = 14;
+
+        context.arc(
+          x,
+          y,
+          baseRadius,
+          0,
+          Math.PI * 2
+        );
+
+        context.fillStyle =
+          "#facc15";
+
+        context.shadowColor =
+          "#facc15";
+
+        context.shadowBlur =
+          13;
+
         context.fill();
 
-        context.shadowBlur = 0;
+        context.shadowBlur =
+          0;
+
+        /*
+         * Small bright center, matching the
+         * reference live-presence markers.
+         */
+        context.beginPath();
+
+        context.arc(
+          x,
+          y,
+          Math.max(
+            1.2,
+            baseRadius * 0.35
+          ),
+          0,
+          Math.PI * 2
+        );
+
+        context.fillStyle =
+          "#fff7a8";
+
+        context.fill();
       }
 
       context.restore();
 
+      /*
+       * Thin outer sphere boundary.
+       */
       context.beginPath();
-      context.arc(cx, cy, radius, 0, Math.PI * 2);
-      context.strokeStyle = "rgba(74, 222, 128, 0.28)";
-      context.lineWidth = 1.2;
+
+      context.arc(
+        cx,
+        cy,
+        radius,
+        0,
+        Math.PI * 2
+      );
+
+      context.strokeStyle =
+        "rgba(34, 232, 99, 0.20)";
+
+      context.lineWidth =
+        1;
+
       context.stroke();
 
-      requestAnimationFrame(render);
+      requestAnimationFrame(
+        render
+      );
     };
 
     const renderCountries = () => {

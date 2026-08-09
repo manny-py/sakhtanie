@@ -25,15 +25,15 @@
   },
   {
     "slug": "aparat",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/aparat.svg"
+    "type": "official-site",
+    "source": "https://www.aparat.com/clover/shorts/icon-512x512.png",
+    "local": "/app-logos/aparat.webp"
   },
   {
     "slug": "arvancloud",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/arvancloud.svg"
+    "type": "official-site",
+    "source": "https://avatars.githubusercontent.com/u/21291162?v=4",
+    "local": "/app-logos/arvancloud.png"
   },
   {
     "slug": "asana",
@@ -79,9 +79,9 @@
   },
   {
     "slug": "caremeas",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/caremeas.svg"
+    "type": "official-site",
+    "source": "https://caremeas.ir/_marku/assets/ace5a9117dd4fba8f891dc1848e27372c2128c983bd2078e949134355ae57803.png",
+    "local": "/app-logos/caremeas.png"
   },
   {
     "slug": "chatgpt",
@@ -115,9 +115,9 @@
   },
   {
     "slug": "coursera",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/coursera.svg"
+    "type": "official-site",
+    "source": "https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png",
+    "local": "/app-logos/coursera.png"
   },
   {
     "slug": "cursor",
@@ -127,9 +127,9 @@
   },
   {
     "slug": "danup",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/danup.svg"
+    "type": "official-site",
+    "source": "https://danup.ir/wp-content/uploads/2018/12/cropped-favv-192x192.png",
+    "local": "/app-logos/danup.png"
   },
   {
     "slug": "descript",
@@ -145,9 +145,9 @@
   },
   {
     "slug": "didar",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/didar.svg"
+    "type": "official-site",
+    "source": "https://didar.me/favicon.ico",
+    "local": "/app-logos/didar.ico"
   },
   {
     "slug": "elevenlabs",
@@ -163,9 +163,9 @@
   },
   {
     "slug": "faradars",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/faradars.svg"
+    "type": "official-site",
+    "source": "https://faradars.org/pwa/512.png",
+    "local": "/app-logos/faradars.webp"
   },
   {
     "slug": "figma",
@@ -193,9 +193,9 @@
   },
   {
     "slug": "gitbook",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/gitbook.svg"
+    "type": "official-site",
+    "source": "https://framerusercontent.com/images/RixubGcwFjRRIx4k36fKy7kV8Y.png",
+    "local": "/app-logos/gitbook.avif"
   },
   {
     "slug": "github-copilot",
@@ -211,7 +211,7 @@
   },
   {
     "slug": "google-analytics",
-    "type": "generated-fallback",
+    "type": "intentional-badge",
     "source": null,
     "local": "/app-logos/google-analytics.svg"
   },
@@ -223,9 +223,9 @@
   },
   {
     "slug": "grok",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/grok.svg"
+    "type": "official-site",
+    "source": "https://x.ai/favicon.ico",
+    "local": "/app-logos/grok.ico"
   },
   {
     "slug": "hubspot",
@@ -259,21 +259,21 @@
   },
   {
     "slug": "jira",
-    "type": "generated-fallback",
-    "source": null,
+    "type": "official-local",
+    "source": "https://github.com/atlassian/atlascode/blob/main/src/rovo-dev/ui/prompt-box/promptContext/promptContextItem.tsx",
     "local": "/app-logos/jira.svg"
   },
   {
     "slug": "jobinja",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/jobinja.svg"
+    "type": "official-site",
+    "source": "https://jobinja.ir/apple-icon-180x180.png",
+    "local": "/app-logos/jobinja.webp"
   },
   {
     "slug": "jobvision",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/jobvision.svg"
+    "type": "official-site",
+    "source": "https://jobvision.ir/assets/icons/icon-512x512.png",
+    "local": "/app-logos/jobvision.png"
   },
   {
     "slug": "leonardo",
@@ -283,15 +283,15 @@
   },
   {
     "slug": "liara",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/liara.svg"
+    "type": "official-site",
+    "source": "https://liara.ir/assets/favicon.ico",
+    "local": "/app-logos/liara.ico"
   },
   {
     "slug": "limoo-host",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/limoo-host.svg"
+    "type": "official-site",
+    "source": "https://limoo.host/asstes/img/logo/favicon.ico",
+    "local": "/app-logos/limoo-host.ico"
   },
   {
     "slug": "linear",
@@ -319,14 +319,14 @@
   },
   {
     "slug": "maktabkhooneh",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/maktabkhooneh.svg"
+    "type": "official-site",
+    "source": "https://statics.maktabkhooneh.org/front/images/favicons/apple-touch-icon-180x180.webp",
+    "local": "/app-logos/maktabkhooneh.webp"
   },
   {
     "slug": "metabase",
-    "type": "generated-fallback",
-    "source": null,
+    "type": "official-site",
+    "source": "https://www.metabase.com/images/favicon.svg",
     "local": "/app-logos/metabase.svg"
   },
   {
@@ -349,8 +349,8 @@
   },
   {
     "slug": "mistral-vibe",
-    "type": "generated-fallback",
-    "source": null,
+    "type": "official-site",
+    "source": "https://mistral.ai/favicon.svg",
     "local": "/app-logos/mistral-vibe.svg"
   },
   {
@@ -367,9 +367,9 @@
   },
   {
     "slug": "najva",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/najva.svg"
+    "type": "official-site",
+    "source": "https://www.najva.com/wp-content/uploads/2025/08/fav.png",
+    "local": "/app-logos/najva.png"
   },
   {
     "slug": "notion",
@@ -391,21 +391,21 @@
   },
   {
     "slug": "poe",
-    "type": "generated-fallback",
-    "source": null,
+    "type": "official-site",
+    "source": "https://poe.com/favicon.svg",
     "local": "/app-logos/poe.svg"
   },
   {
     "slug": "ponisha",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/ponisha.svg"
+    "type": "official-site",
+    "source": "https://ponisha.ir/android-512.png",
+    "local": "/app-logos/ponisha.png"
   },
   {
     "slug": "porsline",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/porsline.svg"
+    "type": "official-site",
+    "source": "https://porsline.ir/favicon.png",
+    "local": "/app-logos/porsline.png"
   },
   {
     "slug": "posthog",
@@ -415,9 +415,9 @@
   },
   {
     "slug": "quera",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/quera.svg"
+    "type": "official-site",
+    "source": "https://quera.org/static/images/logo/favicon/android-chrome-512x512.png",
+    "local": "/app-logos/quera.png"
   },
   {
     "slug": "quillbot",
@@ -433,8 +433,8 @@
   },
   {
     "slug": "raychat",
-    "type": "generated-fallback",
-    "source": null,
+    "type": "official-site",
+    "source": "https://raychat.io/logo.svg",
     "local": "/app-logos/raychat.svg"
   },
   {
@@ -493,9 +493,9 @@
   },
   {
     "slug": "suno",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/suno.svg"
+    "type": "official-site",
+    "source": "https://cdn-o.suno.com/favicon-512x512.png",
+    "local": "/app-logos/suno.png"
   },
   {
     "slug": "supabase",
@@ -511,9 +511,9 @@
   },
   {
     "slug": "tableau",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/tableau.svg"
+    "type": "official-site",
+    "source": "https://www.tableau.com/c/public/exp/app/favicon.ico",
+    "local": "/app-logos/tableau.ico"
   },
   {
     "slug": "tabnine",
@@ -535,15 +535,15 @@
   },
   {
     "slug": "udemy",
-    "type": "generated-fallback",
+    "type": "intentional-badge",
     "source": null,
     "local": "/app-logos/udemy.svg"
   },
   {
     "slug": "uizard",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/uizard.svg"
+    "type": "official-site",
+    "source": "https://uizard.io/android-chrome-512x512.png",
+    "local": "/app-logos/uizard.png"
   },
   {
     "slug": "v0",
@@ -559,9 +559,9 @@
   },
   {
     "slug": "virgool",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/virgool.svg"
+    "type": "official-site",
+    "source": "https://static.virgool.io/images/pwa/virgool-512.png",
+    "local": "/app-logos/virgool.webp"
   },
   {
     "slug": "webflow",
@@ -577,9 +577,9 @@
   },
   {
     "slug": "yektanet",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/yektanet.svg"
+    "type": "official-site",
+    "source": "https://www.yektanet.com/wp-content/uploads/2025/02/cropped-favicon-yektanet-192x192.png",
+    "local": "/app-logos/yektanet.png"
   },
   {
     "slug": "zapier",
@@ -589,9 +589,9 @@
   },
   {
     "slug": "zarinpal",
-    "type": "generated-fallback",
-    "source": null,
-    "local": "/app-logos/zarinpal.svg"
+    "type": "official-site",
+    "source": "https://www.zarinpal.com/icons/apple-touch-icon.png",
+    "local": "/app-logos/zarinpal.png"
   },
   {
     "slug": "zendesk",
