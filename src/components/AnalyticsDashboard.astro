@@ -16,13 +16,8 @@
     </div>
 
     <div class="card analytics-card">
-      <strong data-unique-visitors>0</strong>
-      <span class="muted">بازدیدکننده یکتا</span>
-    </div>
-
-    <div class="card analytics-card">
-      <strong data-client-errors>0</strong>
-      <span class="muted">خطاهای Client</span>
+      <strong data-tool-cta-clicks>0</strong>
+      <span class="muted">کلیک CTA ابزارها</span>
     </div>
   </section>
 
@@ -71,21 +66,15 @@
         <p class="muted">در حال دریافت داده...</p>
       </div>
     </div>
-
-    <div class="card analytics-detail-card">
-      <div class="section-heading">
-        <h2>خطاهای اخیر</h2>
-        <p class="muted">خطاهای Client ثبت‌شده در ۷ روز اخیر</p>
-      </div>
-
-      <div class="analytics-list" data-recent-errors>
-        <p class="muted">در حال دریافت داده...</p>
-      </div>
-    </div>
   </section>
 </section>
 
 <script>
+  import {
+    ANALYTICS_ORIGIN,
+    isSafeAnalyticsIdentifier,
+  } from "../lib/analytics";
+
   interface DashboardPoint {
     date: string;
     views: number;
@@ -96,36 +85,104 @@
     views: number;
   }
 
-  interface RecentError {
-    path: string;
-    payload: {
-      error_type?: string;
-      message?: string;
-      source?: string;
-      line?: number;
-      column?: number;
-    };
-    createdAt: string;
-  }
-
   interface DashboardResponse {
-    success: boolean;
+    success: true;
     range_days: number;
     summary: {
       totalViews: number;
       toolViews: number;
       searches: number;
       toolCtaClicks: number;
-      clientErrors: number;
-      uniqueVisitors: number;
     };
     viewsOverTime: DashboardPoint[];
     popularTools: PopularTool[];
-    recentErrors: RecentError[];
   }
 
-  const ENDPOINT =
-    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev/v1/dashboard?days=7";
+  const isSafeAggregateCount = (value: unknown): value is number =>
+    typeof value === "number" &&
+    Number.isSafeInteger(value) &&
+    value >= 0;
+
+  const parseDashboardResponse = (
+    value: unknown
+  ): DashboardResponse | null => {
+    if (typeof value !== "object" || value === null) {
+      return null;
+    }
+
+    const candidate = value as Record<string, unknown>;
+    const summary = candidate.summary;
+
+    if (
+      candidate.success !== true ||
+      !Number.isInteger(candidate.range_days) ||
+      (candidate.range_days as number) < 1 ||
+      (candidate.range_days as number) > 31 ||
+      typeof summary !== "object" ||
+      summary === null ||
+      !Array.isArray(candidate.viewsOverTime) ||
+      !Array.isArray(candidate.popularTools)
+    ) {
+      return null;
+    }
+
+    const aggregateSummary = summary as Record<string, unknown>;
+
+    if (
+      !isSafeAggregateCount(aggregateSummary.totalViews) ||
+      !isSafeAggregateCount(aggregateSummary.toolViews) ||
+      !isSafeAggregateCount(aggregateSummary.searches) ||
+      !isSafeAggregateCount(aggregateSummary.toolCtaClicks)
+    ) {
+      return null;
+    }
+
+    const viewsOverTime = candidate.viewsOverTime
+      .filter((item): item is Record<string, unknown> =>
+        typeof item === "object" && item !== null
+      )
+      .filter(
+        (item) =>
+          typeof item.date === "string" &&
+          /^\d{4}-\d{2}-\d{2}$/.test(item.date) &&
+          isSafeAggregateCount(item.views)
+      )
+      .slice(-31)
+      .map((item) => ({
+        date: item.date as string,
+        views: item.views as number,
+      }));
+
+    const popularTools = candidate.popularTools
+      .filter((item): item is Record<string, unknown> =>
+        typeof item === "object" && item !== null
+      )
+      .filter(
+        (item) =>
+          isSafeAnalyticsIdentifier(item.slug) &&
+          isSafeAggregateCount(item.views)
+      )
+      .slice(0, 20)
+      .map((item) => ({
+        slug: item.slug as string,
+        views: item.views as number,
+      }));
+
+    return {
+      success: true,
+      range_days: candidate.range_days as number,
+      summary: {
+        totalViews: aggregateSummary.totalViews,
+        toolViews: aggregateSummary.toolViews,
+        searches: aggregateSummary.searches,
+        toolCtaClicks: aggregateSummary.toolCtaClicks,
+      },
+      viewsOverTime,
+      popularTools,
+    };
+  };
+
+  const ENDPOINT = `${ANALYTICS_ORIGIN}/v1/dashboard?days=7`;
 
   const root = document.querySelector<HTMLElement>(
     "[data-analytics-dashboard]"
@@ -141,11 +198,8 @@
     const searches =
       root.querySelector<HTMLElement>("[data-searches]");
 
-    const uniqueVisitors =
-      root.querySelector<HTMLElement>("[data-unique-visitors]");
-
-    const clientErrors =
-      root.querySelector<HTMLElement>("[data-client-errors]");
+    const toolCtaClicks =
+      root.querySelector<HTMLElement>("[data-tool-cta-clicks]");
 
     const line =
       root.querySelector<SVGPolylineElement>("[data-chart-line]");
@@ -161,9 +215,6 @@
 
     const popularTools =
       root.querySelector<HTMLElement>("[data-popular-tools]");
-
-    const recentErrors =
-      root.querySelector<HTMLElement>("[data-recent-errors]");
 
     const renderChart = (data: DashboardPoint[]) => {
       if (!line || !pointsGroup || !labels) return;
@@ -226,62 +277,19 @@
       }
 
       tools.forEach((tool, index) => {
-        const row = document.createElement("a");
-        row.className = "analytics-list-row";
-        row.href = `/tools/${encodeURIComponent(tool.slug)}`;
+          const row = document.createElement("a");
+          row.className = "analytics-list-row";
+          row.href = `/tools/${encodeURIComponent(tool.slug)}`;
 
-        const name = document.createElement("span");
-        name.textContent = `${index + 1}. ${tool.slug}`;
+          const name = document.createElement("span");
+          name.textContent = `${index + 1}. ${tool.slug}`;
 
-        const value = document.createElement("strong");
-        value.textContent = String(tool.views);
+          const value = document.createElement("strong");
+          value.textContent = String(tool.views);
 
-        row.append(name, value);
-        popularTools.appendChild(row);
-      });
-    };
-
-    const renderRecentErrors = (errors: RecentError[]) => {
-      if (!recentErrors) return;
-
-      recentErrors.replaceChildren();
-
-      if (errors.length === 0) {
-        const empty = document.createElement("p");
-        empty.className = "muted";
-        empty.textContent = "خطایی در این بازه ثبت نشده است.";
-        recentErrors.appendChild(empty);
-        return;
-      }
-
-      errors.forEach((error) => {
-        const row = document.createElement("div");
-        row.className = "analytics-error-row";
-
-        const header = document.createElement("div");
-
-        const type = document.createElement("strong");
-        type.textContent =
-          error.payload.error_type ?? "client_error";
-
-        const path = document.createElement("code");
-        path.textContent = error.path;
-
-        header.append(type, path);
-
-        const message = document.createElement("p");
-        message.textContent =
-          error.payload.message ?? "Unknown client error";
-
-        const time = document.createElement("small");
-        time.className = "muted";
-        time.textContent = new Date(error.createdAt).toLocaleString(
-          "fa-IR"
-        );
-
-        row.append(header, message, time);
-        recentErrors.appendChild(row);
-      });
+          row.append(name, value);
+          popularTools.appendChild(row);
+        });
     };
 
     const loadDashboard = async () => {
@@ -297,9 +305,9 @@
           throw new Error(`HTTP ${response.status}`);
         }
 
-        const data = (await response.json()) as DashboardResponse;
+        const data = parseDashboardResponse(await response.json());
 
-        if (!data.success) {
+        if (!data) {
           throw new Error("Dashboard API failure");
         }
 
@@ -315,23 +323,17 @@
           searches.textContent = String(data.summary.searches);
         }
 
-        if (uniqueVisitors) {
-          uniqueVisitors.textContent =
-            String(data.summary.uniqueVisitors);
-        }
-
-        if (clientErrors) {
-          clientErrors.textContent =
-            String(data.summary.clientErrors);
+        if (toolCtaClicks) {
+          toolCtaClicks.textContent =
+            String(data.summary.toolCtaClicks);
         }
 
         renderChart(data.viewsOverTime);
         renderPopularTools(data.popularTools);
-        renderRecentErrors(data.recentErrors);
 
         if (status) {
           status.textContent =
-            `داده واقعی · بازه ${data.range_days} روزه`;
+            `داده تجمیعی · بازه ${data.range_days} روزه`;
         }
       } catch {
         if (status) {
@@ -356,7 +358,7 @@
 <style>
   .analytics-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
 
@@ -413,7 +415,7 @@
 
   .analytics-detail-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 24px;
   }
@@ -438,36 +440,9 @@
     font-family: "JetBrains Mono", monospace;
   }
 
-  :global(.analytics-error-row) {
-    padding: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-  }
-
-  :global(.analytics-error-row > div) {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  :global(.analytics-error-row code) {
-    color: var(--primary);
-  }
-
-  :global(.analytics-error-row p) {
-    margin: 8px 0;
-    overflow-wrap: anywhere;
-  }
-
   @media (max-width: 1000px) {
     .analytics-grid {
       grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (max-width: 760px) {
-    .analytics-detail-grid {
-      grid-template-columns: 1fr;
     }
   }
 

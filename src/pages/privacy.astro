@@ -6,35 +6,217 @@ import Footer from "../components/Footer.astro";
 
 <BaseLayout
   title="سیاست حریم خصوصی و مدیریت داده‌ها | ساختنیه"
-  description="در سیاست حریم خصوصی ساختنیه توضیح می‌دهیم چه اطلاعاتی هنگام استفاده از سایت پردازش می‌شود و داده‌های کاربران چگونه مدیریت و محافظت خواهند شد."
+  description="توضیح شفاف درباره آمار حداقلی ساختنیه، پردازش Cloudflare و روش انصراف از آمارگیری."
 >
+  <Header />
 
-<Header />
+  <main tabindex="-1" id="main-content" class="container privacy-page">
+    <header>
+      <h1>حریم خصوصی</h1>
+      <p>
+        آمارگیری ساختنیه فعال است، اما فقط رویدادهای محدود و هدفمند را برای
+        سنجش استفاده از کاتالوگ و بهترکردن تجربه سایت ثبت می‌کنیم.
+      </p>
+    </header>
 
-<main tabindex="-1" id="main-content" class="container">
+    <section aria-labelledby="analytics-data">
+      <h2 id="analytics-data">چه داده‌ای فرستاده می‌شود؟</h2>
+      <p>رویدادهای مجاز به این موارد محدودند:</p>
+      <ul>
+        <li>مشاهده صفحه، ابزار یا دسته‌بندی؛</li>
+        <li>انجام جست‌وجو، فقط همراه با تعداد نتیجه‌ها؛</li>
+        <li>کلیک روی CTA ابزار یا ابزار مرتبط؛</li>
+        <li>نمایش یا کلیک جایگاه حامی و CTA تبلیغات.</li>
+      </ul>
+      <p>
+        متن خام جست‌وجو، URL مقصد، مسیر صفحه، پیام یا stack خطای مرورگر،
+        ایمیل، توکن و داده آزاد واردشده توسط کاربر در رویدادهای آمارگیری
+        ارسال نمی‌شود. رویدادهای عادی شناسه بازدیدکننده یا نشست ندارند.
+      </p>
+    </section>
 
-<section style="padding:50px 0">
+    <section aria-labelledby="live-presence">
+      <h2 id="live-presence">حضور آنلاین</h2>
+      <p>
+        برای شمارش تقریبی افراد آنلاین، مرورگر یک شناسه تصادفی و موقت می‌سازد.
+        این شناسه فقط در حافظه همان صفحه باقی می‌ماند، با رویدادهای عادی
+        استفاده نمی‌شود، شامل مسیر فعلی نیست و با بستن صفحه از بین می‌رود.
+        داشبورد عمومی باید فقط شمارش‌های تجمیعی و کشورها را نمایش دهد، نه
+        نشست یا مکان دقیق افراد.
+      </p>
+    </section>
 
-<h1>
-حریم خصوصی
-</h1>
+    <section aria-labelledby="purpose-cloudflare">
+      <h2 id="purpose-cloudflare">هدف و پردازش Cloudflare</h2>
+      <p>
+        این داده‌ها برای فهم میزان استفاده از صفحات و ابزارها، ارزیابی جست‌وجو
+        و CTAها و سنجش جایگاه‌های حامی استفاده می‌شوند. سایت و سرویس آمار روی
+        زیرساخت Cloudflare ارائه می‌شوند؛ بنابراین Cloudflare هنگام تحویل سایت
+        و درخواست‌های آمار، داده‌های شبکه‌ای لازم مانند نشانی IP و User-Agent
+        را طبق نقش و سیاست‌های خود پردازش می‌کند. برنامه آمارگیری نباید این
+        مقادیر خام را در پایگاه داده خود ذخیره کند.
+      </p>
+    </section>
 
-<p>
-در ساختنیه تلاش می‌کنیم حداقل اطلاعات مورد نیاز کاربران را دریافت کنیم.
-</p>
+    <section aria-labelledby="analytics-choice" class="privacy-choice">
+      <h2 id="analytics-choice">انتخاب شما</h2>
+      <p>
+        می‌توانید آمارگیری را در همین مرورگر غیرفعال کنید. این انتخاب تنها به
+        شکل یک ترجیح محلی ذخیره می‌شود و شناسه تحلیلی نیست. ساختنیه همچنین
+        Global Privacy Control و Do Not Track را، وقتی مرورگر اعلام کند، به‌عنوان
+        انصراف در نظر می‌گیرد. خطای سرویس آمار هیچ‌وقت نباید کار سایت را مختل کند.
+      </p>
 
-<p>
-در نسخه فعلی سایت، اطلاعات شخصی کاربران جمع‌آوری نمی‌شود و بیشتر داده‌ها برای نمایش و بهبود تجربه سایت استفاده می‌شوند.
-</p>
+      <div class="privacy-actions">
+        <button type="button" data-analytics-opt-out>
+          غیرفعال‌کردن آمارگیری
+        </button>
+        <button type="button" class="secondary" data-analytics-opt-in>
+          فعال‌کردن دوباره
+        </button>
+      </div>
 
-<p>
-در صورت اضافه‌شدن سرویس‌هایی که نیاز به اطلاعات کاربر داشته باشند، نحوه استفاده از اطلاعات شفاف اعلام خواهد شد.
-</p>
+      <p class="muted privacy-status" aria-live="polite" data-analytics-status>
+        در حال بررسی تنظیم مرورگر...
+      </p>
+    </section>
 
-</section>
+    <section aria-labelledby="retention">
+      <h2 id="retention">نگهداری و حذف</h2>
+      <p>
+        کد و فضای ذخیره‌سازی Analytics Worker در این مخزن وجود ندارد؛ بنابراین
+        مدت نگهداری واقعی داده‌های فعلی از داخل این پروژه قابل راستی‌آزمایی
+        نیست. پیش از ادعای یک مدت مشخص، تنظیم retention، حذف خودکار و پاک‌سازی
+        داده‌های حساس قدیمی باید در خود Worker بررسی و سخت‌سازی شود.
+      </p>
+    </section>
+  </main>
 
-</main>
-
-<Footer />
-
+  <Footer />
 </BaseLayout>
+
+<script>
+  import {
+    hasLocalAnalyticsOptOut,
+    isAnalyticsDisabled,
+    setLocalAnalyticsOptOut,
+  } from "../lib/analytics";
+
+  const status = document.querySelector<HTMLElement>(
+    "[data-analytics-status]"
+  );
+  const optOutButton = document.querySelector<HTMLButtonElement>(
+    "[data-analytics-opt-out]"
+  );
+  const optInButton = document.querySelector<HTMLButtonElement>(
+    "[data-analytics-opt-in]"
+  );
+
+  const updatePreferenceStatus = () => {
+    const localOptOut = hasLocalAnalyticsOptOut();
+    const disabled = isAnalyticsDisabled();
+
+    if (status) {
+      status.textContent = localOptOut
+        ? "آمارگیری با انتخاب محلی شما غیرفعال است."
+        : disabled
+          ? "آمارگیری به‌دلیل سیگنال حریم خصوصی مرورگر غیرفعال است."
+          : "آمارگیری حداقلی فعال است.";
+    }
+
+    if (optOutButton) {
+      optOutButton.disabled = localOptOut;
+    }
+
+    if (optInButton) {
+      optInButton.disabled = !localOptOut;
+    }
+  };
+
+  optOutButton?.addEventListener("click", () => {
+    if (!setLocalAnalyticsOptOut(true) && status) {
+      status.textContent = "مرورگر اجازه ذخیره این ترجیح را نداد.";
+      return;
+    }
+
+    updatePreferenceStatus();
+  });
+
+  optInButton?.addEventListener("click", () => {
+    if (!setLocalAnalyticsOptOut(false) && status) {
+      status.textContent = "مرورگر اجازه تغییر این ترجیح را نداد.";
+      return;
+    }
+
+    updatePreferenceStatus();
+  });
+
+  updatePreferenceStatus();
+</script>
+
+<style>
+  .privacy-page {
+    max-width: 860px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+
+  .privacy-page header,
+  .privacy-page section {
+    margin-bottom: 36px;
+  }
+
+  .privacy-page h1,
+  .privacy-page h2 {
+    margin-bottom: 12px;
+  }
+
+  .privacy-page p,
+  .privacy-page li {
+    line-height: 2;
+  }
+
+  .privacy-page li + li {
+    margin-top: 6px;
+  }
+
+  .privacy-choice {
+    padding: 24px;
+    border: 1px solid rgba(34, 232, 99, 0.25);
+    border-radius: 14px;
+    background: rgba(34, 232, 99, 0.035);
+  }
+
+  .privacy-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .privacy-actions button {
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid var(--primary);
+    border-radius: 9px;
+    background: var(--primary);
+    color: #071008;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .privacy-actions button.secondary {
+    background: transparent;
+    color: var(--primary);
+  }
+
+  .privacy-actions button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  .privacy-status {
+    margin-bottom: 0;
+  }
+</style>

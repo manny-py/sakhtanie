@@ -4,7 +4,7 @@
       <span class="live-kicker">LIVE PRESENCE</span>
       <h2>بازدیدکنندگان آنلاین</h2>
       <p class="muted">
-        موقعیت‌ها در سطح کشور نمایش داده می‌شوند و مکان دقیق کاربران ذخیره نمی‌شود.
+        فقط شمارش تجمیعی در سطح کشور نمایش داده می‌شود؛ این نما شامل نشست یا مکان دقیق افراد نیست.
       </p>
     </div>
 
@@ -31,8 +31,9 @@
 </section>
 
 <script>
-  const ENDPOINT =
-    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev/v1/live";
+  import { ANALYTICS_ORIGIN } from "../lib/analytics";
+
+  const ENDPOINT = `${ANALYTICS_ORIGIN}/v1/live`;
 
   const COUNTRY_CENTROIDS: Record<
     string,
@@ -92,6 +93,52 @@
     countries: LiveCountry[];
     window_seconds: number;
   }
+
+  const isSafeNonNegativeInteger = (value: unknown) =>
+    typeof value === "number" &&
+    Number.isSafeInteger(value) &&
+    value >= 0 &&
+    value <= 1_000_000;
+
+  const parseLiveResponse = (value: unknown): LiveResponse | null => {
+    if (typeof value !== "object" || value === null) {
+      return null;
+    }
+
+    const candidate = value as Record<string, unknown>;
+
+    if (
+      candidate.success !== true ||
+      !isSafeNonNegativeInteger(candidate.online) ||
+      !isSafeNonNegativeInteger(candidate.window_seconds) ||
+      !Array.isArray(candidate.countries)
+    ) {
+      return null;
+    }
+
+    const safeCountries = candidate.countries
+      .filter((item): item is Record<string, unknown> =>
+        typeof item === "object" && item !== null
+      )
+      .filter(
+        (item) =>
+          typeof item.country === "string" &&
+          /^[A-Z]{2}$/.test(item.country) &&
+          isSafeNonNegativeInteger(item.visitors)
+      )
+      .slice(0, 250)
+      .map((item) => ({
+        country: item.country as string,
+        visitors: item.visitors as number,
+      }));
+
+    return {
+      success: true,
+      online: candidate.online as number,
+      countries: safeCountries,
+      window_seconds: candidate.window_seconds as number,
+    };
+  };
 
   const root = document.querySelector<HTMLElement>("[data-live-globe]");
   const canvas =
@@ -778,9 +825,9 @@
           throw new Error(`HTTP ${response.status}`);
         }
 
-        const data = (await response.json()) as LiveResponse;
+        const data = parseLiveResponse(await response.json());
 
-        if (!data.success) {
+        if (!data) {
           throw new Error("Live endpoint returned failure");
         }
 

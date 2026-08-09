@@ -49,20 +49,67 @@ const publishedTools = apps.length;
 </section>
 
 <script>
+  import { ANALYTICS_ORIGIN } from "../lib/analytics";
+
   interface SummaryResponse {
-    success: boolean;
+    success: true;
     range_days: number;
     summary: {
       totalViews: number;
       toolViews: number;
       searches: number;
       toolCtaClicks: number;
-      uniqueVisitors: number;
     };
   }
 
-  const ENDPOINT =
-    "https://sakhtanie-analytics-worker.ho-mohseni44.workers.dev/v1/dashboard?days=7";
+  const isSafeAggregateCount = (value: unknown): value is number =>
+    typeof value === "number" &&
+    Number.isSafeInteger(value) &&
+    value >= 0;
+
+  const parseSummaryResponse = (value: unknown): SummaryResponse | null => {
+    if (typeof value !== "object" || value === null) {
+      return null;
+    }
+
+    const candidate = value as Record<string, unknown>;
+    const summary = candidate.summary;
+
+    if (
+      candidate.success !== true ||
+      !Number.isInteger(candidate.range_days) ||
+      (candidate.range_days as number) < 1 ||
+      (candidate.range_days as number) > 31 ||
+      typeof summary !== "object" ||
+      summary === null
+    ) {
+      return null;
+    }
+
+    const aggregateSummary = summary as Record<string, unknown>;
+
+    if (
+      !isSafeAggregateCount(aggregateSummary.totalViews) ||
+      !isSafeAggregateCount(aggregateSummary.toolViews) ||
+      !isSafeAggregateCount(aggregateSummary.searches) ||
+      !isSafeAggregateCount(aggregateSummary.toolCtaClicks)
+    ) {
+      return null;
+    }
+
+    return {
+      success: true,
+      range_days: candidate.range_days as number,
+      summary: {
+        totalViews: aggregateSummary.totalViews,
+        toolViews: aggregateSummary.toolViews,
+        searches: aggregateSummary.searches,
+        toolCtaClicks: aggregateSummary.toolCtaClicks,
+      },
+    };
+  };
+
+  const ENDPOINT = `${ANALYTICS_ORIGIN}/v1/dashboard?days=7`;
 
   const root = document.querySelector<HTMLElement>(
     "[data-analytics-summary]"
@@ -98,9 +145,9 @@ const publishedTools = apps.length;
           throw new Error(`HTTP ${response.status}`);
         }
 
-        const data = (await response.json()) as SummaryResponse;
+        const data = parseSummaryResponse(await response.json());
 
-        if (!data.success) {
+        if (!data) {
           throw new Error("Analytics API failure");
         }
 
@@ -117,8 +164,7 @@ const publishedTools = apps.length;
         }
 
         if (status) {
-          status.textContent =
-            `داده واقعی · ${data.summary.uniqueVisitors} بازدیدکننده یکتا`;
+          status.textContent = `داده تجمیعی · بازه ${data.range_days} روزه`;
         }
       } catch {
         if (status) {

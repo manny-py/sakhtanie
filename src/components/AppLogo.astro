@@ -15,9 +15,25 @@ const initial =
     alt=""
     loading="lazy"
     decoding="async"
-    onerror="this.hidden=true"
+    data-app-logo-image
   />
 </span>
+
+<script>
+  document
+    .querySelectorAll<HTMLImageElement>("[data-app-logo-image]")
+    .forEach((image) => {
+      const hideBrokenImage = () => {
+        image.hidden = true;
+      };
+
+      image.addEventListener("error", hideBrokenImage, { once: true });
+
+      if (image.complete && image.naturalWidth === 0) {
+        hideBrokenImage();
+      }
+    });
+</script>
 
 <style>
   .app-logo {

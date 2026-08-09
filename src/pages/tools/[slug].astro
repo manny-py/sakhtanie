@@ -624,7 +624,7 @@ const faqSchema = {
   }
 </BaseLayout>
 
-<script is:inline>
+<script>
   document
     .querySelectorAll("[data-copy-prompt]")
     .forEach((button) => {
@@ -691,7 +691,6 @@ const faqSchema = {
       if (externalCta && toolSlug) {
         track("tool_cta_click", {
           tool_slug: toolSlug,
-          destination: externalCta.href,
         });
 
         return;
@@ -712,7 +711,7 @@ const faqSchema = {
 
         track("related_tool_click", {
           tool_slug: toolSlug,
-          destination: relatedSlug,
+          related_tool_slug: relatedSlug,
         });
       }
     },

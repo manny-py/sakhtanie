@@ -317,7 +317,6 @@ const searchableTools = apps.map((app) => ({
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    onerror="this.hidden=true"
                   />
                 </span>
 
@@ -391,6 +390,26 @@ const searchableTools = apps.map((app) => ({
 
       results.classList.remove("is-hidden");
       searchBox.setAttribute("aria-expanded", "true");
+
+      results
+        .querySelectorAll(".sak-search__logo")
+        .forEach((logo) => {
+          if (!(logo instanceof HTMLImageElement)) {
+            return;
+          }
+
+          const hideBrokenLogo = () => {
+            logo.hidden = true;
+          };
+
+          logo.addEventListener("error", hideBrokenLogo, {
+            once: true,
+          });
+
+          if (logo.complete && logo.naturalWidth === 0) {
+            hideBrokenLogo();
+          }
+        });
 
       results
         .querySelectorAll(".sak-search__result")
@@ -472,7 +491,6 @@ const searchableTools = apps.map((app) => ({
           lastTrackedQuery = queryToTrack;
 
           track("search_used", {
-            query: queryToTrack,
             results_count: resultsCount,
           });
         }, 700);
