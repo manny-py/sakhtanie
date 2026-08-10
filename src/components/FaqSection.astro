@@ -1,5 +1,12 @@
 ---
-const { faq } = Astro.props;
+interface Props {
+  faq?: readonly {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { faq }: Props = Astro.props;
 ---
 
 {
@@ -12,7 +19,7 @@ faq?.length > 0 && (
 </h2>
 
 {
-faq.map((item:any)=>(
+faq.map((item)=>(
 <div style="margin-bottom:20px">
 
 <h3>

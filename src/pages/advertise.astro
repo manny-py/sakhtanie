@@ -2,11 +2,121 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const advertisingEmail = "ads@sakhtanie.ir";
+const advertisingSubject = encodeURIComponent(
+  "درخواست تبلیغات در ساختنیه"
+);
+const contactHref = `mailto:${advertisingEmail}?subject=${advertisingSubject}`;
+
+const placements = [
+  {
+    index: "01",
+    code: "FEATURED",
+    title: "Featured Sponsor",
+    description:
+      "جایگاه اصلی حمایت مالی در صفحه نخست که نزدیک بخش بالایی جست‌وجو و کشف ابزارها نمایش داده می‌شود.",
+    note: "بالاترین میزان دیده‌شدن میان جایگاه‌های فعلی ساختنیه؟",
+  },
+  {
+    index: "02",
+    code: "DISCOVERY",
+    title: "Discovery Sponsor",
+    description:
+      "جایگاه دوم صفحه نخست که عمیق‌تر در مسیر کشف و پس از معرفی ابزارهای منتخب قرار می‌گیرد.",
+    note: "مناسب برای معرفی زمینه‌ای در ادامه تجربه کشف ابزارها.",
+  },
+] as const;
+
+const advertiserProvides = [
+  "نام برند",
+  "لوگو",
+  "تیتر",
+  "توضیح کوتاه",
+  "لینک مقصد",
+  "متن پیشنهادی CTA در صورت نیاز",
+] as const;
+
+const sakhtanieControls = [
+  "چیدمان و تایپوگرافی",
+  "پس‌زمینه، حاشیه و فاصله‌ها",
+  "رفتار واکنش‌گرا",
+  "برچسب حمایت مالی",
+  "نمایش CTA",
+  "دسترس‌پذیری و رندر نهایی",
+] as const;
+
+const copyLimits = [
+  { label: "Brand name", value: "حداکثر ۴۰ کاراکتر" },
+  { label: "Headline", value: "حداکثر ۷۰ کاراکتر" },
+  { label: "Description", value: "حداکثر ۱۶۰ کاراکتر" },
+  { label: "CTA", value: "حداکثر ۲۰ کاراکتر" },
+] as const;
+
+const blockedCreative = [
+  "HTML یا JavaScript",
+  "iframe",
+  "پیکسل رهگیری",
+  "اسکریپت تبلیغاتی شخص ثالث",
+  "رسانه خودکارپخش",
+  "انیمیشن چشمک‌زن",
+  "اعلان مرورگر",
+  "پاپ‌آپ",
+  "ریدایرکت اجباری",
+  "رابط جعلی سیستم یا مرورگر",
+  "دکمه دانلود جعلی",
+] as const;
+
+const suitableCategories = [
+  "ابزارهای AI",
+  "ابزارهای توسعه",
+  "SaaS",
+  "هاست، کلاد و زیرساخت",
+  "نرم‌افزار بهره‌وری",
+  "ابزار طراحی",
+  "اتوماسیون",
+  "آموزش فنی",
+  "فناوری B2B مرتبط",
+] as const;
+
+const rejectedCategories = [
+  "بدافزار، فیشینگ یا جعل هویت",
+  "کالا و خدمات غیرقانونی",
+  "محتوای جنسی بزرگسالان",
+  "قمار و شرط‌بندی",
+  "سلاح",
+  "سرمایه‌گذاری متقلبانه یا وعده سود تضمینی",
+  "هشدار جعلی دانلود یا سیستم",
+  "ادعاهایی که به‌طور معقول قابل اثبات نیستند",
+] as const;
+
+const collaborationSteps = [
+  {
+    index: "01",
+    title: "ارسال درخواست",
+    description: "معرفی کوتاه برند، محصول و بازه پیشنهادی کمپین.",
+  },
+  {
+    index: "02",
+    title: "بررسی تناسب",
+    description: "بررسی تناسب برند، پیام و جایگاه موجود با مخاطب سایت.",
+  },
+  {
+    index: "03",
+    title: "ارسال متریال",
+    description: "تحویل لوگو، متن و لینک طبق راهنمای آماده‌سازی تبلیغ.",
+  },
+  {
+    index: "04",
+    title: "آماده‌سازی و انتشار",
+    description: "ساختنیه؟ کریتیو نهایی را می‌سازد، بازبینی می‌کند و منتشر می‌کند.",
+  },
+] as const;
 ---
 
 <BaseLayout
-  title="تبلیغ در ساختنیه؟"
-  description="معرفی برند، محصول یا سرویس شما به مخاطبان ساختنیه؟"
+  title="تبلیغ در ساختنیه؟ | همکاری و حمایت مالی"
+  description="راهنمای جایگاه‌های حمایت مالی، فرمت تبلیغ بومی، مشخصات کریتیو و روند همکاری تبلیغاتی با ساختنیه؟"
 >
   <Header />
 
@@ -15,44 +125,305 @@ import Footer from "../components/Footer.astro";
     tabindex="-1"
     class="container advertise-page"
   >
-    <span class="advertise-kicker">
-      ADVERTISE // SPONSORSHIP
-    </span>
+    <section class="advertise-hero" aria-labelledby="advertise-title">
+      <div class="hero-copy">
+        <span class="system-kicker">
+          ADVERTISE // SPONSORSHIP
+        </span>
 
-    <h1>تبلیغ در ساختنیه؟</h1>
+        <h1 id="advertise-title">تبلیغ در ساختنیه؟</h1>
 
-    <p class="advertise-lead">
-      جایگاه‌های تبلیغاتی ساختنیه؟ برای برندها،
-      سرویس‌های SaaS، ابزارهای توسعه، محصولات AI و
-      کسب‌وکارهایی طراحی شده که می‌خواهند در مقابل
-      مخاطب علاقه‌مند به ساخت محصولات دیجیتال دیده شوند.
-    </p>
+        <p class="advertise-lead">
+          برند، محصول یا سرویس خود را به مخاطبانی معرفی کنید
+          که به ساخت محصول دیجیتال، ابزارهای AI، SaaS، توسعه
+          نرم‌افزار و فناوری علاقه‌مندند.
+        </p>
 
-    <section class="advertise-grid">
-      <div class="card">
-        <strong>Featured Sponsor</strong>
+        <div class="hero-actions">
+          <a class="contact-button" href={contactHref}>
+            درخواست همکاری تبلیغاتی
+            <span aria-hidden="true">←</span>
+          </a>
+
+          <div class="official-contact">
+            <span>OFFICIAL AD CONTACT</span>
+            <a href={contactHref} dir="ltr">
+              {advertisingEmail}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-console" aria-label="مدل تبلیغات ساختنیه">
+        <div class="console-bar">
+          <span>NATIVE_SPONSORSHIP</span>
+          <span class="console-status">CONTROLLED</span>
+        </div>
+
+        <dl>
+          <div>
+            <dt>FORMAT</dt>
+            <dd>Native placement</dd>
+          </div>
+          <div>
+            <dt>RENDER</dt>
+            <dd>Sakhtanie UI</dd>
+          </div>
+          <div>
+            <dt>TRACKING</dt>
+            <dd>Privacy-minimized</dd>
+          </div>
+          <div>
+            <dt>3RD-PARTY JS</dt>
+            <dd>Not accepted</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="advertise-section" aria-labelledby="placements-title">
+      <div class="section-heading">
+        <div>
+          <span class="system-kicker">PLACEMENTS // 02</span>
+          <h2 id="placements-title">جایگاه‌های فعلی</h2>
+        </div>
+
         <p>
-          جایگاه اصلی صفحه نخست با بیشترین میزان دیده‌شدن.
+          دو جایگاه کنترل‌شده در صفحه اصلی؛ بدون ادعای آمار،
+          نرخ کلیک یا دسترسی تضمین‌شده.
         </p>
       </div>
 
-      <div class="card">
-        <strong>Discovery Sponsor</strong>
+      <div class="placement-grid">
+        {
+          placements.map((placement) => (
+            <article class="placement-card">
+              <div class="placement-card__top">
+                <span>{placement.index}</span>
+                <span>{placement.code}</span>
+              </div>
+
+              <h3 dir="ltr">{placement.title}</h3>
+              <p>{placement.description}</p>
+              <span class="placement-note">{placement.note}</span>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="section-footnote">
+        درباره همکاری‌های سفارشی می‌توان جداگانه گفت‌وگو کرد؛
+        در حال حاضر فقط دو جایگاه بالا ساختار استاندارد تبلیغاتی
+        سایت هستند.
+      </p>
+    </section>
+
+    <section
+      class="advertise-section native-format"
+      aria-labelledby="native-title"
+    >
+      <div class="native-intro">
+        <div>
+          <span class="system-kicker">NATIVE FORMAT // SITE CONTROLLED</span>
+          <h2 id="native-title">تبلیغ بومی، نه بنر آزاد</h2>
+        </div>
+
         <p>
-          جایگاه میان بخش‌های معرفی و کشف ابزارها.
+          تبلیغ در ساختنیه؟ با همان کامپوننت و زبان بصری سایت
+          ساخته می‌شود تا ساختار صفحه، موبایل، دسترس‌پذیری و
+          حریم خصوصی تحت کنترل بماند. برچسب حمایت مالی همیشه
+          واضح و قابل مشاهده است.
         </p>
+      </div>
+
+      <div class="native-columns">
+        <div>
+          <span class="column-label">ADVERTISER PROVIDES</span>
+          <h3>تبلیغ‌دهنده می‌فرستد</h3>
+          <ul>
+            {advertiserProvides.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+
+        <div>
+          <span class="column-label column-label--green">
+            SAKHTANIE CONTROLS
+          </span>
+          <h3>ساختنیه؟ کنترل می‌کند</h3>
+          <ul>
+            {sakhtanieControls.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <p class="native-warning">
+        فایل بنر آماده، HTML تبلیغاتی یا اسکریپت تبلیغ‌دهنده
+        مستقیماً در سایت قرار نمی‌گیرد.
+      </p>
+    </section>
+
+    <section class="advertise-section" aria-labelledby="guidelines-title">
+      <div class="section-heading">
+        <div>
+          <span class="system-kicker">CREATIVE GUIDELINES</span>
+          <h2 id="guidelines-title">راهنمای آماده‌سازی تبلیغ</h2>
+        </div>
+
+        <p>
+          محتوای نامعتبر در زمان رندر کوتاه نمی‌شود؛ پیش از
+          فعال‌سازی اصلاح و تأیید خواهد شد.
+        </p>
+      </div>
+
+      <div class="limits-grid" aria-label="محدودیت متن تبلیغ">
+        {
+          copyLimits.map((limit) => (
+            <div class="limit-card">
+              <span>{limit.label}</span>
+              <strong>{limit.value}</strong>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="limits-note">
+        CTA باید کوتاه و کنش‌محور باشد. ساختنیه؟ ممکن است متن
+        پیشنهادی CTA را برای هماهنگی با رابط کاربری یکدست کند.
+      </p>
+
+      <div class="guideline-grid">
+        <article class="guideline-card">
+          <div class="guideline-card__heading">
+            <span>01</span>
+            <h3>لوگو</h3>
+          </div>
+
+          <p>
+            فرمت‌های SVG، PNG و WebP پذیرفته می‌شوند. پس‌زمینه
+            شفاف، فایل برداری یا منبع با وضوح بالا و خوانایی در
+            ابعاد کوچک ترجیح دارد.
+          </p>
+
+          <ul>
+            <li>بدون پس‌زمینه بنریِ از پیش چسبیده به لوگو</li>
+            <li>بدون لوگوی متحرک</li>
+            <li>هدف پیشنهادی: حداکثر ۲۰۰ کیلوبایت پس از بهینه‌سازی</li>
+            <li>میزبانی محلی روی زیرساخت کنترل‌شده ساختنیه؟</li>
+            <li>بدون تصویر remote یا hotlink در نسخه نهایی</li>
+          </ul>
+        </article>
+
+        <article class="guideline-card">
+          <div class="guideline-card__heading">
+            <span>02</span>
+            <h3>لینک مقصد</h3>
+          </div>
+
+          <p>
+            لینک باید HTTPS و متعلق به صفحه واقعی برند یا محصول
+            باشد. پارامترهای UTM مجازند، اما مقصد کوتاه‌شده یا
+            زنجیره ریدایرکت گمراه‌کننده پذیرفته نمی‌شود.
+          </p>
+
+          <ul>
+            <li>بدون آدرس‌های javascript: یا data:</li>
+            <li>بدون کوتاه‌کننده لینک</li>
+            <li>بدون پیکسل یا پارامتر رهگیری مستقل از لینک مقصد</li>
+            <li>بدون تغییر مقصد پس از تأیید، مگر با بازبینی دوباره</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="blocked-creative">
+        <div>
+          <span class="system-kicker system-kicker--danger">
+            NOT ACCEPTED IN CREATIVE
+          </span>
+          <h3>موارد غیرمجاز در کریتیو</h3>
+        </div>
+
+        <ul>
+          {blockedCreative.map((item) => <li>{item}</li>)}
+        </ul>
       </div>
     </section>
 
-    <div class="advertise-contact card">
-      <span>CONTACT</span>
-      <h2>برای همکاری تبلیغاتی</h2>
+    <section class="advertise-section" aria-labelledby="policy-title">
+      <div class="section-heading">
+        <div>
+          <span class="system-kicker">ACCEPTANCE POLICY</span>
+          <h2 id="policy-title">سیاست پذیرش تبلیغ</h2>
+        </div>
 
-      <p>
-        اطلاعات تماس تجاری و تعرفه‌ها قبل از شروع فروش
-        تبلیغات در این بخش قرار می‌گیرند.
-      </p>
-    </div>
+        <p>
+          پذیرش نهایی هر کمپین در اختیار ساختنیه؟ است و به تناسب
+          محصول، پیام و تجربه مخاطب بستگی دارد.
+        </p>
+      </div>
+
+      <div class="policy-grid">
+        <article class="policy-card policy-card--accepted">
+          <span>SUITABLE</span>
+          <h3>دسته‌های مناسب</h3>
+          <ul>
+            {suitableCategories.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+
+        <article class="policy-card policy-card--rejected">
+          <span>REJECTED</span>
+          <h3>دسته‌ها و ادعاهای ردشده</h3>
+          <ul>
+            {rejectedCategories.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="advertise-section" aria-labelledby="process-title">
+      <div class="section-heading">
+        <div>
+          <span class="system-kicker">COLLABORATION FLOW</span>
+          <h2 id="process-title">روند همکاری</h2>
+        </div>
+
+        <p>
+          خرید سلف‌سرویس وجود ندارد؛ هر همکاری با بررسی انسانی و
+          آماده‌سازی نهایی توسط ساختنیه؟ انجام می‌شود.
+        </p>
+      </div>
+
+      <ol class="process-grid">
+        {
+          collaborationSteps.map((step) => (
+            <li>
+              <span>{step.index}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="contact-panel" aria-labelledby="contact-title">
+      <div>
+        <span class="system-kicker">PRICING // AVAILABILITY</span>
+        <h2 id="contact-title">شروع گفت‌وگو</h2>
+        <p>
+          تعرفه و ظرفیت فعال جایگاه‌ها بر اساس دوره کمپین و نوع
+          همکاری اعلام می‌شود.
+        </p>
+      </div>
+
+      <div class="contact-panel__action">
+        <a class="contact-button" href={contactHref}>
+          {advertisingEmail}
+          <span aria-hidden="true">←</span>
+        </a>
+        <span>پاسخ‌گویی و هماهنگی فقط از مسیر تماس رسمی تبلیغات</span>
+      </div>
+    </section>
   </main>
 
   <Footer />
@@ -60,61 +431,654 @@ import Footer from "../components/Footer.astro";
 
 <style>
   .advertise-page {
-    max-width: 900px;
+    max-width: 980px;
     min-height: 70vh;
     padding-top: 64px;
-    padding-bottom: 80px;
+    padding-bottom: 92px;
   }
 
-  .advertise-kicker {
+  .system-kicker,
+  .column-label {
     color: #f1c644;
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .advertise-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
+    align-items: center;
+    gap: 48px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid #202820;
   }
 
   h1 {
-    margin: 10px 0 14px;
-    font-size: clamp(32px, 5vw, 54px);
+    margin: 10px 0 16px;
+    font-size: clamp(36px, 6vw, 62px);
+    line-height: 1.25;
   }
 
   .advertise-lead {
-    max-width: 720px;
-    color: #9ba39d;
+    max-width: 690px;
+    margin: 0;
+    color: #a1aaa3;
+    font-size: 16px;
+    line-height: 2.05;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px 24px;
+    margin-top: 30px;
+  }
+
+  .contact-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid rgba(34, 232, 99, 0.38);
+    border-radius: 9px;
+    background: rgba(34, 232, 99, 0.08);
+    color: #22e863;
+    font-size: 13px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-button:hover {
+    border-color: rgba(34, 232, 99, 0.7);
+    background: rgba(34, 232, 99, 0.12);
+  }
+
+  .contact-button:focus-visible {
+    outline: 3px solid rgba(34, 232, 99, 0.35);
+    outline-offset: 3px;
+  }
+
+  .official-contact {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .official-contact span {
+    color: #626c64;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .official-contact a {
+    color: #d8ddd9;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-console {
+    min-width: 0;
+    border: 1px solid #263128;
+    border-radius: 14px;
+    background: #0d110e;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    direction: ltr;
+  }
+
+  .console-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 13px;
+    border-bottom: 1px solid #263128;
+    background: #111612;
+    color: #778079;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 8px;
+  }
+
+  .console-status {
+    color: #22e863;
+  }
+
+  .hero-console dl {
+    margin: 0;
+    padding: 9px 16px 13px;
+  }
+
+  .hero-console dl > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(139, 148, 139, 0.17);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .hero-console dl > div:last-child {
+    border-bottom: 0;
+  }
+
+  .hero-console dt {
+    color: #69726b;
+  }
+
+  .hero-console dd {
+    margin: 0;
+    color: #c9ceca;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  .advertise-section {
+    padding-top: 72px;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+
+  .section-heading h2,
+  .native-intro h2,
+  .contact-panel h2 {
+    margin: 7px 0 0;
+    font-size: clamp(25px, 4vw, 34px);
+  }
+
+  .section-heading > p,
+  .native-intro > p,
+  .contact-panel p {
+    max-width: 470px;
+    margin: 0;
+    color: #8f9991;
+    font-size: 13px;
     line-height: 2;
   }
 
-  .advertise-grid {
+  .placement-grid,
+  .guideline-grid,
+  .policy-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
-    margin-top: 38px;
   }
 
-  .advertise-grid strong {
-    color: #f1c644;
+  .placement-card,
+  .guideline-card,
+  .policy-card {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid #222b24;
+    border-radius: 14px;
+    background: #0f1310;
+  }
+
+  .placement-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: #69736b;
     font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
   }
 
-  .advertise-grid p,
-  .advertise-contact p {
-    color: #8b958d;
+  .placement-card__top span:last-child {
+    color: #f1c644;
+  }
+
+  .placement-card h3 {
+    margin: 22px 0 10px;
+    color: #f4f4f5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18px;
+    text-align: right;
+  }
+
+  .placement-card p,
+  .guideline-card p,
+  .process-grid p {
+    margin: 0;
+    color: #929c94;
     font-size: 12px;
     line-height: 2;
   }
 
-  .advertise-contact {
-    margin-top: 16px;
+  .placement-note {
+    display: block;
+    margin-top: 17px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(139, 148, 139, 0.18);
+    color: #bac1bb;
+    font-size: 11px;
+    line-height: 1.9;
   }
 
-  .advertise-contact > span {
+  .section-footnote {
+    margin: 14px 0 0;
+    color: #707a72;
+    font-size: 11px;
+    line-height: 1.9;
+  }
+
+  .native-format {
+    margin-top: 72px;
+    padding: 34px;
+    border: 1px solid rgba(241, 198, 68, 0.28);
+    border-radius: 16px;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(241, 198, 68, 0.06),
+        rgba(34, 232, 99, 0.025)
+      ),
+      #0d110e;
+  }
+
+  .native-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+    align-items: end;
+    gap: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(241, 198, 68, 0.16);
+  }
+
+  .native-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 44px;
+    padding: 30px 0;
+  }
+
+  .native-columns > div + div {
+    padding-inline-start: 40px;
+    border-inline-start: 1px solid rgba(241, 198, 68, 0.14);
+  }
+
+  .column-label--green {
+    color: #22e863;
+  }
+
+  .native-columns h3,
+  .blocked-creative h3,
+  .guideline-card h3,
+  .policy-card h3,
+  .process-grid h3 {
+    margin: 7px 0 14px;
+    font-size: 17px;
+  }
+
+  .native-columns ul,
+  .guideline-card ul,
+  .policy-card ul {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .native-columns li,
+  .guideline-card li,
+  .policy-card li {
+    position: relative;
+    padding-inline-start: 16px;
+    color: #929c94;
+    font-size: 12px;
+    line-height: 1.85;
+  }
+
+  .native-columns li::before,
+  .guideline-card li::before,
+  .policy-card li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.8em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #f1c644;
+  }
+
+  .native-columns > div:last-child li::before,
+  .policy-card--accepted li::before {
+    background: #22e863;
+  }
+
+  .native-warning {
+    margin: 0;
+    padding: 15px 18px;
+    border: 1px solid rgba(241, 198, 68, 0.2);
+    border-radius: 10px;
+    background: rgba(241, 198, 68, 0.055);
+    color: #e0d4aa;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.9;
+  }
+
+  .limits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1px solid #222b24;
+    border-radius: 14px;
+    background: #0f1310;
+    overflow: hidden;
+  }
+
+  .limit-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 19px;
+    border-inline-start: 1px solid #222b24;
+  }
+
+  .limit-card:first-child {
+    border-inline-start: 0;
+  }
+
+  .limit-card span {
+    color: #6f7971;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .limit-card strong {
+    color: #f4f4f5;
+    font-size: 13px;
+  }
+
+  .guideline-grid {
+    margin-top: 14px;
+  }
+
+  .limits-note {
+    margin: 10px 0 0;
+    color: #747e76;
+    font-size: 10px;
+    line-height: 1.9;
+  }
+
+  .guideline-card__heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .guideline-card__heading > span {
+    color: #f1c644;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .guideline-card__heading h3 {
+    margin: 0;
+  }
+
+  .guideline-card > p {
+    margin: 16px 0;
+  }
+
+  .blocked-creative {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+    gap: 30px;
+    margin-top: 14px;
+    padding: 24px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 14px;
+    background: rgba(239, 68, 68, 0.025);
+  }
+
+  .system-kicker--danger {
+    color: #ef7777;
+  }
+
+  .blocked-creative ul {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .blocked-creative li {
+    padding: 6px 9px;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: 7px;
+    color: #b8aaa9;
+    font-size: 10px;
+  }
+
+  .policy-card > span {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+  }
+
+  .policy-card--accepted > span {
+    color: #22e863;
+  }
+
+  .policy-card--rejected > span {
+    color: #ef7777;
+  }
+
+  .policy-card--rejected li::before {
+    background: #ef7777;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #222b24;
+    border-radius: 14px;
+    background: #0f1310;
+    list-style: none;
+    overflow: hidden;
+  }
+
+  .process-grid li {
+    min-width: 0;
+    padding: 22px;
+    border-inline-start: 1px solid #222b24;
+  }
+
+  .process-grid li:first-child {
+    border-inline-start: 0;
+  }
+
+  .process-grid li > span {
     color: #22e863;
     font-family: "JetBrains Mono", monospace;
     font-size: 9px;
   }
 
-  @media (max-width: 620px) {
-    .advertise-grid {
-      grid-template-columns: 1fr;
+  .contact-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+    align-items: center;
+    gap: 42px;
+    margin-top: 72px;
+    padding: 30px;
+    border: 1px solid rgba(34, 232, 99, 0.26);
+    border-radius: 16px;
+    background:
+      linear-gradient(135deg, rgba(34, 232, 99, 0.055), transparent),
+      #0d110e;
+  }
+
+  .contact-panel__action {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .contact-panel__action .contact-button {
+    max-width: 100%;
+    font-family: "JetBrains Mono", monospace;
+    direction: ltr;
+  }
+
+  .contact-panel__action > span {
+    color: #677169;
+    font-size: 9px;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 820px) {
+    .advertise-hero,
+    .native-intro,
+    .contact-panel {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-console {
+      max-width: 520px;
+    }
+
+    .limits-grid,
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .limit-card:nth-child(3),
+    .process-grid li:nth-child(3) {
+      border-inline-start: 0;
+    }
+
+    .limit-card:nth-child(n + 3),
+    .process-grid li:nth-child(n + 3) {
+      border-top: 1px solid #222b24;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .advertise-page {
+      width: min(100% - 28px, 980px);
+      padding-top: 42px;
+      padding-bottom: 64px;
+    }
+
+    .advertise-hero {
+      gap: 32px;
+      padding-bottom: 48px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 13vw, 48px);
+    }
+
+    .advertise-lead {
+      font-size: 14px;
+    }
+
+    .hero-actions,
+    .section-heading {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .hero-actions .contact-button {
+      width: 100%;
+    }
+
+    .advertise-section {
+      padding-top: 54px;
+    }
+
+    .section-heading {
+      gap: 12px;
+    }
+
+    .placement-grid,
+    .guideline-grid,
+    .policy-grid,
+    .native-columns,
+    .blocked-creative {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .native-format {
+      margin-top: 54px;
+      padding: 23px 19px;
+    }
+
+    .native-columns {
+      gap: 26px;
+    }
+
+    .native-columns > div + div {
+      padding-block-start: 26px;
+      padding-inline-start: 0;
+      border-block-start: 1px solid rgba(241, 198, 68, 0.14);
+      border-inline-start: 0;
+    }
+
+    .blocked-creative {
+      gap: 12px;
+      padding: 19px;
+    }
+
+    .contact-panel {
+      gap: 24px;
+      margin-top: 54px;
+      padding: 23px 19px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .limits-grid,
+    .process-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .limit-card,
+    .process-grid li,
+    .limit-card:nth-child(3),
+    .process-grid li:nth-child(3) {
+      border-inline-start: 0;
+    }
+
+    .limit-card:nth-child(n + 2),
+    .process-grid li:nth-child(n + 2) {
+      border-top: 1px solid #222b24;
+    }
+
+    .placement-card,
+    .guideline-card,
+    .policy-card {
+      padding: 19px;
+    }
+
+    .contact-panel__action .contact-button {
+      width: 100%;
+      font-size: 11px;
     }
   }
 </style>
