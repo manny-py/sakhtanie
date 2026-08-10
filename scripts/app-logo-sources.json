@@ -325,8 +325,8 @@
   },
   {
     "slug": "metabase",
-    "type": "official-site",
-    "source": "https://www.metabase.com/images/favicon.svg",
+    "type": "generated-fallback",
+    "source": null,
     "local": "/app-logos/metabase.svg"
   },
   {
@@ -349,8 +349,8 @@
   },
   {
     "slug": "mistral-vibe",
-    "type": "official-site",
-    "source": "https://mistral.ai/favicon.svg",
+    "type": "generated-fallback",
+    "source": null,
     "local": "/app-logos/mistral-vibe.svg"
   },
   {
@@ -391,8 +391,8 @@
   },
   {
     "slug": "poe",
-    "type": "official-site",
-    "source": "https://poe.com/favicon.svg",
+    "type": "generated-fallback",
+    "source": null,
     "local": "/app-logos/poe.svg"
   },
   {
@@ -433,8 +433,8 @@
   },
   {
     "slug": "raychat",
-    "type": "official-site",
-    "source": "https://raychat.io/logo.svg",
+    "type": "generated-fallback",
+    "source": null,
     "local": "/app-logos/raychat.svg"
   },
   {

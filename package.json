@@ -12,6 +12,7 @@
     "astro": "astro",
     "validate:data": "tsx scripts/validate-data.ts",
     "test": "node --import tsx --test tests/*.test.ts",
+    "lint": "eslint .",
     "scan:secrets": "node scripts/scan-secrets.mjs"
   },
   "dependencies": {
