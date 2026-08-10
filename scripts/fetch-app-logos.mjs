@@ -1,78 +1,59 @@
+import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import {
+  CANIVIBECODEIT_TREE_URL,
+  MANIFEST_RESPONSE_LIMIT,
+  MAXIMUM_RETRIES,
+  assertPassiveLocalSvg,
+  atomicWriteFile,
+  cvciUrlForPath,
+  fetchAllowedResource,
+  normalizeDomain,
+  officialUrlForSourceId,
+  replaceDirectoryFromStaging,
+  resolveCuratedAsset,
+  resolveLogoOutputPath,
+  validateCvciPath,
+  validateSlug,
+} from "./lib/logo-security.mjs";
+
 const root = process.cwd();
-
-const appDir =
-  path.join(root, "src/data/apps");
-
-const logoDir =
-  path.join(root, "public/app-logos");
-
-const sourceBase =
-  "https://raw.githubusercontent.com/canivibecodeit/canivibecodeit/main";
-
-const treeUrl =
-  "https://api.github.com/repos/canivibecodeit/canivibecodeit/git/trees/main?recursive=1";
+const appDir = path.join(root, "src/data/apps");
+const logoDir = path.join(root, "public/app-logos");
+const stagingLogoDir = path.join(
+  path.dirname(logoDir),
+  `.app-logos-staging-${randomUUID()}`
+);
 
 const aliases = {
-  bolt: [
-    "public/icons/bolt-new.png",
-  ],
-  firebase: [
-    "public/icons/firebase-blaze.png",
-  ],
-  leonardo: [
-    "public/icons/leonardo-ai.png",
-  ],
-  slack: [
-    "public/icons/slack-pro.png",
-  ],
+  bolt: ["public/icons/bolt-new.png"],
+  firebase: ["public/icons/firebase-blaze.png"],
+  leonardo: ["public/icons/leonardo-ai.png"],
+  slack: ["public/icons/slack-pro.png"],
 };
 
-const officialSources =
-  JSON.parse(
-    await fs.readFile(
-      path.join(
-        root,
-        "scripts/app-logo-official-sources.json"
-      ),
-      "utf8"
-    )
-  );
+const officialSourceIds = JSON.parse(
+  await fs.readFile(
+    path.join(root, "scripts/app-logo-official-sources.json"),
+    "utf8"
+  )
+);
 
 const localOfficialSources = {
   jira: {
-    path:
-      "scripts/app-logo-curated/jira.svg",
-
+    path: "scripts/app-logo-curated/jira.svg",
     provenance:
       "https://github.com/atlassian/atlascode/blob/main/src/rovo-dev/ui/prompt-box/promptContext/promptContextItem.tsx",
   },
 };
 
-/*
- * Intentionally not copied from trademark artwork.
- * These are neutral UI badges so the catalog never
- * visually looks like an asset failed to load.
- */
+/* Neutral local badges prevent broken-image UI without copying trademark art. */
 const intentionalBadges = {
-  "google-analytics": {
-    symbol: "📊",
-  },
-
-  udemy: {
-    symbol: "🎓",
-  },
+  "google-analytics": { symbol: "📊" },
+  udemy: { symbol: "🎓" },
 };
-
-function sanitizeDomain(domain) {
-  return String(domain || "")
-    .replace(/\\\./g, ".")
-    .replace(/^https?:\/\//, "")
-    .replace(/\/.*$/, "")
-    .trim();
-}
 
 function escapeXml(value) {
   return String(value)
@@ -84,170 +65,30 @@ function escapeXml(value) {
 }
 
 function fallbackSvg(name) {
-  const initial =
-    escapeXml(
-      name?.trim()
-        ?.charAt(0)
-        ?.toUpperCase() || "?"
-    );
+  const initial = escapeXml(name?.trim()?.charAt(0)?.toUpperCase() || "?");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
   <rect width="128" height="128" rx="24" fill="#172019"/>
-  <text
-    x="64"
-    y="69"
-    text-anchor="middle"
-    dominant-baseline="middle"
-    fill="#22e863"
-    font-family="Arial, sans-serif"
-    font-size="58"
-    font-weight="700"
-  >${initial}</text>
+  <text x="64" y="69" text-anchor="middle" dominant-baseline="middle" fill="#22e863" font-family="Arial, sans-serif" font-size="58" font-weight="700">${initial}</text>
 </svg>
 `;
 }
 
 function badgeSvg(symbol) {
-  const safe =
-    escapeXml(symbol);
-
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <rect
-    width="128"
-    height="128"
-    rx="28"
-    fill="#172019"
-  />
-  <rect
-    x="1"
-    y="1"
-    width="126"
-    height="126"
-    rx="27"
-    fill="none"
-    stroke="#2b392e"
-    stroke-width="2"
-  />
-  <text
-    x="64"
-    y="68"
-    text-anchor="middle"
-    dominant-baseline="middle"
-    font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif"
-    font-size="58"
-  >${safe}</text>
+  <rect width="128" height="128" rx="28" fill="#172019"/>
+  <rect x="1" y="1" width="126" height="126" rx="27" fill="none" stroke="#2b392e" stroke-width="2"/>
+  <text x="64" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif" font-size="58">${escapeXml(symbol)}</text>
 </svg>
 `;
 }
 
-function detectImage(bytes) {
-  if (
-    bytes.length >= 8 &&
-    bytes[0] === 0x89 &&
-    bytes[1] === 0x50 &&
-    bytes[2] === 0x4e &&
-    bytes[3] === 0x47
-  ) {
-    return "png";
-  }
-
-  if (
-    bytes.length >= 4 &&
-    bytes[0] === 0x00 &&
-    bytes[1] === 0x00 &&
-    bytes[2] === 0x01 &&
-    bytes[3] === 0x00
-  ) {
-    return "ico";
-  }
-
-  if (
-    bytes.length >= 3 &&
-    bytes[0] === 0xff &&
-    bytes[1] === 0xd8 &&
-    bytes[2] === 0xff
-  ) {
-    return "jpg";
-  }
-
-  if (
-    bytes.length >= 12 &&
-    bytes
-      .subarray(0, 4)
-      .toString() === "RIFF" &&
-    bytes
-      .subarray(8, 12)
-      .toString() === "WEBP"
-  ) {
-    return "webp";
-  }
-
-  if (
-    bytes.length >= 6 &&
-    (
-      bytes
-        .subarray(0, 6)
-        .toString() === "GIF87a" ||
-      bytes
-        .subarray(0, 6)
-        .toString() === "GIF89a"
-    )
-  ) {
-    return "gif";
-  }
-
-  if (
-    bytes.length >= 12 &&
-    (
-      bytes
-        .subarray(4, 12)
-        .toString() === "ftypavif" ||
-      bytes
-        .subarray(4, 12)
-        .toString() === "ftypavis"
-    )
-  ) {
-    return "avif";
-  }
-
-  const textHead =
-    bytes
-      .subarray(
-        0,
-        Math.min(
-          bytes.length,
-          2048
-        )
-      )
-      .toString("utf8")
-      .replace(/^\uFEFF/, "")
-      .trimStart();
-
-  if (
-    textHead.startsWith("<svg") ||
-    (
-      textHead.startsWith("<?xml") &&
-      textHead.includes("<svg")
-    )
-  ) {
-    return "svg";
-  }
-
-  return null;
-}
-
-function withLogoAfterDomain(
-  app,
-  logo
-) {
+function withLogoAfterDomain(app, logo) {
   const result = {};
 
-  for (
-    const [key, value]
-    of Object.entries(app)
-  ) {
+  for (const [key, value] of Object.entries(app)) {
     if (key === "logo") {
       continue;
     }
@@ -266,110 +107,50 @@ function withLogoAfterDomain(
   return result;
 }
 
-async function fetchJson(url) {
-  const response =
-    await fetch(
-      url,
-      {
-        signal:
-          AbortSignal.timeout(
-            30000
-          ),
+async function fetchManifest() {
+  const { bytes } = await fetchAllowedResource(CANIVIBECODEIT_TREE_URL, {
+    kind: "manifest",
+    maximumBytes: MANIFEST_RESPONSE_LIMIT,
+    headers: {
+      "user-agent": "SakhtanieCatalog/1.0",
+      accept: "application/vnd.github+json",
+    },
+  });
 
-        headers: {
-          "user-agent":
-            "SakhtanieCatalog/1.0",
-
-          accept:
-            "application/vnd.github+json",
-        },
-      }
-    );
-
-  if (!response.ok) {
-    throw new Error(
-      `Manifest HTTP ${response.status}`
-    );
+  try {
+    return JSON.parse(bytes.toString("utf8"));
+  } catch {
+    throw new Error("Manifest is not valid JSON");
   }
-
-  return response.json();
 }
 
-async function downloadUrl(
-  url,
-  sourceLabel = url
-) {
+async function downloadImage(url, sourceLabel) {
   let lastError;
 
-  for (
-    let attempt = 1;
-    attempt <= 4;
-    attempt++
-  ) {
+  for (let attempt = 1; attempt <= MAXIMUM_RETRIES; attempt += 1) {
     try {
-      const response =
-        await fetch(
-          url,
-          {
-            redirect: "follow",
+      const result = await fetchAllowedResource(url, {
+        kind: "image",
+        headers: {
+          "user-agent": "SakhtanieCatalog/1.0",
+          accept: "image/avif,image/webp,image/png,image/jpeg,image/x-icon",
+        },
+      });
 
-            signal:
-              AbortSignal.timeout(
-                20000
-              ),
-
-            headers: {
-              "user-agent":
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/150 Safari/537.36",
-
-              accept:
-                "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-            },
-          }
-        );
-
-      if (!response.ok) {
-        throw new Error(
-          `HTTP ${response.status}`
-        );
-      }
-
-      const bytes =
-        Buffer.from(
-          await response.arrayBuffer()
-        );
-
-      if (bytes.length < 100) {
-        throw new Error(
-          "image payload too small"
-        );
-      }
-
-      const extension =
-        detectImage(bytes);
-
-      if (!extension) {
-        throw new Error(
-          "unsupported image payload"
-        );
+      if (result.bytes.length < 100) {
+        throw new Error("Image payload is too small");
       }
 
       return {
-        bytes,
-        extension,
+        bytes: result.bytes,
+        extension: result.extension,
         source: sourceLabel,
       };
     } catch (error) {
       lastError = error;
 
-      if (attempt < 4) {
-        await new Promise(
-          resolve =>
-            setTimeout(
-              resolve,
-              attempt * 750
-            )
-        );
+      if (attempt < MAXIMUM_RETRIES) {
+        await new Promise(resolve => setTimeout(resolve, attempt * 500));
       }
     }
   }
@@ -377,443 +158,167 @@ async function downloadUrl(
   throw lastError;
 }
 
-async function downloadCvci(
-  sourcePath
-) {
-  return downloadUrl(
-    `${sourceBase}/${sourcePath}`,
-    sourcePath
-  );
+async function downloadCvci(sourcePath) {
+  const safePath = validateCvciPath(sourcePath);
+  return downloadImage(cvciUrlForPath(safePath), safePath);
 }
 
-console.log(
-  "Fetching CanIVibeCodeIt manifest..."
-);
+console.log("Fetching CanIVibeCodeIt manifest...");
+const tree = await fetchManifest();
 
-const tree =
-  await fetchJson(treeUrl);
-
-if (
-  !Array.isArray(tree.tree) ||
-  tree.truncated
-) {
-  throw new Error(
-    "Invalid or truncated GitHub tree"
-  );
+if (!Array.isArray(tree.tree) || tree.truncated) {
+  throw new Error("Invalid or truncated GitHub tree");
 }
 
-const availablePaths =
-  new Set(
-    tree.tree
-      .filter(
-        item =>
-          item.type === "blob"
-      )
-      .map(
-        item => item.path
-      )
-  );
-
-console.log(
-  `Manifest entries: ${availablePaths.size}`
+const availablePaths = new Set(
+  tree.tree
+    .filter(item => item?.type === "blob" && typeof item.path === "string")
+    .map(item => item.path)
 );
 
-await fs.rm(
-  logoDir,
-  {
-    recursive: true,
-    force: true,
-  }
-);
+console.log(`Manifest entries: ${availablePaths.size}`);
 
-await fs.mkdir(
-  logoDir,
-  {
-    recursive: true,
-  }
-);
+const files = (await fs.readdir(appDir))
+  .filter(file => /^[a-z0-9]+(?:-[a-z0-9]+)*\.json$/.test(file))
+  .sort();
 
-const files =
-  (await fs.readdir(appDir))
-    .filter(
-      file =>
-        file.endsWith(".json")
-    )
-    .sort();
-
-let directCount = 0;
-let domainCount = 0;
-let aliasCount = 0;
-let officialCount = 0;
-let localOfficialCount = 0;
-let intentionalCount = 0;
-let fallbackCount = 0;
-
+const counts = {
+  "canivibecodeit-direct": 0,
+  "canivibecodeit-domain": 0,
+  "canivibecodeit-alias": 0,
+  "official-site": 0,
+  "official-local": 0,
+  "intentional-badge": 0,
+  "generated-fallback": 0,
+};
 const sourceReport = [];
+const catalogUpdates = [];
+let stagingExists = false;
 
-for (const file of files) {
-  const filePath =
-    path.join(appDir, file);
+try {
+  await fs.mkdir(stagingLogoDir, { recursive: false, mode: 0o700 });
+  stagingExists = true;
 
-  const app =
-    JSON.parse(
-      await fs.readFile(
-        filePath,
-        "utf8"
-      )
-    );
+  for (const file of files) {
+    const filePath = path.join(appDir, file);
+    const app = JSON.parse(await fs.readFile(filePath, "utf8"));
+    const slug = validateSlug(app.slug);
 
-  const domain =
-    sanitizeDomain(
-      app.domain
-    );
-
-  const candidates = [
-    {
-      type:
-        "canivibecodeit-direct",
-
-      path:
-        `public/icons/${app.slug}.png`,
-    },
-
-    {
-      type:
-        "canivibecodeit-domain",
-
-      path:
-        `public/icons/alt/${domain}.png`,
-    },
-
-    ...(
-      aliases[app.slug] || []
-    ).map(
-      sourcePath => ({
-        type:
-          "canivibecodeit-alias",
-
-        path:
-          sourcePath,
-      })
-    ),
-  ];
-
-  const existingCandidates =
-    candidates.filter(
-      candidate =>
-        availablePaths.has(
-          candidate.path
-        )
-    );
-
-  let downloaded = null;
-  let selected = null;
-
-  for (
-    const candidate
-    of existingCandidates
-  ) {
-    try {
-      downloaded =
-        await downloadCvci(
-          candidate.path
-        );
-
-      selected =
-        candidate;
-
-      break;
-    } catch (error) {
-      console.warn(
-        `! ${app.slug}: ${candidate.path} failed (${error.message})`
-      );
+    if (file !== `${slug}.json`) {
+      throw new Error("Catalog filename and safe slug do not match");
     }
-  }
 
-  if (
-    !downloaded &&
-    officialSources[app.slug]
-  ) {
-    const url =
-      officialSources[app.slug];
+    const domain = normalizeDomain(app.domain);
+    const candidates = [
+      { type: "canivibecodeit-direct", path: `public/icons/${slug}.png` },
+      { type: "canivibecodeit-domain", path: `public/icons/alt/${domain}.png` },
+      ...(aliases[slug] || []).map(sourcePath => ({
+        type: "canivibecodeit-alias",
+        path: sourcePath,
+      })),
+    ];
+    const existingCandidates = candidates.filter(candidate => {
+      validateCvciPath(candidate.path);
+      return availablePaths.has(candidate.path);
+    });
 
-    try {
-      downloaded =
-        await downloadUrl(
-          url,
-          url
-        );
+    let downloaded = null;
+    let selected = null;
 
-      selected = {
-        type: "official-site",
-        path: url,
+    for (const candidate of existingCandidates) {
+      try {
+        downloaded = await downloadCvci(candidate.path);
+        selected = candidate;
+        break;
+      } catch (error) {
+        console.warn(`! ${slug}: approved candidate failed (${error.message})`);
+      }
+    }
+
+    if (!downloaded && Object.hasOwn(officialSourceIds, slug)) {
+      const sourceId = officialSourceIds[slug];
+      const officialUrl = officialUrlForSourceId(sourceId);
+
+      if (!officialUrl) {
+        throw new Error(`Unknown official source ID for ${slug}`);
+      }
+
+      try {
+        downloaded = await downloadImage(officialUrl, sourceId);
+        selected = { type: "official-site", path: sourceId };
+      } catch (error) {
+        console.warn(`! ${slug}: approved official source failed (${error.message})`);
+      }
+    }
+
+    if (!downloaded && Object.hasOwn(localOfficialSources, slug)) {
+      const local = localOfficialSources[slug];
+      const localPath = resolveCuratedAsset(root, local.path);
+      const svg = assertPassiveLocalSvg(await fs.readFile(localPath, "utf8"));
+      downloaded = {
+        bytes: Buffer.from(svg),
+        extension: "svg",
+        source: local.provenance,
       };
-    } catch (error) {
-      console.warn(
-        `! ${app.slug}: official source failed (${error.message})`
-      );
-    }
-  }
-
-  if (
-    !downloaded &&
-    localOfficialSources[
-      app.slug
-    ]
-  ) {
-    const local =
-      localOfficialSources[
-        app.slug
-      ];
-
-    const bytes =
-      await fs.readFile(
-        path.join(
-          root,
-          local.path
-        )
-      );
-
-    const extension =
-      detectImage(bytes);
-
-    if (!extension) {
-      throw new Error(
-        `Unsupported local official asset: ${app.slug}`
-      );
+      selected = { type: "official-local", path: local.provenance };
     }
 
-    downloaded = {
-      bytes,
-      extension,
-      source:
-        local.provenance,
-    };
+    let logo;
 
-    selected = {
-      type:
-        "official-local",
-
-      path:
-        local.provenance,
-    };
-  }
-
-  let logo;
-
-  if (
-    downloaded &&
-    selected
-  ) {
-    const outputName =
-      `${app.slug}.${downloaded.extension}`;
-
-    await fs.writeFile(
-      path.join(
-        logoDir,
-        outputName
-      ),
-      downloaded.bytes
-    );
-
-    logo =
-      `/app-logos/${outputName}`;
-
-    if (
-      selected.type ===
-      "canivibecodeit-direct"
-    ) {
-      directCount++;
-    } else if (
-      selected.type ===
-      "canivibecodeit-domain"
-    ) {
-      domainCount++;
-    } else if (
-      selected.type ===
-      "canivibecodeit-alias"
-    ) {
-      aliasCount++;
-    } else if (
-      selected.type ===
-      "official-site"
-    ) {
-      officialCount++;
-    } else if (
-      selected.type ===
-      "official-local"
-    ) {
-      localOfficialCount++;
+    if (downloaded && selected) {
+      const outputPath = resolveLogoOutputPath(
+        stagingLogoDir,
+        slug,
+        downloaded.extension
+      );
+      await atomicWriteFile(outputPath, downloaded.bytes);
+      logo = `/app-logos/${path.basename(outputPath)}`;
+      counts[selected.type] += 1;
+      sourceReport.push({
+        slug,
+        type: selected.type,
+        source: selected.path,
+        local: logo,
+      });
     } else {
-      throw new Error(
-        `Unknown source type: ${selected.type}`
+      const badge = intentionalBadges[slug];
+      const type = badge ? "intentional-badge" : "generated-fallback";
+      const svg = assertPassiveLocalSvg(
+        badge ? badgeSvg(badge.symbol) : fallbackSvg(app.name?.en || slug)
       );
+      const outputPath = resolveLogoOutputPath(stagingLogoDir, slug, "svg");
+      await atomicWriteFile(outputPath, svg, { encoding: "utf8" });
+      logo = `/app-logos/${path.basename(outputPath)}`;
+      counts[type] += 1;
+      sourceReport.push({ slug, type, source: null, local: logo });
     }
 
-    sourceReport.push({
-      slug: app.slug,
-      type: selected.type,
-      source:
-        selected.path,
-      local: logo,
+    catalogUpdates.push({
+      filePath,
+      contents: `${JSON.stringify(withLogoAfterDomain(app, logo), null, 2)}\n`,
     });
-
-    const marker =
-      selected.type ===
-      "canivibecodeit-direct"
-        ? "✓"
-        : selected.type ===
-          "official-site"
-          ? "◎"
-          : selected.type ===
-            "official-local"
-            ? "◆"
-            : "→";
-
-    console.log(
-      `${marker} ${app.slug} <- ${selected.path} [${downloaded.extension}]`
-    );
-  } else if (
-    intentionalBadges[
-      app.slug
-    ]
-  ) {
-    const badge =
-      intentionalBadges[
-        app.slug
-      ];
-
-    const outputName =
-      `${app.slug}.svg`;
-
-    await fs.writeFile(
-      path.join(
-        logoDir,
-        outputName
-      ),
-      badgeSvg(
-        badge.symbol
-      ),
-      "utf8"
-    );
-
-    logo =
-      `/app-logos/${outputName}`;
-
-    intentionalCount++;
-
-    sourceReport.push({
-      slug: app.slug,
-      type:
-        "intentional-badge",
-      source: null,
-      local: logo,
-    });
-
-    console.log(
-      `◇ ${app.slug} intentional badge ${badge.symbol}`
-    );
-  } else {
-    const outputName =
-      `${app.slug}.svg`;
-
-    await fs.writeFile(
-      path.join(
-        logoDir,
-        outputName
-      ),
-      fallbackSvg(
-        app.name?.en ||
-          app.slug
-      ),
-      "utf8"
-    );
-
-    logo =
-      `/app-logos/${outputName}`;
-
-    fallbackCount++;
-
-    sourceReport.push({
-      slug: app.slug,
-      type:
-        "generated-fallback",
-      source: null,
-      local: logo,
-    });
-
-    console.log(
-      `~ ${app.slug} generated fallback`
-    );
   }
 
-  const updated =
-    withLogoAfterDomain(
-      app,
-      logo
-    );
+  await replaceDirectoryFromStaging(stagingLogoDir, logoDir);
+  stagingExists = false;
 
-  await fs.writeFile(
-    filePath,
-    `${JSON.stringify(
-      updated,
-      null,
-      2
-    )}\n`,
-    "utf8"
+  for (const update of catalogUpdates) {
+    await atomicWriteFile(update.filePath, update.contents, { encoding: "utf8" });
+  }
+
+  await atomicWriteFile(
+    path.join(root, "scripts/app-logo-sources.json"),
+    `${JSON.stringify(sourceReport, null, 2)}\n`,
+    { encoding: "utf8" }
   );
+} finally {
+  if (stagingExists) {
+    await fs.rm(stagingLogoDir, { recursive: true, force: true });
+  }
 }
-
-await fs.writeFile(
-  path.join(
-    root,
-    "scripts/app-logo-sources.json"
-  ),
-  `${JSON.stringify(
-    sourceReport,
-    null,
-    2
-  )}\n`,
-  "utf8"
-);
 
 console.log("");
-console.log(
-  `CVCI direct:     ${directCount}`
-);
-
-console.log(
-  `CVCI domain:     ${domainCount}`
-);
-
-console.log(
-  `CVCI alias:      ${aliasCount}`
-);
-
-console.log(
-  `Official remote: ${officialCount}`
-);
-
-console.log(
-  `Official local:  ${localOfficialCount}`
-);
-
-console.log(
-  `Intentional:     ${intentionalCount}`
-);
-
-console.log(
-  `Fallback:        ${fallbackCount}`
-);
-
-console.log(
-  `Total:           ${
-    directCount +
-    domainCount +
-    aliasCount +
-    officialCount +
-    localOfficialCount +
-    intentionalCount +
-    fallbackCount
-  }`
-);
+for (const [type, count] of Object.entries(counts)) {
+  console.log(`${type}: ${count}`);
+}
+console.log(`Total: ${Object.values(counts).reduce((sum, count) => sum + count, 0)}`);

@@ -40,6 +40,9 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Lint source
+        run: npm run lint
+
       - name: Build static site
         run: npm run build
 

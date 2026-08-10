@@ -1,160 +1,14 @@
 import { spawnSync } from "node:child_process";
-import { readdirSync, readFileSync, statSync } from "node:fs";
-import { relative, resolve } from "node:path";
+import {
+  DEFAULT_MAXIMUM_TEXT_FILE_SIZE,
+  scanCurrentTree,
+  scanText,
+  textFromBuffer,
+} from "./lib/secret-scanner.mjs";
 
 const repositoryRoot = process.cwd();
 const includeHistory = process.argv.includes("--history");
-const ignoredDirectories = new Set([
-  ".astro",
-  ".git",
-  "dist",
-  "node_modules",
-]);
-const maximumTextFileSize = 2 * 1024 * 1024;
-
-const highConfidencePatterns = [
-  {
-    type: "private-key",
-    pattern:
-      /-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY-----/g,
-  },
-  {
-    type: "github-token",
-    pattern: /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{36,255}\b/g,
-  },
-  {
-    type: "openai-api-key",
-    pattern: /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/g,
-  },
-  {
-    type: "aws-access-key",
-    pattern: /\b(?:AKIA|ASIA)[A-Z0-9]{16}\b/g,
-  },
-  {
-    type: "google-api-key",
-    pattern: /\bAIza[0-9A-Za-z_-]{35}\b/g,
-  },
-  {
-    type: "slack-token",
-    pattern: /\bxox[baprs]-[0-9A-Za-z-]{20,}\b/g,
-  },
-];
-
-const credentialAssignment =
-  /\b(api[_-]?key|access[_-]?token|auth[_-]?token|client[_-]?secret|password|private[_-]?key)\b\s*[:=]\s*["']([^"'\r\n]{8,})["']/gi;
-
-const placeholderTerms =
-  /(?:example|placeholder|changeme|replace[_-]?me|your[_-]|<[^>]+>|\*{3,})/i;
-
-function lineNumberAt(text, index) {
-  let line = 1;
-
-  for (let position = 0; position < index; position += 1) {
-    if (text.charCodeAt(position) === 10) {
-      line += 1;
-    }
-  }
-
-  return line;
-}
-
-function scanText(text, metadata) {
-  const findings = [];
-
-  for (const specification of highConfidencePatterns) {
-    specification.pattern.lastIndex = 0;
-
-    for (const match of text.matchAll(specification.pattern)) {
-      findings.push({
-        ...metadata,
-        type: specification.type,
-        line: lineNumberAt(text, match.index ?? 0),
-      });
-    }
-  }
-
-  credentialAssignment.lastIndex = 0;
-
-  for (const match of text.matchAll(credentialAssignment)) {
-    const value = match[2];
-
-    if (placeholderTerms.test(value)) {
-      continue;
-    }
-
-    findings.push({
-      ...metadata,
-      type: "credential-assignment",
-      line: lineNumberAt(text, match.index ?? 0),
-    });
-  }
-
-  return findings;
-}
-
-function textFromBuffer(buffer) {
-  if (
-    buffer.length > maximumTextFileSize ||
-    buffer.includes(0)
-  ) {
-    return null;
-  }
-
-  return buffer.toString("utf8");
-}
-
-function walk(directory) {
-  const paths = [];
-
-  for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && ignoredDirectories.has(entry.name)) {
-      continue;
-    }
-
-    const absolutePath = resolve(directory, entry.name);
-
-    if (entry.isDirectory()) {
-      paths.push(...walk(absolutePath));
-    } else if (entry.isFile()) {
-      paths.push(absolutePath);
-    }
-  }
-
-  return paths;
-}
-
-function scanCurrentTree() {
-  const findings = [];
-
-  for (const absolutePath of walk(repositoryRoot)) {
-    let fileBuffer;
-
-    try {
-      if (statSync(absolutePath).size > maximumTextFileSize) {
-        continue;
-      }
-
-      fileBuffer = readFileSync(absolutePath);
-    } catch {
-      continue;
-    }
-
-    const text = textFromBuffer(fileBuffer);
-
-    if (text === null) {
-      continue;
-    }
-
-    findings.push(
-      ...scanText(text, {
-        scope: "current-tree",
-        path: relative(repositoryRoot, absolutePath),
-      })
-    );
-  }
-
-  return findings;
-}
+const maximumTextFileSize = DEFAULT_MAXIMUM_TEXT_FILE_SIZE;
 
 function runGit(arguments_, options = {}) {
   const encoding = Object.hasOwn(options, "encoding")
@@ -224,7 +78,10 @@ function scanReachableBlobs() {
     }
 
     if (objectType === "blob" && size <= maximumTextFileSize) {
-      const text = textFromBuffer(batch.subarray(contentStart, contentEnd));
+      const text = textFromBuffer(
+        batch.subarray(contentStart, contentEnd),
+        maximumTextFileSize
+      );
 
       if (text !== null) {
         findings.push(
@@ -268,7 +125,7 @@ function scanCommitMessages() {
   return findings;
 }
 
-const findings = scanCurrentTree();
+const findings = scanCurrentTree(repositoryRoot);
 
 if (includeHistory) {
   findings.push(...scanReachableBlobs(), ...scanCommitMessages());
