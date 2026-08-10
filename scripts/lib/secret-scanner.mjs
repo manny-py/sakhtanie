@@ -126,12 +126,6 @@ export function readRegularFileOnce(
   let descriptor;
 
   try {
-    const beforeOpen = lstatSync(absolutePath);
-
-    if (beforeOpen.isSymbolicLink() || !beforeOpen.isFile()) {
-      return null;
-    }
-
     descriptor = openSync(
       absolutePath,
       constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0)

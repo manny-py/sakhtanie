@@ -3,8 +3,8 @@
 ## Secret scanner filesystem safety
 
 The current-tree scanner never validates one pathname and then reopens it. For
-each directory entry it rejects symlinks, opens once with `O_RDONLY` and
-`O_NOFOLLOW` where available, and uses `fstat` on that descriptor for the
+each directory entry it skips traversal symlinks, opens once with `O_RDONLY`
+and `O_NOFOLLOW` where available, and uses `fstat` on that descriptor for the
 regular-file and size checks. A post-open `lstat` identity comparison fails
 closed if the entry changed during open. The content is read from the same file
 descriptor and that descriptor is closed in `finally`. Directory traversal also
