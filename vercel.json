@@ -43,12 +43,12 @@
   ],
   "redirects": [
     {
-      "source": "/categories/website-commerce",
+      "source": "/categories/website-commerce/",
       "destination": "/categories/app-website-builders/",
       "statusCode": 301
     },
     {
-      "source": "/categories/development-automation",
+      "source": "/categories/development-automation/",
       "destination": "/categories/ai-coding/",
       "statusCode": 301
     }

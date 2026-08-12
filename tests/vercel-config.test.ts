@@ -137,19 +137,19 @@ test("Vercel config parses and preserves URL normalization", () => {
   assert.equal(config.trailingSlash, true);
 });
 
-test("legacy category redirects use one-hop canonical destinations", () => {
+test("legacy category redirects match Vercel's slash-normalized routes", () => {
   const { redirects } = readVercelConfig();
   const redirectsBySource = new Map(
     redirects.map((redirect) => [redirect.source, redirect])
   );
 
-  assert.deepEqual(redirectsBySource.get("/categories/website-commerce"), {
-    source: "/categories/website-commerce",
+  assert.deepEqual(redirectsBySource.get("/categories/website-commerce/"), {
+    source: "/categories/website-commerce/",
     destination: "/categories/app-website-builders/",
     statusCode: 301,
   });
-  assert.deepEqual(redirectsBySource.get("/categories/development-automation"), {
-    source: "/categories/development-automation",
+  assert.deepEqual(redirectsBySource.get("/categories/development-automation/"), {
+    source: "/categories/development-automation/",
     destination: "/categories/ai-coding/",
     statusCode: 301,
   });
