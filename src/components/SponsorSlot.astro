@@ -3,6 +3,8 @@ import {
   sponsorSchema,
   type Sponsor,
 } from "../lib/sponsors";
+import { MONETIZATION_ENABLED } from "../lib/monetization";
+import SponsorSlotClient from "./SponsorSlotClient.astro";
 
 interface Props {
   sponsor: Sponsor;
@@ -20,6 +22,9 @@ const ctaLabel = sponsor.ctaLabel ?? "مشاهده وب‌سایت";
 const logoAlt = sponsor.logoAlt ?? "";
 ---
 
+{
+  MONETIZATION_ENABLED && (
+<Fragment>
 <section
   class:list={[
     "sponsor-slot",
@@ -105,68 +110,10 @@ const logoAlt = sponsor.logoAlt ?? "";
     )
   }
 </section>
-
-<script>
-  import { track } from "../lib/analytics";
-
-  document
-    .querySelectorAll<HTMLElement>("[data-sponsor-slot]")
-    .forEach((slot) => {
-      const sponsorId = slot.dataset.sponsorId;
-      const active = slot.dataset.sponsorActive === "true";
-
-      if (!sponsorId) return;
-
-      if (active) {
-        let impressionSent = false;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (
-                entry.isIntersecting &&
-                entry.intersectionRatio >= 0.5 &&
-                !impressionSent
-              ) {
-                impressionSent = true;
-
-                track("sponsor_impression", {
-                  sponsor_id: sponsorId,
-                });
-
-                observer.disconnect();
-              }
-            }
-          },
-          {
-            threshold: [0.5],
-          }
-        );
-
-        observer.observe(slot);
-
-        slot
-          .querySelector<HTMLAnchorElement>(
-            "[data-sponsor-link]"
-          )
-          ?.addEventListener("click", () => {
-            track("sponsor_click", {
-              sponsor_id: sponsorId,
-            });
-          });
-      }
-
-      slot
-        .querySelector<HTMLAnchorElement>(
-          "[data-advertise-cta]"
-        )
-        ?.addEventListener("click", () => {
-          track("advertise_cta_click", {
-            placement: sponsorId,
-          });
-        });
-    });
-</script>
+<SponsorSlotClient />
+</Fragment>
+  )
+}
 
 <style>
   .sponsor-slot {
