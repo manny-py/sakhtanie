@@ -1,0 +1,62 @@
+name: Tool request
+description: Suggest a digital product for the Sakhtanie catalog
+title: "catalog: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest a product that would benefit from a builder-focused feasibility analysis. A request is a proposal, not a guarantee of inclusion.
+
+  - type: input
+    id: product_name
+    attributes:
+      label: Product name
+      placeholder: Example product
+    validations:
+      required: true
+
+  - type: input
+    id: official_url
+    attributes:
+      label: Official URL
+      description: Link to the product's official website or documentation.
+      placeholder: https://example.com
+    validations:
+      required: true
+
+  - type: textarea
+    id: catalog_fit
+    attributes:
+      label: Why it fits the catalog
+      description: Explain why builders would benefit from understanding this product's feasibility and tradeoffs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: mvp_scope
+    attributes:
+      label: Suggested scope or MVP
+      description: Describe the smallest useful version worth evaluating. Clearly mark assumptions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Provide official or reliable sources for product capabilities and other changeable claims.
+      placeholder: One URL per line, with a short note about what it supports
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: This is not undisclosed advertising, affiliate promotion, or spam.
+          required: true
+        - label: I have identified assumptions and supplied sources for claims that can change.
+          required: true
+        - label: This request contains no secrets, personal information, or private security details.
+          required: true

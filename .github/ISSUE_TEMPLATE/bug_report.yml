@@ -1,0 +1,56 @@
+name: Bug report
+description: Report a reproducible problem in Sakhtanie
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Do not include vulnerabilities, secrets, personal information, or operational exploit details in a public issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reliable sequence that reproduces the problem.
+      placeholder: |
+        1. Open …
+        2. Select …
+        3. Observe …
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Relevant page or URL
+      description: Link the affected public page or name the repository path, if applicable.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include relevant browser, device, operating system, and Node.js version without private data.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add safe logs or screenshots if they help. Redact sensitive data first.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues for the same problem.
+          required: true
+        - label: This report contains no secrets, personal information, or private security details.
+          required: true
