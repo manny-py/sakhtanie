@@ -125,9 +125,14 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow and validation requirem
 - Make the contribution workflow clearer and easier to validate
 - Explore additional language support without committing to a release date
 
-## License status
+## Licensing
 
-No repository license is currently specified. Review the repository's license status before using, modifying, or redistributing its source; no usage rights are implied by public availability.
+- Original software source code and configuration are licensed under the [MIT License](LICENSE).
+- Original catalog entries, editorial analysis, and written documentation are licensed under [Creative Commons Attribution 4.0 International](CONTENT-LICENSE.md).
+- The names “Sakhtanie” and “ساختنیه؟”, project logos, Social Preview artwork, distinctive brand graphics, and visual brand identity are excluded from both licenses unless explicit written permission is provided.
+- Third-party product names, logos, screenshots, trademarks, and other intellectual property remain the property of their respective owners and are not relicensed by this Repository.
+
+See [CONTENT-LICENSE.md](CONTENT-LICENSE.md) for the precise path-based scope, attribution guidance, and exclusions.
 
 ---
 
@@ -180,5 +185,9 @@ npm run scan:secrets
 ### روش مشارکت
 
 می‌توانید ابزار تازه‌ای پیشنهاد کنید، داده یا تحلیل موجود را اصلاح کنید، باگ برطرف کنید یا مستندات و دسترس‌پذیری را بهتر کنید. برای ادعاها و اطلاعاتی که ممکن است تغییر کنند منبع معتبر ارائه دهید، هیچ Secret یا مقدار واقعی Environment را Commit نکنید و PR را کوچک و متمرکز نگه دارید. جزئیات در [راهنمای مشارکت](CONTRIBUTING.md) آمده است و ارسال تغییر به‌معنای پذیرش قطعی آن نیست.
+
+### مجوزها
+
+کد و تنظیمات نرم‌افزاری با [مجوز MIT](LICENSE) منتشر می‌شوند. محتوای اصلی Catalog، تحلیل‌های تحریریه و مستندات تألیفی تحت شرایط [CC BY 4.0](CONTENT-LICENSE.md) هستند. نام و هویت بصری ساختنیه و همچنین نام‌ها، لوگوها و مالکیت فکری اشخاص ثالث تحت این دو مجوز قرار نمی‌گیرند.
 
 سایت اصلی: [sakhtanie.ir](https://sakhtanie.ir)
