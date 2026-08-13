@@ -30,6 +30,10 @@ npm run scan:secrets
 
 Never commit tokens, secrets, personal information, analytics credentials, or real environment values. Use `.env.example` only as a public configuration reference. Do not include operational exploit details in a public issue; read [SECURITY.md](SECURITY.md).
 
+## Contribution licensing
+
+Contributions accepted into the Repository are distributed under the license applicable to the area being changed: software contributions under the [MIT License](LICENSE), and original catalog, editorial, or documentation contributions under [CC BY 4.0](CONTENT-LICENSE.md). Brand assets and third-party intellectual property are not covered by those licenses.
+
 Small, reviewable pull requests are preferred. A submission may be declined or revised to protect catalog consistency and project scope.
 
 ---
@@ -41,5 +45,7 @@ Small, reviewable pull requests are preferred. A submission may be declined or r
 3. تغییر را کوچک و متمرکز نگه دارید و برای Commit از پیام روشن و دستوری استفاده کنید.
 4. Validationهای بالا را اجرا و نتیجه را در PR ثبت کنید.
 5. برای پیشنهاد ابزار از فرم Tool Request استفاده کنید. برای اصلاح تحلیل، فایل مرتبط در `src/data/apps/` را همراه با دلیل و Source معتبر تغییر دهید.
+
+مشارکت‌های پذیرفته‌شده در بخش نرم‌افزار تحت [MIT](LICENSE) و مشارکت‌های محتوایی و تحریریه تحت [CC BY 4.0](CONTENT-LICENSE.md) منتشر می‌شوند. دارایی‌های برند و مالکیت فکری اشخاص ثالث مشمول این مجوزها نیستند.
 
 هیچ Secret، Token، اطلاعات شخصی یا مقدار واقعی Environment را Commit نکنید. ادعاها و داده‌های قابل‌تغییر باید Source معتبر داشته باشند. ارسال PR به‌معنای پذیرش قطعی آن نیست.
