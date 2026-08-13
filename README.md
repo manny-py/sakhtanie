@@ -14,6 +14,8 @@ The product and its primary content are currently available in Persian.
 ![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 
+![Sakhtanie — Persian build intelligence catalog](docs/assets/sakhtanie-homepage.png)
+
 ## What is Sakhtanie?
 
 Sakhtanie is not a general AI tools directory. It examines digital products from a builder's point of view: what can be reproduced, what belongs in a realistic MVP, how much time and skill it may require, where complexity and external dependencies appear, what a smaller version cannot match, and whether building it has practical value.
