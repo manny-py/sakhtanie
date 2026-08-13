@@ -19,6 +19,11 @@
       <strong data-tool-cta-clicks>0</strong>
       <span class="muted">کلیک CTA ابزارها</span>
     </div>
+
+    <div class="card analytics-card">
+      <strong data-online-visitors>—</strong>
+      <span class="muted">بازدیدکنندگان آنلاین</span>
+    </div>
   </section>
 
   <section class="card analytics-chart-section">
@@ -96,6 +101,11 @@
     };
     viewsOverTime: DashboardPoint[];
     popularTools: PopularTool[];
+  }
+
+  interface LiveResponse {
+    success: true;
+    online: number;
   }
 
   const isSafeAggregateCount = (value: unknown): value is number =>
@@ -182,7 +192,28 @@
     };
   };
 
-  const ENDPOINT = `${ANALYTICS_ORIGIN}/v1/dashboard?days=7`;
+  const parseLiveResponse = (value: unknown): LiveResponse | null => {
+    if (typeof value !== "object" || value === null) {
+      return null;
+    }
+
+    const candidate = value as Record<string, unknown>;
+
+    if (
+      candidate.success !== true ||
+      !isSafeAggregateCount(candidate.online)
+    ) {
+      return null;
+    }
+
+    return {
+      success: true,
+      online: candidate.online,
+    };
+  };
+
+  const DASHBOARD_ENDPOINT = `${ANALYTICS_ORIGIN}/v1/dashboard?days=7`;
+  const LIVE_ENDPOINT = `${ANALYTICS_ORIGIN}/v1/live`;
 
   const root = document.querySelector<HTMLElement>(
     "[data-analytics-dashboard]"
@@ -200,6 +231,9 @@
 
     const toolCtaClicks =
       root.querySelector<HTMLElement>("[data-tool-cta-clicks]");
+
+    const onlineVisitors =
+      root.querySelector<HTMLElement>("[data-online-visitors]");
 
     const line =
       root.querySelector<SVGPolylineElement>("[data-chart-line]");
@@ -294,7 +328,7 @@
 
     const loadDashboard = async () => {
       try {
-        const response = await fetch(ENDPOINT, {
+        const response = await fetch(DASHBOARD_ENDPOINT, {
           headers: {
             Accept: "application/json",
           },
@@ -343,13 +377,47 @@
       }
     };
 
-    loadDashboard();
+    const loadOnlineVisitors = async () => {
+      try {
+        const response = await fetch(LIVE_ENDPOINT, {
+          headers: {
+            Accept: "application/json",
+          },
+          cache: "no-store",
+        });
 
-    const timer = window.setInterval(loadDashboard, 30_000);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = parseLiveResponse(await response.json());
+
+        if (!data) {
+          throw new Error("Live API failure");
+        }
+
+        if (onlineVisitors) {
+          onlineVisitors.textContent = String(data.online);
+        }
+      } catch {
+        if (onlineVisitors) {
+          onlineVisitors.textContent = "—";
+        }
+      }
+    };
+
+    loadDashboard();
+    loadOnlineVisitors();
+
+    const dashboardTimer = window.setInterval(loadDashboard, 30_000);
+    const liveTimer = window.setInterval(loadOnlineVisitors, 15_000);
 
     window.addEventListener(
       "pagehide",
-      () => window.clearInterval(timer),
+      () => {
+        window.clearInterval(dashboardTimer);
+        window.clearInterval(liveTimer);
+      },
       { once: true }
     );
   }
@@ -358,7 +426,7 @@
 <style>
   .analytics-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 16px;
   }
 

@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AnalyticsDashboard from "../components/AnalyticsDashboard.astro";
-import LiveGlobe from "../components/LiveGlobe.astro";
 ---
 
 <BaseLayout
@@ -21,8 +20,6 @@ import LiveGlobe from "../components/LiveGlobe.astro";
     </section>
 
     <AnalyticsDashboard />
-
-    <LiveGlobe />
   </main>
 
   <Footer />
@@ -39,10 +36,6 @@ import LiveGlobe from "../components/LiveGlobe.astro";
 
   .analytics-hero h1 {
     margin-bottom: 8px;
-  }
-
-  :global(.live-globe-card) {
-    margin-top: 24px;
   }
 
   @media (max-width: 560px) {
