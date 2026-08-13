@@ -2,6 +2,8 @@
 
 Thanks for helping improve Sakhtanie. The product and its catalog are currently Persian-first; issues and pull requests may be written in Persian or English.
 
+Participation in Sakhtanie requires following the project [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Workflow
 
 1. Fork the repository and create a short, descriptive branch from the latest `main`.
