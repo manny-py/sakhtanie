@@ -1,9 +1,34 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href="/" aria-label="صفحه اصلی ساختنیه">
-      <span class="brand__mark">؟!</span>
-      <span class="brand__name">ساختنیه؟</span>
-    </a>
+    <div class="site-header__brand-group">
+      <a class="brand" href="/" aria-label="صفحه اصلی ساختنیه">
+        <span class="brand__mark">؟!</span>
+        <span class="brand__name">ساختنیه؟</span>
+      </a>
+
+      <a
+        class="github-support"
+        href="https://github.com/manny-py/sakhtanie"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="حمایت از پروژه ساختنیه در گیت‌هاب"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="17"
+          height="17"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            fill="currentColor"
+            d="m12 2.4 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3L2.9 9l6.3-.9L12 2.4Z"
+          ></path>
+        </svg>
+        <span class="github-support__desktop">حمایت از پروژه در گیت‌هاب</span>
+        <span class="github-support__mobile">حمایت در گیت‌هاب</span>
+      </a>
+    </div>
 
     <nav class="site-nav" aria-label="ناوبری اصلی">
       <a href="/#categories">دسته‌ها</a>
@@ -32,10 +57,19 @@
     margin: 0 auto;
   }
 
+  .site-header__brand-group {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   .brand {
     display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
     gap: 11px;
+    white-space: nowrap;
   }
 
   .brand__mark {
@@ -59,8 +93,50 @@
     font-weight: 800;
   }
 
+  .github-support {
+    min-height: 36px;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 7px 11px;
+    border: 1px solid rgba(34, 232, 99, 0.38);
+    border-radius: 9px;
+    background: rgba(34, 232, 99, 0.04);
+    color: #22e863;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+    white-space: nowrap;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .github-support:hover {
+    border-color: rgba(34, 232, 99, 0.65);
+    background: rgba(34, 232, 99, 0.08);
+    color: #53ef83;
+  }
+
+  .github-support:focus-visible {
+    outline: 3px solid rgba(34, 232, 99, 0.35);
+    outline-offset: 3px;
+  }
+
+  .github-support svg {
+    flex: 0 0 auto;
+  }
+
+  .github-support__mobile {
+    display: none;
+  }
+
   .site-nav {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     gap: 22px;
     color: #8f9991;
@@ -68,6 +144,7 @@
   }
 
   .site-nav a {
+    white-space: nowrap;
     transition: color 150ms ease;
   }
 
@@ -84,10 +161,30 @@
     .site-header__inner {
       width: min(100% - 28px, 1200px);
       min-height: 58px;
+      gap: 12px;
+    }
+
+    .site-header__brand-group {
+      gap: 10px;
+    }
+
+    .github-support {
+      min-height: 34px;
+      gap: 6px;
+      padding: 6px 8px;
+      font-size: 11px;
+    }
+
+    .github-support__desktop {
+      display: none;
+    }
+
+    .github-support__mobile {
+      display: inline;
     }
 
     .site-nav {
-      gap: 13px;
+      gap: 10px;
       font-size: 12px;
     }
 
@@ -97,6 +194,52 @@
 
     .brand__name {
       font-size: 16px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .site-header__inner {
+      gap: 10px;
+    }
+
+    .site-header__brand-group {
+      gap: 8px;
+    }
+
+    .github-support {
+      gap: 5px;
+      padding-inline: 7px;
+    }
+
+    .site-nav {
+      gap: 8px;
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .site-header__inner {
+      width: calc(100% - 20px);
+      gap: 8px;
+    }
+
+    .site-header__brand-group {
+      gap: 8px;
+    }
+
+    .github-support {
+      gap: 5px;
+      padding-inline: 6px;
+      font-size: 10px;
+    }
+
+    .site-nav {
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .brand__name {
+      display: none;
     }
   }
 </style>
