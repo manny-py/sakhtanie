@@ -1,0 +1,129 @@
+<section class="github-cta" aria-labelledby="github-cta-title">
+  <div class="github-cta__copy">
+    <span class="github-cta__eyebrow" aria-hidden="true">open_source</span>
+    <h2 id="github-cta-title">ساختنیه روی گیت‌هاب متن‌بازه</h2>
+    <p>
+      اگر این پروژه برات مفیده، با دادن ستاره ازش حمایت کن یا در
+      توسعه‌اش مشارکت داشته باش.
+    </p>
+  </div>
+
+  <a
+    class="github-cta__link"
+    href="https://github.com/manny-py/sakhtanie"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        fill="currentColor"
+        d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.8.8.6A11.3 11.3 0 0 0 12 .7Z"
+      ></path>
+    </svg>
+    <span>ستاره دادن در گیت‌هاب</span>
+  </a>
+</section>
+
+<style>
+  .github-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-5);
+    max-width: 900px;
+    margin: 0 auto var(--space-6);
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+
+  .github-cta__copy {
+    min-width: 0;
+  }
+
+  .github-cta__eyebrow {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--primary);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .github-cta h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.6;
+  }
+
+  .github-cta p {
+    max-width: 650px;
+    margin: var(--space-2) 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .github-cta__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid var(--primary);
+    border-radius: 9px;
+    background: var(--primary);
+    color: var(--bg);
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .github-cta__link:hover {
+    border-color: var(--accent-hover);
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .github-cta__link:focus-visible {
+    outline: 3px solid rgba(34, 232, 99, 0.35);
+    outline-offset: 3px;
+  }
+
+  .github-cta__link svg {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 680px) {
+    .github-cta {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding: var(--space-4);
+    }
+
+    .github-cta__link {
+      width: 100%;
+      white-space: normal;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .github-cta__link {
+      transition: none;
+    }
+  }
+</style>
