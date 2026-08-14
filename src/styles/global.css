@@ -37,6 +37,7 @@
 
 html {
   direction: rtl;
+  scroll-padding-top: 80px;
   font-family: "Vazirmatn", sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -152,4 +153,3 @@ body {
 .muted {
   color: var(--muted);
 }
-
