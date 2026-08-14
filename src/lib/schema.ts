@@ -1,9 +1,13 @@
 import { z } from "zod";
 
+import { isSafeCatalogPathSegment } from "./catalog-path-segment.ts";
+
 export const appSchema = z.object({
   schemaVersion: z.number(),
 
-  slug: z.string(),
+  slug: z.string().refine(isSafeCatalogPathSegment, {
+    message: "must be a lowercase ASCII path segment using letters, numbers, and single hyphens",
+  }),
 
   name: z.object({
     fa: z.string(),
@@ -27,7 +31,9 @@ export const appSchema = z.object({
     "archived",
   ]),
 
-  category: z.string(),
+  category: z.string().refine(isSafeCatalogPathSegment, {
+    message: "must be a lowercase ASCII path segment using letters, numbers, and single hyphens",
+  }),
   subcategory: z.string(),
 
   tags: z.array(z.string()),
