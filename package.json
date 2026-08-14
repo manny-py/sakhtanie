@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "validate:data": "tsx scripts/validate-data.ts",
+    "indexnow:plan": "tsx scripts/indexnow/plan.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "lint": "eslint .",
     "scan:secrets": "node scripts/scan-secrets.mjs"
