@@ -1,7 +1,325 @@
-<footer style="padding:40px 0;color:#6b7280">
+---
+const repositoryUrl = "https://github.com/manny-py/sakhtanie";
+const creatorUrl = "https://github.com/manny-py";
+const toolRequestUrl = `${repositoryUrl}/issues/new?template=tool_request.yml`;
 
-<div class="container">
-ساختنیه؟ — بررسی ابزارهایی که می‌شود با AI ساخت.
-</div>
+const navigationLinks = [
+  { label: "دسته‌ها", href: "/#categories" },
+  { label: "درباره پروژه", href: "/about" },
+  { label: "پیشنهاد ابزار", href: toolRequestUrl, external: true },
+  { label: "گیت‌هاب", href: repositoryUrl, external: true },
+  { label: "RSS", href: "/rss.xml" },
+];
 
+const policyLinks = [
+  {
+    label: "مجوز کد: MIT",
+    href: `${repositoryUrl}/blob/main/LICENSE`,
+    external: true,
+  },
+  {
+    label: "مجوز محتوا: CC BY 4.0",
+    href: `${repositoryUrl}/blob/main/CONTENT-LICENSE.md`,
+    external: true,
+  },
+  { label: "حریم خصوصی", href: "/privacy" },
+  {
+    label: "امنیت",
+    href: `${repositoryUrl}/blob/main/SECURITY.md`,
+    external: true,
+  },
+  {
+    label: "مشارکت",
+    href: `${repositoryUrl}/blob/main/CONTRIBUTING.md`,
+    external: true,
+  },
+  { label: "تماس", href: "mailto:contact@sakhtanie.ir" },
+];
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <section class="follow-panel" aria-labelledby="follow-title">
+      <div class="follow-panel__copy">
+        <h2 id="follow-title">تحلیل‌های جدید ساختنیه را دنبال کن</h2>
+        <p>
+          ابزارهای تازه، نتیجه‌های جدید و بررسی‌های ساخت محصول را از طریق RSS
+          دنبال کن.
+        </p>
+      </div>
+
+      <a class="follow-panel__action" href="/rss.xml">
+        دنبال‌کردن از طریق RSS
+      </a>
+    </section>
+
+    <nav class="footer-nav" aria-label="پیوندهای پایین صفحه">
+      <ul>
+        {
+          navigationLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="source-row">
+      <div class="source-row__project">
+        <p>کد ساختنیه متن‌بازه و روی گیت‌هاب در دسترسه.</p>
+        <a
+          href={repositoryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          مشاهده سورس در گیت‌هاب
+        </a>
+      </div>
+
+      <p class="source-row__creator">
+        ساخته‌شده توسط
+        <a href={creatorUrl} target="_blank" rel="noopener noreferrer">
+          manny-py
+        </a>
+      </p>
+    </div>
+
+    <nav class="policy-nav" aria-label="مجوزها و سیاست‌های پروژه">
+      <ul>
+        {
+          policyLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
 </footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-8);
+    border-top: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 94%, #000);
+    color: var(--muted);
+  }
+
+  .site-footer__inner {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: var(--space-6) 0 var(--space-5);
+  }
+
+  .follow-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+  }
+
+  .follow-panel__copy {
+    min-width: 0;
+  }
+
+  .follow-panel h2 {
+    margin: 0 0 var(--space-2);
+    color: var(--text);
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.6;
+  }
+
+  .follow-panel p,
+  .source-row p {
+    margin: 0;
+  }
+
+  .follow-panel p {
+    max-width: 690px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .follow-panel__action {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border: 1px solid color-mix(in srgb, var(--primary) 38%, transparent);
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+    white-space: nowrap;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .follow-panel__action:hover {
+    border-color: color-mix(in srgb, var(--primary) 68%, transparent);
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--text);
+  }
+
+  .footer-nav,
+  .source-row,
+  .policy-nav {
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-nav {
+    margin-top: var(--space-5);
+    padding: var(--space-5) 0;
+  }
+
+  .footer-nav ul,
+  .policy-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .footer-nav a,
+  .policy-nav a,
+  .source-row a {
+    border-radius: 4px;
+    transition: color 150ms ease;
+  }
+
+  .footer-nav a {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .footer-nav a:hover,
+  .policy-nav a:hover,
+  .source-row a:hover {
+    color: var(--primary);
+  }
+
+  .source-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-5) 0;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .source-row__project {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .source-row a {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .source-row__creator {
+    white-space: nowrap;
+  }
+
+  .source-row__creator a {
+    margin-inline-start: 3px;
+    font-family: "JetBrains Mono", monospace;
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  .policy-nav {
+    padding-top: var(--space-5);
+  }
+
+  .policy-nav ul {
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .policy-nav a {
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .follow-panel__action:focus-visible,
+  .footer-nav a:focus-visible,
+  .policy-nav a:focus-visible,
+  .source-row a:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--primary) 38%, transparent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 620px) {
+    .site-footer {
+      margin-top: var(--space-7);
+    }
+
+    .site-footer__inner {
+      padding-block: var(--space-5);
+    }
+
+    .follow-panel {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-4);
+      padding: var(--space-4);
+    }
+
+    .follow-panel__action {
+      width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .footer-nav {
+      margin-top: var(--space-4);
+      padding-block: var(--space-4);
+    }
+
+    .footer-nav ul {
+      gap: var(--space-3) var(--space-4);
+    }
+
+    .source-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+      padding-block: var(--space-4);
+    }
+
+    .source-row__creator {
+      white-space: normal;
+    }
+
+    .policy-nav {
+      padding-top: var(--space-4);
+    }
+  }
+</style>
