@@ -73,6 +73,15 @@ const renderSections = [
     apps: latest,
   },
 ];
+
+const catalogTarget = 300;
+const currentCount = apps.length;
+const progressPercentage = Math.min(
+  100,
+  Math.max(0, (currentCount / catalogTarget) * 100)
+);
+const currentCountFa = currentCount.toLocaleString("fa-IR");
+const catalogTargetFa = catalogTarget.toLocaleString("fa-IR");
 ---
 
 <section class="discovery">
@@ -233,20 +242,29 @@ const renderSections = [
   <div class="catalog-progress">
     <div>
       <span>CATALOG TARGET</span>
-      <strong dir="ltr">{apps.length} / 100</strong>
+      <strong dir="ltr">
+        {currentCount} / {catalogTarget}
+      </strong>
     </div>
 
-    <div class="catalog-progress__track">
+    <div
+      class="catalog-progress__track"
+      role="progressbar"
+      aria-label="پیشرفت انتشار تحلیل‌های کاتالوگ ساختنیه"
+      aria-valuemin="0"
+      aria-valuemax={catalogTarget}
+      aria-valuenow={currentCount}
+      aria-valuetext={`${currentCountFa} تحلیل از هدف ${catalogTargetFa} تحلیل منتشر شده`}
+    >
       <span
-        style={`width:${Math.min(
-          100,
-          (apps.length / 100) * 100
-        )}%`}
+        aria-hidden="true"
+        style={`width:${progressPercentage}%`}
       ></span>
     </div>
 
     <p>
-      هدف فعلی: بررسی ۱۰۰ محصول ایرانی و بین‌المللی.
+      هدف بعدی: انتشار {catalogTargetFa} تحلیل؛ اکنون {currentCountFa} تحلیل
+      منتشر شده.
     </p>
   </div>
 </section>
