@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import HeroTerminal from "../components/HeroTerminal.astro";
 import SearchBox from "../components/SearchBox.astro";
 import CategoryGrid from "../components/CategoryGrid.astro";
+import CatalogProgress from "../components/CatalogProgress.astro";
 import FeaturedTools from "../components/FeaturedTools.astro";
 import AnalyticsSummary from "../components/AnalyticsSummary.astro";
 import SponsorSlot from "../components/SponsorSlot.astro";
@@ -31,11 +32,13 @@ import {
       variant="primary"
     />
 
-    <AnalyticsSummary />
-
     <CategoryGrid />
 
+    <CatalogProgress />
+
     <FeaturedTools />
+
+    <AnalyticsSummary />
 
     <SponsorSlot
       sponsor={homepageSecondarySponsor}
