@@ -114,7 +114,11 @@ jobs:
             try {
               const deploymentPage = await boundedPages(
                 github.rest.repos.listDeployments,
-                { owner: context.repo.owner, repo: context.repo.repo }
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  environment: 'Production',
+                }
               );
               if (!deploymentPage.complete) {
                 fs.writeFileSync(process.env.DEPLOYMENTS_FILE, JSON.stringify({
@@ -144,13 +148,14 @@ jobs:
                   }));
                   return;
                 }
-                const latestStatus = statusPage.values
+                const latestRelevantStatus = statusPage.values
+                  .filter((status) => status.state !== 'inactive')
                   .slice()
                   .sort((left, right) =>
                     String(right.created_at).localeCompare(String(left.created_at)) ||
                     String(right.id).localeCompare(String(left.id))
                   )[0];
-                if (latestStatus?.state === 'success') {
+                if (latestRelevantStatus?.state === 'success') {
                   successful.push({
                     id: String(deployment.id),
                     sha: deployment.sha,

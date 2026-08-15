@@ -5,6 +5,7 @@ import test from "node:test";
 import {
   evaluateDeploymentStatus,
   eventQualifiesForPlanning,
+  historicalDeploymentSucceeded,
   isEligibleProductionDeployment,
   selectLatestSuccessfulProduction,
   selectPreviousDistinctProduction,
@@ -56,6 +57,39 @@ test("Production success is eligible", () => {
   const item = deployment("1", sha("a"), "2026-08-15T10:00:00Z");
   assert.equal(eventQualifiesForPlanning(item), true);
   assert.equal(isEligibleProductionDeployment(item), true);
+});
+
+test("historical success survives inactive supersession", () => {
+  const statuses = [
+    { id: "2", state: "inactive", created_at: "2026-08-15T11:00:00Z" },
+    { id: "1", state: "success", created_at: "2026-08-15T10:00:00Z" },
+  ];
+  assert.equal(historicalDeploymentSucceeded(statuses), true);
+});
+
+test("historical status resolution accepts only the latest relevant success", () => {
+  const cases = [
+    [[{ state: "success" }], true],
+    [[{ state: "pending" }, { state: "success" }], true],
+    [[{ state: "success" }, { state: "inactive" }], true],
+    [[{ state: "failure" }], false],
+    [[{ state: "success" }, { state: "failure" }], false],
+    [[{ state: "failure" }, { state: "success" }], true],
+    [[{ state: "success" }, { state: "inactive" }, { state: "inactive" }], true],
+  ] as const;
+
+  for (const [states, expected] of cases) {
+    assert.equal(
+      historicalDeploymentSucceeded(
+        states.map((status, index) => ({
+          id: String(index + 1),
+          state: status.state,
+          created_at: `2026-08-15T${String(index + 10).padStart(2, "0")}:00:00Z`,
+        }))
+      ),
+      expected
+    );
+  }
 });
 
 test("newest successful Production deployment is selected", () => {
@@ -149,6 +183,7 @@ test("workflow is read-only and uses the existing dry-run planner", () => {
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /contents:\s*read/);
   assert.match(workflow, /deployments:\s*read/);
+  assert.match(workflow, /environment:\s*'Production'/);
   assert.doesNotMatch(workflow, /contents:\s*write|deployments:\s*write/);
   assert.match(workflow, /fetch-depth:\s*0/);
   assert.match(workflow, /persist-credentials:\s*false/);
@@ -156,7 +191,8 @@ test("workflow is read-only and uses the existing dry-run planner", () => {
   assert.match(workflow, /const maxPages = 5/);
   assert.match(workflow, /const perPage = 100/);
   assert.match(workflow, /deployment history exceeded 5 pages/);
-  assert.match(workflow, /latestStatus\?\.state === 'success'/);
+  assert.match(workflow, /latestRelevantStatus\?\.state === 'success'/);
+  assert.match(workflow, /filter\(\(status\) => status\.state !== 'inactive'\)/);
   assert.doesNotMatch(workflow, /production_environment/);
 });
 

@@ -6,6 +6,12 @@ export interface DeploymentRecord {
   created_at: string;
 }
 
+export interface DeploymentStatusRecord {
+  id: string | number;
+  state: string;
+  created_at: string;
+}
+
 export interface DeploymentRange {
   shouldPlan: true;
   baseSha: string;
@@ -39,6 +45,21 @@ export function eventQualifiesForPlanning(event: {
   state?: string | null;
 }) {
   return event.environment === "Production" && event.state === "success";
+}
+
+export function historicalDeploymentSucceeded(
+  statuses: readonly DeploymentStatusRecord[]
+) {
+  const latestRelevantStatus = statuses
+    .filter((status) => status.state !== "inactive")
+    .slice()
+    .sort(
+      (left, right) =>
+        right.created_at.localeCompare(left.created_at) ||
+        String(right.id).localeCompare(String(left.id), "en")
+    )[0];
+
+  return latestRelevantStatus?.state === "success";
 }
 
 function compareNewest(left: DeploymentRecord, right: DeploymentRecord) {
