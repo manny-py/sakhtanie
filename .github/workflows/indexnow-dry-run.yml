@@ -1,0 +1,255 @@
+name: IndexNow Dry Run
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      base_sha:
+        description: Base commit SHA
+        required: true
+        type: string
+      head_sha:
+        description: Head commit SHA
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  deployments: read
+
+concurrency:
+  group: indexnow-production-dry-run
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    name: Check deployment eligibility
+    runs-on: ubuntu-latest
+    outputs:
+      eligible: ${{ steps.guard.outputs.eligible }}
+    steps:
+      - id: guard
+        name: Filter deployment event
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DEPLOYMENT_ENVIRONMENT: ${{ github.event.deployment.environment }}
+          DEPLOYMENT_STATE: ${{ github.event.deployment_status.state }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            echo "eligible=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ "$DEPLOYMENT_ENVIRONMENT" != "Production" ]]; then
+            echo "eligible=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "## IndexNow dry-run skip"
+              echo "- Deployment ID: ${{ github.event.deployment.id }}"
+              echo "- Reason: preview deployment"
+              echo "- INDEXNOW REQUEST SENT: NO"
+              echo "- SEARCH ENGINE NOTIFICATION SENT: NO"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          if [[ "$DEPLOYMENT_STATE" != "success" ]]; then
+            echo "eligible=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "## IndexNow dry-run skip"
+              echo "- Deployment ID: ${{ github.event.deployment.id }}"
+              echo "- Reason: non-success deployment"
+              echo "- INDEXNOW REQUEST SENT: NO"
+              echo "- SEARCH ENGINE NOTIFICATION SENT: NO"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          echo "eligible=true" >> "$GITHUB_OUTPUT"
+
+  plan:
+    name: Plan IndexNow URLs (dry run)
+    needs: guard
+    if: needs.guard.outputs.eligible == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out workflow revision
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Collect successful Production deployments
+        if: github.event_name == 'deployment_status'
+        uses: actions/github-script@v7
+        env:
+          DEPLOYMENTS_FILE: ${{ runner.temp }}/indexnow-deployments.json
+        with:
+          script: |
+            const fs = require('node:fs');
+            const maxPages = 5;
+            const perPage = 100;
+            const boundedPages = async (request, params) => {
+              const values = [];
+              for (let page = 1; page <= maxPages; page += 1) {
+                const response = await request({ ...params, page, per_page: perPage });
+                values.push(...response.data);
+                if (response.data.length < perPage) {
+                  return { values, complete: true };
+                }
+              }
+              return { values, complete: false };
+            };
+
+            try {
+              const deploymentPage = await boundedPages(
+                github.rest.repos.listDeployments,
+                { owner: context.repo.owner, repo: context.repo.repo }
+              );
+              if (!deploymentPage.complete) {
+                fs.writeFileSync(process.env.DEPLOYMENTS_FILE, JSON.stringify({
+                  complete: false,
+                  deployments: [],
+                  error: 'deployment history exceeded 5 pages',
+                }));
+                return;
+              }
+
+              const successful = [];
+              for (const deployment of deploymentPage.values) {
+                if (deployment.environment !== 'Production') continue;
+                const statusPage = await boundedPages(
+                  github.rest.repos.listDeploymentStatuses,
+                  {
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    deployment_id: deployment.id,
+                  }
+                );
+                if (!statusPage.complete) {
+                  fs.writeFileSync(process.env.DEPLOYMENTS_FILE, JSON.stringify({
+                    complete: false,
+                    deployments: [],
+                    error: 'deployment status history exceeded 5 pages',
+                  }));
+                  return;
+                }
+                const latestStatus = statusPage.values
+                  .slice()
+                  .sort((left, right) =>
+                    String(right.created_at).localeCompare(String(left.created_at)) ||
+                    String(right.id).localeCompare(String(left.id))
+                  )[0];
+                if (latestStatus?.state === 'success') {
+                  successful.push({
+                    id: String(deployment.id),
+                    sha: deployment.sha,
+                    environment: deployment.environment,
+                    state: 'success',
+                    created_at: deployment.created_at,
+                  });
+                }
+              }
+              fs.writeFileSync(process.env.DEPLOYMENTS_FILE, JSON.stringify({
+                complete: true,
+                deployments: successful,
+              }));
+            } catch {
+              fs.writeFileSync(process.env.DEPLOYMENTS_FILE, JSON.stringify({
+                complete: false,
+                deployments: [],
+                error: 'GitHub deployment history API unavailable',
+              }));
+            }
+
+      - name: Resolve deployment range
+        id: range
+        env:
+          INDEXNOW_MODE: ${{ github.event_name }}
+          INDEXNOW_BASE_SHA: ${{ inputs.base_sha }}
+          INDEXNOW_HEAD_SHA: ${{ inputs.head_sha }}
+          INDEXNOW_DEPLOYMENT_ID: ${{ github.event.deployment.id }}
+          INDEXNOW_DEPLOYMENT_SHA: ${{ github.event.deployment.sha }}
+          INDEXNOW_DEPLOYMENTS_FILE: ${{ runner.temp }}/indexnow-deployments.json
+        run: |
+          set -o pipefail
+          if ! node --import tsx scripts/indexnow/resolve-deployment-range.ts > "$RUNNER_TEMP/indexnow-range.json"; then
+            {
+              echo "## IndexNow dry-run validation failure"
+              echo "- Event: ${{ github.event_name }}"
+              echo "- Deployment ID: ${{ github.event.deployment.id }}"
+              echo "- Reason: invalid manual SHA input, unresolved commit, or invalid ancestry"
+              echo "- INDEXNOW REQUEST SENT: NO"
+              echo "- SEARCH ENGINE NOTIFICATION SENT: NO"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if jq -e '.shouldPlan == false' "$RUNNER_TEMP/indexnow-range.json" >/dev/null; then
+            reason=$(jq -r '.reason' "$RUNNER_TEMP/indexnow-range.json")
+            {
+              echo "## IndexNow dry-run skip"
+              echo "- Event: ${{ github.event_name }}"
+              echo "- Deployment ID: ${{ github.event.deployment.id }}"
+              echo "- Reason: $reason"
+              echo "- INDEXNOW REQUEST SENT: NO"
+              echo "- SEARCH ENGINE NOTIFICATION SENT: NO"
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "should_plan=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          jq -e '.shouldPlan == true and (.baseSha|type == "string") and (.headSha|type == "string")' "$RUNNER_TEMP/indexnow-range.json" >/dev/null
+          echo "should_plan=true" >> "$GITHUB_OUTPUT"
+          echo "base_sha=$(jq -r '.baseSha' "$RUNNER_TEMP/indexnow-range.json")" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$(jq -r '.headSha' "$RUNNER_TEMP/indexnow-range.json")" >> "$GITHUB_OUTPUT"
+          echo "deployment_id=$(jq -r '.currentDeploymentId // \"\"' "$RUNNER_TEMP/indexnow-range.json")" >> "$GITHUB_OUTPUT"
+
+      - name: Run existing IndexNow planner (dry run)
+        if: steps.range.outputs.should_plan == 'true'
+        env:
+          BASE_SHA: ${{ steps.range.outputs.base_sha }}
+          HEAD_SHA: ${{ steps.range.outputs.head_sha }}
+        run: |
+          npm run indexnow:plan -- --base "$BASE_SHA" --head "$HEAD_SHA" --json > "$RUNNER_TEMP/indexnow-plan-raw.txt"
+          node --input-type=module -e '
+            import fs from "node:fs";
+            const raw = fs.readFileSync(process.env.RUNNER_TEMP + "/indexnow-plan-raw.txt", "utf8");
+            const start = raw.indexOf("{");
+            if (start < 0) throw new Error("Planner did not produce JSON");
+            const plan = JSON.parse(raw.slice(start));
+            fs.writeFileSync(process.env.RUNNER_TEMP + "/indexnow-plan.json", JSON.stringify(plan, null, 2) + "\n");
+          '
+
+      - name: Write dry-run summary
+        if: steps.range.outputs.should_plan == 'true'
+        env:
+          BASE_SHA: ${{ steps.range.outputs.base_sha }}
+          HEAD_SHA: ${{ steps.range.outputs.head_sha }}
+        run: |
+          {
+            echo "## IndexNow dry-run plan"
+            echo "- INDEXNOW MODE: DRY RUN ONLY"
+            echo "- Event: ${{ github.event_name }}"
+            echo "- Deployment ID: ${{ steps.range.outputs.deployment_id }}"
+            echo "- Base SHA: $BASE_SHA"
+            echo "- Head SHA: $HEAD_SHA"
+            echo "- Added published: $(jq '.changes.addedPublished | length' "$RUNNER_TEMP/indexnow-plan.json")"
+            echo "- Updated published: $(jq '.changes.updatedPublished | length' "$RUNNER_TEMP/indexnow-plan.json")"
+            echo "- Removed published: $(jq '.changes.removedPublished | length' "$RUNNER_TEMP/indexnow-plan.json")"
+            echo "- Impacted URLs: $(jq '.urls | length' "$RUNNER_TEMP/indexnow-plan.json")"
+            echo ""
+            echo "### Canonical impacted URLs"
+            jq -r '.urls[]? // "(none)"' "$RUNNER_TEMP/indexnow-plan.json"
+            echo ""
+            echo "- INDEXNOW REQUEST SENT: NO"
+            echo "- SEARCH ENGINE NOTIFICATION SENT: NO"
+          } >> "$GITHUB_STEP_SUMMARY"
