@@ -31,6 +31,8 @@ export const appSchema = z.object({
     "archived",
   ]),
 
+  publishedAt: z.iso.date().optional(),
+
   category: z.string().refine(isSafeCatalogPathSegment, {
     message: "must be a lowercase ASCII path segment using letters, numbers, and single hyphens",
   }),
@@ -117,3 +119,11 @@ export const appSchema = z.object({
     economicValue: z.number().min(0).max(5),
   }),
 });
+
+export const currentCatalogAppSchema = appSchema.refine(
+  app => app.status !== "published" || app.publishedAt !== undefined,
+  {
+    message: "publishedAt is required for published catalog records",
+    path: ["publishedAt"],
+  }
+);
