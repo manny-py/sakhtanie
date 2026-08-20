@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "coderabbit",
+  "name": {
+    "fa": "کدرَبیت",
+    "en": "CodeRabbit"
+  },
+  "domain": "coderabbit.ai",
+  "logo": "/app-logos/coderabbit.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "ai-code-review",
+  "tags": [
+    "بازبینی کد",
+    "Pull Request",
+    "امنیت کد",
+    "مدیریت تغییر"
+  ],
+  "relatedTools": [
+    "qodo",
+    "augment-code",
+    "github-copilot"
+  ],
+  "summary": "کدرَبیت یک پلتفرم بازبینی و مدیریت تغییر کد است که review خودکار PR، پیشنهاد اصلاح، triage، تحلیل زمینه، بررسی امنیت و workflowهای پیش و پس از merge را ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "ربات review پایه ساختنی است؛ دقت و دامنه پلتفرم کامل دشوار است.",
+    "reason": "یک GitHub App برای تحلیل diff، ruleهای قطعی، comment و patch قابل ساخت است. ارزش محصول کامل به false-positive پایین، codegraph، یادگیری از بازخورد، چند مخزن، security verification، triage و integrationهای سازمانی وابسته است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "با هر pull request، سیستم diff، فایل‌های مرتبط، قواعد تیم، history و خروجی ابزارهای استاتیک را جمع می‌کند، یافته‌ها را اعتبارسنجی و اولویت‌بندی می‌کند و comment یا patch دارای شواهد می‌فرستد.",
+    "requirements": [
+      {
+        "type": "integration",
+        "label": "GitHub App، webhook و review API"
+      },
+      {
+        "type": "analysis",
+        "label": "AST، lint، SAST و تحلیل مدل"
+      },
+      {
+        "type": "retrieval",
+        "label": "زمینه کد، history و قواعد تیم"
+      },
+      {
+        "type": "evaluation",
+        "label": "بازخورد maintainer و سنجش precision"
+      }
+    ],
+    "limitations": [
+      "نسخه اول فقط GitHub و TypeScript را پشتیبانی می‌کند.",
+      "triage، Slack agent و Change Stack حذف می‌شوند.",
+      "security scan محدود جایگزین ممیزی امنیتی کامل نیست.",
+      "comment کم‌اطمینان یا بدون شاهد منتشر نمی‌شود."
+    ],
+    "prompt": {
+      "title": "Build a precision-first pull request reviewer inspired by CodeRabbit",
+      "content": "Build a GitHub App for TypeScript pull requests. Combine deterministic lint, AST, dependency, and test signals with an LLM review of the diff and cited nearby code. Deduplicate findings, require evidence and confidence thresholds, suggest minimal patches, and learn only from explicit maintainer feedback. Track precision, acceptance, and dismissed-comment reasons before adding more features.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "CodeRabbit با PR و CLI review، triage، Change Stack، security، planning و integrationهای تیمی",
+    "buildableVersion": "GitHub App دقیق برای review TypeScript با rule، citation، patch و feedback",
+    "missing": [
+      "triage و visualization تغییرات بزرگ",
+      "تحلیل چندمخزنی و security platform کامل",
+      "IDE، CLI، Slack و workflowهای سازمانی"
+    ]
+  },
+  "audience": [
+    "تیم‌های دارای PR پرتعداد",
+    "maintainerهای TypeScript",
+    "مدیران کیفیت نرم‌افزار"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "per-seat",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کدرَبیت",
+      "ساخت مشابه CodeRabbit",
+      "بازبینی Pull Request با هوش مصنوعی",
+      "ساخت GitHub code review bot"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت رباتی شبیه CodeRabbit ممکن است؟",
+        "answer": "یک بازبین محدود برای GitHub و یک زبان ممکن است؛ مزیت سخت‌تر محصول در دقت، زمینه، امنیت و workflowهای گسترده است."
+      },
+      {
+        "question": "چرا false positive در AI code review مهم است؟",
+        "answer": "commentهای اشتباه اعتماد تیم را از بین می‌برند؛ بنابراین precision و پذیرش واقعی باید پیش از افزایش تعداد یافته‌ها سنجیده شوند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 3,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

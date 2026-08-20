@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "zed-ai",
+  "name": {
+    "fa": "زد ای‌آی",
+    "en": "Zed AI"
+  },
+  "domain": "zed.dev",
+  "logo": "/app-logos/zed-ai.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "ai-code-editor",
+  "tags": [
+    "ویرایشگر کد",
+    "عامل کدنویسی",
+    "پیش‌بینی ویرایش",
+    "همکاری تیمی"
+  ],
+  "relatedTools": [
+    "cursor",
+    "continue-dev",
+    "github-copilot"
+  ],
+  "summary": "زد ای‌آی مجموعه قابلیت‌های هوش مصنوعی داخل ویرایشگر Zed است؛ عامل کدنویسی، پیش‌بینی ویرایش، اتصال به مدل‌های مختلف و همکاری را در همان محیط توسعه ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "لایه هوش مصنوعی ساختنی است؛ بازسازی کل ویرایشگر Zed نه.",
+    "reason": "چت، patch، پیش‌بینی ویرایش و اتصال به مدل‌ها را می‌توان به یک ویرایشگر موجود افزود، اما موتور سریع Zed، همکاری بلادرنگ، اکوسیستم افزونه و تجربه یکپارچه ویرایشگر دامنه‌ای جدا و بسیار بزرگ دارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر در ویرایشگر درخواست یا تغییر بعدی را مطرح می‌کند، سرویس زمینه فایل و نمادهای نزدیک را جمع می‌کند، پاسخ یا patch کم‌تأخیر می‌سازد و تغییر پس از بازبینی در workspace اعمال می‌شود.",
+    "requirements": [
+      {
+        "type": "extension",
+        "label": "افزونه برای یک ویرایشگر موجود"
+      },
+      {
+        "type": "ai",
+        "label": "مدل chat و مدل کم‌تأخیر edit prediction"
+      },
+      {
+        "type": "code-intelligence",
+        "label": "زمینه نماد، فایل و diagnostics"
+      },
+      {
+        "type": "security",
+        "label": "کنترل ابزار، API key و داده ارسالی"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی افزونه است و خود ویرایشگر Zed را بازسازی نمی‌کند.",
+      "همکاری چندکاربره و انتقال نشست عامل حذف می‌شوند.",
+      "کیفیت edit prediction به مدل و telemetry کافی وابسته است.",
+      "پشتیبانی ارائه‌دهندگان و external agentها محدود خواهد بود."
+    ],
+    "prompt": {
+      "title": "Build the AI layer of a code editor inspired by Zed AI",
+      "content": "Build an extension for one existing code editor with repository-aware chat, reviewable multi-file patches, low-latency next-edit suggestions, bring-your-own API keys, and one external-agent protocol. Keep model requests auditable, show the exact context sent, and do not attempt to recreate the editor engine or real-time collaboration platform.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "قابلیت‌های AI در ویرایشگر Zed با agent، edit prediction، مدل‌های مختلف و همکاری",
+    "buildableVersion": "افزونه AI برای یک ویرایشگر موجود با chat، patch و edit prediction",
+    "missing": [
+      "موتور ویرایشگر و عملکرد بومی Zed",
+      "همکاری بلادرنگ و مدیریت سازمانی",
+      "اکوسیستم کامل مدل‌ها و عامل‌های خارجی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان ویرایشگرها",
+    "تیم‌های کوچک نرم‌افزاری",
+    "کاربران خواهان انتخاب مدل"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "team-plan"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت زد ای آی",
+      "ساخت مشابه Zed AI",
+      "هوش مصنوعی برای ویرایشگر کد",
+      "ساخت edit prediction"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه Zed AI ساخت؟",
+        "answer": "لایه‌ای با چت، patch و پیش‌بینی ویرایش روی یک editor موجود قابل ساخت است؛ ساخت خود Zed و زیرساخت همکاری آن مسئله‌ای جداست."
+      },
+      {
+        "question": "سخت‌ترین بخش نسخه مشابه Zed AI چیست؟",
+        "answer": "پیشنهاد ویرایش مرتبط با تأخیر کم و بدون مزاحمت برای کاربر، به مدل، زمینه دقیق و ارزیابی مداوم نیاز دارد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 4
+  }
+}

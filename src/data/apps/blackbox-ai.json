@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "blackbox-ai",
+  "name": {
+    "fa": "بلک‌باکس ای‌آی",
+    "en": "BLACKBOX AI"
+  },
+  "domain": "blackbox.ai",
+  "logo": "/app-logos/blackbox-ai.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "coding-agent-platform",
+  "tags": [
+    "عامل کدنویسی",
+    "Model Router",
+    "CLI",
+    "زیرساخت استنتاج"
+  ],
+  "relatedTools": [
+    "openai-codex",
+    "devin",
+    "cline"
+  ],
+  "summary": "BLACKBOX AI در وضعیت فعلی یک پلتفرم گسترده‌تر برای استنتاج و مسیریابی مدل‌هاست که در کنار آن Agents API، CLI و ابزار کدنویسی برای کار روی مخزن ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "medium",
+    "short": "عامل مخزن یا router محدود ساختنی است؛ پلتفرم کامل سرمایه‌بر است.",
+    "reason": "یک agent API برای clone، patch، test و PR یا یک gateway چند ارائه‌دهنده قابل ساخت است. میزبانی مدل‌های متعدد، ظرفیت GPU اختصاصی، routing بهینه، رمزنگاری و تضمین‌های enterprise در کنار ابزارهای کدنویسی به عملیات و سرمایه جدی نیاز دارد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر یک مخزن و task را به API می‌دهد، سرویس در محیط ایزوله کد را بررسی و تغییر می‌دهد، تست اجرا می‌کند و log یا pull request می‌سازد؛ درخواست مدل از میان چند endpoint بیرونی بر اساس هزینه و قابلیت route می‌شود.",
+    "requirements": [
+      {
+        "type": "infrastructure",
+        "label": "sandbox و صف اجرای agent run"
+      },
+      {
+        "type": "ai",
+        "label": "gateway برای چند API مدل"
+      },
+      {
+        "type": "git",
+        "label": "clone، worktree، patch و pull request"
+      },
+      {
+        "type": "security",
+        "label": "secret isolation، retention policy و audit"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی مدل یا GPU اختصاصی میزبانی نمی‌کند.",
+      "router فقط چند endpoint بیرونی را پوشش می‌دهد.",
+      "تضمین‌های zero-retention و enterprise بدون ممیزی مستقل ادعا نمی‌شوند.",
+      "تحلیل به ابزارهای coding محدود است، نه کل کسب‌وکار inference."
+    ],
+    "prompt": {
+      "title": "Build a repository agent with a small model gateway",
+      "content": "Build an API that accepts a Git repository and coding task, creates an isolated worktree, plans and applies a patch, runs allowlisted tests, streams an audit log, and optionally opens a draft pull request. Route requests between three external model endpoints by capability and cost. Encrypt stored credentials, delete task data on a documented schedule, and make no claims about dedicated inference or zero retention without evidence.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "BLACKBOX AI با model routing، inference سازمانی و ابزارهای Agents API، CLI و افزونه",
+    "buildableVersion": "عامل مخزن با سه endpoint مدل، sandbox، test و PR",
+    "missing": [
+      "میزبانی مدل و ظرفیت GPU اختصاصی",
+      "کاتالوگ و routing در مقیاس گسترده",
+      "کنترل‌ها و تضمین‌های کامل enterprise"
+    ]
+  },
+  "audience": [
+    "تیم‌های سازنده coding agent",
+    "پلتفرم‌های توسعه داخلی",
+    "تیم‌های نیازمند انتخاب مدل"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "usage",
+      "platform-subscription",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت بلک باکس ای آی",
+      "ساخت مشابه BLACKBOX AI",
+      "ساخت Agents API کدنویسی",
+      "ساخت model router"
+    ],
+    "faq": [
+      {
+        "question": "آیا BLACKBOX AI فقط دستیار کدنویسی است؟",
+        "answer": "خیر، ارائه فعلی آن پلتفرم inference و routing را هم شامل می‌شود؛ این تحلیل بخش عامل و ابزار کدنویسی را محور قرار می‌دهد."
+      },
+      {
+        "question": "آیا ساخت نسخه مشابه BLACKBOX AI ممکن است؟",
+        "answer": "یک agent API و router کوچک ممکن است؛ میزبانی گسترده مدل و زیرساخت سازمانی اختصاصی بسیار پرهزینه‌تر است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 4,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}
