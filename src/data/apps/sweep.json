@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "sweep",
+  "name": {
+    "fa": "سوئیپ",
+    "en": "Sweep"
+  },
+  "domain": "sweep.dev",
+  "logo": "/app-logos/sweep.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "jetbrains-coding-assistant",
+  "tags": [
+    "JetBrains",
+    "تکمیل کد",
+    "عامل کدنویسی",
+    "Code Review"
+  ],
+  "relatedTools": [
+    "jetbrains-junie",
+    "github-copilot",
+    "continue-dev"
+  ],
+  "summary": "سوئیپ در ارائه فعلی یک دستیار کدنویسی متمرکز بر IDEهای JetBrains است که agent، تکمیل و next-edit، index پروژه و ابزارهایی مانند review و MCP را ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "پلاگین متمرکز ساختنی است؛ مدل تکمیل سریع و پوشش کامل دشوارند.",
+    "reason": "JetBrains plugin با chat، patch، project index و autocomplete قابل ساخت است. رقابت در latency و دقت مدل تکمیل اختصاصی، سازگاری با همه IDEها و زبان‌ها، privacy و agent قابل اتکا نیازمند داده ارزیابی و نگهداری جدی است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "پلاگین زمینه فایل، cursor و نمادهای پروژه را می‌گیرد، برای تایپ پیشنهاد کم‌تأخیر یا برای task یک plan و patch می‌سازد و نتیجه را با diagnostics، diff و تست‌های IDE بررسی می‌کند.",
+    "requirements": [
+      {
+        "type": "plugin",
+        "label": "پلاگین IntelliJ Platform"
+      },
+      {
+        "type": "ai",
+        "label": "مدل completion کم‌تأخیر و مدل agent"
+      },
+      {
+        "type": "indexing",
+        "label": "index پروژه و زمینه نمادها"
+      },
+      {
+        "type": "evaluation",
+        "label": "سنجش پذیرش completion و کیفیت patch"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه فقط IntelliJ IDEA و چند زبان JVM را پوشش می‌دهد.",
+      "مدل تکمیل اختصاصی آموزش داده نمی‌شود و از API استفاده می‌شود.",
+      "MCP، web search و code review به ابزارهای محدود کاهش می‌یابند.",
+      "توصیف‌های قدیمی Sweep به‌عنوان issue-to-PR مبنای این نسخه نیستند."
+    ],
+    "prompt": {
+      "title": "Build a JetBrains-first assistant inspired by current Sweep",
+      "content": "Build an IntelliJ IDEA plugin for JVM projects with low-latency inline completion, project-aware chat, reviewable agent patches, test execution through existing run configurations, and a local acceptance-quality dashboard. Use one hosted completion model and one agent model; do not claim the historical issue-to-PR product scope or support for every JetBrains IDE.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Sweep فعلی برای JetBrains با agent، autocomplete، project indexing، review، web tools و MCP",
+    "buildableVersion": "پلاگین IntelliJ برای JVM با completion، chat، patch و test",
+    "missing": [
+      "مدل تکمیل اختصاصی و بهینه‌سازی latency",
+      "پوشش همه IDEها و زبان‌های JetBrains",
+      "مجموعه کامل ابزارهای agent و enterprise"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان Java و Kotlin",
+    "کاربران IntelliJ IDEA",
+    "تیم‌های سازنده پلاگین JetBrains"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "team-license"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت سوئیپ",
+      "ساخت مشابه Sweep",
+      "دستیار کدنویسی JetBrains",
+      "ساخت autocomplete برای IntelliJ"
+    ],
+    "faq": [
+      {
+        "question": "Sweep فعلی چه نوع محصولی است؟",
+        "answer": "ارائه فعلی روی دستیار و agent داخل IDEهای JetBrains تمرکز دارد؛ شرح‌های قدیمی issue-to-PR ممکن است محصول امروز را نشان ندهند."
+      },
+      {
+        "question": "آیا ساخت نسخه‌ای شبیه Sweep ممکن است؟",
+        "answer": "برای یک IDE و چند زبان بله؛ تکمیل سریع و دقیق و پوشش کامل خانواده JetBrains هزینه اصلی‌اند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 4,
+    "economicValue": 4
+  }
+}

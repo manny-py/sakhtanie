@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "openai-codex",
+  "name": {
+    "fa": "اوپن‌ای‌آی کدکس",
+    "en": "OpenAI Codex"
+  },
+  "domain": "openai.com",
+  "logo": "/app-logos/openai-codex.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "software-engineering-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "CLI",
+    "اجرای ابری",
+    "بازبینی کد"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "devin",
+    "opencode"
+  ],
+  "summary": "اوپن‌ای‌آی کدکس تجربه یک عامل مهندسی نرم‌افزار در CLI، IDE و محیط ابری است که مخزن را بررسی می‌کند، تغییر می‌دهد، تست اجرا می‌کند و نتیجه قابل بازبینی تحویل می‌دهد؛ این تجربه فقط نام یک مدل نیست.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "عامل پایه ساختنی است؛ تجربه و زیرساخت کامل Codex نه.",
+    "reason": "با یک مدل مناسب، ابزار فایل و shell، sandbox و Git می‌توان عامل کدنویسی مفید ساخت. کیفیت مدل، هماهنگی local و cloud، اجرای موازی، امنیت، integrationها و قابلیت اتکای سرویس بخش‌هایی هستند که با نوشتن یک prompt یا استفاده از یک مدل به‌تنهایی بازتولید نمی‌شوند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر task را در CLI یا IDE تعریف می‌کند، عامل مخزن و دستورهای پروژه را می‌فهمد، plan و patch می‌سازد، در sandbox تست و build اجرا می‌کند و diff، log و ریسک‌های حل‌نشده را برای بازبینی ارائه می‌دهد.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "مدل قوی برای reasoning و code editing"
+      },
+      {
+        "type": "infrastructure",
+        "label": "sandbox محلی یا ابری ایزوله"
+      },
+      {
+        "type": "orchestration",
+        "label": "حلقه plan، tool، test و recovery"
+      },
+      {
+        "type": "git",
+        "label": "diff، branch، review و audit trail"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی یک CLI محلی است و cloud task موازی ندارد.",
+      "از API مدل استفاده می‌کند و قابلیت مدل اختصاصی OpenAI را بازسازی نمی‌کند.",
+      "integrationهای IDE، GitHub، موبایل و تیمی حذف می‌شوند.",
+      "برای dependency، network و فرمان حساس تأیید انسانی اجباری است."
+    ],
+    "prompt": {
+      "title": "Build a local coding-agent experience inspired by Codex",
+      "content": "Build a local CLI coding agent for one Git repository. It should inspect project instructions, create a plan, edit files through structured patches, run allowlisted build and test commands in a sandbox, recover from failed steps, and present diffs, logs, and unresolved risks for approval. Treat model inference as one dependency; implement permissions, orchestration, state, and auditability as separate product layers.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Codex به‌عنوان تجربه عامل کدنویسی محلی و ابری با مدل، sandbox، orchestration و integrationهای OpenAI",
+    "buildableVersion": "عامل CLI محلی برای یک مخزن با patch، sandbox، test و audit log",
+    "missing": [
+      "مدل‌ها و بهینه‌سازی اختصاصی OpenAI",
+      "اجرای ابری و taskهای موازی",
+      "هماهنگی چندسکویی و integrationهای کامل"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان خط فرمان",
+    "تیم‌های مهندسی نرم‌افزار",
+    "سازندگان عامل‌های توسعه"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت اوپن ای آی کدکس",
+      "ساخت مشابه OpenAI Codex",
+      "ساخت عامل کدنویسی CLI",
+      "تفاوت Codex و مدل کدنویسی"
+    ],
+    "faq": [
+      {
+        "question": "آیا Codex فقط یک مدل کدنویسی است؟",
+        "answer": "در این تحلیل Codex یک تجربه محصول شامل مدل، ابزار، sandbox، orchestration، Git و رابط‌های محلی و ابری است؛ مدل فقط یکی از اجزاست."
+      },
+      {
+        "question": "آیا می‌توان محصولی شبیه Codex ساخت؟",
+        "answer": "یک عامل محلی محدود قابل ساخت است، اما کیفیت مدل و زیرساخت ابری و integrationهای محصول اصلی قابل بازسازی ساده نیستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

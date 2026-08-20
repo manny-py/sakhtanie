@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "trae",
+  "name": {
+    "fa": "ترِی",
+    "en": "Trae"
+  },
+  "domain": "trae.ai",
+  "logo": "/app-logos/trae.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "ai-coding-environment",
+  "tags": [
+    "عامل کدنویسی",
+    "محیط توسعه",
+    "تولید کد",
+    "دامنه نیازمند بررسی"
+  ],
+  "relatedTools": [
+    "cursor",
+    "kiro",
+    "github-copilot"
+  ],
+  "summary": "Trae یک محیط توسعه مبتنی بر هوش مصنوعی است که قابلیت‌های تولید کد، تعامل با پروژه و workflowهای agent محور ارائه می‌کند؛ جزئیات برخی قابلیت‌های فعلی باید هنگام انتشار دوباره بررسی شود.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "low",
+    "short": "workflow عامل کدنویسی ساختنی است؛ parity کامل با محصول نیازمند بررسی قابلیت‌های فعلی است.",
+    "reason": "قابلیت‌هایی مانند تعامل با مخزن، تولید patch، اجرای تست و workflowهای agent محور از نظر فنی قابل پیاده‌سازی هستند. با این حال، مدل‌های مورد استفاده، integrationهای اختصاصی، تجربه کامل IDE و قابلیت‌های فعلی محصول باید هنگام انتشار تحلیل دوباره بررسی شوند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "در نسخه قابل ساخت، کاربر task را در افزونه IDE تعریف می‌کند، عامل زمینه مخزن را می‌خواند، plan و patch قابل بازبینی می‌سازد و پس از تأیید تست اجرا می‌کند؛ این حلقه یک scope پیشنهادی است و ادعای بازتاب کامل TraeCode نیست.",
+    "requirements": [
+      {
+        "type": "research",
+        "label": "تأیید دوباره سطح محصول و قابلیت‌های TraeCode"
+      },
+      {
+        "type": "extension",
+        "label": "افزونه IDE برای chat و patch"
+      },
+      {
+        "type": "ai",
+        "label": "مدل ابزارمحور قابل تعویض"
+      },
+      {
+        "type": "testing",
+        "label": "اجرای امن command و test"
+      }
+    ],
+    "limitations": [
+      "نام Trae در منبع رسمی فعلی بیش از یک محصول را پوشش می‌دهد.",
+      "قابلیت‌ها، مدل‌ها و قیمت دقیق TraeCode نیازمند verification هستند.",
+      "نسخه پیشنهادی یک افزونه عمومی است و parity قطعی ادعا نمی‌کند.",
+      "workflowهای سازمانی تا روشن‌شدن دامنه محصول حذف می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a cautious coding-agent prototype for the TraeCode scope",
+      "content": "Build a provider-neutral IDE extension with repository chat, reviewable patches, an approval-gated test runner, and a simple plan-and-act workflow. Label the prototype as a generic coding agent, record every assumption about TraeCode separately, and do not claim feature parity until the current official product surfaces, capabilities, and pricing are independently verified.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Trae به‌عنوان محیط توسعه مبتنی بر AI با قابلیت‌های agent، تولید کد و workflowهای توسعه؛ جزئیات برخی قابلیت‌های فعلی نیازمند verification",
+    "buildableVersion": "افزونه عمومی coding agent با chat، plan، patch و test",
+    "missing": [
+      "تأیید قابلیت و positioning فعلی TraeCode",
+      "مدل‌ها و integrationهای اختصاصی",
+      "محیط و workflowهای کامل محصول اصلی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان IDE",
+    "تیم‌های آزمایش‌کننده عامل کدنویسی",
+    "پژوهشگران محصولات توسعه"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Trae",
+      "ساخت مشابه TraeCode",
+      "عامل کدنویسی Trae",
+      "بررسی ساختنی بودن Trae"
+    ],
+    "faq": [
+      {
+        "question": "آیا Trae و TraeCode یک محصول هستند؟",
+        "answer": "منبع رسمی فعلی Trae را به‌عنوان برند مجموعه و TraeCode را به‌عنوان بخش کدنویسی نشان می‌دهد؛ مرز دقیق باید پیش از انتشار دوباره بررسی شود."
+      },
+      {
+        "question": "آیا می‌توان نسخه‌ای شبیه TraeCode ساخت؟",
+        "answer": "یک عامل عمومی IDE قابل ساخت است، اما تا قابلیت‌های فعلی تأیید نشوند نمی‌توان درباره شباهت کامل یا هزینه parity نتیجه قطعی داد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 5,
+    "economicValue": 3
+  }
+}

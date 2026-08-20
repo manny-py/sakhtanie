@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "slug": "github-spark",
+  "name": {
+    "fa": "گیت‌هاب اسپارک",
+    "en": "GitHub Spark"
+  },
+  "domain": "github.com",
+  "logo": "/app-logos/github-spark.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "ai-app-builder",
+  "tags": [
+    "ساخت اپلیکیشن",
+    "تولید Full-stack",
+    "پیش‌نمایش زنده",
+    "استقرار یک‌کلیکی"
+  ],
+  "relatedTools": [
+    "lovable",
+    "bolt",
+    "v0",
+    "replit"
+  ],
+  "summary": "گیت‌هاب اسپارک ابزار تولید و ویرایش اپلیکیشن full-stack با زبان طبیعی، کنترل بصری و کد است که preview، مخزن و انتشار را به runtime، احراز هویت، ذخیره‌سازی و میزبانی یکپارچه وصل می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "تولید اپ محدود ساختنی است؛ پلتفرم production کامل نه.",
+    "reason": "تولید پروژه از template، ویرایش با prompt و preview با LLM و sandbox ممکن است. بخش سخت محصول، زیرساخت امن چندمستاجری برای build، database، auth، inference، storage، hosting، version control و انتشار قابل اتکاست؛ این‌ها صرفاً مسئله تولید کد نیستند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "کاربر نوع اپ را توصیف می‌کند، سیستم پروژه را از template و patch تولید می‌کند، در sandbox preview می‌سازد، تغییرات را در مخزن ثبت می‌کند و نسخه قابل انتشار را روی runtime محدود مستقر می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "تولید و ویرایش ساختاریافته پروژه"
+      },
+      {
+        "type": "infrastructure",
+        "label": "sandbox build و preview چندمستاجری"
+      },
+      {
+        "type": "platform",
+        "label": "auth، database، storage و hosting محدود"
+      },
+      {
+        "type": "git",
+        "label": "versioning، rollback و export مخزن"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی فقط یک stack و چند template ثابت دارد.",
+      "database و auth به سرویس‌های مدیریت‌شده بیرونی واگذار می‌شوند.",
+      "مقیاس و SLA تولیدی مشابه پلتفرم اصلی ارائه نمی‌شود.",
+      "انتشار تنها به یک ارائه‌دهنده hosting محدود است."
+    ],
+    "prompt": {
+      "title": "Build a constrained prompt-to-app system inspired by GitHub Spark",
+      "content": "Build a prompt-to-app platform for one TypeScript and React stack. Generate projects from audited templates, apply reviewable patches, run builds in isolated sandboxes, show live previews, commit every change to Git, and deploy only to one managed hosting provider. Use external managed auth and database services, enforce resource quotas, and keep infrastructure limits separate from code-generation quality.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "GitHub Spark با app generation، visual/code editing، preview و زیرساخت یکپارچه auth، compute، inference، storage و hosting",
+    "buildableVersion": "سازنده React محدود با template، patch، sandbox preview، Git و یک مقصد deploy",
+    "missing": [
+      "runtime تولیدی چندمستاجری و مقیاس GitHub",
+      "زیرساخت کامل database، auth، storage و inference",
+      "پوشش stackها و integrationهای گسترده"
+    ]
+  },
+  "audience": [
+    "سازندگان MVP",
+    "تیم‌های ابزار داخلی",
+    "توسعه‌دهندگان پلتفرم app builder"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "hosting-margin"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت گیت هاب اسپارک",
+      "ساخت مشابه GitHub Spark",
+      "ساخت اپلیکیشن با هوش مصنوعی",
+      "prompt to app builder"
+    ],
+    "faq": [
+      {
+        "question": "آیا GitHub Spark فقط کد تولید می‌کند؟",
+        "answer": "خیر، تجربه اصلی تولید و ویرایش اپ را با preview، Git، auth، compute، storage، inference، hosting و انتشار ترکیب می‌کند."
+      },
+      {
+        "question": "آیا می‌توان app builder مشابه Spark ساخت؟",
+        "answer": "نسخه محدود با یک stack و سرویس‌های مدیریت‌شده ممکن است؛ زیرساخت production و چندمستاجری کامل بخش دشوار و پرهزینه است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

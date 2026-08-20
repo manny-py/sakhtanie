@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "claude-code",
+  "name": {
+    "fa": "کلود کد",
+    "en": "Claude Code"
+  },
+  "domain": "code.claude.com",
+  "logo": "/app-logos/claude-code.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "terminal-coding-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "ترمینال",
+    "MCP",
+    "Permission Workflow"
+  ],
+  "relatedTools": [
+    "claude",
+    "openai-codex",
+    "aider"
+  ],
+  "summary": "کلود کد یک workflow عامل‌محور برای توسعه نرم‌افزار در ترمینال و محیط‌های متصل است که مدل Claude را با ابزار فایل، shell، Git، مجوزها، دستورهای پروژه و integrationها ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "workflow پایه CLI ساختنی است؛ خود مدل و اکوسیستم کامل نه.",
+    "reason": "یک CLI با ابزار فایل و shell، permission gate، حافظه پروژه، hooks و MCP محدود قابل ساخت است. توانایی مدل Claude، هماهنگی نشست بین سطوح، عامل‌های موازی، اجرای ابری و integrationهای رسمی بخش‌هایی جدا از پوسته CLI هستند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر task را در ترمینال می‌دهد، عامل دستورهای پروژه را می‌خواند، با مجوز مشخص فایل و shell را به‌کار می‌گیرد، تغییرات را تست می‌کند و برای هر اقدام حساس approval و log قابل ممیزی نگه می‌دارد.",
+    "requirements": [
+      {
+        "type": "cli",
+        "label": "رابط تعاملی و headless ترمینال"
+      },
+      {
+        "type": "ai",
+        "label": "API مدل ابزارمحور"
+      },
+      {
+        "type": "security",
+        "label": "permission mode و sandbox فرمان"
+      },
+      {
+        "type": "extensibility",
+        "label": "دستور پروژه، hook و MCP محدود"
+      }
+    ],
+    "limitations": [
+      "این نسخه workflow را می‌سازد و مدل Claude را بازتولید نمی‌کند.",
+      "سطوح desktop، web، mobile و IDE کامل حذف می‌شوند.",
+      "عامل‌های تیمی و اجرای پس‌زمینه ابری ارائه نمی‌شوند.",
+      "MCP و hookها به فهرست امن و قابل ممیزی محدود هستند."
+    ],
+    "prompt": {
+      "title": "Build a permissioned terminal coding workflow inspired by Claude Code",
+      "content": "Build a terminal coding agent that reads project instructions, uses structured file and shell tools, previews diffs, runs tests, and requires explicit permission for writes, network calls, dependency changes, and destructive commands. Add project-scoped memory, auditable hooks, and two allowlisted MCP tools. Keep the agent workflow independent from any particular model provider.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Claude Code با مدل Claude و workflow ابزارمحور در CLI، IDE، desktop، web و integrationها",
+    "buildableVersion": "CLI مستقل از مدل با permission، patch، test، memory و MCP محدود",
+    "missing": [
+      "قابلیت و تنظیم اختصاصی مدل Claude",
+      "انتقال نشست و سطوح محلی و ابری کامل",
+      "عامل‌های موازی و integrationهای رسمی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان خط فرمان",
+    "تیم‌های حساس به مجوز ابزار",
+    "سازندگان workflowهای عامل‌محور"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "enterprise-support"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کلود کد",
+      "ساخت مشابه Claude Code",
+      "عامل کدنویسی ترمینال",
+      "تفاوت Claude و Claude Code"
+    ],
+    "faq": [
+      {
+        "question": "تفاوت Claude Code با مدل Claude چیست؟",
+        "answer": "Claude مدل اصلی است؛ Claude Code یک workflow محصولی است که مدل را به فایل، shell، Git، permission، حافظه و integrationها وصل می‌کند."
+      },
+      {
+        "question": "آیا ساخت CLI شبیه Claude Code ممکن است؟",
+        "answer": "نسخه محدود workflow ممکن است، اما کیفیت مدل، چندسکویی‌بودن و زیرساخت عامل‌های ابری محصول اصلی را شامل نمی‌شود."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

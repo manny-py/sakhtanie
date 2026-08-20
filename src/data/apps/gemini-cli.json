@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "gemini-cli",
+  "name": {
+    "fa": "جمینای سی‌ال‌آی",
+    "en": "Gemini CLI"
+  },
+  "domain": "github.com",
+  "logo": "/app-logos/gemini-cli.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "terminal-coding-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "ترمینال",
+    "Gemini",
+    "وضعیت نیازمند بررسی"
+  ],
+  "relatedTools": [
+    "gemini",
+    "openai-codex",
+    "opencode"
+  ],
+  "summary": "Gemini CLI یک عامل کدنویسی متن‌باز در ترمینال با ابزار فایل و shell، زمینه پروژه، MCP و اجرای headless است؛ وضعیت فعلی نام، دسترسی حساب‌های فردی و مسیر جایگزین آن پیش از انتشار نیازمند تأیید دوباره است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "medium",
+    "short": "لایه CLI ساختنی است، اما هویت و دسترسی فعلی محصول باید تأیید شود.",
+    "reason": "معماری عامل ترمینالی، sandbox، checkpoint، hook و MCP قابل پیاده‌سازی و بخشی از آن قابل بازرسی است. مدل Gemini، حساب، quota و backend مدیریت‌شده Google قابل بازتولید نیستند و وضعیت انتقال تجربه فردی اجازه نتیجه‌گیری قطعی درباره محصول جاری را نمی‌دهد."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر task را در ترمینال تعریف می‌کند، عامل زمینه مخزن را جمع می‌کند، با مجوز کاربر فایل و shell را به‌کار می‌گیرد، checkpoint می‌سازد و نتیجه تست و diff را برمی‌گرداند.",
+    "requirements": [
+      {
+        "type": "cli",
+        "label": "رابط ترمینال تعاملی و headless"
+      },
+      {
+        "type": "ai",
+        "label": "API یک مدل ابزارمحور"
+      },
+      {
+        "type": "security",
+        "label": "sandbox، approval و checkpoint"
+      },
+      {
+        "type": "tools",
+        "label": "فایل، shell و MCP allowlist‌شده"
+      }
+    ],
+    "limitations": [
+      "نام و وضعیت دسترسی محصول باید پیش از انتشار دوباره از منبع رسمی بررسی شود.",
+      "نسخه پیشنهادی حساب، quota و backend Google را بازسازی نمی‌کند.",
+      "IDE integration، subagent و automation گسترده حذف می‌شوند.",
+      "تنها یک endpoint مدل و چند ابزار محدود پشتیبانی می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build an open terminal coding agent with explicit status boundaries",
+      "content": "Build a provider-neutral terminal coding agent for a local repository with file and shell tools, project memory, checkpoints, headless mode, and two allowlisted MCP servers. Require approval for writes and commands, support one model endpoint, and document that this implementation recreates the CLI workflow only—not Gemini models, Google account services, quotas, or any uncertain product transition.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Gemini CLI به‌عنوان عامل ترمینالی متصل به مدل و سرویس‌های Google؛ وضعیت عرضه فعلی نیازمند verification",
+    "buildableVersion": "عامل ترمینالی مستقل از ارائه‌دهنده با file، shell، checkpoint و MCP محدود",
+    "missing": [
+      "مدل، حساب، quota و backend Google",
+      "پوشش کامل IDE، automation و subagentها",
+      "قطعیت درباره نام و مسیر عرضه فعلی محصول"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان خط فرمان",
+    "کاربران ابزارهای متن‌باز",
+    "تیم‌های خواهان عامل مستقل از ارائه‌دهنده"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "support",
+      "hosted-service",
+      "team-plan"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت Gemini CLI",
+      "ساخت عامل کدنویسی جمینای",
+      "جایگزین Gemini CLI",
+      "عامل کدنویسی متن‌باز ترمینال"
+    ],
+    "faq": [
+      {
+        "question": "آیا وضعیت فعلی Gemini CLI قطعی است؟",
+        "answer": "خیر؛ نام، دسترسی حساب‌های فردی و مسیر جایگزین گزارش‌شده باید پیش از انتشار تحلیل دوباره از منابع رسمی تأیید شوند."
+      },
+      {
+        "question": "آیا می‌توان workflow شبیه Gemini CLI ساخت؟",
+        "answer": "بله، CLI ابزارمحور با file، shell، checkpoint و MCP قابل ساخت است؛ مدل و سرویس حساب Google خارج از این دامنه‌اند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 3,
+    "iranRisk": 5,
+    "economicValue": 3
+  }
+}

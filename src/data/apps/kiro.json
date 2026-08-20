@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "kiro",
+  "name": {
+    "fa": "کیرو",
+    "en": "Kiro"
+  },
+  "domain": "kiro.dev",
+  "logo": "/app-logos/kiro.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "spec-driven-coding-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "توسعه مبتنی بر Spec",
+    "برنامه‌ریزی وظیفه",
+    "Agent Hooks"
+  ],
+  "relatedTools": [
+    "cline",
+    "cursor",
+    "devin"
+  ],
+  "summary": "کیرو یک محیط کدنویسی عامل‌محور است که درخواست را به نیازمندی، طراحی و taskهای قابل پیگیری تبدیل می‌کند و سپس تغییر کد و اجرای مراحل توسعه را انجام می‌دهد.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "workflow مبتنی بر spec ساختنی است؛ محیط کامل چندسکویی دشوار است.",
+    "reason": "تبدیل درخواست به requirements، design، task و patch با مدل و sandbox قابل پیاده‌سازی است. IDE کامل، hookهای قابل اتکا، اجرای ابری، همگام‌سازی چند سطح و کنترل‌های سازمانی دامنه و هزینه را افزایش می‌دهند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر feature را تعریف می‌کند، سیستم سند requirements و design می‌سازد، taskها را برای تأیید خرد می‌کند و عامل هر task را در workspace اجرا، تست و با وضعیت قابل پیگیری ثبت می‌کند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "مدل برای spec، plan و code generation"
+      },
+      {
+        "type": "workflow",
+        "label": "مدیریت requirements، design و task"
+      },
+      {
+        "type": "infrastructure",
+        "label": "sandbox برای edit و test"
+      },
+      {
+        "type": "extension",
+        "label": "افزونه IDE با review checkpoint"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه فقط یک IDE و یک مخزن را پوشش می‌دهد.",
+      "spec به سه سند ثابت و taskهای خطی محدود است.",
+      "اجرای وب، CLI مستقل و تیم عامل‌ها حذف می‌شوند.",
+      "hookها تنها رویدادهای محلی و allowlist‌شده را اجرا می‌کنند."
+    ],
+    "prompt": {
+      "title": "Build a spec-driven coding workflow inspired by Kiro",
+      "content": "Build a VS Code extension that converts a feature request into three reviewable artifacts: requirements with acceptance criteria, a technical design, and an ordered task list. After approval, execute one task at a time in an isolated worktree, generate diffs, run allowlisted tests, and update traceability from each code change back to its requirement.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Kiro با spec و vibe mode، IDE، CLI، web، agent hooks و جریان‌های خودکار",
+    "buildableVersion": "افزونه تک‌مخزنی با requirements، design، task و اجرای مرحله‌ای",
+    "missing": [
+      "سطوح CLI و web و اجرای ابری",
+      "hookها و integrationهای گسترده",
+      "مدیریت تیم و عامل‌های هم‌زمان"
+    ]
+  },
+  "audience": [
+    "تیم‌های محصول و مهندسی",
+    "توسعه‌دهندگان پروژه‌های نیازمند traceability",
+    "سازندگان ابزارهای توسعه"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "team-plan"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کیرو",
+      "ساخت مشابه Kiro",
+      "عامل کدنویسی مبتنی بر spec",
+      "تبدیل نیازمندی به کد با هوش مصنوعی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه‌ای شبیه Kiro ممکن است؟",
+        "answer": "یک workflow محدود برای تبدیل نیازمندی به design، task و patch قابل ساخت است؛ بازسازی همه سطوح و اتوماسیون محصول اصلی بسیار گسترده‌تر است."
+      },
+      {
+        "question": "مزیت spec-driven development در عامل کدنویسی چیست؟",
+        "answer": "فرض‌ها و معیار پذیرش را پیش از تغییر کد قابل بررسی می‌کند و ارتباط هر task با نیاز اولیه را حفظ می‌کند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 2,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 5,
+    "economicValue": 4
+  }
+}
