@@ -118,6 +118,22 @@ test("stale successful Production event is skipped", () => {
   });
 });
 
+test("late event for an older distinct SHA is skipped", () => {
+  const decision = evaluateDeploymentStatus({
+    currentDeploymentId: "2",
+    currentSha: sha("b"),
+    deployments: [
+      deployment("3", sha("c"), "2026-08-15T12:00:00Z"),
+      deployment("2", sha("b"), "2026-08-15T11:00:00Z"),
+      deployment("1", sha("a"), "2026-08-15T10:00:00Z"),
+    ],
+  });
+  assert.deepEqual(decision, {
+    shouldPlan: false,
+    reason: "stale production event",
+  });
+});
+
 test("previous distinct successful Production SHA is selected", () => {
   const deployments = [
     deployment("3", sha("c"), "2026-08-15T12:00:00Z"),
@@ -134,6 +150,41 @@ test("duplicate deployment SHA is ignored when selecting the baseline", () => {
     deployment("1", sha("a"), "2026-08-15T10:00:00Z"),
   ];
   assert.equal(selectPreviousDistinctProduction(deployments, "3")?.id, "1");
+});
+
+test("duplicate newest Production SHA is skipped", () => {
+  const commitA = sha("a");
+  const commitB = sha("b");
+  const decision = evaluateDeploymentStatus({
+    currentDeploymentId: "3",
+    currentSha: commitB,
+    deployments: [
+      deployment("3", commitB, "2026-08-15T12:00:00Z"),
+      deployment("2", commitB, "2026-08-15T11:00:00Z"),
+      deployment("1", commitA, "2026-08-15T10:00:00Z"),
+    ],
+  });
+  assert.deepEqual(decision, {
+    shouldPlan: false,
+    reason: "duplicate SHA deployment",
+  });
+});
+
+test("distinct newest Production SHA plans a transition", () => {
+  const decision = evaluateDeploymentStatus({
+    currentDeploymentId: "2",
+    currentSha: sha("b"),
+    deployments: [
+      deployment("2", sha("b"), "2026-08-15T11:00:00Z"),
+      deployment("1", sha("a"), "2026-08-15T10:00:00Z"),
+    ],
+  });
+  assert.deepEqual(decision, {
+    shouldPlan: true,
+    baseSha: sha("a"),
+    headSha: sha("b"),
+    currentDeploymentId: "2",
+  });
 });
 
 test("missing prior Production deployment is a safe skip", () => {
