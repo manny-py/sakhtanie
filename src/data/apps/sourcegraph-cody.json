@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "sourcegraph-cody",
+  "name": {
+    "fa": "سورس‌گراف کودی",
+    "en": "Sourcegraph Cody"
+  },
+  "domain": "sourcegraph.com",
+  "logo": "/app-logos/sourcegraph-cody.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "code-intelligence-assistant",
+  "tags": [
+    "دستیار کدنویسی",
+    "جست‌وجوی کد",
+    "چند مخزن",
+    "سازمانی"
+  ],
+  "relatedTools": [
+    "github-copilot",
+    "continue-dev",
+    "cursor"
+  ],
+  "summary": "کودی دستیار کدنویسی سورس‌گراف است که چت، تکمیل و ویرایش کد را به جست‌وجو و زمینه مخزن‌های محلی یا سازمانی متصل می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "برای یک مخزن ساختنی است؛ نسخه چندمخزنی سازمانی بسیار دشوارتر است.",
+    "reason": "RAG روی یک مخزن، چت و patch با index محلی قابل پیاده‌سازی است. مزیت اصلی محصول کامل به جست‌وجوی کد در مقیاس، code intelligence، مجوزهای دقیق و زمینه چند مخزن وابسته است که ساخت و عملیات آن پیچیده است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "پرسش یا درخواست ویرایش به جست‌وجوی متنی و نمادی تبدیل می‌شود، قطعات مرتبط با رعایت دسترسی بازیابی می‌شوند، مدل پاسخ یا patch می‌سازد و منبع هر بخش زمینه برای کاربر قابل مشاهده است.",
+    "requirements": [
+      {
+        "type": "search",
+        "label": "index متن، نماد و مرجع‌های کد"
+      },
+      {
+        "type": "retrieval",
+        "label": "رتبه‌بندی زمینه و citation فایل"
+      },
+      {
+        "type": "extension",
+        "label": "افزونه IDE برای chat، completion و edit"
+      },
+      {
+        "type": "security",
+        "label": "اعمال مجوز مخزن در retrieval"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه تنها یک مخزن و یک IDE را index می‌کند.",
+      "semantic graph و cross-repository references کامل حذف می‌شوند.",
+      "تکمیل بلادرنگ ساده‌تر از نسخه اصلی خواهد بود.",
+      "مقیاس، SSO و همگام‌سازی سازمانی ارائه نمی‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a repository-aware coding assistant",
+      "content": "Build a VS Code assistant for one repository. Index file text, symbols, definitions, and references; retrieve a small cited context set for each question; provide codebase chat and reviewable patches; and enforce path-level access rules before retrieval. Include index freshness indicators and let users inspect exactly which snippets were sent to the model.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Cody متصل به جست‌وجو و code intelligence سورس‌گراف در مخزن‌های محلی و سازمانی",
+    "buildableVersion": "دستیار یک‌مخزنی با index نماد، retrieval دارای منبع و patch",
+    "missing": [
+      "جست‌وجو و زمینه چندمخزنی در مقیاس",
+      "code graph و مجوزهای سازمانی کامل",
+      "پوشش چند IDE و عملیات Enterprise"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان مخزن‌های بزرگ",
+    "تیم‌های پلتفرم داخلی",
+    "سازمان‌های دارای کد پراکنده"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "enterprise-license",
+      "self-hosted",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت سورس گراف کودی",
+      "ساخت مشابه Sourcegraph Cody",
+      "دستیار جستجوی کد",
+      "هوش مصنوعی برای مخزن بزرگ"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت محصولی شبیه Sourcegraph Cody ممکن است؟",
+        "answer": "نسخه یک‌مخزنی با جست‌وجو، چت و patch ممکن است؛ ارزش چندمخزنی و سازمانی Cody به زیرساخت code search و مجوزهای پیچیده وابسته است."
+      },
+      {
+        "question": "چرا citation فایل در دستیار کدنویسی مهم است؟",
+        "answer": "به کاربر نشان می‌دهد مدل بر چه کدی تکیه کرده و پیدا کردن زمینه اشتباه یا قدیمی را آسان‌تر می‌کند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 3,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

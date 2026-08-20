@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "amazon-q-developer",
+  "name": {
+    "fa": "آمازون کیو دولوپر",
+    "en": "Amazon Q Developer"
+  },
+  "domain": "aws.amazon.com",
+  "logo": "/app-logos/amazon-q-developer.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "cloud-coding-assistant",
+  "tags": [
+    "دستیار کدنویسی",
+    "AWS",
+    "نوسازی کد",
+    "امنیت"
+  ],
+  "relatedTools": [
+    "github-copilot",
+    "cursor",
+    "firebase"
+  ],
+  "summary": "آمازون کیو دولوپر یک دستیار توسعه نرم‌افزار با IDE، CLI و جریان‌های کاری GitHub است که علاوه بر تولید و بررسی کد، دانش و ابزارهای مرتبط با AWS و نوسازی برنامه‌ها را ارائه می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "دستیار عمومی مشابه ساختنی است؛ قابلیت‌های عمیق AWS نه.",
+    "reason": "تولید کد، چت مخزن، اجرای تست و review با مدل‌های موجود قابل ساخت است، اما دانش به‌روز سرویس‌های AWS، دسترسی امن به حساب، اسکن امنیتی، تبدیل Java و اتوماسیون سازمانی به داده، زیرساخت و یکپارچگی اختصاصی آمازون متکی‌اند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "توسعه‌دهنده هدف یا خطا را مطرح می‌کند، دستیار زمینه کد و منابع ابری مجاز را جمع می‌کند، تغییر یا راهنمایی پیشنهاد می‌دهد و پس از تأیید، تست یا عملیات محدود AWS را اجرا و گزارش می‌کند.",
+    "requirements": [
+      {
+        "type": "extension",
+        "label": "افزونه IDE و رابط CLI"
+      },
+      {
+        "type": "ai",
+        "label": "مدل کدنویسی و بازیابی مستندات"
+      },
+      {
+        "type": "cloud",
+        "label": "اتصال read-only و محدود به AWS API"
+      },
+      {
+        "type": "security",
+        "label": "مدیریت هویت، scope و audit log"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی فقط چند سرویس AWS و عملیات read-only را می‌شناسد.",
+      "تبدیل خودکار پروژه‌های بزرگ Java حذف می‌شود.",
+      "اسکن امنیتی جایگزین ابزار تخصصی SAST نیست.",
+      "کیفیت پاسخ به تازگی مستندات و مدل خارجی وابسته می‌ماند."
+    ],
+    "prompt": {
+      "title": "Build a narrow cloud-aware coding assistant",
+      "content": "Build a VS Code assistant for one application repository and three AWS services. Provide repository-aware chat, code patches, test execution, and read-only inspection of CloudWatch logs and selected resource metadata through least-privilege credentials. Cite retrieved AWS documentation, redact secrets, require approval for commands, and never create, update, or delete cloud resources.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Amazon Q Developer با کدنویسی عامل‌محور، review، امنیت، نوسازی Java و یکپارچگی عمیق AWS",
+    "buildableVersion": "دستیار مخزن با مستندات AWS و مشاهده محدود چند سرویس",
+    "missing": [
+      "نوسازی و تبدیل کد در مقیاس سازمانی",
+      "اسکن امنیتی و کنترل‌های مدیریتی کامل",
+      "دانش و عملیات عمیق سراسر AWS"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان AWS",
+    "تیم‌های DevOps کوچک",
+    "توسعه‌دهندگان برنامه‌های ابری"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آمازون کیو دولوپر",
+      "ساخت مشابه Amazon Q Developer",
+      "دستیار کدنویسی AWS",
+      "هوش مصنوعی برای برنامه نویسی ابری"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه Amazon Q Developer ساخت؟",
+        "answer": "یک دستیار محدود برای کد و چند سرویس AWS قابل ساخت است، اما بازتولید دانش، امنیت و نوسازی نرم‌افزار در مقیاس AWS واقع‌بینانه نیست."
+      },
+      {
+        "question": "ریسک اصلی اتصال عامل کدنویسی به AWS چیست؟",
+        "answer": "دسترسی بیش‌ازحد به حساب ابری؛ نسخه اولیه باید فقط مجوزهای read-only، حذف رازها و ثبت کامل عملیات داشته باشد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 4,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "jetbrains-junie",
+  "name": {
+    "fa": "جت‌برینز جونی",
+    "en": "JetBrains Junie"
+  },
+  "domain": "jetbrains.com",
+  "logo": "/app-logos/jetbrains-junie.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "ide-coding-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "JetBrains",
+    "برنامه‌ریزی تغییر",
+    "اجرای تست"
+  ],
+  "relatedTools": [
+    "cursor",
+    "github-copilot",
+    "cline"
+  ],
+  "summary": "جونی عامل کدنویسی جت‌برینز برای بررسی پروژه، برنامه‌ریزی وظیفه، ویرایش چندفایلی و اجرای فرمان و تست در IDEهای JetBrains و Android Studio است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "یک پلاگین عامل محدود ساختنی است، نه ادغام عمیق نسخه اصلی.",
+    "reason": "JetBrains Platform امکان ساخت پنل، دسترسی به پروژه، diff و اجرای task را می‌دهد، اما فهم دقیق نمادها و refactorهای چندزبان، سازگاری با IDEهای متعدد، کیفیت برنامه‌ریزی و ایمنی اجرای فرمان به مهندسی و ارزیابی مداوم نیاز دارد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "عامل پروژه و هدف را بررسی می‌کند، برنامه‌ای قابل تأیید می‌سازد، تغییرات را از طریق APIهای IDE اعمال می‌کند، پیکربندی‌های run/test را اجرا می‌کند و نتیجه و diff را برای بازبینی برمی‌گرداند.",
+    "requirements": [
+      {
+        "type": "plugin",
+        "label": "پلاگین JetBrains Platform"
+      },
+      {
+        "type": "code-intelligence",
+        "label": "PSI، نمادها و جست‌وجوی پروژه"
+      },
+      {
+        "type": "ai",
+        "label": "مدل ابزارمحور برای plan و patch"
+      },
+      {
+        "type": "testing",
+        "label": "اتصال به run configuration و test results"
+      }
+    ],
+    "limitations": [
+      "نسخه اول فقط IntelliJ IDEA و پروژه‌های JVM را هدف می‌گیرد.",
+      "refactorهای ساختاری پیچیده با API خود IDE انجام نمی‌شوند.",
+      "فرمان‌ها و تغییرات حساس همیشه نیازمند تأیید هستند.",
+      "پوشش Android Studio و همه زبان‌های JetBrains حذف می‌شود."
+    ],
+    "prompt": {
+      "title": "Build a focused JetBrains coding agent",
+      "content": "Build an IntelliJ IDEA plugin for JVM projects that can inspect PSI symbols, answer project questions, create a reviewable implementation plan, propose multi-file diffs, and run existing test configurations after approval. Show every changed file, keep an action log, support undo through local history, and do not execute arbitrary shell commands.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Junie با ادغام رسمی در خانواده JetBrains، چند زبان، plan، edit، command و verification",
+    "buildableVersion": "پلاگین IntelliJ برای پروژه‌های JVM با plan، patch و اجرای تست",
+    "missing": [
+      "پشتیبانی همه IDEها و زبان‌ها",
+      "refactor و code intelligence هم‌سطح JetBrains",
+      "کنترل‌ها و توزیع سازمانی کامل"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان Java و Kotlin",
+    "کاربران IntelliJ IDEA",
+    "تیم‌های نرم‌افزاری JVM"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "team-license",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت جت برینز جونی",
+      "ساخت مشابه JetBrains Junie",
+      "عامل کدنویسی IntelliJ",
+      "هوش مصنوعی JetBrains"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت پلاگینی شبیه Junie ممکن است؟",
+        "answer": "برای یک IDE و یک اکوسیستم زبانی بله؛ پوشش کامل خانواده JetBrains و refactorهای عمیق چندزبان دامنه پروژه را چند برابر می‌کند."
+      },
+      {
+        "question": "مزیت استفاده از APIهای IntelliJ در این محصول چیست؟",
+        "answer": "PSI و run configurationها زمینه ساختاریافته‌تری از متن خام فایل می‌دهند و اجرای تغییر و تست را قابل‌کنترل‌تر می‌کنند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 2,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 4
+  }
+}

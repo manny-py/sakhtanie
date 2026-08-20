@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "qodo",
+  "name": {
+    "fa": "کودو",
+    "en": "Qodo"
+  },
+  "domain": "qodo.ai",
+  "logo": "/app-logos/qodo.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "ai-code-review",
+  "tags": [
+    "بازبینی کد",
+    "تولید تست",
+    "Pull Request",
+    "کیفیت کد"
+  ],
+  "relatedTools": [
+    "github-copilot",
+    "augment-code",
+    "sentry"
+  ],
+  "summary": "کودو یک پلتفرم کیفیت کد است که بازبینی pull request، پیشنهاد اصلاح، تولید تست و قواعد تیمی را در IDE، CLI و جریان Git ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "یک بازبین PR متمرکز ساختنی است؛ پلتفرم کم‌خطای کامل نه.",
+    "reason": "دریافت diff، خلاصه‌سازی، اجرای ruleها، تولید comment و پیشنهاد تست با APIهای Git و مدل زبانی ممکن است. دشواری اصلی کاهش false positive، فهم وابستگی‌های مخزن، بررسی چندمخزنی و نگهداری سیاست‌های سازمانی است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "با بازشدن pull request، سرویس diff، فایل‌های مرتبط، قواعد تیم و خروجی lint/test را جمع می‌کند، یافته‌ها را رتبه‌بندی و ادغام می‌کند و فقط موارد دارای شواهد و پیشنهاد اصلاح را به‌صورت review منتشر می‌کند.",
+    "requirements": [
+      {
+        "type": "integration",
+        "label": "GitHub App و webhookهای pull request"
+      },
+      {
+        "type": "analysis",
+        "label": "ترکیب AST، lint و تحلیل مدل"
+      },
+      {
+        "type": "retrieval",
+        "label": "زمینه فایل و قواعد مخزن"
+      },
+      {
+        "type": "evaluation",
+        "label": "بازخورد، deduplication و سنجش false positive"
+      }
+    ],
+    "limitations": [
+      "نسخه اول فقط GitHub و چند زبان مشخص را پوشش می‌دهد.",
+      "پیشنهادها بدون تست یا شواهد کافی منتشر نمی‌شوند.",
+      "تحلیل چندمخزنی و استقرار on-premises حذف می‌شود.",
+      "تولید تست به unit testهای کوچک محدود می‌ماند."
+    ],
+    "prompt": {
+      "title": "Build an evidence-based AI pull request reviewer",
+      "content": "Build a GitHub App that reviews pull requests for TypeScript and Python repositories. Combine deterministic lint and AST checks with an LLM review of the diff and nearby code. Deduplicate findings, assign confidence and severity, cite exact lines, suggest a minimal patch or test, and suppress low-confidence comments. Capture maintainer feedback to measure false-positive rates.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Qodo با review، IDE، CLI، تولید تست، قواعد سازمانی و تحلیل چندمخزنی",
+    "buildableVersion": "GitHub App برای review مبتنی بر شواهد در TypeScript و Python",
+    "missing": [
+      "پوشش IDE و CLI کامل",
+      "تحلیل چندمخزنی و governance سازمانی",
+      "پشتیبانی وسیع زبان و تولید تست پیشرفته"
+    ]
+  },
+  "audience": [
+    "تیم‌های دارای PR پرتعداد",
+    "توسعه‌دهندگان TypeScript و Python",
+    "مدیران کیفیت نرم‌افزار"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "per-seat",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کودو",
+      "ساخت مشابه Qodo",
+      "بازبینی کد با هوش مصنوعی",
+      "ساخت ربات بررسی Pull Request"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت بازبین کد شبیه Qodo ممکن است؟",
+        "answer": "برای GitHub و چند زبان بله؛ مسئله سخت، تولید comment زیاد نیست بلکه حفظ دقت و پایین نگه‌داشتن false positive است."
+      },
+      {
+        "question": "آیا مدل زبانی به‌تنهایی برای code review کافی است؟",
+        "answer": "خیر، ترکیب lint، AST، تست و قواعد قطعی با تحلیل مدل قابل‌اعتمادتر و قابل ارزیابی‌تر است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 2,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 4,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}
