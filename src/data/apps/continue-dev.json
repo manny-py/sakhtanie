@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "continue-dev",
+  "name": {
+    "fa": "کانتینیو",
+    "en": "Continue"
+  },
+  "domain": "continue.dev",
+  "logo": "/app-logos/continue-dev.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "coding-assistant-platform",
+  "tags": [
+    "دستیار کدنویسی",
+    "تکمیل کد",
+    "عامل قابل تنظیم",
+    "متن‌باز"
+  ],
+  "relatedTools": [
+    "aider",
+    "cline",
+    "github-copilot"
+  ],
+  "summary": "کانتینیو یک دستیار کدنویسی متن‌باز و قابل تنظیم است که با افزونه‌های توسعه، مدل‌های مختلف و workflowهای Agent، Chat، Edit و Autocomplete برای محیط‌های توسعه کار می‌کند.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "یک دستیار قابل تنظیم برای یک IDE و چند مدل قابل ساخت است.",
+    "reason": "چت مبتنی بر کد، ویرایش انتخاب‌شده، تکمیل ساده و ابزارهای عامل را می‌توان روی API مدل و index محلی ساخت. کیفیت تکمیل کم‌تأخیر، سازگاری هم‌زمان با دو خانواده IDE و اکوسیستم اشتراک پیکربندی فاصله اصلی با محصول کامل است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "افزونه زمینه فایل، انتخاب کاربر یا قطعات بازیابی‌شده از مخزن را به حالت مناسب می‌فرستد و پاسخ، پیشنهاد تکمیل یا patch قابل بررسی تولید می‌کند؛ در حالت عامل، ابزارها فقط با سیاست پروژه اجرا می‌شوند.",
+    "requirements": [
+      {
+        "type": "extension",
+        "label": "افزونه VS Code با chat، edit و autocomplete"
+      },
+      {
+        "type": "ai",
+        "label": "لایه نقش‌های مدل و ارائه‌دهندگان قابل تنظیم"
+      },
+      {
+        "type": "retrieval",
+        "label": "index محلی کد و مستندات"
+      },
+      {
+        "type": "configuration",
+        "label": "قواعد، prompt و ابزارهای نسخه‌پذیر"
+      }
+    ],
+    "limitations": [
+      "نسخه اول فقط VS Code را پشتیبانی می‌کند.",
+      "تکمیل کد به یک مدل و زبان‌های محدود بهینه می‌شود.",
+      "فهرست provider و MCP serverها کوچک و allowlist‌شده است.",
+      "اشتراک عمومی agentها و مدیریت سازمانی ارائه نمی‌شود."
+    ],
+    "prompt": {
+      "title": "Build a configurable IDE assistant inspired by Continue",
+      "content": "Build a VS Code extension with four explicit workflows: repository-aware chat, selected-code editing with diff preview, low-latency inline completion, and an agent that can call allowlisted file and test tools. Store model roles, project rules, prompts, and tool permissions in version-controlled YAML, and support one local and one hosted OpenAI-compatible endpoint.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Continue با VS Code، JetBrains، CLI، چند نقش مدل، MCP و agentهای قابل اشتراک",
+    "buildableVersion": "افزونه VS Code قابل تنظیم با چهار workflow و index محلی",
+    "missing": [
+      "افزونه JetBrains و CLI کامل",
+      "اکوسیستم اشتراک agent و configuration",
+      "پوشش گسترده مدل‌ها و ابزارها"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان خواهان انتخاب مدل",
+    "تیم‌های دارای قواعد کدنویسی مشترک",
+    "کاربران مدل‌های محلی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "team-subscription",
+      "hosted-service",
+      "enterprise-support"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کانتینیو",
+      "ساخت مشابه Continue",
+      "دستیار کدنویسی قابل تنظیم",
+      "افزونه هوش مصنوعی متن‌باز"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه‌ای شبیه Continue ممکن است؟",
+        "answer": "بله، نسخه‌ای متمرکز برای یک IDE با چت، ویرایش، تکمیل و ابزارهای محدود عامل قابل ساخت است."
+      },
+      {
+        "question": "بیشترین هزینه فنی نسخه مشابه Continue کجاست؟",
+        "answer": "تکمیل کم‌تأخیر و مرتبط، نگهداری index مخزن و سازگار نگه‌داشتن افزونه با IDE و مدل‌های مختلف بیشترین هزینه مداوم را دارند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 4,
+    "economicValue": 4
+  }
+}

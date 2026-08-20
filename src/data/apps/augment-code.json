@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "augment-code",
+  "name": {
+    "fa": "آگمنت کد",
+    "en": "Augment Code"
+  },
+  "domain": "augmentcode.com",
+  "logo": "/app-logos/augment-code.png",
+  "origin": "global",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "enterprise-coding-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "زمینه کد",
+    "اتوماسیون مهندسی",
+    "سازمانی"
+  ],
+  "relatedTools": [
+    "sourcegraph-cody",
+    "qodo",
+    "devin"
+  ],
+  "summary": "آگمنت کد یک پلتفرم عامل‌های مهندسی برای codebaseهای بزرگ است که Context Engine، CLI و جریان‌هایی مانند ticket-to-PR، review، تست، مهاجرت و رسیدگی به incident را ترکیب می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "یک workflow عامل متمرکز ساختنی است؛ پلتفرم سازمانی کامل نه.",
+    "reason": "می‌توان عامل ticket-to-PR را با index مخزن، sandbox و API مدل ساخت، اما زمینه دقیق در مخزن‌های بسیار بزرگ، چند عامل هم‌زمان، compute مدیریت‌شده، امنیت سازمانی و مجموعه وسیع workflowها به زیرساخت و عملیات سنگین نیاز دارند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "یک ticket با معیار پذیرش وارد می‌شود، سرویس زمینه مرتبط را از مخزن و اسناد بازیابی می‌کند، عامل در workspace ایزوله plan و patch می‌سازد، تست اجرا می‌کند و pull request همراه با شواهد و گزارش محدودیت‌ها ایجاد می‌کند.",
+    "requirements": [
+      {
+        "type": "retrieval",
+        "label": "index کد، اسناد و تاریخچه تغییر"
+      },
+      {
+        "type": "infrastructure",
+        "label": "workspace و compute ایزوله برای هر task"
+      },
+      {
+        "type": "orchestration",
+        "label": "حلقه plan، edit، test و review"
+      },
+      {
+        "type": "integration",
+        "label": "GitHub و یک issue tracker"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه فقط workflow تبدیل ticket به PR را اجرا می‌کند.",
+      "یک مخزن، یک سازمان و تعداد محدود task هم‌زمان پشتیبانی می‌شود.",
+      "incident، migration و security remediation حذف می‌شوند.",
+      "کیفیت Context Engine در monorepoهای بزرگ هم‌سطح محصول اصلی نیست."
+    ],
+    "prompt": {
+      "title": "Build a ticket-to-PR coding agent",
+      "content": "Build a coding agent that accepts a Linear or GitHub issue with acceptance criteria, retrieves relevant code and documentation from one repository, creates an isolated worktree, produces a reviewable plan, edits files, runs allowlisted tests, and opens a draft pull request with citations, test results, and unresolved risks. Require human approval before dependency changes or network access.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Augment Code با Context Engine، CLI و workflowهای سازمانی متعدد",
+    "buildableVersion": "عامل تک‌مخزنی ticket-to-PR با worktree، retrieval و اجرای تست",
+    "missing": [
+      "Context Engine در مقیاس codebaseهای بسیار بزرگ",
+      "compute مدیریت‌شده و عامل‌های هم‌زمان گسترده",
+      "review، incident، migration و کنترل‌های Enterprise کامل"
+    ]
+  },
+  "audience": [
+    "تیم‌های مهندسی محصول",
+    "مدیران پلتفرم توسعه",
+    "سازمان‌های دارای مخزن بزرگ"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "platform-subscription",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت آگمنت کد",
+      "ساخت مشابه Augment Code",
+      "عامل تبدیل تیکت به Pull Request",
+      "هوش مصنوعی برای codebase بزرگ"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت محصولی شبیه Augment Code ممکن است؟",
+        "answer": "یک عامل محدود برای تبدیل ticket به pull request ممکن است؛ بازتولید Context Engine و عملیات چندعامل سازمانی دامنه بسیار بزرگ‌تری دارد."
+      },
+      {
+        "question": "چرا workspace ایزوله برای این عامل لازم است؟",
+        "answer": "عامل فرمان و تست اجرا می‌کند؛ جداسازی هر task جلوی دسترسی ناخواسته به میزبان و تداخل تغییرات هم‌زمان را می‌گیرد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

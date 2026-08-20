@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "aider",
+  "name": {
+    "fa": "ایدر",
+    "en": "Aider"
+  },
+  "domain": "aider.chat",
+  "logo": "/app-logos/aider.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "terminal-coding-assistant",
+  "tags": [
+    "برنامه‌نویسی دونفره",
+    "ترمینال",
+    "Git",
+    "متن‌باز"
+  ],
+  "relatedTools": [
+    "opencode",
+    "continue-dev",
+    "cursor"
+  ],
+  "summary": "ایدر یک ابزار برنامه‌نویسی دونفره در ترمینال است که فایل‌های مخزن را با کمک مدل زبانی ویرایش می‌کند، از نقشه مخزن بهره می‌گیرد و تغییرات را با Git قابل بررسی و بازگشت نگه می‌دارد.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "یک نسخه کاربردی و محدود از ایدر واقعاً قابل ساخت است.",
+    "reason": "رابط خط فرمان، انتخاب فایل، نقشه ساده نمادهای مخزن، تولید patch، اجرای lint/test و ثبت تغییرات در Git با ابزارهای موجود قابل پیاده‌سازی است. فاصله اصلی در سازگاری با مدل‌های بسیار متنوع و کیفیت edit formatها خواهد بود."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "intermediate",
+    "coreLoop": "کاربر فایل‌ها و هدف تغییر را مشخص می‌کند، ابزار نقشه فشرده‌ای از مخزن و محتوای لازم را به مدل می‌دهد، patch را اعمال می‌کند، lint یا test می‌زند و تغییر را به‌صورت commit یا diff قابل بازگشت ثبت می‌کند.",
+    "requirements": [
+      {
+        "type": "cli",
+        "label": "رابط تعاملی خط فرمان"
+      },
+      {
+        "type": "ai",
+        "label": "API مدل با خروجی ساختاریافته برای patch"
+      },
+      {
+        "type": "code-intelligence",
+        "label": "استخراج نماد و نقشه فشرده مخزن"
+      },
+      {
+        "type": "git",
+        "label": "diff، commit و undo امن"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه فقط چند زبان پرکاربرد را برای repo map پوشش می‌دهد.",
+      "یک edit format و دو مدل آزمایش‌شده پشتیبانی می‌شوند.",
+      "رابط مرورگر، صدا و تصاویر حذف می‌شوند.",
+      "commit خودکار باید برای مخزن‌های حساس اختیاری باشد."
+    ],
+    "prompt": {
+      "title": "Build a small Git-aware terminal pair programmer",
+      "content": "Build a terminal pair-programming tool for local Git repositories. Users select files and describe a change; the tool creates a compact symbol map, asks an LLM for a structured patch, previews and applies it, runs configured lint and test commands, and offers diff, commit, and undo commands. Never overwrite dirty work without explicit confirmation.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Aider با مدل‌های متعدد، repo map پویا، edit formatهای مختلف و Git integration بالغ",
+    "buildableVersion": "دستیار ترمینالی Git-aware برای چند زبان و یک قالب patch",
+    "missing": [
+      "پوشش وسیع مدل‌ها و زبان‌ها",
+      "حالت‌های گفت‌وگو و ورودی‌های جانبی کامل",
+      "benchmark و تنظیم خودکار edit format"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان خط فرمان",
+    "برنامه‌نویسان مستقل",
+    "تیم‌های کوچک با workflow مبتنی بر Git"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "support",
+      "hosted-model-access",
+      "team-plan"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت ایدر",
+      "ساخت مشابه Aider",
+      "دستیار کدنویسی ترمینال",
+      "برنامه نویسی هوش مصنوعی با Git"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه‌ای شبیه Aider ممکن است؟",
+        "answer": "بله، نسخه‌ای با انتخاب فایل، تولید patch، اجرای تست و بازگشت تغییرات با Git در چند هفته قابل ساخت است."
+      },
+      {
+        "question": "چرا repo map برای ابزار شبیه ایدر مهم است؟",
+        "answer": "چون بدون ارسال کل مخزن، ساختار و نمادهای مهم را به مدل نشان می‌دهد و هزینه زمینه را کنترل می‌کند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 4,
+    "proprietaryData": 0,
+    "infrastructure": 1,
+    "buildCost": 2,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 4,
+    "economicValue": 3
+  }
+}

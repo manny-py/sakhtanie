@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "cline",
+  "name": {
+    "fa": "کلاین",
+    "en": "Cline"
+  },
+  "domain": "cline.bot",
+  "logo": "/app-logos/cline.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "software-engineering-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "VS Code",
+    "ترمینال",
+    "تأیید انسانی"
+  ],
+  "relatedTools": [
+    "opencode",
+    "roo-code",
+    "cursor"
+  ],
+  "summary": "کلاین یک عامل کدنویسی متن‌باز برای IDE و ترمینال است که فایل‌ها را می‌خواند و ویرایش می‌کند، فرمان اجرا می‌کند و هر اقدام حساس را برای تأیید کاربر نمایش می‌دهد.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "هسته افزونه عامل ساختنی است، اما دامنه فعلی محصول بسیار گسترده است.",
+    "reason": "افزونه‌ای با Plan/Act، ویرایش چندفایلی، اجرای فرمان و checkpoint قابل ساخت است؛ هم‌سطح‌شدن با SDK، CLI، چند IDE، مرورگر، MCP، تیم عامل‌ها و کنترل‌های سازمانی به تیم و زمان قابل‌توجه نیاز دارد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "عامل درخواست را به برنامه قابل بررسی تبدیل می‌کند، با اجازه کاربر فایل‌ها را می‌خواند و تغییر می‌دهد، فرمان و تست اجرا می‌کند و هر مرحله را با diff و checkpoint قابل بازگشت ثبت می‌کند.",
+    "requirements": [
+      {
+        "type": "extension",
+        "label": "افزونه VS Code با نمایش diff و approval"
+      },
+      {
+        "type": "ai",
+        "label": "مدل ابزارمحور برای برنامه‌ریزی و کدنویسی"
+      },
+      {
+        "type": "tools",
+        "label": "فایل، ترمینال، مرورگر و تست"
+      },
+      {
+        "type": "storage",
+        "label": "checkpoint و تاریخچه قابل بازگشت"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه فقط یک IDE و یک عامل فعال را پوشش می‌دهد.",
+      "دسترسی مرورگر و MCP به فهرست محدود ابزارهای مجاز کاهش می‌یابد.",
+      "حالت خودکار بدون sandbox قوی ارائه نمی‌شود.",
+      "مدیریت تیم، observability و سیاست‌های سازمانی حذف می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a human-approved coding agent inspired by Cline",
+      "content": "Build a VS Code extension that offers separate Plan and Act modes. It should inspect a workspace, propose a step-by-step plan, generate multi-file diffs, request approval before each edit or terminal command, run tests, create restore checkpoints, and show a complete action history. Limit execution to an allowlisted command set and one configurable model provider.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Cline با IDE، CLI، SDK، مرورگر، MCP، عامل‌های چندگانه و امکانات سازمانی",
+    "buildableVersion": "افزونه VS Code تک‌عامل با Plan/Act، approval، patch و checkpoint",
+    "missing": [
+      "CLI و SDK عمومی",
+      "عامل‌های موازی و زمان‌بندی",
+      "پشتیبانی چند IDE و کنترل‌های سازمانی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان VS Code",
+    "تیم‌های حساس به کنترل تغییرات",
+    "سازندگان افزونه‌های توسعه"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت کلاین",
+      "ساخت مشابه Cline",
+      "عامل کدنویسی VS Code",
+      "افزونه برنامه نویسی هوش مصنوعی"
+    ],
+    "faq": [
+      {
+        "question": "آیا ساخت نسخه‌ای شبیه Cline ممکن است؟",
+        "answer": "نسخه‌ای محدود برای VS Code با برنامه‌ریزی، ویرایش فایل و اجرای فرمان تأییدشده ممکن است؛ ساخت کل اکوسیستم فعلی Cline پروژه‌ای چندماهه و تیمی است."
+      },
+      {
+        "question": "چرا تأیید کاربر در عامل کدنویسی مهم است؟",
+        "answer": "چون عامل به فایل‌ها و ترمینال دسترسی دارد و یک تصمیم اشتباه می‌تواند کد، داده یا محیط توسعه را تغییر دهد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

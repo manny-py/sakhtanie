@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "opencode",
+  "name": {
+    "fa": "اوپن‌کد",
+    "en": "OpenCode"
+  },
+  "domain": "opencode.ai",
+  "logo": "/app-logos/opencode.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "software-engineering-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "ترمینال",
+    "متن‌باز",
+    "مدل‌های چندگانه"
+  ],
+  "relatedTools": [
+    "aider",
+    "cline",
+    "continue-dev"
+  ],
+  "summary": "اوپن‌کد یک عامل کدنویسی متن‌باز است که در ترمینال، افزونه و برنامه دسکتاپ به مخزن کد متصل می‌شود و با مدل‌های مختلف کار می‌کند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "نسخه ترمینالی متمرکز ساختنی است؛ مجموعه کامل چندسکویی دشوارتر است.",
+    "reason": "حلقه خواندن مخزن، پیشنهاد تغییر، اجرای فرمان و نمایش diff با API مدل‌ها قابل پیاده‌سازی است، اما پشتیبانی پایدار از ده‌ها ارائه‌دهنده، LSP، چند نشست هم‌زمان و تجربه یکسان در ترمینال، IDE و دسکتاپ هزینه توسعه و نگهداری را بالا می‌برد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر وظیفه‌ای را در محیط ترمینال تعریف می‌کند، عامل فایل‌ها و نمادهای مرتبط را پیدا می‌کند، طرح و patch می‌سازد، فرمان‌ها و تست‌های مجاز را اجرا می‌کند و نتیجه را برای تأیید نشان می‌دهد.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "لایه سازگار با چند API مدل زبانی"
+      },
+      {
+        "type": "backend",
+        "label": "حلقه عامل و مدیریت نشست"
+      },
+      {
+        "type": "tools",
+        "label": "ابزار فایل، Git، shell و LSP"
+      },
+      {
+        "type": "security",
+        "label": "مجوزدهی فرمان و محدودسازی workspace"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه به ترمینال و یک workspace محلی محدود می‌شود.",
+      "کیفیت خروجی و هزینه استفاده به مدل انتخابی وابسته است.",
+      "همگام‌سازی نشست، اشتراک‌گذاری و اجرای موازی کامل حذف می‌شود.",
+      "پشتیبانی از همه ارائه‌دهندگان و LSPها واقع‌بینانه نیست."
+    ],
+    "prompt": {
+      "title": "Build a focused terminal coding agent inspired by OpenCode",
+      "content": "Build a terminal-first coding agent for one local Git repository. Let users inspect files, ask codebase questions, request multi-file patches, review diffs, approve shell commands, run tests, and undo changes. Support two OpenAI-compatible model endpoints, keep an auditable action log, restrict file access to the workspace, and require confirmation before destructive commands.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "OpenCode با رابط ترمینال، دسکتاپ و IDE، LSP، چند نشست و اتصال گسترده به مدل‌ها",
+    "buildableVersion": "عامل ترمینالی برای یک مخزن با patch، تست، Git و دو ارائه‌دهنده مدل",
+    "missing": [
+      "برنامه دسکتاپ و افزونه‌های کامل",
+      "اجرای موازی و اشتراک‌گذاری نشست",
+      "پوشش گسترده ارائه‌دهندگان و LSPها"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان خط فرمان",
+    "تیم‌های کوچک نرم‌افزاری",
+    "سازندگان ابزارهای توسعه"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "self-hosted-support"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت اوپن‌کد",
+      "ساخت عامل کدنویسی ترمینال",
+      "جایگزین OpenCode",
+      "عامل کدنویسی متن‌باز"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان ابزاری شبیه OpenCode ساخت؟",
+        "answer": "بله، یک عامل ترمینالی محدود برای خواندن مخزن، ساخت patch و اجرای تست قابل ساخت است؛ بازتولید همه رابط‌ها، مدل‌ها و قابلیت‌های هم‌زمانی پروژه اصلی بسیار پرهزینه‌تر است."
+      },
+      {
+        "question": "سخت‌ترین بخش ساخت نسخه مشابه اوپن‌کد چیست؟",
+        "answer": "مدیریت امن ابزارها و حفظ زمینه درست مخزن در کارهای چندمرحله‌ای، مهم‌تر و دشوارتر از ساخت رابط گفت‌وگو است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 4,
+    "proprietaryData": 1,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 3,
+    "iranRisk": 4,
+    "economicValue": 4
+  }
+}

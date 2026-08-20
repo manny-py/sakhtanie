@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 2,
+  "slug": "roo-code",
+  "name": {
+    "fa": "رو کد",
+    "en": "Roo Code"
+  },
+  "domain": "github.com",
+  "logo": "/app-logos/roo-code.png",
+  "origin": "open-source",
+  "status": "review",
+  "category": "ai-coding",
+  "subcategory": "software-engineering-agent",
+  "tags": [
+    "عامل کدنویسی",
+    "حالت‌های تخصصی",
+    "VS Code",
+    "متن‌باز"
+  ],
+  "relatedTools": [
+    "cline",
+    "opencode",
+    "aider"
+  ],
+  "summary": "رو کد یک عامل کدنویسی متن‌باز مبتنی بر حالت‌های تخصصی مانند Code، Architect، Ask و Debug است؛ وضعیت فعلی مخزن مرجع ثبت‌شده در Registry نیازمند بررسی دوره‌ای است.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "medium",
+    "short": "نسخه محدود آن به‌دلیل معماری متن‌باز و دامنه روشن قابل ساخت است.",
+    "reason": "تقسیم دسترسی ابزارها میان حالت‌های برنامه‌ریزی، پرسش، کدنویسی و اشکال‌زدایی با یک افزونه و API مدل قابل پیاده‌سازی است. با این حال بایگانی‌شدن مخزن، نگهداری یک fork و ارزیابی امنیت وابستگی‌ها را به مسئولیت سازنده تبدیل می‌کند."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر حالت متناسب با کار را انتخاب می‌کند؛ عامل فقط ابزارهای مجاز همان حالت را می‌بیند، زمینه مخزن را جمع می‌کند و طرح، پاسخ، تغییر کد یا مراحل اشکال‌زدایی را تولید می‌کند.",
+    "requirements": [
+      {
+        "type": "extension",
+        "label": "افزونه و پنل گفت‌وگوی VS Code"
+      },
+      {
+        "type": "ai",
+        "label": "اتصال قابل تنظیم به مدل‌های کدنویسی"
+      },
+      {
+        "type": "policy",
+        "label": "مجوز ابزار و فایل برای هر mode"
+      },
+      {
+        "type": "tools",
+        "label": "خواندن، ویرایش، command و MCP"
+      }
+    ],
+    "limitations": [
+      "وضعیت نگهداری و پشتیبانی مخزن مرجع باید پیش از استفاده دوباره بررسی شود.",
+      "نسخه پیشنهادی فقط چهار حالت ثابت و یک IDE دارد.",
+      "Orchestrator و بازار حالت‌های سفارشی حذف می‌شوند.",
+      "fork نیازمند ممیزی مجوز، وابستگی و آسیب‌پذیری است."
+    ],
+    "prompt": {
+      "title": "Build a mode-based coding assistant inspired by Roo Code",
+      "content": "Build a VS Code coding assistant with four explicit modes: Ask can only read files, Architect can read and edit Markdown plans, Code can edit source files and run approved commands, and Debug can add diagnostics and run tests. Let users configure one model per mode, preview every patch, and store project-specific rules in version-controlled YAML.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Roo Code با modeهای داخلی و سفارشی، MCP، ارکستراسیون و تنظیم مدل جداگانه",
+    "buildableVersion": "افزونه چهارحالته با دسترسی ابزار محدود و قواعد پروژه‌ای",
+    "missing": [
+      "Orchestrator و واگذاری زیرکارها",
+      "بازار و اشتراک‌گذاری modeها",
+      "دامنه کامل تنظیمات و ابزارها"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان VS Code",
+    "تیم‌های نیازمند تفکیک سطح دسترسی عامل",
+    "نگهدارندگان ابزارهای متن‌باز"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "hosted-service",
+      "support",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت رو کد",
+      "ساخت مشابه Roo Code",
+      "عامل کدنویسی چند حالته",
+      "جایگزین Roo Code"
+    ],
+    "faq": [
+      {
+        "question": "آیا Roo Code هنوز فعال است؟",
+        "answer": "وضعیت فعلی مخزن مرجع ثبت‌شده در Registry نیازمند بررسی دوره‌ای است؛ پیش از استفاده باید وضعیت نگهداری، forkها و ادامه پشتیبانی جداگانه بررسی شود."
+      },
+      {
+        "question": "آیا می‌توان ایده حالت‌های Roo Code را بازسازی کرد؟",
+        "answer": "بله، تعریف modeهای محدود با مجوز متفاوت برای خواندن، ویرایش و اجرای فرمان از نظر فنی قابل ساخت است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 4,
+    "proprietaryData": 1,
+    "infrastructure": 2,
+    "buildCost": 2,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 2,
+    "iranRisk": 4,
+    "economicValue": 3
+  }
+}
