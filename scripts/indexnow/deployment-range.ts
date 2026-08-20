@@ -128,6 +128,13 @@ export function evaluateDeploymentStatus(input: {
     };
   }
 
+  if (successful[1]?.sha === current.sha) {
+    return {
+      shouldPlan: false,
+      reason: "duplicate SHA deployment",
+    };
+  }
+
   const previous = selectPreviousDistinctProduction(
     successful,
     input.currentDeploymentId
