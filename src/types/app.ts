@@ -21,7 +21,7 @@ export interface SakhtanieApp {
 
   status: string;
 
-  publishedAt: string;
+  publishedAt?: string;
 
   category: string;
 
