@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "slug": "deepseek",
+  "name": {
+    "fa": "دیپ‌سیک",
+    "en": "DeepSeek"
+  },
+  "domain": "deepseek.com",
+  "logo": "/app-logos/deepseek.png",
+  "origin": "global",
+  "status": "published",
+  "publishedAt": "2026-08-21",
+  "category": "ai-assistants",
+  "subcategory": "general-ai-assistant",
+  "tags": [
+    "دستیار هوش مصنوعی",
+    "مدل استدلالی",
+    "API مدل",
+    "گفت‌وگو"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "claude",
+    "gemini"
+  ],
+  "summary": "دیپ‌سیک هم تجربه گفت‌وگوی هوش مصنوعی و API مدل ارائه می‌کند و هم با خانواده مدل‌هایش شناخته می‌شود؛ ساخت رابط و کاربرد تخصصی ممکن است، اما آموزش مدل مرزی مسئله‌ای کاملاً متفاوت است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "محصول مبتنی بر API ساختنی است؛ مدل مرزی مشابه نه.",
+    "reason": "رابط چت، تاریخچه، فایل، پاسخ جریانی و ابزارهای تخصصی را می‌توان روی API یک مدل موجود ساخت. بازتولید توان اصلی DeepSeek از راه آموزش مدل مرزی به داده، پژوهش، خوشه محاسباتی و سرمایه‌ای فراتر از توان یک تیم محصول معمولی نیاز دارد."
+  },
+  "build": {
+    "timeEstimate": "few-weeks",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر سؤال یا فایل را وارد می‌کند، سرویس زمینه و سیاست ابزارها را به یک API مدل می‌فرستد و پاسخ جریانی، ارجاع‌ها و سابقه قابل بازبینی را نمایش می‌دهد.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "API مدل دارای chat و tool calling"
+      },
+      {
+        "type": "frontend",
+        "label": "رابط چت جریانی و نمایش فایل"
+      },
+      {
+        "type": "backend",
+        "label": "مدیریت زمینه، ابزار و محدودیت مصرف"
+      },
+      {
+        "type": "security",
+        "label": "حفاظت کلیدها و سیاست نگهداری داده"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی مدل پایه یا مدل استدلالی جدید آموزش نمی‌دهد.",
+      "کیفیت و دسترس‌پذیری به API مدل انتخابی وابسته است.",
+      "جست‌وجوی وب و تحلیل فایل در دامنه محدود پیاده‌سازی می‌شوند.",
+      "قیمت، نام مدل‌ها و قابلیت‌های API باید هنگام انتشار دوباره بررسی شوند."
+    ],
+    "prompt": {
+      "title": "Build a focused assistant using an existing reasoning model API",
+      "content": "Build a Persian RTL AI assistant on top of an existing model API. Include streaming chat, file attachments, conversation history, explicit thinking-mode controls when supported, allowlisted tool calls, usage metering, provider fallback, and clear data-retention settings. Do not train a foundation model or claim parity with a frontier model; expose provider and model limitations to users.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "DeepSeek به‌عنوان مجموعه مدل، API و تجربه گفت‌وگوی عمومی",
+    "buildableVersion": "دستیار تخصصی با رابط چت و یک API مدل آماده",
+    "missing": [
+      "آموزش و مالکیت مدل مرزی",
+      "زیرساخت استنتاج در مقیاس ارائه‌دهنده",
+      "دامنه کامل قابلیت‌ها و بهینه‌سازی محصول اصلی"
+    ]
+  },
+  "audience": [
+    "سازندگان محصولات مبتنی بر LLM",
+    "تیم‌های نیازمند دستیار تخصصی",
+    "توسعه‌دهندگان ابزارهای داخلی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "usage",
+      "vertical-saas"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت دیپ سیک",
+      "ساخت مشابه DeepSeek",
+      "ساخت دستیار با API مدل",
+      "هزینه ساخت مدل هوش مصنوعی"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان محصولی شبیه DeepSeek ساخت؟",
+        "answer": "لایه محصول و دستیار تخصصی با API مدل موجود ساختنی است؛ آموزش مدلی هم‌سطح مدل‌های مرزی برای یک تیم معمولی واقع‌بینانه نیست."
+      },
+      {
+        "question": "تفاوت ساخت اپ DeepSeek با ساخت مدل آن چیست؟",
+        "answer": "اپ شامل رابط، تاریخچه، ابزار و کنترل مصرف است؛ مدل پایه به داده آموزشی، پژوهش و محاسبات بسیار بزرگ نیاز دارد."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 3,
+    "externalDependency": 5,
+    "proprietaryData": 5,
+    "infrastructure": 3,
+    "buildCost": 3,
+    "maintenanceCost": 3,
+    "personalValue": 5,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 5
+  }
+}

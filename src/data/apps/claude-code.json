@@ -8,7 +8,8 @@
   "domain": "code.claude.com",
   "logo": "/app-logos/claude-code.png",
   "origin": "global",
-  "status": "review",
+  "status": "published",
+  "publishedAt": "2026-08-21",
   "category": "ai-coding",
   "subcategory": "terminal-coding-agent",
   "tags": [

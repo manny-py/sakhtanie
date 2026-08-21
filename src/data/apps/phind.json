@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "slug": "phind",
+  "name": {
+    "fa": "فایند",
+    "en": "Phind"
+  },
+  "domain": "phind.com",
+  "logo": "/app-logos/phind.png",
+  "origin": "global",
+  "status": "published",
+  "publishedAt": "2026-08-21",
+  "category": "ai-assistants",
+  "subcategory": "developer-search-assistant",
+  "tags": [
+    "جست‌وجوی توسعه‌دهندگان",
+    "پاسخ مستند",
+    "رفع اشکال",
+    "دستیار برنامه‌نویسی"
+  ],
+  "relatedTools": [
+    "perplexity",
+    "you-com",
+    "chatgpt"
+  ],
+  "summary": "فایند یک تجربه جست‌وجو و پاسخ‌گویی متمرکز بر مسائل توسعه نرم‌افزار است؛ رابط پژوهش کد را می‌توان ساخت، اما کیفیت آن با توان مدل زیرین، بازیابی منابع و ارزیابی فنی گره خورده است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "medium",
+    "short": "دستیار جست‌وجوی توسعه‌دهنده ساختنی است؛ parity پاسخ نه.",
+    "reason": "جست‌وجوی وب و مستندات، ترکیب زمینه کد و پاسخ دارای منبع با APIهای آماده قابل پیاده‌سازی‌اند. رسیدن به کیفیت پاسخ فنی محصول اصلی بدون مدل، رتبه‌بندی، داده بازخورد و ارزیابی اختصاصی قابل تضمین نیست و وضعیت قابلیت‌های فعلی باید پیش از انتشار بررسی شود."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "توسعه‌دهنده مسئله و قطعه کد را وارد می‌کند، سیستم مستندات و صفحات فنی مرتبط را بازیابی می‌کند و پاسخ مرحله‌ای با کد، منبع و هشدارهای قابل بازبینی می‌سازد.",
+    "requirements": [
+      {
+        "type": "search",
+        "label": "جست‌وجوی وب و مستندات فنی"
+      },
+      {
+        "type": "ai",
+        "label": "مدل قوی در استدلال و تولید کد"
+      },
+      {
+        "type": "retrieval",
+        "label": "رتبه‌بندی و استخراج منابع مرتبط"
+      },
+      {
+        "type": "evaluation",
+        "label": "مجموعه آزمون پاسخ‌های فنی و کد"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی مدل کدنویسی اختصاصی آموزش نمی‌دهد.",
+      "پاسخ‌های تولیدشده باید از نظر امنیت و صحت اجرا بررسی شوند.",
+      "پوشش منابع به API جست‌وجو و دسترسی مستندات وابسته است.",
+      "جایگاه و قابلیت‌های فعلی Phind هنگام انتشار نیازمند verification است."
+    ],
+    "prompt": {
+      "title": "Build a source-grounded developer search assistant inspired by Phind",
+      "content": "Build a developer search assistant that accepts a technical question and optional code, searches official documentation and trusted technical sources, produces a cited step-by-step answer with runnable snippets, labels unverified assumptions, and offers follow-up queries. Add source filters, language and version metadata, secure code rendering, feedback capture, and an evaluation set. Use an existing model API and do not claim ownership of its model capability.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Phind به‌عنوان دستیار جست‌وجو و پاسخ فنی برای توسعه‌دهندگان؛ جزئیات قابلیت‌های فعلی نیازمند verification",
+    "buildableVersion": "جست‌وجوی مستندات و پاسخ فنی مستند روی مدل و search API آماده",
+    "missing": [
+      "مدل یا بهینه‌سازی اختصاصی پاسخ کد",
+      "رتبه‌بندی و داده بازخورد در مقیاس محصول",
+      "تضمین برابری کیفیت و پوشش قابلیت‌های فعلی"
+    ]
+  },
+  "audience": [
+    "توسعه‌دهندگان نرم‌افزار",
+    "تیم‌های پشتیبانی فنی",
+    "سازندگان ابزار مستندسازی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "team-plan",
+      "developer-api"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت فایند",
+      "ساخت مشابه Phind",
+      "جست‌وجوی هوش مصنوعی برنامه‌نویسی",
+      "دستیار پاسخ فنی"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان موتور پاسخ فنی شبیه Phind ساخت؟",
+        "answer": "نسخه‌ای با search API، مدل آماده و منابع مستند ساختنی است؛ کیفیت پایدار پاسخ به ارزیابی و بازیابی تخصصی نیاز دارد."
+      },
+      {
+        "question": "آیا ساخت Phind یعنی آموزش مدل کدنویسی؟",
+        "answer": "نه لزوماً؛ تجربه جست‌وجو و پاسخ را می‌توان روی مدل موجود ساخت، ولی توان مدل زیرین بخش مهمی از کیفیت نهایی است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 3,
+    "infrastructure": 3,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 4
+  }
+}
