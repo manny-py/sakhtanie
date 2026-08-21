@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "slug": "meta-ai",
+  "name": {
+    "fa": "متا ای‌آی",
+    "en": "Meta AI"
+  },
+  "domain": "meta.ai",
+  "logo": "/app-logos/meta-ai.png",
+  "origin": "global",
+  "status": "published",
+  "publishedAt": "2026-08-21",
+  "category": "ai-assistants",
+  "subcategory": "multimodal-ai-assistant",
+  "tags": [
+    "دستیار هوش مصنوعی",
+    "چندرسانه‌ای",
+    "جست‌وجوی وب",
+    "شبکه اجتماعی"
+  ],
+  "relatedTools": [
+    "chatgpt",
+    "gemini",
+    "claude"
+  ],
+  "summary": "متا ای‌آی یک دستیار عمومی چندرسانه‌ای در وب، اپ و محصولات متا است؛ رابط گفت‌وگو و چند ابزار آن قابل ساخت‌اند، اما توزیع، داده و زیرساخت متا قابل بازسازی نیستند.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "دستیار محدود ساختنی است؛ مزیت مقیاس متا نه.",
+    "reason": "چت، ورودی تصویر و فایل، جست‌وجوی وب و چند workflow عملی را می‌توان با APIهای آماده ترکیب کرد. یکپارچگی با شبکه‌های اجتماعی، سیگنال‌های رفتاری، مدل‌ها و سرویس‌دهی در مقیاس متا بخش اصلی فاصله باقی‌مانده است."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "کاربر در وب یا پیام‌رسان سؤال، تصویر یا فایل می‌فرستد، سیستم درخواست را به مدل و ابزار مناسب هدایت می‌کند و پاسخ یا اقدام قابل تأیید را در همان گفتگو برمی‌گرداند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "API مدل متنی و چندرسانه‌ای"
+      },
+      {
+        "type": "search",
+        "label": "جست‌وجوی وب با استناد"
+      },
+      {
+        "type": "integration",
+        "label": "یک کانال وب یا پیام‌رسان"
+      },
+      {
+        "type": "privacy",
+        "label": "رضایت، حذف داده و کنترل شخصی‌سازی"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی فقط وب و یک کانال پیام‌رسان را پوشش می‌دهد.",
+      "از داده خصوصی یا گراف اجتماعی متا استفاده نمی‌شود.",
+      "مدل و زیرساخت چندرسانه‌ای از ارائه‌دهندگان بیرونی می‌آیند.",
+      "پیشنهاد محلی، خرید و شخصی‌سازی عمیق محدود خواهند بود."
+    ],
+    "prompt": {
+      "title": "Build a privacy-conscious multimodal assistant inspired by Meta AI",
+      "content": "Build a web-first multimodal assistant with streaming chat, image and document input, cited web search, a small set of confirm-before-action tools, optional integration with one messaging channel, conversation controls, and explicit deletion and personalization settings. Use external model APIs and do not use or imply access to social-graph data or Meta-scale infrastructure.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Meta AI در وب، اپ و محصولات متا با تجربه چندرسانه‌ای، جست‌وجو و شخصی‌سازی",
+    "buildableVersion": "دستیار وب چندرسانه‌ای با جست‌وجوی مستند و چند ابزار محدود",
+    "missing": [
+      "توزیع در مقیاس محصولات متا",
+      "گراف اجتماعی و سیگنال‌های اختصاصی",
+      "مدل‌ها و زیرساخت سرویس‌دهی اختصاصی"
+    ]
+  },
+  "audience": [
+    "سازندگان دستیار تخصصی",
+    "کسب‌وکارهای خدماتی",
+    "تیم‌های محصول پیام‌رسان"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "subscription",
+      "business-assistant",
+      "usage"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت متا ای آی",
+      "ساخت مشابه Meta AI",
+      "دستیار هوش مصنوعی چندرسانه‌ای",
+      "ساخت دستیار پیام‌رسان"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان دستیار شبیه Meta AI ساخت؟",
+        "answer": "یک دستیار وب چندرسانه‌ای با مدل و جست‌وجوی آماده ساختنی است، اما داده، توزیع و زیرساخت متا قابل تکرار نیست."
+      },
+      {
+        "question": "سخت‌ترین بخش رقابت با Meta AI چیست؟",
+        "answer": "دسترسی یکپارچه به محصولات پرکاربر، سیگنال‌های اختصاصی و عملیات مدل در مقیاس بسیار بزرگ مهم‌ترین فاصله‌ها هستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 5,
+    "proprietaryData": 5,
+    "infrastructure": 5,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 4,
+    "gapFromOriginal": 5,
+    "iranRisk": 5,
+    "economicValue": 4
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "slug": "tabby",
+  "name": {
+    "fa": "تبی",
+    "en": "Tabby"
+  },
+  "domain": "tabbyml.com",
+  "logo": "/app-logos/tabby.png",
+  "origin": "open-source",
+  "status": "published",
+  "publishedAt": "2026-08-21",
+  "category": "ai-coding",
+  "subcategory": "self-hosted-coding-assistant",
+  "tags": [
+    "دستیار کدنویسی",
+    "Self-hosted",
+    "تکمیل کد",
+    "هوش مصنوعی متن‌باز"
+  ],
+  "relatedTools": [
+    "continue-dev",
+    "github-copilot",
+    "tabnine"
+  ],
+  "summary": "تبی یک دستیار کدنویسی متن‌باز و self-hosted است که سرور مدل را به افزونه‌های ویرایشگر وصل می‌کند و تکمیل کد، پرسش درباره مخزن و ویرایش درون‌خطی ارائه می‌دهد.",
+  "verdict": {
+    "value": "yes",
+    "confidence": "high",
+    "short": "نسخه self-hosted متمرکز تبی واقعاً ساختنی است.",
+    "reason": "معماری سرور استنتاج، نمایه‌سازی محدود مخزن و افزونه ویرایشگر با مدل‌های آماده قابل پیاده‌سازی است و خود پروژه نیز مسیر فنی را شفاف می‌کند. کیفیت پیشنهاد، پشتیبانی چند IDE و عملیات GPU همچنان کار مهندسی مداوم می‌خواهند."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "advanced",
+    "coreLoop": "تیم سرور را در زیرساخت خود اجرا می‌کند، افزونه ویرایشگر زمینه فایل و مخزن را می‌فرستد و سرور با مدل انتخابی تکمیل، پاسخ یا ویرایش پیشنهادی برمی‌گرداند.",
+    "requirements": [
+      {
+        "type": "ai",
+        "label": "مدل آماده برای تکمیل و گفت‌وگوی کد"
+      },
+      {
+        "type": "infrastructure",
+        "label": "سرور استنتاج محلی یا سازمانی"
+      },
+      {
+        "type": "extension",
+        "label": "افزونه برای یک ویرایشگر اصلی"
+      },
+      {
+        "type": "code-intelligence",
+        "label": "نمایه‌سازی و بازیابی زمینه مخزن"
+      }
+    ],
+    "limitations": [
+      "نسخه اولیه فقط یک IDE و مجموعه کوچکی از مدل‌ها را پوشش می‌دهد.",
+      "اجرای محلی مدل‌های بزرگ به GPU و تنظیم ظرفیت نیاز دارد.",
+      "کیفیت تکمیل به مدل، زبان برنامه‌نویسی و تأخیر شبکه وابسته است.",
+      "کنترل‌های کامل سازمانی و اتصال‌دهنده‌های متعدد در نسخه محدود حذف می‌شوند."
+    ],
+    "prompt": {
+      "title": "Build a self-hosted coding assistant inspired by Tabby",
+      "content": "Build a self-hosted AI coding assistant with a containerized inference server, one configurable open coding model, a VS Code extension for inline completion and repository-aware chat, local repository indexing, token authentication, request logs, and administrator controls for model and data retention. Keep source code inside the selected deployment and document GPU and latency requirements.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "Tabby با سرور self-hosted، تکمیل کد، chat و inline edit در چند محیط توسعه",
+    "buildableVersion": "سرور تک‌مدلی و افزونه VS Code برای completion و chat مخزن",
+    "missing": [
+      "پشتیبانی کامل همه IDEها و مدل‌ها",
+      "قابلیت‌های سازمانی و اتصال‌دهنده‌های گسترده",
+      "بهینه‌سازی استنتاج و کیفیت در مقیاس محصول اصلی"
+    ]
+  },
+  "audience": [
+    "تیم‌های دارای الزام میزبانی داخلی",
+    "شرکت‌های نرم‌افزاری کوچک",
+    "توسعه‌دهندگان ابزار کدنویسی"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "managed-hosting",
+      "enterprise-support",
+      "implementation-service"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت تبی",
+      "ساخت مشابه Tabby",
+      "دستیار کدنویسی self-hosted",
+      "ساخت تکمیل کد هوش مصنوعی"
+    ],
+    "faq": [
+      {
+        "question": "آیا می‌توان دستیار کدنویسی self-hosted شبیه Tabby ساخت؟",
+        "answer": "بله؛ با مدل آماده، سرور استنتاج و افزونه یک IDE می‌توان نسخه کاربردی ساخت، بدون آنکه مدل پایه جدیدی آموزش داده شود."
+      },
+      {
+        "question": "هزینه اصلی نسخه مشابه Tabby چیست؟",
+        "answer": "هزینه GPU، نگهداری مدل و حفظ تأخیر پایین هنگام تکمیل کد از هزینه‌های اصلی هستند."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 4,
+    "externalDependency": 2,
+    "proprietaryData": 1,
+    "infrastructure": 4,
+    "buildCost": 4,
+    "maintenanceCost": 4,
+    "personalValue": 5,
+    "gapFromOriginal": 2,
+    "iranRisk": 2,
+    "economicValue": 4
+  }
+}

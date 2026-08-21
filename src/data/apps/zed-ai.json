@@ -8,7 +8,8 @@
   "domain": "zed.dev",
   "logo": "/app-logos/zed-ai.png",
   "origin": "open-source",
-  "status": "review",
+  "status": "published",
+  "publishedAt": "2026-08-21",
   "category": "ai-coding",
   "subcategory": "ai-code-editor",
   "tags": [

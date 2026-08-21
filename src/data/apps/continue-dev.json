@@ -8,7 +8,8 @@
   "domain": "continue.dev",
   "logo": "/app-logos/continue-dev.png",
   "origin": "open-source",
-  "status": "review",
+  "status": "published",
+  "publishedAt": "2026-08-21",
   "category": "ai-coding",
   "subcategory": "coding-assistant-platform",
   "tags": [

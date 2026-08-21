@@ -8,7 +8,8 @@
   "domain": "cline.bot",
   "logo": "/app-logos/cline.png",
   "origin": "open-source",
-  "status": "review",
+  "status": "published",
+  "publishedAt": "2026-08-21",
   "category": "ai-coding",
   "subcategory": "software-engineering-agent",
   "tags": [

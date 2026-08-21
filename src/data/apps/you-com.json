@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "slug": "you-com",
+  "name": {
+    "fa": "یو دات کام",
+    "en": "You.com"
+  },
+  "domain": "you.com",
+  "logo": "/app-logos/you-com.png",
+  "origin": "global",
+  "status": "published",
+  "publishedAt": "2026-08-21",
+  "category": "ai-assistants",
+  "subcategory": "ai-search-infrastructure",
+  "tags": [
+    "Search API",
+    "Research API",
+    "بازیابی وب",
+    "زیرساخت AI"
+  ],
+  "relatedTools": [
+    "perplexity",
+    "phind",
+    "chatgpt"
+  ],
+  "summary": "You.com در جایگاه فعلی روی APIهای جست‌وجوی وب، استخراج محتوا، پاسخ و پژوهش برای عامل‌ها و محصولات AI تمرکز دارد و در کنار آن تجربه چت را نیز نگه داشته است.",
+  "verdict": {
+    "value": "kinda",
+    "confidence": "high",
+    "short": "لایه API و پژوهش محدود ساختنی است؛ ایندکس وب مستقل نه.",
+    "reason": "می‌توان با یک ارائه‌دهنده جست‌وجو، crawler محدود و مدل زبانی API پاسخ مستند و workflow پژوهش ساخت. ساخت ایندکس تازه وب، استخراج مقاوم در مقیاس، رتبه‌بندی کم‌تأخیر و کیفیت سازمانی مشابه You.com سرمایه و عملیات بسیار بیشتری می‌خواهد."
+  },
+  "build": {
+    "timeEstimate": "few-months",
+    "skillLevel": "expert",
+    "coreLoop": "برنامه یا agent یک query را به API می‌فرستد، سرویس نتایج تازه و محتوای استخراج‌شده را جمع و رتبه‌بندی می‌کند و پاسخ یا گزارش مستند با metadata قابل مصرف برمی‌گرداند.",
+    "requirements": [
+      {
+        "type": "search",
+        "label": "API جست‌وجوی وب یا ایندکس محدود"
+      },
+      {
+        "type": "crawler",
+        "label": "استخراج محتوا با کنترل robots و خطا"
+      },
+      {
+        "type": "ai",
+        "label": "مدل برای پاسخ و پژوهش مستند"
+      },
+      {
+        "type": "backend",
+        "label": "صف پژوهش، cache، quota و صورت‌حساب"
+      }
+    ],
+    "limitations": [
+      "نسخه پیشنهادی از API جست‌وجوی بیرونی استفاده می‌کند و ایندکس وب مستقل ندارد.",
+      "پژوهش طولانی به دامنه و تعداد منبع محدود می‌شود.",
+      "کیفیت رتبه‌بندی و freshness به تأمین‌کننده جست‌وجو وابسته است.",
+      "قیمت‌گذاری و ترکیب APIهای فعلی باید هنگام انتشار دوباره بررسی شوند."
+    ],
+    "prompt": {
+      "title": "Build a grounded web search and research API inspired by You.com",
+      "content": "Build an API platform with web search backed by one external search provider, allowlisted full-page extraction, a cited answer endpoint, and an asynchronous multi-step research endpoint. Return structured sources and freshness metadata, support API keys, quotas, caching, background jobs, and usage billing. Do not build a global web index or claim ranking parity with a large search provider.",
+      "language": "en",
+      "tested": false,
+      "testedWith": [],
+      "lastUpdated": "2026-08-20"
+    }
+  },
+  "comparison": {
+    "original": "You.com با Web Search، Contents، Answer و Research API و تجربه چت",
+    "buildableVersion": "API جست‌وجو و پژوهش مستند روی یک search provider بیرونی",
+    "missing": [
+      "ایندکس و رتبه‌بندی مستقل وب",
+      "استخراج و freshness در مقیاس گسترده",
+      "تنوع کامل APIها و تضمین‌های سازمانی"
+    ]
+  },
+  "audience": [
+    "سازندگان agent و RAG",
+    "تیم‌های محصول جست‌وجو",
+    "پلتفرم‌های داده وب"
+  ],
+  "monetization": {
+    "possible": true,
+    "models": [
+      "usage",
+      "developer-plan",
+      "enterprise"
+    ]
+  },
+  "seo": {
+    "keywords": [
+      "ساخت یو دات کام",
+      "ساخت مشابه You.com",
+      "ساخت Search API",
+      "ساخت Research API"
+    ],
+    "faq": [
+      {
+        "question": "You.com اکنون فقط موتور جست‌وجوی مصرف‌کننده است؟",
+        "answer": "خیر؛ ارائه فعلی آن روی APIهای جست‌وجو، محتوا، پاسخ و پژوهش برای برنامه‌های AI نیز تمرکز پررنگ دارد."
+      },
+      {
+        "question": "آیا ساخت API مشابه You.com ممکن است؟",
+        "answer": "نسخه محدود روی API جست‌وجوی بیرونی ممکن است؛ ساخت ایندکس و رتبه‌بندی مستقل وب پروژه‌ای بسیار بزرگ‌تر است."
+      }
+    ]
+  },
+  "scores": {
+    "technicalComplexity": 5,
+    "externalDependency": 4,
+    "proprietaryData": 4,
+    "infrastructure": 5,
+    "buildCost": 5,
+    "maintenanceCost": 5,
+    "personalValue": 5,
+    "gapFromOriginal": 4,
+    "iranRisk": 4,
+    "economicValue": 5
+  }
+}

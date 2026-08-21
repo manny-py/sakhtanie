@@ -8,7 +8,8 @@
   "domain": "sweep.dev",
   "logo": "/app-logos/sweep.png",
   "origin": "global",
-  "status": "review",
+  "status": "published",
+  "publishedAt": "2026-08-21",
   "category": "ai-coding",
   "subcategory": "jetbrains-coding-assistant",
   "tags": [

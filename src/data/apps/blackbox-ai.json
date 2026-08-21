@@ -8,7 +8,8 @@
   "domain": "blackbox.ai",
   "logo": "/app-logos/blackbox-ai.png",
   "origin": "global",
-  "status": "review",
+  "status": "published",
+  "publishedAt": "2026-08-21",
   "category": "ai-coding",
   "subcategory": "coding-agent-platform",
   "tags": [
