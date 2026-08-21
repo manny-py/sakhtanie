@@ -1,0 +1,119 @@
+---
+import { apps } from "../lib/apps";
+import { getNewToolExpiry, getNewTools } from "../lib/new-tools";
+import AppCard from "./AppCard.astro";
+
+const newTools = getNewTools(apps);
+---
+
+{
+  newTools.length > 0 && (
+    <section class="new-tools" aria-labelledby="new-tools-title" data-new-tools-section>
+      <div class="new-tools__heading">
+        <div>
+          <span>NEW IN CATALOG</span>
+          <h2 id="new-tools-title">ابزارهای جدید</h2>
+          <p>تازه‌ترین ابزارهایی که به ساختنیه اضافه شده‌اند</p>
+        </div>
+
+        <small data-new-tools-count>{newTools.length} ابزار</small>
+      </div>
+
+      <div class="new-tools__grid">
+        {newTools.map((app) => (
+          <AppCard app={app} isNew newUntil={getNewToolExpiry(app)} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<script>
+  const section = document.querySelector<HTMLElement>("[data-new-tools-section]");
+
+  if (section) {
+    const cards = section.querySelectorAll<HTMLElement>("[data-new-tool-card]");
+    const count = section.querySelector<HTMLElement>("[data-new-tools-count]");
+    const now = Date.now();
+
+    cards.forEach((card) => {
+      const expiresAt = Number(card.dataset.newUntil);
+      if (Number.isFinite(expiresAt) && now >= expiresAt) card.hidden = true;
+    });
+
+    const visibleCount = [...cards].filter((card) => !card.hidden).length;
+    if (count) count.textContent = `${visibleCount} ابزار`;
+    if (visibleCount === 0) section.hidden = true;
+  }
+</script>
+
+<style>
+  .new-tools {
+    max-width: 900px;
+    margin: 4.75rem auto 0;
+  }
+
+  .new-tools__heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .new-tools__heading span {
+    color: #22e863;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+  }
+
+  .new-tools__heading h2 {
+    margin: 0.25rem 0 0;
+    color: #f3f7f4;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+  }
+
+  .new-tools__heading p {
+    margin: 0.35rem 0 0;
+    color: #8f9a91;
+    font-size: 0.82rem;
+  }
+
+  .new-tools__heading small {
+    flex: 0 0 auto;
+    color: #79837b;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+  }
+
+  .new-tools__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  @media (max-width: 760px) {
+    .new-tools__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .new-tools {
+      margin-top: 3.75rem;
+    }
+
+    .new-tools__heading {
+      align-items: flex-start;
+    }
+
+    .new-tools__heading small {
+      padding-top: 1.4rem;
+    }
+
+    .new-tools__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

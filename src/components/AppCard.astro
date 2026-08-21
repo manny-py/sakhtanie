@@ -1,23 +1,211 @@
 ---
-import VerdictBadge from "./VerdictBadge.astro";
+import type { SakhtanieApp } from "../types/app";
+import { categoryDefinitions } from "../lib/categories";
+import AppLogo from "./AppLogo.astro";
 
-const { app } = Astro.props;
+interface Props {
+  app: SakhtanieApp;
+  isNew?: boolean;
+  newUntil?: number | null;
+}
+
+const { app, isNew = false, newUntil = null } = Astro.props;
+const category = categoryDefinitions.find((item) => item.slug === app.category);
+const verdictLabels = {
+  yes: "ساختنیه",
+  kinda: "ساختنیه، ولی...",
+  no: "نمی‌ارزه",
+};
 ---
 
-<a href={`/tools/${app.slug}`}>
+<a
+  class:list={["app-card", { "is-new": isNew }]}
+  href={`/tools/${app.slug}`}
+  data-new-tool-card={isNew ? "" : undefined}
+  data-new-until={isNew && newUntil ? String(newUntil) : undefined}
+>
+  <div class="app-card__top">
+    <span class="app-card__logo">
+      <AppLogo app={app} />
+    </span>
 
-<div class="card">
+    <span class="app-card__badges">
+      {isNew && <span class="new-badge">جدید</span>}
+      <span class:list={["verdict-badge", `verdict-${app.verdict.value}`]}>
+        {verdictLabels[app.verdict.value]}
+      </span>
+    </span>
+  </div>
 
-<h3>
-{app.name.fa}
-</h3>
+  <strong dir="ltr">{app.name.en}</strong>
+  <span class="app-card__fa">{app.name.fa}</span>
+  <p>{app.summary}</p>
 
-<p>
-{app.summary}
-</p>
-
-<VerdictBadge verdict={app.verdict.value} />
-
-</div>
-
+  <div class="app-card__meta">
+    <span>
+      <span aria-hidden="true">{category?.symbol ?? "·"}</span>
+      {category?.shortTitle ?? app.category}
+    </span>
+    <span dir="ltr">{app.scores.technicalComplexity}/5</span>
+  </div>
 </a>
+
+<style>
+  .app-card {
+    position: relative;
+    isolation: isolate;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    overflow: hidden;
+    padding: 1rem;
+    color: inherit;
+    text-decoration: none;
+    background: #0d110e;
+    border: 1px solid rgba(141, 157, 145, 0.2);
+    border-radius: 14px;
+    transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .app-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .app-card:hover,
+  .app-card:focus-visible {
+    border-color: rgba(34, 232, 99, 0.55);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+    transform: translateY(-2px);
+  }
+
+  .app-card:focus-visible {
+    outline: 2px solid #22e863;
+    outline-offset: 3px;
+  }
+
+  .app-card.is-new {
+    border-color: rgba(34, 232, 99, 0.32);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .app-card.is-new::after {
+    position: absolute;
+    z-index: 0;
+    inset: -35% auto -35% 45%;
+    width: 20%;
+    content: "";
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(117, 255, 159, 0.1), transparent);
+    transform: translateX(420%) rotate(12deg);
+    animation: new-tool-shine 7s ease-in-out infinite;
+  }
+
+  .app-card__top,
+  .app-card__badges,
+  .app-card__meta,
+  .app-card__meta > span {
+    display: flex;
+    align-items: center;
+  }
+
+  .app-card__top,
+  .app-card__meta {
+    justify-content: space-between;
+  }
+
+  .app-card__badges {
+    gap: 0.4rem;
+  }
+
+  .app-card__logo {
+    width: 38px;
+    height: 38px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+  }
+
+  .new-badge,
+  .verdict-badge {
+    padding: 0.22rem 0.48rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    border-radius: 999px;
+  }
+
+  .new-badge {
+    color: #07160c;
+    background: #75ff9f;
+    box-shadow: 0 0 16px rgba(34, 232, 99, 0.18);
+  }
+
+  .verdict-badge {
+    color: #aeb8b0;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .verdict-yes {
+    color: #75ff9f;
+  }
+
+  .verdict-no {
+    color: #ff8a8a;
+  }
+
+  .app-card strong {
+    margin-top: 0.3rem;
+    color: #f3f7f4;
+    font-size: 1.05rem;
+  }
+
+  .app-card__fa {
+    color: #9eaaa0;
+    font-size: 0.82rem;
+  }
+
+  .app-card p {
+    display: -webkit-box;
+    margin: 0.15rem 0 0;
+    overflow: hidden;
+    color: #aeb8b0;
+    font-size: 0.82rem;
+    line-height: 1.75;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .app-card__meta {
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.8rem;
+    color: #7f8a81;
+    font-size: 0.7rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .app-card__meta > span {
+    gap: 0.35rem;
+  }
+
+  @keyframes new-tool-shine {
+    0%,
+    72% {
+      transform: translateX(420%) rotate(12deg);
+    }
+    100% {
+      transform: translateX(-420%) rotate(12deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-card,
+    .app-card.is-new::after {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>

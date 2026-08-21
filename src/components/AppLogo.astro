@@ -1,21 +1,29 @@
 ---
 const { app } = Astro.props;
 
-const initial =
-  app?.name?.en?.charAt(0)?.toUpperCase() || "?";
+const englishName = app?.name?.en?.trim() ?? "";
+const initials =
+  englishName
+    .match(/[a-z0-9]+/gi)
+    ?.slice(0, 2)
+    .map((part) => part.charAt(0))
+    .join("")
+    .toUpperCase() || "?";
+const accessibleLabel = englishName ? `لوگوی ${englishName}` : "لوگوی ابزار";
 ---
 
-<span class="app-logo" aria-hidden="true">
-  <span class="app-logo__fallback" dir="ltr">
-    {initial}
+<span class="app-logo" role="img" aria-label={accessibleLabel}>
+  <span class="app-logo__fallback" dir="ltr" aria-hidden="true">
+    {initials}
   </span>
 
   <img
     src={app.logo}
-    alt=""
+    alt={accessibleLabel}
     loading="lazy"
     decoding="async"
     data-app-logo-image
+    data-logo-state="pending"
   />
 </span>
 
@@ -23,14 +31,21 @@ const initial =
   document
     .querySelectorAll<HTMLImageElement>("[data-app-logo-image]")
     .forEach((image) => {
-      const hideBrokenImage = () => {
-        image.hidden = true;
+      const showLoadedImage = () => {
+        image.dataset.logoState = "loaded";
       };
 
+      const hideBrokenImage = () => {
+        image.hidden = true;
+        image.dataset.logoState = "missing";
+      };
+
+      image.addEventListener("load", showLoadedImage, { once: true });
       image.addEventListener("error", hideBrokenImage, { once: true });
 
-      if (image.complete && image.naturalWidth === 0) {
-        hideBrokenImage();
+      if (image.complete) {
+        if (image.naturalWidth > 0) showLoadedImage();
+        else hideBrokenImage();
       }
     });
 </script>
@@ -43,6 +58,11 @@ const initial =
     display: grid;
     place-items: center;
     overflow: hidden;
+    color: #22e863;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(34, 232, 99, 0.1), transparent 55%),
+      #0b100c;
+    border: 1px solid rgba(117, 255, 159, 0.18);
     border-radius: inherit;
   }
 
@@ -51,10 +71,11 @@ const initial =
     inset: 0;
     display: grid;
     place-items: center;
-    color: #22e863;
+    color: currentColor;
     font-family: "JetBrains Mono", monospace;
     font-size: 0.9em;
     font-weight: 700;
+    letter-spacing: -0.04em;
   }
 
   .app-logo img {
@@ -64,5 +85,10 @@ const initial =
     height: 100%;
     display: block;
     object-fit: contain;
+    opacity: 0;
+  }
+
+  .app-logo img[data-logo-state="loaded"] {
+    opacity: 1;
   }
 </style>
