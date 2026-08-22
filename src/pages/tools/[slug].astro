@@ -1,9 +1,13 @@
 ---
 import AppLogo from "../../components/AppLogo.astro";
 import PageShell from "../../components/layout/PageShell.astro";
+import AnalysisSection from "../../components/sakhtanie/AnalysisSection.astro";
 import BuildScore from "../../components/sakhtanie/BuildScore.astro";
+import CostBreakdown from "../../components/sakhtanie/CostBreakdown.astro";
+import SkillMatrix from "../../components/sakhtanie/SkillMatrix.astro";
 import VerdictBadge from "../../components/sakhtanie/VerdictBadge.astro";
 import VerdictBlock from "../../components/sakhtanie/VerdictBlock.astro";
+import Card from "../../components/ui/Card.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { apps } from "../../lib/apps";
 import { categoryDefinitions } from "../../lib/categories";
@@ -28,18 +32,6 @@ const categoryLabels = Object.fromEntries(
     category.shortTitle,
   ])
 ) as Record<string, string>;
-
-const requirementLabels: Record<string, string> = {
-  frontend: "رابط کاربری",
-  backend: "بک‌اند",
-  database: "دیتابیس",
-  api: "API",
-  ai: "هوش مصنوعی",
-  infrastructure: "زیرساخت",
-  authentication: "احراز هویت",
-  automation: "اتوماسیون",
-  storage: "ذخیره‌سازی",
-};
 
 const monetizationLabels: Record<string, string> = {
   subscription: "اشتراک",
@@ -265,62 +257,36 @@ const faqSchema = {
           }
         </section>
 
-        <section id="build" class="content-panel">
-          <span class="panel-kicker">BUILD PLAN</span>
-          <h2>مسیر ساخت</h2>
+        <AnalysisSection
+          id="build"
+          eyebrow="BUILD PLAN"
+          title="مسیر ساخت"
+        >
+          <Card>
+            <p class="build-rationale__label">CORE LOOP</p>
+            <p class="build-rationale__copy">{app.build.coreLoop}</p>
+          </Card>
+        </AnalysisSection>
 
-          <div class="core-loop">
-            <span>CORE LOOP</span>
-            <p>{app.build.coreLoop}</p>
-          </div>
+        <SkillMatrix app={app} />
 
-          <h3>نیازمندی‌های اصلی</h3>
-
-          <div class="requirements-grid">
-            {
-              app.build.requirements.map(
-                (
-                  requirement: {
-                    type: string;
-                    label: string;
-                  },
-                  index: number
-                ) => (
-                  <div class="requirement-card">
-                    <span dir="ltr">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <div>
-                      <small>
-                        {requirementLabels[requirement.type] ??
-                          requirement.type}
-                      </small>
-
-                      <strong>{requirement.label}</strong>
-                    </div>
-                  </div>
-                )
-              )
-            }
-          </div>
-
-          {
-            app.build.limitations.length > 0 && (
-              <div class="limitations-block">
-                <h3>محدودیت‌های نسخه قابل ساخت</h3>
-
-                <ul>
+        {
+          app.build.limitations.length > 0 && (
+            <AnalysisSection title="محدودیت‌های نسخه قابل ساخت">
+              <Card>
+                <ul class="build-limitations">
                   {app.build.limitations.map(
                     (item: string) => (
                       <li>{item}</li>
                     )
                   )}
                 </ul>
-              </div>
-            )
-          }
-        </section>
+              </Card>
+            </AnalysisSection>
+          )
+        }
+
+        <CostBreakdown app={app} />
 
         <section id="prompt" class="content-panel prompt-panel">
           <div class="prompt-heading">
@@ -852,8 +818,6 @@ const faqSchema = {
     font-size: 16px;
   }
 
-  .core-loop,
-  .limitations-block,
   .missing-block {
     margin-top: 22px;
     padding: 18px;
@@ -862,17 +826,31 @@ const faqSchema = {
     background: #111612;
   }
 
-  .core-loop > span {
-    color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
+  .build-rationale__label {
+    margin: 0;
+    color: var(--color-brand-primary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
   }
 
-  .core-loop p {
-    margin: 9px 0 0;
-    color: #9ca59e;
-    font-size: 13px;
-    line-height: 2;
+  .build-rationale__copy {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+  }
+
+  .build-limitations {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding-inline-start: var(--space-5);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-body);
   }
 
   .comparison-grid {
@@ -909,8 +887,7 @@ const faqSchema = {
     background: rgba(34, 232, 99, 0.05) !important;
   }
 
-  .missing-block ul,
-  .limitations-block ul {
+  .missing-block ul {
     display: grid;
     gap: 10px;
     margin: 0;
@@ -918,43 +895,6 @@ const faqSchema = {
     color: #9ca59e;
     font-size: 13px;
     line-height: 1.9;
-  }
-
-  .requirements-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .requirement-card {
-    min-height: 82px;
-    display: grid;
-    grid-template-columns: 30px minmax(0, 1fr);
-    align-items: center;
-    gap: 12px;
-    padding: 14px;
-    border: 1px solid #253027;
-    border-radius: 11px;
-    background: #111612;
-  }
-
-  .requirement-card > span {
-    color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-  }
-
-  .requirement-card small {
-    display: block;
-    color: #6f7971;
-    font-size: 9px;
-  }
-
-  .requirement-card strong {
-    display: block;
-    margin-top: 6px;
-    color: #e8ebe9;
-    font-size: 12px;
   }
 
   .prompt-heading {
@@ -1293,7 +1233,6 @@ const faqSchema = {
     }
 
     .comparison-grid,
-    .requirements-grid,
     .scores-grid,
     .fit-grid,
     .related-grid {
