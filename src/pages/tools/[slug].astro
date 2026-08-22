@@ -5,6 +5,7 @@ import AnalysisSection from "../../components/sakhtanie/AnalysisSection.astro";
 import BuildScore from "../../components/sakhtanie/BuildScore.astro";
 import Comparison from "../../components/sakhtanie/Comparison.astro";
 import CostBreakdown from "../../components/sakhtanie/CostBreakdown.astro";
+import PromptBlock from "../../components/sakhtanie/PromptBlock.astro";
 import RelatedTools from "../../components/sakhtanie/RelatedTools.astro";
 import SkillMatrix from "../../components/sakhtanie/SkillMatrix.astro";
 import VerdictBadge from "../../components/sakhtanie/VerdictBadge.astro";
@@ -234,49 +235,7 @@ const faqSchema = {
 
         <CostBreakdown app={app} />
 
-        <section id="prompt" class="content-panel prompt-panel">
-          <div class="prompt-heading">
-            <div>
-              <span class="panel-kicker">STARTER PROMPT</span>
-              <h2>{app.build.prompt.title}</h2>
-            </div>
-
-            <button
-              class="copy-prompt"
-              type="button"
-              data-copy-prompt
-            >
-              کپی Prompt
-            </button>
-          </div>
-
-          <pre><code data-prompt-content>{app.build.prompt.content}</code></pre>
-
-          <div class="prompt-meta">
-            <span>
-              زبان:
-              <strong dir="ltr">
-                {app.build.prompt.language}
-              </strong>
-            </span>
-
-            <span>
-              وضعیت:
-              <strong>
-                {app.build.prompt.tested
-                  ? "تست‌شده"
-                  : "تست‌نشده"}
-              </strong>
-            </span>
-
-            <span>
-              آخرین به‌روزرسانی:
-              <strong dir="ltr">
-                {app.build.prompt.lastUpdated}
-              </strong>
-            </span>
-          </div>
-        </section>
+        <PromptBlock id="prompt" prompt={app.build.prompt} />
 
         <section id="scores" class="content-panel">
           <span class="panel-kicker">SCORES</span>
@@ -434,44 +393,6 @@ const faqSchema = {
     )
   }
 </BaseLayout>
-
-<script>
-  document
-    .querySelectorAll("[data-copy-prompt]")
-    .forEach((button) => {
-      button.addEventListener("click", async () => {
-        const panel = button.closest(".prompt-panel");
-        const prompt = panel?.querySelector(
-          "[data-prompt-content]"
-        );
-
-        if (!prompt) {
-          return;
-        }
-
-        const originalText = button.textContent;
-
-        try {
-          await navigator.clipboard.writeText(
-            prompt.textContent.trim()
-          );
-
-          button.textContent = "کپی شد";
-
-          window.setTimeout(() => {
-            button.textContent = originalText;
-          }, 1500);
-        } catch {
-          button.textContent = "خطا در کپی";
-
-          window.setTimeout(() => {
-            button.textContent = originalText;
-          }, 1500);
-        }
-      });
-    });
-</script>
-
 
 <script>
   import { track } from "../../lib/analytics";
@@ -745,60 +666,6 @@ const faqSchema = {
     line-height: var(--line-height-body);
   }
 
-  .prompt-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .copy-prompt {
-    min-height: 36px;
-    padding: 6px 12px;
-    border: 1px solid rgba(34, 232, 99, 0.42);
-    border-radius: 8px;
-    background: rgba(34, 232, 99, 0.08);
-    color: #22e863;
-    font-family: inherit;
-    font-size: 11px;
-    cursor: pointer;
-  }
-
-  .copy-prompt:hover {
-    background: rgba(34, 232, 99, 0.14);
-  }
-
-  .prompt-panel pre {
-    max-height: 480px;
-    margin: 4px 0 0;
-    padding: 20px;
-    overflow: auto;
-    direction: ltr;
-    border: 1px solid #253027;
-    border-radius: 12px;
-    background: #090d0a;
-    color: #d9dfda;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
-    line-height: 1.9;
-    text-align: left;
-    white-space: pre-wrap;
-  }
-
-  .prompt-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 18px;
-    margin-top: 13px;
-    color: #707a72;
-    font-size: 9px;
-  }
-
-  .prompt-meta strong {
-    color: #aab2ac;
-    font-weight: 500;
-  }
-
   .scores-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1015,18 +882,6 @@ const faqSchema = {
       grid-template-columns: 1fr;
     }
 
-    .prompt-heading {
-      flex-direction: column;
-    }
-
-    .copy-prompt {
-      width: 100%;
-    }
-
-    .prompt-panel pre {
-      padding: 15px;
-      font-size: 11px;
-    }
   }
 
   /* SAK-013.4 MOBILE FIX START */
