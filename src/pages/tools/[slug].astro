@@ -1,8 +1,7 @@
 ---
 import AppLogo from "../../components/AppLogo.astro";
+import PageShell from "../../components/layout/PageShell.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
 import { apps } from "../../lib/apps";
 import { categoryDefinitions } from "../../lib/categories";
 
@@ -174,14 +173,11 @@ const faqSchema = {
   title={`آیا می‌شه ${app.name.en} ساخت؟ | ساختنیه؟`}
   description={app.summary}
 >
-  <Header />
-
-  <main
-    tabindex="-1"
-    id="main-content"
-    class="tool-page"
-    data-tool-slug={app.slug}
-  >
+  <PageShell>
+    <div
+      class="tool-page"
+      data-tool-slug={app.slug}
+    >
     <div class="tool-breadcrumb">
       <a href="/">ساختنیه؟</a>
       <span>/</span>
@@ -605,9 +601,8 @@ const faqSchema = {
         </a>
       </aside>
     </section>
-  </main>
-
-  <Footer />
+    </div>
+  </PageShell>
 
   <script
     type="application/ld+json"
