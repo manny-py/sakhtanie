@@ -1,0 +1,243 @@
+---
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  compact?: boolean;
+}
+
+const {
+  app,
+  compact = false,
+} = Astro.props;
+
+const timeLabels: Record<string, string> = {
+  "few-hours": "چند ساعت",
+  "one-day": "یک روز",
+  "few-days": "چند روز",
+  "one-weekend": "یک آخر هفته",
+  "one-week": "یک هفته",
+  "few-weeks": "چند هفته",
+  "one-month": "یک ماه",
+  "few-months": "چند ماه",
+};
+
+const skillLabels: Record<string, string> = {
+  beginner: "مقدماتی",
+  intermediate: "متوسط",
+  advanced: "پیشرفته",
+  expert: "حرفه‌ای",
+};
+
+const timeEstimate = app.build?.timeEstimate?.trim();
+const skillLevel = app.build?.skillLevel?.trim();
+const difficulty = Number.isFinite(app.scores?.technicalComplexity)
+  ? app.scores.technicalComplexity
+  : null;
+const buildCost = Number.isFinite(app.scores?.buildCost)
+  ? app.scores.buildCost
+  : null;
+
+const timeLabel = timeEstimate
+  ? timeLabels[timeEstimate] ?? timeEstimate
+  : null;
+const skillLabel = skillLevel
+  ? skillLabels[skillLevel] ?? skillLevel
+  : null;
+
+const isExpectedScore = (value: number | null): value is number =>
+  value !== null && value >= 1 && value <= 5;
+
+const hasMetrics =
+  timeLabel !== null ||
+  skillLabel !== null ||
+  difficulty !== null ||
+  buildCost !== null;
+---
+
+{
+  hasMetrics && (
+    <section
+      class:list={["build-score", compact && "build-score--compact"]}
+      aria-label="پروفایل ساخت"
+      data-compact={compact ? "" : undefined}
+    >
+      <Card class="build-score__card" variant="default">
+        <dl class="build-score__metrics">
+          {timeLabel && (
+            <div class="build-score__metric">
+              <dt>زمان ساخت</dt>
+              <dd dir={timeLabels[timeEstimate ?? ""] ? undefined : "ltr"}>
+                {timeLabel}
+              </dd>
+            </div>
+          )}
+
+          {difficulty !== null && (
+            <div class="build-score__metric">
+              <dt>سختی</dt>
+              <dd>
+                <span
+                  class="build-score__number"
+                  aria-label={`${difficulty} از ۵`}
+                >
+                  <span aria-hidden="true" dir="ltr">{difficulty}/5</span>
+                </span>
+                {isExpectedScore(difficulty) && (
+                  <meter
+                    class="build-score__meter build-score__meter--difficulty"
+                    min="1"
+                    max="5"
+                    value={difficulty}
+                    aria-hidden="true"
+                  >
+                    {difficulty}/5
+                  </meter>
+                )}
+              </dd>
+            </div>
+          )}
+
+          {skillLabel && (
+            <div class="build-score__metric">
+              <dt>سطح مهارت</dt>
+              <dd dir={skillLabels[skillLevel ?? ""] ? undefined : "ltr"}>
+                {skillLabel}
+              </dd>
+            </div>
+          )}
+
+          {buildCost !== null && (
+            <div class="build-score__metric">
+              <dt>هزینه نسبی ساخت</dt>
+              <dd>
+                <span
+                  class="build-score__number"
+                  aria-label={`${buildCost} از ۵`}
+                >
+                  <span aria-hidden="true" dir="ltr">{buildCost}/5</span>
+                </span>
+                {isExpectedScore(buildCost) && (
+                  <meter
+                    class="build-score__meter build-score__meter--cost"
+                    min="1"
+                    max="5"
+                    value={buildCost}
+                    aria-hidden="true"
+                  >
+                    {buildCost}/5
+                  </meter>
+                )}
+              </dd>
+            </div>
+          )}
+        </dl>
+      </Card>
+    </section>
+  )
+}
+
+<style>
+  .build-score {
+    min-width: 0;
+  }
+
+  .build-score__metrics {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) * 2)), 1fr)
+    );
+    gap: var(--space-5);
+    margin: 0;
+  }
+
+  .build-score__metric {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .build-score__metric dt {
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+  }
+
+  .build-score__metric dd {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-small);
+    overflow-wrap: anywhere;
+  }
+
+  .build-score__number {
+    width: fit-content;
+  }
+
+  .build-score__meter {
+    width: 100%;
+    height: var(--space-2);
+    appearance: none;
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .build-score__meter::-webkit-meter-bar {
+    background: var(--color-bg-secondary);
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .build-score__meter::-webkit-meter-optimum-value {
+    border-radius: var(--radius-full);
+  }
+
+  .build-score__meter--difficulty {
+    accent-color: var(--color-brand-primary);
+  }
+
+  .build-score__meter--difficulty::-webkit-meter-optimum-value,
+  .build-score__meter--difficulty::-moz-meter-bar {
+    background: var(--color-brand-primary);
+  }
+
+  .build-score__meter--cost {
+    accent-color: var(--color-brand-secondary);
+  }
+
+  .build-score__meter--cost::-webkit-meter-optimum-value,
+  .build-score__meter--cost::-moz-meter-bar {
+    background: var(--color-brand-secondary);
+  }
+
+  .build-score--compact :global(.build-score__card) {
+    padding: var(--space-3);
+  }
+
+  .build-score--compact .build-score__metrics {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) + var(--space-7))), 1fr)
+    );
+    gap: var(--space-3);
+  }
+
+  .build-score--compact .build-score__metric,
+  .build-score--compact .build-score__metric dd {
+    gap: var(--space-1);
+  }
+</style>
