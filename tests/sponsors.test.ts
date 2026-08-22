@@ -352,15 +352,12 @@ test("rejects an invalid campaign reference", () => {
   );
 });
 
-test("resolves an unassigned placement as an explicit inactive state", () => {
-  assert.deepEqual(resolveGlobalSponsorPlacement("desktop-left-1"), {
-    placement: {
-      id: "desktop-left-1",
-      campaignId: null,
-    },
-    campaign: null,
-    active: false,
-  });
+test("resolves the QA fixture placement as an explicit active state", () => {
+  const resolved = resolveGlobalSponsorPlacement("desktop-left-1");
+
+  assert.equal(resolved.placement.campaignId, "qa-sponsor-one");
+  assert.equal(resolved.campaign?.id, "qa-sponsor-one");
+  assert.equal(resolved.active, true);
 });
 
 test("resolves one validated campaign across multiple placements", () => {
@@ -403,15 +400,21 @@ test("rejects duplicate campaign definitions", () => {
   );
 });
 
-test("keeps every default global placement unassigned", () => {
+test("keeps every QA global placement assigned to a valid active campaign", () => {
   assert.equal(globalSponsorInventory.placements.length, 20);
   assert.equal(
     globalSponsorInventory.placements.every(
-      (placement) => placement.campaignId === null
+      (placement) => placement.campaignId !== null
     ),
     true
   );
-  assert.deepEqual(globalSponsorInventory.campaigns, {});
+  assert.equal(Object.keys(globalSponsorInventory.campaigns).length, 5);
+  assert.equal(
+    Object.values(globalSponsorInventory.campaigns).every(
+      (campaign) => campaign.active
+    ),
+    true
+  );
 });
 
 test("keeps one homepage premium placement valid and separate from global inventory", () => {

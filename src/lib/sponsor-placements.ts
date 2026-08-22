@@ -178,14 +178,32 @@ export function defineGlobalSponsorInventory(
   });
 }
 
-const unassignedGlobalPlacements = GLOBAL_SPONSOR_PLACEMENT_IDS.map((id) => ({
+const QA_CAMPAIGN_IDS = [
+  "qa-sponsor-one",
+  "qa-sponsor-two",
+  "qa-sponsor-three",
+  "qa-sponsor-four",
+  "qa-sponsor-five",
+] as const;
+
+const qaCampaigns = QA_CAMPAIGN_IDS.map((id, index) => ({
   id,
-  campaignId: null,
+  brand: `QA Sponsor ${index + 1}`,
+  title: `کمپین آزمایشی معتبر شماره ${index + 1}`,
+  description: "Fixture موقت برای QA بصری Sponsor System؛ مناسب محیط Production نیست.",
+  href: `https://example.com/sakhtanie-sponsor-qa/${index + 1}`,
+  active: true,
+  ctaLabel: "مشاهده تست",
+}));
+
+const assignedGlobalPlacements = GLOBAL_SPONSOR_PLACEMENT_IDS.map((id, index) => ({
+  id,
+  campaignId: QA_CAMPAIGN_IDS[index % QA_CAMPAIGN_IDS.length],
 })) satisfies readonly SponsorPlacement[];
 
 export const globalSponsorInventory = defineGlobalSponsorInventory({
-  campaigns: [],
-  placements: unassignedGlobalPlacements,
+  campaigns: qaCampaigns,
+  placements: assignedGlobalPlacements,
 });
 
 export function getGlobalSponsorPlacements(

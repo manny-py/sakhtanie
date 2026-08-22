@@ -15,6 +15,6 @@ test("monetization is enabled only by the exact public value true", () => {
   assert.equal(parseMonetizationEnabled("true"), true);
 });
 
-test("monetization defaults off when the build variable is unavailable", () => {
-  assert.equal(MONETIZATION_ENABLED, false);
+test("QA fixture forces monetization on when the build variable is unavailable", () => {
+  assert.equal(MONETIZATION_ENABLED, true);
 });
