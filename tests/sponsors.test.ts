@@ -1,7 +1,20 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { sponsorSchema } from "../src/lib/sponsors.ts";
+import {
+  GLOBAL_SPONSOR_PLACEMENT_IDS,
+  SPONSOR_SURFACES,
+  defineGlobalSponsorInventory,
+  getGlobalSponsorPlacements,
+  globalSponsorInventory,
+  resolveGlobalSponsorPlacement,
+  type GlobalSponsorPlacementId,
+} from "../src/lib/sponsor-placements.ts";
+import {
+  homepagePrimarySponsor,
+  homepageSecondarySponsor,
+  sponsorSchema,
+} from "../src/lib/sponsors.ts";
 
 const validActiveSponsor = {
   id: "homepage-primary",
@@ -92,6 +105,16 @@ test("rejects a javascript destination", () => {
   );
 });
 
+test("rejects destination URLs containing credentials", () => {
+  assert.equal(
+    sponsorSchema.safeParse({
+      ...validActiveSponsor,
+      href: "https://user:password@example.com/product",
+    }).success,
+    false
+  );
+});
+
 test("rejects an exact blocked URL shortener hostname", () => {
   assert.equal(
     sponsorSchema.safeParse({
@@ -166,6 +189,16 @@ test("rejects blank explicit logo alt text", () => {
   );
 });
 
+test("rejects logo alt text without a local sponsor asset", () => {
+  assert.equal(
+    sponsorSchema.safeParse({
+      ...validActiveSponsor,
+      logoAlt: "لوگوی Example Cloud",
+    }).success,
+    false
+  );
+});
+
 test("requires display content when a sponsor is active", () => {
   assert.equal(
     sponsorSchema.safeParse({
@@ -188,6 +221,212 @@ test("rejects arbitrary presentation and tracking fields", () => {
       trackingPixel: "https://tracker.example/pixel",
       className: "advertiser-controlled",
     }).success,
+    false
+  );
+});
+
+const canonicalUnassignedPlacements = GLOBAL_SPONSOR_PLACEMENT_IDS.map(
+  (id) => ({ id, campaignId: null })
+);
+
+function defineTestInventory(
+  overrides: {
+    campaigns?: Parameters<typeof defineGlobalSponsorInventory>[0]["campaigns"];
+    placements?: Parameters<typeof defineGlobalSponsorInventory>[0]["placements"];
+  } = {}
+) {
+  return defineGlobalSponsorInventory({
+    campaigns: overrides.campaigns ?? [],
+    placements: overrides.placements ?? canonicalUnassignedPlacements,
+  });
+}
+
+test("defines exactly 20 unique canonical global placement IDs", () => {
+  assert.equal(GLOBAL_SPONSOR_PLACEMENT_IDS.length, 20);
+  assert.equal(new Set(GLOBAL_SPONSOR_PLACEMENT_IDS).size, 20);
+});
+
+test("defines four ordered sponsor surfaces with five placements each", () => {
+  assert.deepEqual(SPONSOR_SURFACES, [
+    "desktop-left",
+    "desktop-right",
+    "mobile-top",
+    "mobile-bottom",
+  ]);
+
+  for (const surface of SPONSOR_SURFACES) {
+    assert.deepEqual(
+      getGlobalSponsorPlacements(surface).map((placement) => placement.id),
+      Array.from(
+        { length: 5 },
+        (_, index) => `${surface}-${index + 1}`
+      )
+    );
+  }
+});
+
+test("normalizes placement configuration to canonical deterministic order", () => {
+  const inventory = defineTestInventory({
+    placements: [...canonicalUnassignedPlacements].reverse(),
+  });
+
+  assert.deepEqual(
+    inventory.placements.map((placement) => placement.id),
+    GLOBAL_SPONSOR_PLACEMENT_IDS
+  );
+});
+
+test("rejects an unknown global placement", () => {
+  assert.throws(
+    () =>
+      defineTestInventory({
+        placements: [
+          ...canonicalUnassignedPlacements.slice(0, -1),
+          { id: "desktop-center-1", campaignId: null },
+        ],
+      }),
+    /Invalid option/
+  );
+});
+
+test("rejects a duplicate global placement", () => {
+  assert.throws(
+    () =>
+      defineTestInventory({
+        placements: [
+          ...canonicalUnassignedPlacements,
+          canonicalUnassignedPlacements[0],
+        ],
+      }),
+    /Duplicate global sponsor placement/
+  );
+});
+
+test("rejects an invalid placement ordinal", () => {
+  assert.throws(
+    () =>
+      defineTestInventory({
+        placements: [
+          ...canonicalUnassignedPlacements.slice(0, -1),
+          { id: "mobile-bottom-6", campaignId: null },
+        ],
+      }),
+    /Invalid option/
+  );
+});
+
+test("rejects an unknown sponsor surface", () => {
+  assert.throws(
+    () =>
+      defineTestInventory({
+        placements: [
+          ...canonicalUnassignedPlacements.slice(0, -1),
+          { id: "tablet-top-5", campaignId: null },
+        ],
+      }),
+    /Invalid option/
+  );
+});
+
+test("detects a missing canonical global placement", () => {
+  assert.throws(
+    () =>
+      defineTestInventory({
+        placements: canonicalUnassignedPlacements.slice(0, -1),
+      }),
+    /Missing canonical global sponsor placement: mobile-bottom-5/
+  );
+});
+
+test("rejects an invalid campaign reference", () => {
+  assert.throws(
+    () =>
+      defineTestInventory({
+        placements: canonicalUnassignedPlacements.map((placement, index) =>
+          index === 0
+            ? { ...placement, campaignId: "missing-campaign" }
+            : placement
+        ),
+      }),
+    /Unknown sponsor campaign missing-campaign/
+  );
+});
+
+test("resolves an unassigned placement as an explicit inactive state", () => {
+  assert.deepEqual(resolveGlobalSponsorPlacement("desktop-left-1"), {
+    placement: {
+      id: "desktop-left-1",
+      campaignId: null,
+    },
+    campaign: null,
+    active: false,
+  });
+});
+
+test("resolves one validated campaign across multiple placements", () => {
+  const campaign = {
+    ...validActiveSponsor,
+    id: "example-campaign",
+  };
+  const assignedIds = new Set<GlobalSponsorPlacementId>([
+    "desktop-left-1",
+    "mobile-top-1",
+  ]);
+  const inventory = defineTestInventory({
+    campaigns: [campaign],
+    placements: canonicalUnassignedPlacements.map((placement) => ({
+      ...placement,
+      campaignId: assignedIds.has(placement.id) ? campaign.id : null,
+    })),
+  });
+
+  for (const id of assignedIds) {
+    const resolved = resolveGlobalSponsorPlacement(id, inventory);
+    assert.equal(resolved.placement.campaignId, campaign.id);
+    assert.equal(resolved.campaign?.id, campaign.id);
+    assert.equal(resolved.active, true);
+  }
+});
+
+test("rejects duplicate campaign definitions", () => {
+  const campaign = {
+    ...validActiveSponsor,
+    id: "duplicate-campaign",
+  };
+
+  assert.throws(
+    () =>
+      defineTestInventory({
+        campaigns: [campaign, campaign],
+      }),
+    /Duplicate sponsor campaign/
+  );
+});
+
+test("keeps every default global placement unassigned", () => {
+  assert.equal(globalSponsorInventory.placements.length, 20);
+  assert.equal(
+    globalSponsorInventory.placements.every(
+      (placement) => placement.campaignId === null
+    ),
+    true
+  );
+  assert.deepEqual(globalSponsorInventory.campaigns, {});
+});
+
+test("keeps legacy homepage sponsor definitions valid and separate", () => {
+  assert.equal(sponsorSchema.safeParse(homepagePrimarySponsor).success, true);
+  assert.equal(sponsorSchema.safeParse(homepageSecondarySponsor).success, true);
+  assert.equal(
+    GLOBAL_SPONSOR_PLACEMENT_IDS.includes(
+      homepagePrimarySponsor.id as GlobalSponsorPlacementId
+    ),
+    false
+  );
+  assert.equal(
+    GLOBAL_SPONSOR_PLACEMENT_IDS.includes(
+      homepageSecondarySponsor.id as GlobalSponsorPlacementId
+    ),
     false
   );
 });
