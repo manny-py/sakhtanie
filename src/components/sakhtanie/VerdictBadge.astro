@@ -1,0 +1,66 @@
+---
+import Badge from "../ui/Badge.astro";
+
+type Verdict = "build" | "kinda" | "no";
+
+interface Props {
+  verdict: Verdict;
+}
+
+const { verdict } = Astro.props;
+
+const verdictMeta = {
+  build: {
+    label: "ساختنیه",
+    symbol: "✓",
+    badgeVariant: "success",
+  },
+  kinda: {
+    label: "ساختنیه، ولی...",
+    symbol: "⚠",
+    badgeVariant: "warning",
+  },
+  no: {
+    label: "نمی‌ارزه",
+    symbol: "×",
+    badgeVariant: "danger",
+  },
+} as const;
+
+const meta = verdictMeta[verdict];
+---
+
+<Badge variant={meta.badgeVariant} data-verdict={verdict}>
+  <span class:list={["verdict-badge", `verdict-badge--${verdict}`]}>
+    <span class="verdict-badge__symbol" aria-hidden="true">
+      {meta.symbol}
+    </span>
+    <span>{meta.label}</span>
+  </span>
+</Badge>
+
+<style>
+  .verdict-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .verdict-badge__symbol {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-label);
+  }
+
+  .verdict-badge--build .verdict-badge__symbol {
+    color: var(--color-verdict-build);
+  }
+
+  .verdict-badge--kinda .verdict-badge__symbol {
+    color: var(--color-verdict-kinda);
+  }
+
+  .verdict-badge--no .verdict-badge__symbol {
+    color: var(--color-verdict-no);
+  }
+</style>
