@@ -6,18 +6,21 @@ type Verdict = "build" | "kinda" | "no";
 
 interface Props {
   verdict: Verdict;
+  id?: string;
   title?: string;
   description?: string;
 }
 
 const {
   verdict,
+  id,
   title,
   description,
 } = Astro.props;
 ---
 
 <section
+  id={id}
   class:list={["verdict-block", `verdict-block--${verdict}`]}
   aria-label="نتیجه نهایی"
   data-verdict={verdict}
