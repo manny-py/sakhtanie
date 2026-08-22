@@ -4,9 +4,10 @@ import type { ResolvedSponsorPlacement } from "../../lib/sponsor-placements";
 interface Props {
   placement: ResolvedSponsorPlacement;
   clone?: boolean;
+  format?: "block" | "bar";
 }
 
-const { placement, clone = false } = Astro.props;
+const { placement, clone = false, format = "block" } = Astro.props;
 const sponsor = placement.campaign;
 const isActive = placement.active && sponsor !== null;
 const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
@@ -15,7 +16,10 @@ const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
 {
   isActive && sponsor && (
     <article
-      class="global-sponsor-block"
+      class:list={[
+        "global-sponsor-block",
+        format === "bar" && "global-sponsor-block--bar",
+      ]}
       data-global-sponsor-slot
       data-sponsor-slot={placement.placement.id}
       data-sponsor-id={placement.placement.id}
@@ -136,6 +140,53 @@ const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
   .global-sponsor-block__cta {
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .global-sponsor-block--bar {
+    inline-size: 120px;
+    block-size: 42px;
+    border-radius: var(--radius-sm);
+  }
+
+  .global-sponsor-block--bar .global-sponsor-block__link {
+    display: grid;
+    padding: var(--space-1) var(--space-2);
+    grid-template-columns: 28px minmax(0, 1fr);
+    grid-template-rows: 12px 18px;
+    column-gap: var(--space-2);
+    row-gap: 0;
+    align-content: center;
+  }
+
+  .global-sponsor-block--bar .global-sponsor-block__disclosure {
+    grid-column: 2;
+    grid-row: 1;
+    overflow: hidden;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .global-sponsor-block--bar .global-sponsor-block__identity {
+    display: contents;
+  }
+
+  .global-sponsor-block--bar .global-sponsor-block__logo,
+  .global-sponsor-block--bar .global-sponsor-block__fallback {
+    inline-size: 28px;
+    block-size: 28px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .global-sponsor-block--bar .global-sponsor-block__brand {
+    grid-column: 2;
+    grid-row: 2;
+    line-height: 1.25;
+  }
+
+  .global-sponsor-block--bar .global-sponsor-block__title,
+  .global-sponsor-block--bar .global-sponsor-block__cta {
+    display: none;
   }
 
   .global-sponsor-block__brand {

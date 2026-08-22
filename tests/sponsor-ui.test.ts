@@ -22,6 +22,14 @@ const pageShellSource = readFileSync(
   new URL("../src/components/layout/PageShell.astro", import.meta.url),
   "utf8",
 );
+const mobileBarSource = readFileSync(
+  new URL("../src/components/sponsor/MobileSponsorBar.astro", import.meta.url),
+  "utf8",
+);
+const nativeTrackingClientSource = readFileSync(
+  new URL("../src/components/SponsorSlotClient.astro", import.meta.url),
+  "utf8",
+);
 
 test("SponsorBlock uses the resolved placement ID and secure sponsor-link attributes", () => {
   assert.match(sponsorBlockSource, /data-sponsor-id=\{placement\.placement\.id\}/);
@@ -125,7 +133,78 @@ test("PageShell mounts global desktop chrome exactly once without changing landm
 });
 
 test("global chrome mounts one tracking client only when monetization and inventory are active", () => {
-  assert.match(globalChromeSource, /MONETIZATION_ENABLED && hasActiveDesktopPlacement/);
+  assert.match(globalChromeSource, /MONETIZATION_ENABLED && hasActiveGlobalPlacement/);
   assert.equal((globalChromeSource.match(/<SponsorTrackingClient \/>/g) ?? []).length, 1);
   assert.equal((globalChromeSource.match(/<DesktopSponsorRails inventory=\{inventory\} \/>/g) ?? []).length, 1);
+});
+
+test("mobile bars resolve five canonical placements for the requested surface", () => {
+  assert.match(mobileBarSource, /getGlobalSponsorPlacements\(surface, inventory\)/);
+  assert.match(mobileBarSource, /resolveGlobalSponsorPlacement\(placement\.id, inventory\)/);
+  assert.match(mobileBarSource, /\.filter\(\(placement\) => placement\.active\)/);
+  assert.match(mobileBarSource, /Math\.max\(0, 5 - activePlacements\.length\)/);
+  assert.match(mobileBarSource, /repeatPlacements\(activePlacements, 5\)/);
+});
+
+test("mobile bars stay absent for empty inventory and outside the mobile breakpoint", () => {
+  assert.match(mobileBarSource, /MONETIZATION_ENABLED && hasActivePlacement/);
+  assert.match(mobileBarSource, /\.mobile-sponsor-bar \{[\s\S]*display: none/);
+  assert.match(mobileBarSource, /@media \(max-width: 767px\)/);
+  assert.doesNotMatch(mobileBarSource, /تبلیغات شما/);
+});
+
+test("mobile marquee is continuous and pauses for pointer and keyboard users", () => {
+  assert.match(mobileBarSource, /inline-size: max-content/);
+  assert.match(mobileBarSource, /animation: sponsor-marquee 40s linear infinite/);
+  assert.match(mobileBarSource, /transform: translateX\(-50%\)/);
+  assert.match(mobileBarSource, /\.mobile-sponsor-bar:hover/);
+  assert.match(mobileBarSource, /\.mobile-sponsor-bar:focus-within/);
+  assert.match(mobileBarSource, /animation-play-state: paused/);
+});
+
+test("mobile reduced-motion mode exposes only a static scrollable canonical sequence", () => {
+  assert.match(mobileBarSource, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(mobileBarSource, /overflow-x: auto/);
+  assert.match(mobileBarSource, /animation: none/);
+  assert.match(
+    mobileBarSource,
+    /mobile-sponsor-bar__filler,[\s\S]*mobile-sponsor-bar__sequence--duplicate[\s\S]*display: none/,
+  );
+});
+
+test("mobile clones are non-focusable, hidden from accessibility, and excluded from impressions", () => {
+  assert.match(mobileBarSource, /<SponsorBlock placement=\{placement\} format="bar" clone \/>/);
+  assert.match(mobileBarSource, /aria-hidden="true"/);
+  assert.match(sponsorBlockSource, /tabindex=\{clone \? "-1" : undefined\}/);
+  assert.match(sponsorBlockSource, /data-sponsor-impression=\{clone \? undefined : "true"\}/);
+});
+
+test("PageShell orders top and bottom mobile bars around its existing landmarks", () => {
+  const topBar = pageShellSource.indexOf('<MobileSponsorBar surface="mobile-top" />');
+  const header = pageShellSource.indexOf("<Header />");
+  const main = pageShellSource.indexOf("<main");
+  const footer = pageShellSource.indexOf("<Footer />");
+  const bottomBar = pageShellSource.indexOf('<MobileSponsorBar surface="mobile-bottom" />');
+
+  assert.ok(topBar >= 0 && topBar < header);
+  assert.ok(header < main);
+  assert.ok(main < footer);
+  assert.ok(footer < bottomBar);
+  assert.equal((pageShellSource.match(/<GlobalSponsorChrome \/>/g) ?? []).length, 1);
+});
+
+test("global tracking activates for either desktop or mobile assignments", () => {
+  for (const surface of ["desktop-left", "desktop-right", "mobile-top", "mobile-bottom"]) {
+    assert.match(globalChromeSource, new RegExp(`"${surface}"`));
+  }
+
+  assert.equal((globalChromeSource.match(/<SponsorTrackingClient \/>/g) ?? []).length, 1);
+});
+
+test("legacy homepage tracking excludes global slots to prevent duplicate events", () => {
+  assert.match(
+    nativeTrackingClientSource,
+    /\[data-sponsor-slot\]:not\(\[data-global-sponsor-slot\]\)/,
+  );
+  assert.doesNotMatch(nativeTrackingClientSource, /data-global-sponsor-link/);
 });

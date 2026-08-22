@@ -4,6 +4,7 @@ import type { HTMLAttributes } from "astro/types";
 import Header from "../Header.astro";
 import Footer from "../Footer.astro";
 import GlobalSponsorChrome from "../sponsor/GlobalSponsorChrome.astro";
+import MobileSponsorBar from "../sponsor/MobileSponsorBar.astro";
 
 type Props = Omit<HTMLAttributes<"main">, "id" | "tabindex"> & {
   mainClass?: string;
@@ -24,6 +25,8 @@ const forwardedMainAttributes = Object.fromEntries(
 );
 ---
 
+<MobileSponsorBar surface="mobile-top" />
+
 <Header />
 
 <GlobalSponsorChrome />
@@ -38,3 +41,5 @@ const forwardedMainAttributes = Object.fromEntries(
 </main>
 
 <Footer />
+
+<MobileSponsorBar surface="mobile-bottom" />

@@ -1,0 +1,146 @@
+---
+import { MONETIZATION_ENABLED } from "../../lib/monetization";
+import {
+  getGlobalSponsorPlacements,
+  globalSponsorInventory,
+  resolveGlobalSponsorPlacement,
+  type GlobalSponsorInventory,
+  type ResolvedSponsorPlacement,
+} from "../../lib/sponsor-placements";
+import SponsorBlock from "./SponsorBlock.astro";
+
+type MobileSponsorSurface = "mobile-top" | "mobile-bottom";
+
+interface Props {
+  surface: MobileSponsorSurface;
+  inventory?: GlobalSponsorInventory;
+}
+
+const { surface, inventory = globalSponsorInventory } = Astro.props;
+const activePlacements = getGlobalSponsorPlacements(surface, inventory)
+  .map((placement) => resolveGlobalSponsorPlacement(placement.id, inventory))
+  .filter((placement) => placement.active);
+const hasActivePlacement = activePlacements.length > 0;
+
+function repeatPlacements(
+  placements: readonly ResolvedSponsorPlacement[],
+  count: number,
+): readonly ResolvedSponsorPlacement[] {
+  return Array.from({ length: count }, (_, index) => placements[index % placements.length]);
+}
+
+const canonicalFillers = hasActivePlacement
+  ? repeatPlacements(activePlacements, Math.max(0, 5 - activePlacements.length))
+  : [];
+const duplicateSequence = hasActivePlacement ? repeatPlacements(activePlacements, 5) : [];
+const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پایین صفحه";
+---
+
+{
+  MONETIZATION_ENABLED && hasActivePlacement && (
+    <aside
+      class="mobile-sponsor-bar"
+      aria-label={`تبلیغات ${positionLabel}`}
+      data-global-mobile-sponsors={surface}
+    >
+      <div class="mobile-sponsor-bar__viewport">
+        <div class="mobile-sponsor-bar__track">
+          <div
+            class="mobile-sponsor-bar__sequence"
+            data-mobile-sponsor-canonical-sequence
+          >
+            {activePlacements.map((placement) => (
+              <SponsorBlock placement={placement} format="bar" />
+            ))}
+            {canonicalFillers.map((placement) => (
+              <span class="mobile-sponsor-bar__filler" aria-hidden="true">
+                <SponsorBlock placement={placement} format="bar" clone />
+              </span>
+            ))}
+          </div>
+
+          <div
+            class="mobile-sponsor-bar__sequence mobile-sponsor-bar__sequence--duplicate"
+            aria-hidden="true"
+            data-mobile-sponsor-duplicate-sequence
+          >
+            {duplicateSequence.map((placement) => (
+              <SponsorBlock placement={placement} format="bar" clone />
+            ))}
+          </div>
+        </div>
+      </div>
+    </aside>
+  )
+}
+
+<style>
+  .mobile-sponsor-bar {
+    display: none;
+    block-size: 42px;
+    overflow: hidden;
+    border-block: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+  }
+
+  .mobile-sponsor-bar__viewport {
+    block-size: 100%;
+    overflow: hidden;
+    direction: ltr;
+  }
+
+  .mobile-sponsor-bar__track {
+    display: flex;
+    inline-size: max-content;
+    block-size: 100%;
+    animation: sponsor-marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .mobile-sponsor-bar:hover .mobile-sponsor-bar__track,
+  .mobile-sponsor-bar:focus-within .mobile-sponsor-bar__track {
+    animation-play-state: paused;
+  }
+
+  .mobile-sponsor-bar__sequence {
+    display: flex;
+    flex: none;
+    block-size: 100%;
+    padding-inline-end: var(--space-2);
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .mobile-sponsor-bar__filler {
+    display: contents;
+  }
+
+  @keyframes sponsor-marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .mobile-sponsor-bar {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-sponsor-bar__viewport {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+    }
+
+    .mobile-sponsor-bar__track {
+      animation: none;
+      will-change: auto;
+    }
+
+    .mobile-sponsor-bar__filler,
+    .mobile-sponsor-bar__sequence--duplicate {
+      display: none;
+    }
+  }
+</style>
