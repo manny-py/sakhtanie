@@ -10,10 +10,7 @@ import FeaturedTools from "../components/FeaturedTools.astro";
 import AnalyticsSummary from "../components/AnalyticsSummary.astro";
 import SponsorSlot from "../components/SponsorSlot.astro";
 import HomeDiscovery from "../components/HomeDiscovery.astro";
-import {
-  homepagePrimarySponsor,
-  homepageSecondarySponsor,
-} from "../lib/sponsors";
+import { homepagePrimarySponsor } from "../lib/sponsors";
 ---
 
 <BaseLayout
@@ -39,11 +36,6 @@ import {
     <FeaturedTools />
 
     <AnalyticsSummary />
-
-    <SponsorSlot
-      sponsor={homepageSecondarySponsor}
-      variant="secondary"
-    />
 
     <HomeDiscovery />
   </PageShell>

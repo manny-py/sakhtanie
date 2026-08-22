@@ -30,6 +30,10 @@ const nativeTrackingClientSource = readFileSync(
   new URL("../src/components/SponsorSlotClient.astro", import.meta.url),
   "utf8",
 );
+const homepageSource = readFileSync(
+  new URL("../src/pages/index.astro", import.meta.url),
+  "utf8",
+);
 
 test("SponsorBlock uses the resolved placement ID and secure sponsor-link attributes", () => {
   assert.match(sponsorBlockSource, /data-sponsor-id=\{placement\.placement\.id\}/);
@@ -207,4 +211,10 @@ test("legacy homepage tracking excludes global slots to prevent duplicate events
     /\[data-sponsor-slot\]:not\(\[data-global-sponsor-slot\]\)/,
   );
   assert.doesNotMatch(nativeTrackingClientSource, /data-global-sponsor-link/);
+});
+
+test("homepage renders only the primary native premium SponsorSlot", () => {
+  assert.equal((homepageSource.match(/<SponsorSlot/g) ?? []).length, 1);
+  assert.match(homepageSource, /sponsor=\{homepagePrimarySponsor\}/);
+  assert.doesNotMatch(homepageSource, /homepageSecondarySponsor|homepage-secondary/);
 });

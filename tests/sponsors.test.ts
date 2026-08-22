@@ -11,8 +11,8 @@ import {
   type GlobalSponsorPlacementId,
 } from "../src/lib/sponsor-placements.ts";
 import {
+  HOMEPAGE_PREMIUM_PLACEMENT_ID,
   homepagePrimarySponsor,
-  homepageSecondarySponsor,
   sponsorSchema,
 } from "../src/lib/sponsors.ts";
 
@@ -34,7 +34,7 @@ test("accepts a valid active native sponsor", () => {
 test("accepts a valid inactive placeholder", () => {
   assert.equal(
     sponsorSchema.safeParse({
-      id: "homepage-secondary",
+      id: "inactive-test-placement",
       brand: "",
       title: "",
       description: "",
@@ -414,18 +414,13 @@ test("keeps every default global placement unassigned", () => {
   assert.deepEqual(globalSponsorInventory.campaigns, {});
 });
 
-test("keeps legacy homepage sponsor definitions valid and separate", () => {
+test("keeps one homepage premium placement valid and separate from global inventory", () => {
   assert.equal(sponsorSchema.safeParse(homepagePrimarySponsor).success, true);
-  assert.equal(sponsorSchema.safeParse(homepageSecondarySponsor).success, true);
+  assert.equal(homepagePrimarySponsor.id, HOMEPAGE_PREMIUM_PLACEMENT_ID);
+  assert.equal(GLOBAL_SPONSOR_PLACEMENT_IDS.length + 1, 21);
   assert.equal(
     GLOBAL_SPONSOR_PLACEMENT_IDS.includes(
       homepagePrimarySponsor.id as GlobalSponsorPlacementId
-    ),
-    false
-  );
-  assert.equal(
-    GLOBAL_SPONSOR_PLACEMENT_IDS.includes(
-      homepageSecondarySponsor.id as GlobalSponsorPlacementId
     ),
     false
   );

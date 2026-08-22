@@ -115,17 +115,10 @@ export function defineSponsor(definition: SponsorDefinition): Sponsor {
   return sponsorSchema.parse(definition);
 }
 
-export const homepagePrimarySponsor = defineSponsor({
-  id: "homepage-primary",
-  brand: "",
-  title: "",
-  description: "",
-  href: "",
-  active: false,
-});
+export const HOMEPAGE_PREMIUM_PLACEMENT_ID = "homepage-primary" as const;
 
-export const homepageSecondarySponsor = defineSponsor({
-  id: "homepage-secondary",
+export const homepagePrimarySponsor = defineSponsor({
+  id: HOMEPAGE_PREMIUM_PLACEMENT_ID,
   brand: "",
   title: "",
   description: "",
