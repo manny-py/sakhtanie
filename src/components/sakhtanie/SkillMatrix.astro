@@ -1,0 +1,315 @@
+---
+import Badge from "../ui/Badge.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  compact?: boolean;
+}
+
+type RequirementGroup =
+  | "skills"
+  | "platform"
+  | "external"
+  | "other";
+
+interface RequirementItem {
+  type: string;
+  label: string;
+  group: RequirementGroup;
+}
+
+const {
+  app,
+  compact = false,
+} = Astro.props;
+
+const skillLabels: Record<string, string> = {
+  beginner: "مقدماتی",
+  intermediate: "متوسط",
+  advanced: "پیشرفته",
+  expert: "حرفه‌ای",
+};
+
+const requirementTypeGroups: Record<string, RequirementGroup> = {
+  analysis: "skills",
+  analytics: "skills",
+  automation: "skills",
+  backend: "skills",
+  cli: "skills",
+  "code-intelligence": "skills",
+  collaboration: "skills",
+  configuration: "skills",
+  data: "skills",
+  evaluation: "skills",
+  experimentation: "skills",
+  extensibility: "skills",
+  extension: "skills",
+  filesystem: "skills",
+  formula: "skills",
+  frontend: "skills",
+  git: "skills",
+  indexing: "skills",
+  orchestration: "skills",
+  plugin: "skills",
+  policy: "skills",
+  privacy: "skills",
+  retrieval: "skills",
+  search: "skills",
+  security: "skills",
+  testing: "skills",
+  tools: "skills",
+  visualization: "skills",
+  workflow: "skills",
+
+  cloud: "platform",
+  crawler: "platform",
+  database: "platform",
+  infrastructure: "platform",
+  media: "platform",
+  network: "platform",
+  networking: "platform",
+  platform: "platform",
+  publishing: "platform",
+  realtime: "platform",
+  runtime: "platform",
+  scheduler: "platform",
+  serverless: "platform",
+  storage: "platform",
+
+  ai: "external",
+  api: "external",
+  auth: "external",
+  authentication: "external",
+  billing: "external",
+  integration: "external",
+  integrations: "external",
+  payments: "external",
+  webhooks: "external",
+
+  research: "other",
+  support: "other",
+};
+
+const groupDefinitions: {
+  key: RequirementGroup;
+  title: string;
+}[] = [
+  {
+    key: "skills",
+    title: "مهارت‌ها و فناوری‌ها",
+  },
+  {
+    key: "platform",
+    title: "پلتفرم و زیرساخت",
+  },
+  {
+    key: "external",
+    title: "APIها و نیازمندی‌های خارجی",
+  },
+  {
+    key: "other",
+    title: "سایر نیازمندی‌ها",
+  },
+];
+
+const seenRequirements = new Set<string>();
+
+const requirements = (app.build?.requirements ?? []).flatMap(
+  (requirement): RequirementItem[] => {
+    const type = requirement.type?.trim();
+    const label = requirement.label?.trim();
+
+    if (!type || !label) return [];
+
+    const typeKey = type.toLocaleLowerCase("en");
+    const normalizedLabel = label.replace(/\s+/g, " ");
+    const deduplicationKey = `${typeKey}\u0000${normalizedLabel}`;
+
+    if (seenRequirements.has(deduplicationKey)) return [];
+    seenRequirements.add(deduplicationKey);
+
+    return [
+      {
+        type,
+        label,
+        group: requirementTypeGroups[typeKey] ?? "other",
+      },
+    ];
+  },
+);
+
+const groups = groupDefinitions
+  .map((definition) => ({
+    ...definition,
+    items: requirements.filter(
+      (requirement) => requirement.group === definition.key,
+    ),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const skillLevel = app.build?.skillLevel?.trim();
+const skillLabel = skillLevel
+  ? skillLabels[skillLevel] ?? skillLevel
+  : null;
+const hasContent = skillLabel !== null || groups.length > 0;
+---
+
+{
+  hasContent && (
+    <section
+      class:list={["skill-matrix", compact && "skill-matrix--compact"]}
+      aria-label="مهارت‌ها و نیازمندی‌های فنی"
+      data-compact={compact ? "" : undefined}
+    >
+      <Card class="skill-matrix__card" variant="default">
+        <header class="skill-matrix__header">
+          <h2 class="skill-matrix__title">
+            مهارت‌ها و نیازمندی‌های فنی
+          </h2>
+
+          {skillLabel && (
+            <div class="skill-matrix__level">
+              <span>سطح کلی مهارت</span>
+              <Badge variant="info">
+                <span dir={skillLabels[skillLevel ?? ""] ? undefined : "auto"}>
+                  {skillLabel}
+                </span>
+              </Badge>
+            </div>
+          )}
+        </header>
+
+        {groups.length > 0 && (
+          <div class="skill-matrix__groups">
+            {groups.map((group) => (
+              <section class="skill-matrix__group">
+                <h3>{group.title}</h3>
+
+                <ul>
+                  {group.items.map((requirement) => (
+                    <li data-requirement-type={requirement.type}>
+                      <Badge class="skill-matrix__item" variant="default">
+                        <span dir="auto">{requirement.label}</span>
+                      </Badge>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        )}
+      </Card>
+    </section>
+  )
+}
+
+<style>
+  .skill-matrix {
+    min-width: 0;
+  }
+
+  :global(.skill-matrix__card) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .skill-matrix__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .skill-matrix__title {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+  }
+
+  .skill-matrix__level {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+  }
+
+  .skill-matrix__groups {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) * 3)), 1fr)
+    );
+    gap: var(--space-5);
+  }
+
+  .skill-matrix__group {
+    min-width: 0;
+  }
+
+  .skill-matrix__group h3 {
+    margin: 0 0 var(--space-3);
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-small);
+  }
+
+  .skill-matrix__group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .skill-matrix__group li {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  :global(.skill-matrix__item) {
+    max-width: 100%;
+    align-items: flex-start;
+    padding-block: var(--space-1);
+    text-align: start;
+    white-space: normal;
+  }
+
+  .skill-matrix--compact :global(.skill-matrix__card) {
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+
+  .skill-matrix--compact .skill-matrix__title {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+
+  .skill-matrix--compact .skill-matrix__groups {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .skill-matrix--compact .skill-matrix__group h3 {
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+  }
+
+  .skill-matrix--compact .skill-matrix__group ul {
+    gap: var(--space-1);
+  }
+</style>
