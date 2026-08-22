@@ -1,0 +1,109 @@
+:root {
+  /* Colors */
+  --color-bg-primary: #0b0f14;
+  --color-bg-secondary: #111827;
+
+  --color-surface: #161d27;
+  --color-surface-hover: #1b2430;
+  --color-surface-elevated: #202a36;
+
+  --color-border: #263241;
+  --color-border-strong: #3a4a5e;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  --color-brand-primary: #3b82f6;
+  --color-brand-secondary: #8b5cf6;
+
+  --color-verdict-build: #22c55e;
+  --color-verdict-kinda: #eab308;
+  --color-verdict-no: #ef4444;
+
+  /* Typography */
+  --font-primary: "Vazirmatn", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --font-size-display: 48px;
+  --font-weight-display: 800;
+  --line-height-display: 1.2;
+
+  --font-size-h1: 36px;
+  --font-weight-h1: 700;
+  --line-height-h1: 1.35;
+
+  --font-size-h2: 28px;
+  --font-weight-h2: 700;
+  --line-height-h2: 1.45;
+
+  --font-size-h3: 22px;
+  --font-weight-h3: 600;
+  --line-height-h3: 1.5;
+
+  --font-size-body-lg: 18px;
+  --font-weight-body-lg: 400;
+  --line-height-body-lg: 1.8;
+
+  --font-size-body: 16px;
+  --font-weight-body: 400;
+  --line-height-body: 1.75;
+
+  --font-size-small: 14px;
+  --font-weight-small: 400;
+  --line-height-small: 1.7;
+
+  --font-size-label: 12px;
+  --font-weight-label: 500;
+  --line-height-label: 1.5;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-normal: 180ms;
+  --motion-slow: 280ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-elevated: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-main: 1280px;
+  --sponsor-rail-width: 160px;
+  --sponsor-block-size: 140px;
+  --layout-gap: 24px;
+
+  /*
+   * Breakpoints:
+   * Mobile: below 768px
+   * Tablet: 768px–1023px
+   * Desktop: 1024px and above
+   * Wide sponsor layout: 1700px and above
+   */
+  --breakpoint-mobile-max: 767px;
+  --breakpoint-tablet-min: 768px;
+  --breakpoint-tablet-max: 1023px;
+  --breakpoint-desktop-min: 1024px;
+  --breakpoint-wide-sponsor-min: 1700px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 1ms;
+    --motion-normal: 1ms;
+    --motion-slow: 1ms;
+  }
+}
