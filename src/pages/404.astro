@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import PageShell from "../components/layout/PageShell.astro";
 ---
 
 <BaseLayout
@@ -10,9 +9,7 @@ import Footer from "../components/Footer.astro";
   robots="noindex, follow"
 >
 
-<Header />
-
-<main tabindex="-1" id="main-content" class="container">
+<PageShell class="container">
 
 <section style="padding:80px 0;text-align:center">
 
@@ -40,8 +37,6 @@ color:white;
 
 </section>
 
-</main>
-
-<Footer />
+</PageShell>
 
 </BaseLayout>

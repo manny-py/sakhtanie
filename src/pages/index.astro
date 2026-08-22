@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import PageShell from "../components/layout/PageShell.astro";
 import HeroTerminal from "../components/HeroTerminal.astro";
 import SearchBox from "../components/SearchBox.astro";
 import CategoryGrid from "../components/CategoryGrid.astro";
@@ -21,9 +20,7 @@ import {
   title="ساختنیه؟ | بررسی ابزارهایی که می‌شود با AI ساخت"
   description="ساختنیه بررسی می‌کند ساخت نسخه مشابه ابزارهای هوش مصنوعی، بهره‌وری، طراحی وب و اتوماسیون از نظر فنی، زمان، هزینه و ارزش محصول چقدر منطقی است."
 >
-  <Header />
-
-  <main tabindex="-1" id="main-content" class="container home-main">
+  <PageShell class="container home-main">
     <HeroTerminal />
 
     <SearchBox />
@@ -49,9 +46,7 @@ import {
     />
 
     <HomeDiscovery />
-  </main>
-
-  <Footer />
+  </PageShell>
 </BaseLayout>
 
 <style>
