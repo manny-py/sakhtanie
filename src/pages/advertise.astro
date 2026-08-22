@@ -16,20 +16,35 @@ const contactHref = `mailto:${advertisingEmail}?subject=${advertisingSubject}`;
 const placements = [
   {
     index: "01",
-    code: "FEATURED",
-    title: "Featured Sponsor",
+    code: "GLOBAL_DESKTOP",
+    title: "Global Desktop",
     description:
-      "جایگاه اصلی حمایت مالی در صفحه نخست که نزدیک بخش بالایی جست‌وجو و کشف ابزارها نمایش داده می‌شود.",
-    note: "بالاترین میزان دیده‌شدن میان جایگاه‌های فعلی ساختنیه؟",
+      "۱۰ جایگاه ثابت جهانی؛ پنج جایگاه در ریل چپ و پنج جایگاه در ریل راست، فقط روی نمایشگرهای عریضِ مناسب.",
+    note: "در عرض ۷۶۸ تا ۱۶۹۹ پیکسل نمایش داده نمی‌شود و تعداد جایگاه‌ها با ارتفاع امن viewport تنظیم می‌شود.",
   },
   {
     index: "02",
-    code: "DISCOVERY",
-    title: "Discovery Sponsor",
+    code: "GLOBAL_MOBILE",
+    title: "Global Mobile",
     description:
-      "جایگاه دوم صفحه نخست که عمیق‌تر در مسیر کشف و پس از معرفی ابزارهای منتخب قرار می‌گیرد.",
-    note: "مناسب برای معرفی زمینه‌ای در ادامه تجربه کشف ابزارها.",
+      "۱۰ جایگاه جهانی موبایل؛ پنج جایگاه در نوار بالا و پنج جایگاه در نوار پایین با نمایش افقی پیوسته.",
+    note: "زیر ۷۶۸ پیکسل فعال است؛ در حالت کاهش حرکت به فهرست ثابت و قابل پیمایش افقی تبدیل می‌شود.",
   },
+  {
+    index: "03",
+    code: "HOMEPAGE_PREMIUM",
+    title: "Homepage Premium",
+    description:
+      "یک جایگاه بومی و اختیاری در صفحه نخست که از موجودی جهانی مستقل است و با قالب کامل‌تر ساختنیه؟ نمایش داده می‌شود.",
+    note: "این جایگاه فقط در صفحه نخست وجود دارد و معادل جایگاه‌های فشرده ریل یا نوار موبایل نیست.",
+  },
+] as const;
+
+const editorialPrinciples = [
+  "حامی مالی نمی‌تواند رأی نهایی یا متن تحلیل را بخرد یا تغییر دهد.",
+  "حمایت مالی هیچ اثری بر امتیازها، مقایسه یا نتیجه‌گیری تحریریه ندارد.",
+  "هر جایگاه فعال به‌وضوح به‌عنوان تبلیغ یا محتوای حمایت‌شده معرفی می‌شود.",
+  "لینک‌ها sponsored هستند و هیچ اسکریپت، iframe یا رهگیری شخص ثالث پذیرفته نمی‌شود.",
 ] as const;
 
 const advertiserProvides = [
@@ -161,7 +176,7 @@ const collaborationSteps = [
         <dl>
           <div>
             <dt>FORMAT</dt>
-            <dd>Native placement</dd>
+            <dd>Global + Native</dd>
           </div>
           <div>
             <dt>RENDER</dt>
@@ -182,13 +197,13 @@ const collaborationSteps = [
     <section class="advertise-section" aria-labelledby="placements-title">
       <div class="section-heading">
         <div>
-          <span class="system-kicker">PLACEMENTS // 02</span>
-          <h2 id="placements-title">جایگاه‌های فعلی</h2>
+          <span class="system-kicker">INVENTORY // 20 + 1</span>
+          <h2 id="placements-title">مدل‌های جایگاه</h2>
         </div>
 
         <p>
-          دو جایگاه کنترل‌شده در صفحه اصلی؛ بدون ادعای آمار،
-          نرخ کلیک یا دسترسی تضمین‌شده.
+          ۲۰ جایگاه جهانی با شناسه مستقل و یک جایگاه بومی ویژه
+          صفحه نخست؛ بدون ادعای آمار، نرخ کلیک یا دسترسی تضمین‌شده.
         </p>
       </div>
 
@@ -210,9 +225,9 @@ const collaborationSteps = [
       </div>
 
       <p class="section-footnote">
-        درباره همکاری‌های سفارشی می‌توان جداگانه گفت‌وگو کرد؛
-        در حال حاضر فقط دو جایگاه بالا ساختار استاندارد تبلیغاتی
-        سایت هستند.
+        این ۲۱ موقعیت هم‌زمان به یک کاربر نمایش داده نمی‌شوند؛
+        موجودی جهانی بر اساس اندازه نمایشگر فعال می‌شود و جایگاه
+        ویژه فقط در صفحه نخست قابل نمایش است.
       </p>
     </section>
 
@@ -223,14 +238,14 @@ const collaborationSteps = [
       <div class="native-intro">
         <div>
           <span class="system-kicker">NATIVE FORMAT // SITE CONTROLLED</span>
-          <h2 id="native-title">تبلیغ بومی، نه بنر آزاد</h2>
+          <h2 id="native-title">کریتیو کنترل‌شده، نه بنر آزاد</h2>
         </div>
 
         <p>
-          تبلیغ در ساختنیه؟ با همان کامپوننت و زبان بصری سایت
-          ساخته می‌شود تا ساختار صفحه، موبایل، دسترس‌پذیری و
-          حریم خصوصی تحت کنترل بماند. برچسب حمایت مالی همیشه
-          واضح و قابل مشاهده است.
+          جایگاه‌های جهانی و بومی با کامپوننت‌های کنترل‌شده
+          ساختنیه؟ رندر می‌شوند تا ساختار صفحه، موبایل،
+          دسترس‌پذیری و حریم خصوصی تحت کنترل بماند. برچسب تبلیغ
+          یا حمایت مالی همیشه واضح و قابل مشاهده است.
         </p>
       </div>
 
@@ -305,7 +320,7 @@ const collaborationSteps = [
           <ul>
             <li>بدون پس‌زمینه بنریِ از پیش چسبیده به لوگو</li>
             <li>بدون لوگوی متحرک</li>
-            <li>هدف پیشنهادی: حداکثر ۲۰۰ کیلوبایت پس از بهینه‌سازی</li>
+            <li>هدف پیشنهادی: حداکثر ۵۰ کیلوبایت پس از بهینه‌سازی</li>
             <li>میزبانی محلی روی زیرساخت کنترل‌شده ساختنیه؟</li>
             <li>بدون تصویر remote یا hotlink در نسخه نهایی</li>
           </ul>
@@ -376,6 +391,14 @@ const collaborationSteps = [
           </ul>
         </article>
       </div>
+
+      <article class="editorial-policy">
+        <span class="system-kicker">EDITORIAL INDEPENDENCE</span>
+        <h3>مرز تبلیغ و تحلیل</h3>
+        <ul>
+          {editorialPrinciples.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
     </section>
 
     <section class="advertise-section" aria-labelledby="process-title">
@@ -610,8 +633,16 @@ const collaborationSteps = [
   .guideline-grid,
   .policy-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+  }
+
+  .placement-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .guideline-grid,
+  .policy-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .placement-card,
@@ -884,6 +915,29 @@ const collaborationSteps = [
     background: #ef7777;
   }
 
+  .editorial-policy {
+    margin-top: 14px;
+    padding: 24px;
+    border: 1px solid rgba(241, 198, 68, 0.2);
+    border-radius: 14px;
+    background: rgba(241, 198, 68, 0.035);
+  }
+
+  .editorial-policy h3 {
+    margin: 7px 0 16px;
+    font-size: 17px;
+  }
+
+  .editorial-policy ul {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding-inline-start: 20px;
+    color: #aab2ac;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
   .process-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -960,6 +1014,10 @@ const collaborationSteps = [
 
     .limits-grid,
     .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .placement-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
