@@ -1,0 +1,82 @@
+---
+import AnalysisSection from "./AnalysisSection.astro";
+import ToolCard from "./ToolCard.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  tools: SakhtanieApp[];
+  title?: string;
+  compact?: boolean;
+}
+
+const {
+  tools,
+  title = "ابزارهای مشابه",
+  compact = false,
+} = Astro.props;
+
+const seenSlugs = new Set<string>();
+
+const uniqueTools = (tools ?? []).filter((tool) => {
+  const slug = tool.slug?.trim();
+
+  if (!slug || seenSlugs.has(slug)) return false;
+
+  seenSlugs.add(slug);
+  return true;
+});
+
+const sectionTitle = title.trim() || "ابزارهای مشابه";
+---
+
+{
+  uniqueTools.length > 0 && (
+    <AnalysisSection
+      title={sectionTitle}
+      eyebrow="ابزارهای مرتبط"
+      compact={compact}
+    >
+      <ul
+        class:list={[
+          "related-tools__grid",
+          compact && "related-tools__grid--compact",
+        ]}
+        aria-label={sectionTitle}
+        data-compact={compact ? "" : undefined}
+      >
+        {uniqueTools.map((tool) => (
+          <li>
+            <ToolCard app={tool} compact={compact} />
+          </li>
+        ))}
+      </ul>
+    </AnalysisSection>
+  )
+}
+
+<style>
+  .related-tools__grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) * 5)), 1fr)
+    );
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .related-tools__grid li {
+    min-width: 0;
+    display: flex;
+  }
+
+  .related-tools__grid :global(.tool-card) {
+    width: 100%;
+  }
+
+  .related-tools__grid--compact {
+    gap: var(--space-3);
+  }
+</style>
