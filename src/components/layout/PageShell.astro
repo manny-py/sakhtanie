@@ -1,0 +1,22 @@
+---
+import Header from "../Header.astro";
+import Footer from "../Footer.astro";
+
+interface Props {
+  mainClass?: string;
+}
+
+const { mainClass } = Astro.props;
+---
+
+<Header />
+
+<main
+  id="main-content"
+  class:list={["page-shell__main", "ds-content", mainClass]}
+  tabindex="-1"
+>
+  <slot />
+</main>
+
+<Footer />
