@@ -1,0 +1,282 @@
+---
+import AppLogo from "../AppLogo.astro";
+import Badge from "../ui/Badge.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  featured?: boolean;
+  compact?: boolean;
+}
+
+const {
+  app,
+  featured = false,
+  compact = false,
+} = Astro.props;
+
+const buildTime = app.build?.timeEstimate?.trim();
+const skillLevel = app.build?.skillLevel?.trim();
+const difficulty = Number.isFinite(app.scores?.technicalComplexity)
+  ? app.scores.technicalComplexity
+  : null;
+const buildCost = Number.isFinite(app.scores?.buildCost)
+  ? app.scores.buildCost
+  : null;
+
+const metrics = [
+  buildTime
+    ? { label: "زمان ساخت", value: buildTime, ltr: true }
+    : null,
+  difficulty !== null
+    ? { label: "سختی", value: `${difficulty}/5`, ltr: true }
+    : null,
+  skillLevel
+    ? { label: "مهارت", value: skillLevel, ltr: true }
+    : null,
+  buildCost !== null
+    ? { label: "هزینه", value: `${buildCost}/5`, ltr: true }
+    : null,
+].filter(
+  (
+    metric,
+  ): metric is { label: string; value: string; ltr: boolean } =>
+    metric !== null,
+);
+---
+
+<article
+  class:list={[
+    "tool-card",
+    featured && "tool-card--featured",
+    compact && "tool-card--compact",
+  ]}
+  data-featured={featured ? "" : undefined}
+  data-compact={compact ? "" : undefined}
+>
+  <a
+    class="tool-card__link"
+    href={`/tools/${app.slug}`}
+    aria-label={`${app.name.fa} (${app.name.en})`}
+  >
+    <Card
+      class="tool-card__surface"
+      variant={featured ? "elevated" : "interactive"}
+    >
+      <header class="tool-card__header">
+        <span class="tool-card__logo">
+          <AppLogo app={app} />
+        </span>
+
+        <div class="tool-card__identity">
+          <h3 class="tool-card__title" dir="ltr">{app.name.en}</h3>
+          <span class="tool-card__name-fa">{app.name.fa}</span>
+        </div>
+
+        {
+          app.category?.trim() && (
+            <Badge class="tool-card__category" variant="default" dir="ltr">
+              {app.category}
+            </Badge>
+          )
+        }
+      </header>
+
+      {
+        app.summary?.trim() && (
+          <p class="tool-card__description">{app.summary}</p>
+        )
+      }
+
+      {
+        metrics.length > 0 && (
+          <ul class="tool-card__metrics" aria-label="مشخصات ساخت">
+            {metrics.map((metric) => (
+              <li>
+                <Badge variant="default">
+                  <span class="tool-card__metric-label">{metric.label}</span>
+                  <span aria-hidden="true">:</span>
+                  <span dir={metric.ltr ? "ltr" : undefined}>{metric.value}</span>
+                </Badge>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <footer class="tool-card__verdict">
+        <span class="tool-card__verdict-label">نتیجه نهایی</span>
+        <span class="tool-card__verdict-slot" aria-label="جایگاه نتیجه نهایی">
+          <slot name="verdict">
+            <span aria-hidden="true">—</span>
+          </slot>
+        </span>
+      </footer>
+    </Card>
+  </a>
+</article>
+
+<style>
+  .tool-card {
+    min-width: 0;
+  }
+
+  .tool-card__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+  }
+
+  .tool-card__link:focus-visible {
+    outline: var(--space-1) solid var(--color-brand-primary);
+    outline-offset: var(--space-1);
+  }
+
+  :global(.tool-card__surface) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .tool-card__header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .tool-card__logo {
+    width: var(--space-7);
+    height: var(--space-7);
+    display: block;
+    padding: var(--space-1);
+    overflow: hidden;
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .tool-card__identity {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .tool-card__title {
+    margin: 0;
+    overflow: hidden;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tool-card__name-fa {
+    overflow: hidden;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  :global(.tool-card__category) {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tool-card__description {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .tool-card__metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tool-card__metrics li {
+    min-width: 0;
+  }
+
+  .tool-card__metric-label {
+    color: var(--color-text-muted);
+  }
+
+  .tool-card__verdict {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: auto;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .tool-card__verdict-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+  }
+
+  .tool-card__verdict-slot {
+    min-width: var(--space-5);
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+
+  .tool-card--compact :global(.tool-card__surface) {
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+
+  .tool-card--compact .tool-card__header {
+    gap: var(--space-2);
+  }
+
+  .tool-card--compact .tool-card__logo {
+    width: var(--space-6);
+    height: var(--space-6);
+  }
+
+  .tool-card--compact .tool-card__description {
+    -webkit-line-clamp: 1;
+  }
+
+  .tool-card--compact .tool-card__metrics {
+    gap: var(--space-1);
+  }
+
+  .tool-card--compact .tool-card__verdict {
+    padding-top: var(--space-2);
+  }
+
+  @media (max-width: 767px) {
+    .tool-card__header {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    :global(.tool-card__category) {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
