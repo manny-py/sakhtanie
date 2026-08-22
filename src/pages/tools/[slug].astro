@@ -5,8 +5,11 @@ import AnalysisSection from "../../components/sakhtanie/AnalysisSection.astro";
 import BuildScore from "../../components/sakhtanie/BuildScore.astro";
 import Comparison from "../../components/sakhtanie/Comparison.astro";
 import CostBreakdown from "../../components/sakhtanie/CostBreakdown.astro";
+import FaqList from "../../components/sakhtanie/FaqList.astro";
 import PromptBlock from "../../components/sakhtanie/PromptBlock.astro";
+import ProductFit from "../../components/sakhtanie/ProductFit.astro";
 import RelatedTools from "../../components/sakhtanie/RelatedTools.astro";
+import ScoreDetails from "../../components/sakhtanie/ScoreDetails.astro";
 import SkillMatrix from "../../components/sakhtanie/SkillMatrix.astro";
 import VerdictBadge from "../../components/sakhtanie/VerdictBadge.astro";
 import VerdictBlock from "../../components/sakhtanie/VerdictBlock.astro";
@@ -36,17 +39,6 @@ const categoryLabels = Object.fromEntries(
   ])
 ) as Record<string, string>;
 
-const monetizationLabels: Record<string, string> = {
-  subscription: "اشتراک",
-  service: "فروش خدمات",
-  commission: "کمیسیون",
-  advertising: "تبلیغات",
-  freemium: "فریمیوم",
-  marketplace: "مارکت‌پلیس",
-  licensing: "لایسنس",
-  "one-time-payment": "پرداخت یک‌باره",
-};
-
 const verdictState = toVerdictState(app.verdict.value);
 
 const relatedTools = (app.relatedTools ?? []).flatMap(
@@ -57,45 +49,6 @@ const relatedTools = (app.relatedTools ?? []).flatMap(
 );
 
 const faqItems = app.seo?.faq ?? [];
-
-const scoreEntries = [
-  {
-    label: "پیچیدگی فنی",
-    value: app.scores.technicalComplexity,
-  },
-  {
-    label: "وابستگی خارجی",
-    value: app.scores.externalDependency,
-  },
-  {
-    label: "نیاز به داده اختصاصی",
-    value: app.scores.proprietaryData,
-  },
-  {
-    label: "نیاز زیرساختی",
-    value: app.scores.infrastructure,
-  },
-  {
-    label: "هزینه ساخت",
-    value: app.scores.buildCost,
-  },
-  {
-    label: "هزینه نگهداری",
-    value: app.scores.maintenanceCost,
-  },
-  {
-    label: "ارزش شخصی",
-    value: app.scores.personalValue,
-  },
-  {
-    label: "ارزش اقتصادی",
-    value: app.scores.economicValue,
-  },
-  {
-    label: "ریسک ایران",
-    value: app.scores.iranRisk,
-  },
-];
 
 const softwareSchema = {
   "@context": "https://schema.org",
@@ -237,100 +190,11 @@ const faqSchema = {
 
         <PromptBlock id="prompt" prompt={app.build.prompt} />
 
-        <section id="scores" class="content-panel">
-          <span class="panel-kicker">SCORES</span>
-          <h2>امتیازهای ساخت</h2>
+        <ScoreDetails id="scores" app={app} />
 
-          <div class="scores-grid">
-            {
-              scoreEntries.map((score) => (
-                <div
-                  class="score-row"
-                  style={`--score: ${score.value}`}
-                >
-                  <div>
-                    <span>{score.label}</span>
+        <ProductFit app={app} />
 
-                    <strong dir="ltr">
-                      {score.value}/5
-                    </strong>
-                  </div>
-
-                  <div class="score-track">
-                    <span></span>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <section class="content-panel">
-          <span class="panel-kicker">PRODUCT FIT</span>
-          <h2>برای چه کسانی و با چه مدل درآمدی؟</h2>
-
-          <div class="fit-grid">
-            <div>
-              <h3>مخاطبان مناسب</h3>
-
-              <div class="tag-list">
-                {
-                  app.audience.map((item: string) => (
-                    <span>{item}</span>
-                  ))
-                }
-              </div>
-            </div>
-
-            <div>
-              <h3>مدل‌های درآمدی</h3>
-
-              {
-                app.monetization.possible ? (
-                  <div class="tag-list">
-                    {app.monetization.models.map(
-                      (item: string) => (
-                        <span>
-                          {monetizationLabels[item] ?? item}
-                        </span>
-                      )
-                    )}
-                  </div>
-                ) : (
-                  <p class="muted-copy">
-                    مدل درآمدی مشخصی برای این نسخه ثبت نشده است.
-                  </p>
-                )
-              }
-            </div>
-          </div>
-        </section>
-
-        {
-          faqItems.length > 0 && (
-            <section id="faq" class="content-panel">
-              <span class="panel-kicker">FAQ</span>
-              <h2>سوالات متداول</h2>
-
-              <div class="faq-list">
-                {faqItems.map(
-                  (
-                    item: {
-                      question: string;
-                      answer: string;
-                    },
-                    index: number
-                  ) => (
-                    <details open={index === 0}>
-                      <summary>{item.question}</summary>
-                      <p>{item.answer}</p>
-                    </details>
-                  )
-                )}
-              </div>
-            </section>
-          )
-        }
+        <FaqList id="faq" items={faqItems} />
 
         <RelatedTools tools={relatedTools} compact />
       </article>
@@ -666,67 +530,12 @@ const faqSchema = {
     line-height: var(--line-height-body);
   }
 
-  .scores-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px 24px;
-  }
-
-  .score-row > div:first-child {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 7px;
-    color: #929c94;
-    font-size: 10px;
-  }
-
-  .score-row strong {
-    color: #dfe3e0;
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 500;
-  }
-
-  .score-track {
-    height: 7px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: #1c241e;
-  }
-
-  .score-track span {
-    width: calc(var(--score) * 20%);
-    height: 100%;
-    display: block;
-    border-radius: inherit;
-    background: #22e863;
-  }
-
-  .fit-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .fit-grid > div {
-    padding: 18px;
-    border: 1px solid #253027;
-    border-radius: 12px;
-    background: #111612;
-  }
-
-  .fit-grid h3 {
-    margin-top: 0;
-  }
-
-  .tag-list,
   .sidebar-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
   }
 
-  .tag-list span,
   .sidebar-tags small {
     padding: 6px 9px;
     border: 1px solid #2a342c;
@@ -734,39 +543,6 @@ const faqSchema = {
     background: #151b16;
     color: #a8b0aa;
     font-size: 10px;
-  }
-
-  .muted-copy {
-    color: #879189;
-    font-size: 12px;
-    line-height: 1.9;
-  }
-
-  .faq-list {
-    display: grid;
-  }
-
-  .faq-list details {
-    padding: 17px 0;
-    border-top: 1px solid #202a22;
-  }
-
-  .faq-list details:first-child {
-    border-top: 0;
-  }
-
-  .faq-list summary {
-    color: #e5e8e6;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .faq-list p {
-    margin: 13px 0 0;
-    color: #929c94;
-    font-size: 13px;
-    line-height: 2;
   }
 
   .tool-sidebar {
@@ -875,11 +651,6 @@ const faqSchema = {
 
     .content-panel h2 {
       font-size: 22px;
-    }
-
-    .scores-grid,
-    .fit-grid {
-      grid-template-columns: 1fr;
     }
 
   }
