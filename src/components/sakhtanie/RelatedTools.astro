@@ -45,7 +45,7 @@ const sectionTitle = title.trim() || "ابزارهای مشابه";
         data-compact={compact ? "" : undefined}
       >
         {uniqueTools.map((tool) => (
-          <li>
+          <li data-related-tool={tool.slug}>
             <ToolCard app={tool} compact={compact} />
           </li>
         ))}

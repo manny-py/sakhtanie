@@ -5,11 +5,13 @@ import type { SakhtanieApp } from "../../types/app";
 
 interface Props {
   app: SakhtanieApp;
+  id?: string;
   compact?: boolean;
 }
 
 const {
   app,
+  id,
   compact = false,
 } = Astro.props;
 
@@ -28,6 +30,7 @@ const hasComparison = Boolean(
 {
   hasComparison && (
     <AnalysisSection
+      id={id}
       title="چه نسخه‌ای می‌شود ساخت؟"
       eyebrow="مقایسه"
       compact={compact}

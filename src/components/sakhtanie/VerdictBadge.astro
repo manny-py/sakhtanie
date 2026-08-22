@@ -1,10 +1,9 @@
 ---
 import Badge from "../ui/Badge.astro";
-
-type Verdict = "build" | "kinda" | "no";
+import type { VerdictState } from "../../lib/verdict-adapter";
 
 interface Props {
-  verdict: Verdict;
+  verdict: VerdictState;
 }
 
 const { verdict } = Astro.props;

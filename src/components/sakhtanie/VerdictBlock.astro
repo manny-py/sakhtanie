@@ -1,11 +1,10 @@
 ---
 import Card from "../ui/Card.astro";
 import VerdictBadge from "./VerdictBadge.astro";
-
-type Verdict = "build" | "kinda" | "no";
+import type { VerdictState } from "../../lib/verdict-adapter";
 
 interface Props {
-  verdict: Verdict;
+  verdict: VerdictState;
   id?: string;
   title?: string;
   description?: string;

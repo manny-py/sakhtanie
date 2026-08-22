@@ -2,6 +2,8 @@
 import AppLogo from "../AppLogo.astro";
 import Badge from "../ui/Badge.astro";
 import Card from "../ui/Card.astro";
+import VerdictBadge from "./VerdictBadge.astro";
+import { toVerdictState } from "../../lib/verdict-adapter";
 import type { SakhtanieApp } from "../../types/app";
 
 interface Props {
@@ -15,6 +17,9 @@ const {
   featured = false,
   compact = false,
 } = Astro.props;
+
+const verdictState = toVerdictState(app.verdict.value);
+const hasVerdictOverride = Astro.slots.has("verdict");
 
 const buildTime = app.build?.timeEstimate?.trim();
 const skillLevel = app.build?.skillLevel?.trim();
@@ -107,10 +112,12 @@ const metrics = [
 
       <footer class="tool-card__verdict">
         <span class="tool-card__verdict-label">نتیجه نهایی</span>
-        <span class="tool-card__verdict-slot" aria-label="جایگاه نتیجه نهایی">
-          <slot name="verdict">
-            <span aria-hidden="true">—</span>
-          </slot>
+        <span class="tool-card__verdict-slot" aria-label="نتیجه نهایی">
+          {
+            hasVerdictOverride
+              ? <slot name="verdict" />
+              : <VerdictBadge verdict={verdictState} />
+          }
         </span>
       </footer>
     </Card>
