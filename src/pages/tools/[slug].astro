@@ -251,7 +251,10 @@ const faqSchema = {
 
 <style>
   .tool-page {
-    width: min(1120px, calc(100% - 40px));
+    width: min(
+      1120px,
+      calc(100% - (var(--space-6) + var(--space-2)))
+    );
     min-height: 100vh;
     margin: 0 auto;
   }
@@ -260,43 +263,14 @@ const faqSchema = {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 220px;
     align-items: start;
-    gap: 24px;
-    padding-bottom: 80px;
+    gap: var(--layout-gap);
+    padding-bottom: calc(var(--space-8) + var(--space-4));
   }
 
   .tool-content {
     min-width: 0;
     display: grid;
-    gap: 16px;
-  }
-
-  .content-panel {
-    border: 1px solid #202a22;
-    border-radius: 15px;
-    background: #0d110e;
-  }
-
-  .content-panel {
-    padding: 27px;
-  }
-
-  .panel-kicker {
-    color: #687269;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9px;
-    letter-spacing: 0.08em;
-  }
-
-  .content-panel h2 {
-    margin: 7px 0 20px;
-    color: #f4f4f5;
-    font-size: 25px;
-  }
-
-  .content-panel h3 {
-    margin: 25px 0 13px;
-    color: #e5e8e6;
-    font-size: 16px;
+    gap: var(--space-4);
   }
 
   .build-rationale__label {
@@ -334,17 +308,10 @@ const faqSchema = {
 
   @media (max-width: 620px) {
     .tool-page {
-      width: min(100% - 28px, 1120px);
+      width: min(
+        calc(100% - (var(--space-5) + var(--space-1))),
+        1120px
+      );
     }
-
-    .content-panel {
-      padding: 20px 16px;
-    }
-
-    .content-panel h2 {
-      font-size: 22px;
-    }
-
   }
-
 </style>
