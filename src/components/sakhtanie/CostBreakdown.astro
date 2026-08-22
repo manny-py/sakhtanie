@@ -1,0 +1,430 @@
+---
+import Badge from "../ui/Badge.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  compact?: boolean;
+}
+
+type CostDriverGroup =
+  | "infrastructure"
+  | "external"
+  | "payments";
+
+interface CostDriver {
+  type: string;
+  label: string;
+  group: CostDriverGroup;
+}
+
+const {
+  app,
+  compact = false,
+} = Astro.props;
+
+const costDriverTypeGroups: Record<string, CostDriverGroup> = {
+  cloud: "infrastructure",
+  crawler: "infrastructure",
+  database: "infrastructure",
+  infrastructure: "infrastructure",
+  media: "infrastructure",
+  network: "infrastructure",
+  networking: "infrastructure",
+  platform: "infrastructure",
+  publishing: "infrastructure",
+  realtime: "infrastructure",
+  runtime: "infrastructure",
+  scheduler: "infrastructure",
+  serverless: "infrastructure",
+  storage: "infrastructure",
+
+  ai: "external",
+  api: "external",
+  integration: "external",
+  integrations: "external",
+  webhooks: "external",
+
+  billing: "payments",
+  payments: "payments",
+};
+
+const groupDefinitions: {
+  key: CostDriverGroup;
+  title: string;
+}[] = [
+  {
+    key: "infrastructure",
+    title: "زیرساخت و میزبانی",
+  },
+  {
+    key: "external",
+    title: "API و سرویس‌های خارجی",
+  },
+  {
+    key: "payments",
+    title: "پرداخت و صورتحساب",
+  },
+];
+
+const seenDrivers = new Set<string>();
+
+const costDrivers = (app.build?.requirements ?? []).flatMap(
+  (requirement): CostDriver[] => {
+    const type = requirement.type?.trim();
+    const label = requirement.label?.trim();
+
+    if (!type || !label) return [];
+
+    const typeKey = type.toLocaleLowerCase("en");
+    const group = costDriverTypeGroups[typeKey];
+
+    if (!group) return [];
+
+    const normalizedLabel = label.replace(/\s+/g, " ");
+    const deduplicationKey = `${typeKey}\u0000${normalizedLabel}`;
+
+    if (seenDrivers.has(deduplicationKey)) return [];
+    seenDrivers.add(deduplicationKey);
+
+    return [
+      {
+        type,
+        label,
+        group,
+      },
+    ];
+  },
+);
+
+const driverGroups = groupDefinitions
+  .map((definition) => ({
+    ...definition,
+    items: costDrivers.filter(
+      (driver) => driver.group === definition.key,
+    ),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const relativeBuildCost = Number.isFinite(app.scores?.buildCost)
+  ? app.scores.buildCost
+  : null;
+
+const supportingScores = [
+  {
+    label: "هزینه نسبی نگهداری",
+    value: app.scores?.maintenanceCost,
+  },
+  {
+    label: "شدت نیاز زیرساختی",
+    value: app.scores?.infrastructure,
+  },
+  {
+    label: "وابستگی خارجی",
+    value: app.scores?.externalDependency,
+  },
+].flatMap((score) =>
+  Number.isFinite(score.value)
+    ? [{ label: score.label, value: score.value as number }]
+    : [],
+);
+
+const isExpectedScore = (value: number | null): value is number =>
+  value !== null && value >= 1 && value <= 5;
+
+const hasContent =
+  relativeBuildCost !== null ||
+  supportingScores.length > 0 ||
+  driverGroups.length > 0;
+---
+
+{
+  hasContent && (
+    <section
+      class:list={[
+        "cost-breakdown",
+        compact && "cost-breakdown--compact",
+      ]}
+      aria-label="بررسی نسبی هزینه ساخت"
+      data-compact={compact ? "" : undefined}
+    >
+      <Card class="cost-breakdown__card" variant="default">
+        <header class="cost-breakdown__header">
+          <h2>بررسی هزینه ساخت</h2>
+          <p>امتیازها نسبی‌اند و برآورد پولی یا ارزی نیستند.</p>
+        </header>
+
+        {(relativeBuildCost !== null || supportingScores.length > 0) && (
+          <div class="cost-breakdown__overview">
+            {relativeBuildCost !== null && (
+              <dl class="cost-breakdown__primary-score">
+                <div>
+                  <dt>هزینه نسبی ساخت</dt>
+                  <dd>
+                    <span aria-label={`${relativeBuildCost} از ۵`}>
+                      <span aria-hidden="true" dir="ltr">
+                        {relativeBuildCost}/5
+                      </span>
+                    </span>
+
+                    {isExpectedScore(relativeBuildCost) && (
+                      <meter
+                        min="1"
+                        max="5"
+                        value={relativeBuildCost}
+                        aria-hidden="true"
+                      >
+                        {relativeBuildCost}/5
+                      </meter>
+                    )}
+                  </dd>
+                </div>
+              </dl>
+            )}
+
+            {supportingScores.length > 0 && (
+              <dl class="cost-breakdown__supporting-scores">
+                {supportingScores.map((score) => (
+                  <div>
+                    <dt>{score.label}</dt>
+                    <dd aria-label={`${score.value} از ۵`}>
+                      <span aria-hidden="true" dir="ltr">{score.value}/5</span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+          </div>
+        )}
+
+        {driverGroups.length > 0 && (
+          <div class="cost-breakdown__groups">
+            {driverGroups.map((group) => (
+              <section class="cost-breakdown__group">
+                <h3>{group.title}</h3>
+
+                <ul>
+                  {group.items.map((driver) => (
+                    <li data-requirement-type={driver.type}>
+                      <Badge class="cost-breakdown__driver" variant="default">
+                        <span dir="auto">{driver.label}</span>
+                      </Badge>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        )}
+      </Card>
+    </section>
+  )
+}
+
+<style>
+  .cost-breakdown {
+    min-width: 0;
+  }
+
+  :global(.cost-breakdown__card) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .cost-breakdown__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .cost-breakdown__header h2 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+  }
+
+  .cost-breakdown__header p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+
+  .cost-breakdown__overview {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) * 3)), 1fr)
+    );
+    gap: var(--space-4);
+  }
+
+  .cost-breakdown__primary-score,
+  .cost-breakdown__supporting-scores {
+    margin: 0;
+  }
+
+  .cost-breakdown__primary-score > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+  }
+
+  .cost-breakdown__primary-score dt,
+  .cost-breakdown__supporting-scores dt {
+    color: var(--color-text-muted);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+  }
+
+  .cost-breakdown__primary-score dd {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-body-lg);
+  }
+
+  .cost-breakdown__primary-score meter {
+    width: 100%;
+    height: var(--space-2);
+    appearance: none;
+    overflow: hidden;
+    accent-color: var(--color-brand-primary);
+    background: var(--color-bg-secondary);
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .cost-breakdown__primary-score meter::-webkit-meter-bar {
+    background: var(--color-bg-secondary);
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .cost-breakdown__primary-score meter::-webkit-meter-optimum-value,
+  .cost-breakdown__primary-score meter::-moz-meter-bar {
+    background: var(--color-brand-primary);
+    border-radius: var(--radius-full);
+  }
+
+  .cost-breakdown__supporting-scores {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) + var(--space-7))), 1fr)
+    );
+    gap: var(--space-3);
+  }
+
+  .cost-breakdown__supporting-scores > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .cost-breakdown__supporting-scores dd {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-small);
+  }
+
+  .cost-breakdown__groups {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) * 3)), 1fr)
+    );
+    gap: var(--space-5);
+  }
+
+  .cost-breakdown__group {
+    min-width: 0;
+  }
+
+  .cost-breakdown__group h3 {
+    margin: 0 0 var(--space-3);
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-small);
+  }
+
+  .cost-breakdown__group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cost-breakdown__group li {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  :global(.cost-breakdown__driver) {
+    max-width: 100%;
+    align-items: flex-start;
+    padding-block: var(--space-1);
+    text-align: start;
+    white-space: normal;
+  }
+
+  .cost-breakdown--compact :global(.cost-breakdown__card) {
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+
+  .cost-breakdown--compact .cost-breakdown__header h2 {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+
+  .cost-breakdown--compact .cost-breakdown__overview,
+  .cost-breakdown--compact .cost-breakdown__groups {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .cost-breakdown--compact .cost-breakdown__primary-score > div,
+  .cost-breakdown--compact .cost-breakdown__supporting-scores > div {
+    gap: var(--space-1);
+    padding: var(--space-2);
+  }
+
+  .cost-breakdown--compact .cost-breakdown__group h3 {
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+  }
+
+  .cost-breakdown--compact .cost-breakdown__group ul {
+    gap: var(--space-1);
+  }
+</style>

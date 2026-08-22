@@ -1,16 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import PageShell from "../components/layout/PageShell.astro";
 ---
 
 <BaseLayout
   title="سیاست حریم خصوصی و مدیریت داده‌ها | ساختنیه"
   description="توضیح شفاف درباره آمار حداقلی ساختنیه، پردازش Cloudflare و روش انصراف از آمارگیری."
 >
-  <Header />
-
-  <main tabindex="-1" id="main-content" class="container privacy-page">
+  <PageShell class="container privacy-page">
     <header>
       <h1>حریم خصوصی</h1>
       <p>
@@ -94,9 +91,7 @@ import Footer from "../components/Footer.astro";
         داده‌های حساس قدیمی باید در خود Worker بررسی و سخت‌سازی شود.
       </p>
     </section>
-  </main>
-
-  <Footer />
+  </PageShell>
 </BaseLayout>
 
 <script>

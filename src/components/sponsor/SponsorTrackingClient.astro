@@ -1,0 +1,63 @@
+<script>
+  import { track } from "../../lib/analytics";
+
+  type GlobalSponsorTrackingState = {
+    initialized: boolean;
+    impressions: Set<string>;
+  };
+
+  const trackingWindow = window as Window & {
+    __sakhtanieGlobalSponsorTrackingState?: GlobalSponsorTrackingState;
+  };
+
+  const existingState = trackingWindow.__sakhtanieGlobalSponsorTrackingState;
+
+  if (!existingState?.initialized) {
+    const state: GlobalSponsorTrackingState = existingState ?? {
+      initialized: true,
+      impressions: new Set<string>(),
+    };
+
+    state.initialized = true;
+    trackingWindow.__sakhtanieGlobalSponsorTrackingState = state;
+
+    const canonicalSlots = document.querySelectorAll<HTMLElement>(
+      '[data-global-sponsor-slot][data-sponsor-impression="true"]',
+    );
+
+    if (canonicalSlots.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting || entry.intersectionRatio < 0.5) continue;
+            if (!(entry.target instanceof HTMLElement)) continue;
+
+            const sponsorId = entry.target.dataset.sponsorId;
+            if (!sponsorId || state.impressions.has(sponsorId)) {
+              observer.unobserve(entry.target);
+              continue;
+            }
+
+            state.impressions.add(sponsorId);
+            track("sponsor_impression", { sponsor_id: sponsorId });
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: [0.5] },
+      );
+
+      canonicalSlots.forEach((slot) => observer.observe(slot));
+    }
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      const link = event.target.closest<HTMLElement>("[data-global-sponsor-link]");
+      const slot = link?.closest<HTMLElement>("[data-global-sponsor-slot]");
+      const sponsorId = slot?.dataset.sponsorId;
+
+      if (!link || !sponsorId) return;
+      track("sponsor_click", { sponsor_id: sponsorId });
+    });
+  }
+</script>

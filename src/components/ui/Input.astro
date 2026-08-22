@@ -1,0 +1,110 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type NativeInputProps = HTMLAttributes<"input">;
+
+type Props = Omit<
+  NativeInputProps,
+  | "aria-invalid"
+  | "class"
+  | "disabled"
+  | "id"
+  | "name"
+  | "placeholder"
+  | "required"
+  | "type"
+  | "value"
+> & {
+  type?: NativeInputProps["type"];
+  placeholder?: string;
+  value?: NativeInputProps["value"];
+  disabled?: boolean;
+  required?: boolean;
+  name?: string;
+  id?: string;
+  error?: boolean;
+  class?: string;
+  "aria-invalid"?: NativeInputProps["aria-invalid"];
+};
+
+const {
+  type = "text",
+  placeholder,
+  value,
+  disabled = false,
+  required = false,
+  name,
+  id,
+  error = false,
+  class: className,
+  "aria-invalid": ariaInvalid,
+  ...attributes
+} = Astro.props;
+---
+
+<input
+  class:list={["ui-input", error && "ui-input--error", className]}
+  type={type}
+  placeholder={placeholder}
+  value={value}
+  disabled={disabled}
+  required={required}
+  name={name}
+  id={id}
+  aria-invalid={error ? "true" : ariaInvalid}
+  {...attributes}
+/>
+
+<style>
+  .ui-input {
+    width: 100%;
+    min-height: var(--space-7);
+    padding-inline: var(--space-4);
+    color: var(--color-text-primary);
+    caret-color: var(--color-brand-primary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body);
+    line-height: var(--line-height-body);
+    transition:
+      background-color var(--motion-normal) var(--easing-standard),
+      border-color var(--motion-normal) var(--easing-standard),
+      outline-color var(--motion-normal) var(--easing-standard);
+  }
+
+  .ui-input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 1;
+  }
+
+  .ui-input:hover:not(:disabled) {
+    border-color: var(--color-border-strong);
+  }
+
+  .ui-input:focus {
+    background: var(--color-surface-hover);
+    border-color: var(--color-brand-primary);
+    outline: var(--space-1) solid var(--color-brand-primary);
+    outline-offset: var(--space-1);
+  }
+
+  .ui-input:disabled {
+    color: var(--color-text-muted);
+    background: var(--color-bg-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .ui-input--error,
+  .ui-input[aria-invalid="true"] {
+    border-color: var(--color-verdict-no);
+  }
+
+  .ui-input--error:focus,
+  .ui-input[aria-invalid="true"]:focus {
+    outline-color: var(--color-verdict-no);
+  }
+</style>

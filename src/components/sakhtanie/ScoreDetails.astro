@@ -1,0 +1,179 @@
+---
+import AnalysisSection from "./AnalysisSection.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  id?: string;
+}
+
+const {
+  app,
+  id,
+} = Astro.props;
+
+const scores = [
+  {
+    field: "technicalComplexity",
+    label: "پیچیدگی فنی",
+    value: app.scores.technicalComplexity,
+  },
+  {
+    field: "externalDependency",
+    label: "وابستگی خارجی",
+    value: app.scores.externalDependency,
+  },
+  {
+    field: "proprietaryData",
+    label: "نیاز به داده اختصاصی",
+    value: app.scores.proprietaryData,
+  },
+  {
+    field: "infrastructure",
+    label: "نیاز زیرساختی",
+    value: app.scores.infrastructure,
+  },
+  {
+    field: "buildCost",
+    label: "هزینه ساخت",
+    value: app.scores.buildCost,
+  },
+  {
+    field: "maintenanceCost",
+    label: "هزینه نگهداری",
+    value: app.scores.maintenanceCost,
+  },
+  {
+    field: "personalValue",
+    label: "ارزش شخصی",
+    value: app.scores.personalValue,
+  },
+  {
+    field: "economicValue",
+    label: "ارزش اقتصادی",
+    value: app.scores.economicValue,
+  },
+  {
+    field: "iranRisk",
+    label: "ریسک ایران",
+    value: app.scores.iranRisk,
+  },
+] as const;
+---
+
+<AnalysisSection
+  id={id}
+  title="امتیازهای ساخت"
+  eyebrow="SCORES"
+>
+  <Card class="score-details__card" variant="default">
+    <dl class="score-details" aria-label="امتیازهای کامل ساخت">
+      {
+        scores.map((score) => (
+          <div
+            class="score-details__item"
+            data-score-field={score.field}
+          >
+            <dt>{score.label}</dt>
+            <dd>
+              <span
+                class="score-details__value"
+                aria-label={`${score.value} از ۵`}
+                dir="ltr"
+              >
+                {score.value}/5
+              </span>
+              <meter
+                class="score-details__meter"
+                min="0"
+                max="5"
+                value={score.value}
+                aria-hidden="true"
+              >
+                {score.value}/5
+              </meter>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Card>
+</AnalysisSection>
+
+<style>
+  :global(.score-details__card) {
+    min-width: 0;
+  }
+
+  .score-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-6);
+    margin: 0;
+  }
+
+  .score-details__item {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .score-details__item dt {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+    overflow-wrap: anywhere;
+  }
+
+  .score-details__item dd {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  .score-details__value {
+    grid-column: 2;
+    grid-row: 1;
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-small);
+  }
+
+  .score-details__meter {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: var(--space-3);
+    accent-color: var(--color-brand-primary);
+  }
+
+  .score-details__meter::-webkit-meter-bar {
+    background: var(--color-surface-elevated);
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .score-details__meter::-webkit-meter-optimum-value {
+    background: var(--color-brand-primary);
+    border-radius: var(--radius-full);
+  }
+
+  .score-details__meter::-moz-meter-bar {
+    background: var(--color-brand-primary);
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 767px) {
+    .score-details {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+</style>
