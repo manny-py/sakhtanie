@@ -1,0 +1,138 @@
+---
+import {
+  getGlobalSponsorPlacements,
+  globalSponsorInventory,
+  resolveGlobalSponsorPlacement,
+  type GlobalSponsorInventory,
+  type ResolvedSponsorPlacement,
+  type SponsorSurface,
+} from "../../lib/sponsor-placements";
+import { MONETIZATION_ENABLED } from "../../lib/monetization";
+import SponsorBlock from "./SponsorBlock.astro";
+
+interface Props {
+  inventory?: GlobalSponsorInventory;
+}
+
+const { inventory = globalSponsorInventory } = Astro.props;
+
+function activePlacements(surface: SponsorSurface): readonly ResolvedSponsorPlacement[] {
+  return getGlobalSponsorPlacements(surface, inventory)
+    .map((placement) => resolveGlobalSponsorPlacement(placement.id, inventory))
+    .filter((placement) => placement.active);
+}
+
+function ordinal(placement: ResolvedSponsorPlacement): string {
+  return placement.placement.id.at(-1) ?? "1";
+}
+
+const leftPlacements = activePlacements("desktop-left");
+const rightPlacements = activePlacements("desktop-right");
+const hasActiveDesktopPlacement = leftPlacements.length + rightPlacements.length > 0;
+---
+
+{
+  MONETIZATION_ENABLED && hasActiveDesktopPlacement && (
+    <div class="desktop-sponsor-rails" data-global-desktop-sponsors>
+      <div class="desktop-sponsor-rail desktop-sponsor-rail--left">
+        {leftPlacements.map((placement) => (
+          <div
+            class:list={[
+              "desktop-sponsor-rail__slot",
+              `desktop-sponsor-rail__slot--${ordinal(placement)}`,
+            ]}
+          >
+            <SponsorBlock placement={placement} />
+          </div>
+        ))}
+      </div>
+
+      <div class="desktop-sponsor-rail desktop-sponsor-rail--right">
+        {rightPlacements.map((placement) => (
+          <div
+            class:list={[
+              "desktop-sponsor-rail__slot",
+              `desktop-sponsor-rail__slot--${ordinal(placement)}`,
+            ]}
+          >
+            <SponsorBlock placement={placement} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .desktop-sponsor-rails {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    overflow: clip;
+    pointer-events: none;
+  }
+
+  .desktop-sponsor-rail {
+    display: grid;
+    inline-size: var(--sponsor-rail-width);
+    align-self: center;
+    justify-items: center;
+    grid-template-rows: repeat(5, var(--sponsor-block-size));
+    gap: var(--space-4);
+  }
+
+  .desktop-sponsor-rail--left {
+    grid-column: 1;
+  }
+
+  .desktop-sponsor-rail--right {
+    grid-column: 3;
+  }
+
+  .desktop-sponsor-rail__slot {
+    pointer-events: auto;
+  }
+
+  .desktop-sponsor-rail__slot--1 {
+    grid-row: 1;
+  }
+
+  .desktop-sponsor-rail__slot--2 {
+    grid-row: 2;
+  }
+
+  .desktop-sponsor-rail__slot--3 {
+    grid-row: 3;
+  }
+
+  .desktop-sponsor-rail__slot--4 {
+    grid-row: 4;
+  }
+
+  .desktop-sponsor-rail__slot--5 {
+    grid-row: 5;
+  }
+
+  @media (min-width: 1700px) and (min-height: 656px) {
+    .desktop-sponsor-rails {
+      display: grid;
+      grid-template-columns:
+        var(--sponsor-rail-width)
+        minmax(0, var(--container-main))
+        var(--sponsor-rail-width);
+      column-gap: var(--layout-gap);
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 1700px) and (min-height: 656px) and (max-height: 811px) {
+    .desktop-sponsor-rail {
+      grid-template-rows: repeat(4, var(--sponsor-block-size));
+    }
+
+    .desktop-sponsor-rail__slot--5 {
+      display: none;
+    }
+  }
+</style>

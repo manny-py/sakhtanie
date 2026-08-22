@@ -26,7 +26,7 @@ const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
     >
       <a
         class="global-sponsor-block__link"
-        href={sponsor.destination}
+        href={sponsor.href}
         target="_blank"
         rel="sponsored noopener noreferrer"
         tabindex={clone ? "-1" : undefined}
@@ -37,10 +37,10 @@ const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
         <span class="global-sponsor-block__disclosure">تبلیغات</span>
         <span class="global-sponsor-block__identity">
           {
-            sponsor.logo ? (
+            sponsor.logoSrc ? (
               <img
                 class="global-sponsor-block__logo"
-                src={sponsor.logo}
+                src={sponsor.logoSrc}
                 alt={clone ? "" : (sponsor.logoAlt ?? sponsor.brand)}
                 width="40"
                 height="40"
