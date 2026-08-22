@@ -1,0 +1,172 @@
+---
+import type { ResolvedSponsorPlacement } from "../../lib/sponsor-placements";
+
+interface Props {
+  placement: ResolvedSponsorPlacement;
+  clone?: boolean;
+}
+
+const { placement, clone = false } = Astro.props;
+const sponsor = placement.campaign;
+const isActive = placement.active && sponsor !== null;
+const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
+---
+
+{
+  isActive && sponsor && (
+    <article
+      class="global-sponsor-block"
+      data-global-sponsor-slot
+      data-sponsor-slot={placement.placement.id}
+      data-sponsor-id={placement.placement.id}
+      data-sponsor-active="true"
+      data-sponsor-impression={clone ? undefined : "true"}
+      data-sponsor-clone={clone ? "true" : undefined}
+      aria-hidden={clone ? "true" : undefined}
+    >
+      <a
+        class="global-sponsor-block__link"
+        href={sponsor.destination}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        tabindex={clone ? "-1" : undefined}
+        data-global-sponsor-link
+        data-sponsor-link
+        aria-label={clone ? undefined : `تبلیغات از ${sponsor.brand}: ${sponsor.title}`}
+      >
+        <span class="global-sponsor-block__disclosure">تبلیغات</span>
+        <span class="global-sponsor-block__identity">
+          {
+            sponsor.logo ? (
+              <img
+                class="global-sponsor-block__logo"
+                src={sponsor.logo}
+                alt={clone ? "" : (sponsor.logoAlt ?? sponsor.brand)}
+                width="40"
+                height="40"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span class="global-sponsor-block__fallback" aria-hidden="true">
+                {brandInitial}
+              </span>
+            )
+          }
+          <span class="global-sponsor-block__brand" dir="auto">{sponsor.brand}</span>
+        </span>
+        <span class="global-sponsor-block__title" dir="auto">{sponsor.title}</span>
+        {sponsor.ctaLabel && <span class="global-sponsor-block__cta">{sponsor.ctaLabel}</span>}
+      </a>
+    </article>
+  )
+}
+
+<style>
+  .global-sponsor-block {
+    inline-size: var(--sponsor-block-size);
+    block-size: var(--sponsor-block-size);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+  }
+
+  .global-sponsor-block__link {
+    display: grid;
+    block-size: 100%;
+    padding: var(--space-3);
+    color: inherit;
+    text-decoration: none;
+    align-content: start;
+    gap: var(--space-2);
+    transition:
+      border-color var(--motion-fast) var(--easing-standard),
+      background-color var(--motion-fast) var(--easing-standard);
+  }
+
+  .global-sponsor-block__link:hover {
+    background: var(--color-surface-hover);
+  }
+
+  .global-sponsor-block__link:focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: -2px;
+  }
+
+  .global-sponsor-block__disclosure {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+  }
+
+  .global-sponsor-block__identity {
+    display: flex;
+    min-inline-size: 0;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .global-sponsor-block__logo,
+  .global-sponsor-block__fallback {
+    inline-size: 40px;
+    block-size: 40px;
+    flex: 0 0 40px;
+    border-radius: var(--radius-sm);
+  }
+
+  .global-sponsor-block__logo {
+    object-fit: contain;
+  }
+
+  .global-sponsor-block__fallback {
+    display: grid;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-elevated);
+    color: var(--color-text-secondary);
+    place-items: center;
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-label);
+  }
+
+  .global-sponsor-block__brand,
+  .global-sponsor-block__title,
+  .global-sponsor-block__cta {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .global-sponsor-block__brand {
+    min-inline-size: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-small);
+    white-space: nowrap;
+  }
+
+  .global-sponsor-block__title {
+    display: -webkit-box;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .global-sponsor-block__cta {
+    color: var(--color-brand-primary);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .global-sponsor-block__link {
+      transition: none;
+    }
+  }
+</style>
