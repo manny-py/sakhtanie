@@ -1,0 +1,118 @@
+---
+import AnalysisSection from "./AnalysisSection.astro";
+import Badge from "../ui/Badge.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+}
+
+const { app } = Astro.props;
+
+const monetizationLabels: Record<string, string> = {
+  subscription: "اشتراک",
+  service: "فروش خدمات",
+  commission: "کمیسیون",
+  advertising: "تبلیغات",
+  freemium: "فریمیوم",
+  marketplace: "مارکت‌پلیس",
+  licensing: "لایسنس",
+  "one-time-payment": "پرداخت یک‌باره",
+};
+---
+
+<AnalysisSection
+  title="برای چه کسانی و با چه مدل درآمدی؟"
+  eyebrow="PRODUCT FIT"
+>
+  <div class="product-fit">
+    <Card class="product-fit__group" variant="default">
+      <h3>مخاطبان مناسب</h3>
+      <ul aria-label="مخاطبان مناسب">
+        {
+          app.audience.map((item) => (
+            <li>
+              <Badge class="product-fit__tag" variant="default">
+                <span dir="auto">{item}</span>
+              </Badge>
+            </li>
+          ))
+        }
+      </ul>
+    </Card>
+
+    <Card class="product-fit__group" variant="default">
+      <h3>مدل‌های درآمدی</h3>
+      {
+        app.monetization.possible ? (
+          <ul aria-label="مدل‌های درآمدی">
+            {app.monetization.models.map((item) => (
+              <li>
+                <Badge class="product-fit__tag" variant="default">
+                  <span dir="auto">{monetizationLabels[item] ?? item}</span>
+                </Badge>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="product-fit__fallback">
+            مدل درآمدی مشخصی برای این نسخه ثبت نشده است.
+          </p>
+        )
+      }
+    </Card>
+  </div>
+</AnalysisSection>
+
+<style>
+  .product-fit {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  :global(.product-fit__group) {
+    min-width: 0;
+  }
+
+  .product-fit__group h3 {
+    margin: 0 0 var(--space-4);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+  }
+
+  .product-fit__group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :global(.product-fit__tag) {
+    max-width: 100%;
+    height: auto;
+    padding-block: var(--space-1);
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .product-fit__fallback {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-body);
+  }
+
+  @media (max-width: 767px) {
+    .product-fit {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+</style>
