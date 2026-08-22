@@ -3,7 +3,9 @@ import AppLogo from "../../components/AppLogo.astro";
 import PageShell from "../../components/layout/PageShell.astro";
 import AnalysisSection from "../../components/sakhtanie/AnalysisSection.astro";
 import BuildScore from "../../components/sakhtanie/BuildScore.astro";
+import Comparison from "../../components/sakhtanie/Comparison.astro";
 import CostBreakdown from "../../components/sakhtanie/CostBreakdown.astro";
+import RelatedTools from "../../components/sakhtanie/RelatedTools.astro";
 import SkillMatrix from "../../components/sakhtanie/SkillMatrix.astro";
 import VerdictBadge from "../../components/sakhtanie/VerdictBadge.astro";
 import VerdictBlock from "../../components/sakhtanie/VerdictBlock.astro";
@@ -42,27 +44,6 @@ const monetizationLabels: Record<string, string> = {
   marketplace: "مارکت‌پلیس",
   licensing: "لایسنس",
   "one-time-payment": "پرداخت یک‌باره",
-};
-
-const verdictMeta: Record<
-  string,
-  {
-    label: string;
-    className: string;
-  }
-> = {
-  yes: {
-    label: "ساختنیه",
-    className: "verdict-yes",
-  },
-  kinda: {
-    label: "ساختنیه، ولی...",
-    className: "verdict-kinda",
-  },
-  no: {
-    label: "نمی‌ارزه",
-    className: "verdict-no",
-  },
 };
 
 const verdictState = toVerdictState(app.verdict.value);
@@ -220,42 +201,7 @@ const faqSchema = {
           description={app.verdict.reason}
         />
 
-        <section id="comparison" class="content-panel">
-          <span class="panel-kicker">COMPARISON</span>
-          <h2>چه نسخه‌ای می‌شود ساخت؟</h2>
-
-          <div class="comparison-grid">
-            <div>
-              <span>محصول اصلی</span>
-              <strong dir="ltr">
-                {app.comparison.original}
-              </strong>
-            </div>
-
-            <div class="comparison-buildable">
-              <span>نسخه قابل ساخت</span>
-              <strong>
-                {app.comparison.buildableVersion}
-              </strong>
-            </div>
-          </div>
-
-          {
-            app.comparison.missing.length > 0 && (
-              <div class="missing-block">
-                <h3>چه چیزهایی حذف یا محدود می‌شوند؟</h3>
-
-                <ul>
-                  {app.comparison.missing.map(
-                    (item: string) => (
-                      <li>{item}</li>
-                    )
-                  )}
-                </ul>
-              </div>
-            )
-          }
-        </section>
+        <Comparison id="comparison" app={app} />
 
         <AnalysisSection
           id="build"
@@ -427,53 +373,7 @@ const faqSchema = {
           )
         }
 
-        {
-          relatedTools.length > 0 && (
-            <section class="content-panel related-panel">
-              <span class="panel-kicker">RELATED TOOLS</span>
-              <h2>ابزارهای مشابه</h2>
-
-              <div class="related-grid">
-                {relatedTools.map((tool) => {
-                  const relatedVerdict =
-                    verdictMeta[tool.verdict.value] ??
-                    verdictMeta.kinda;
-
-                  return (
-                    <a
-                      href={`/tools/${tool.slug}`}
-                      data-related-tool={tool.slug}
-                    >
-                      <div>
-                        <span
-                          class="related-icon"
-                          dir="ltr"
-                        >
-                          {tool.name.en
-                            .charAt(0)
-                            .toUpperCase()}
-                        </span>
-
-                        <strong dir="ltr">
-                          {tool.name.en}
-                        </strong>
-                      </div>
-
-                      <span
-                        class:list={[
-                          "related-verdict",
-                          relatedVerdict.className,
-                        ]}
-                      >
-                        {relatedVerdict.label}
-                      </span>
-                    </a>
-                  );
-                })}
-              </div>
-            </section>
-          )
-        }
+        <RelatedTools tools={relatedTools} compact />
       </article>
 
       <aside class="tool-sidebar">
@@ -818,14 +718,6 @@ const faqSchema = {
     font-size: 16px;
   }
 
-  .missing-block {
-    margin-top: 22px;
-    padding: 18px;
-    border: 1px solid #263028;
-    border-radius: 12px;
-    background: #111612;
-  }
-
   .build-rationale__label {
     margin: 0;
     color: var(--color-brand-primary);
@@ -851,50 +743,6 @@ const faqSchema = {
     color: var(--color-text-secondary);
     font-size: var(--font-size-small);
     line-height: var(--line-height-body);
-  }
-
-  .comparison-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 11px;
-  }
-
-  .comparison-grid > div {
-    min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 11px;
-    padding: 18px;
-    border: 1px solid #253027;
-    border-radius: 12px;
-    background: #111612;
-  }
-
-  .comparison-grid span {
-    color: #737d75;
-    font-size: 10px;
-  }
-
-  .comparison-grid strong {
-    color: #f0f2f1;
-    font-size: 15px;
-    line-height: 1.8;
-  }
-
-  .comparison-buildable {
-    border-color: rgba(34, 232, 99, 0.34) !important;
-    background: rgba(34, 232, 99, 0.05) !important;
-  }
-
-  .missing-block ul {
-    display: grid;
-    gap: 10px;
-    margin: 0;
-    padding-right: 20px;
-    color: #9ca59e;
-    font-size: 13px;
-    line-height: 1.9;
   }
 
   .prompt-heading {
@@ -1054,76 +902,6 @@ const faqSchema = {
     line-height: 2;
   }
 
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 9px;
-  }
-
-  .related-grid a {
-    min-height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px;
-    border: 1px solid #253027;
-    border-radius: 11px;
-    background: #111612;
-  }
-
-  .related-grid a:hover {
-    border-color: rgba(34, 232, 99, 0.4);
-  }
-
-  .related-grid a > div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .related-icon {
-    width: 34px;
-    height: 34px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    background: #182019;
-    color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
-  }
-
-  .related-grid strong {
-    color: #e8ebe9;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
-  }
-
-  .related-verdict {
-    padding: 4px 7px;
-    border: 1px solid;
-    border-radius: 6px;
-    font-size: 9px;
-    white-space: nowrap;
-  }
-
-  .related-verdict.verdict-yes {
-    border-color: rgba(34, 232, 99, 0.3);
-    background: rgba(34, 232, 99, 0.07);
-  }
-
-  .related-verdict.verdict-kinda {
-    border-color: rgba(241, 198, 68, 0.3);
-    background: rgba(241, 198, 68, 0.07);
-  }
-
-  .related-verdict.verdict-no {
-    border-color: rgba(255, 100, 100, 0.3);
-    background: rgba(255, 100, 100, 0.07);
-  }
-
   .tool-sidebar {
     position: sticky;
     top: 84px;
@@ -1232,10 +1010,8 @@ const faqSchema = {
       font-size: 22px;
     }
 
-    .comparison-grid,
     .scores-grid,
-    .fit-grid,
-    .related-grid {
+    .fit-grid {
       grid-template-columns: 1fr;
     }
 
