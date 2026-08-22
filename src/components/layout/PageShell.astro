@@ -1,19 +1,34 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 import Header from "../Header.astro";
 import Footer from "../Footer.astro";
 
-interface Props {
+type Props = Omit<HTMLAttributes<"main">, "id" | "tabindex"> & {
   mainClass?: string;
-}
+};
 
-const { mainClass } = Astro.props;
+const {
+  mainClass,
+  class: className,
+  ...mainAttributes
+} = Astro.props;
+
+const forwardedMainAttributes = Object.fromEntries(
+  Object.entries(mainAttributes).filter(
+    ([name]) =>
+      !name.startsWith("data-astro-cid-") ||
+      Boolean(className || mainClass)
+  )
+);
 ---
 
 <Header />
 
 <main
+  {...forwardedMainAttributes}
   id="main-content"
-  class:list={["page-shell__main", "ds-content", mainClass]}
+  class:list={["page-shell__main", "ds-content", className, mainClass]}
   tabindex="-1"
 >
   <slot />
