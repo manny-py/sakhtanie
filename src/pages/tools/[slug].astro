@@ -1,8 +1,6 @@
 ---
-import AppLogo from "../../components/AppLogo.astro";
 import PageShell from "../../components/layout/PageShell.astro";
 import AnalysisSection from "../../components/sakhtanie/AnalysisSection.astro";
-import BuildScore from "../../components/sakhtanie/BuildScore.astro";
 import Comparison from "../../components/sakhtanie/Comparison.astro";
 import CostBreakdown from "../../components/sakhtanie/CostBreakdown.astro";
 import FaqList from "../../components/sakhtanie/FaqList.astro";
@@ -11,7 +9,9 @@ import ProductFit from "../../components/sakhtanie/ProductFit.astro";
 import RelatedTools from "../../components/sakhtanie/RelatedTools.astro";
 import ScoreDetails from "../../components/sakhtanie/ScoreDetails.astro";
 import SkillMatrix from "../../components/sakhtanie/SkillMatrix.astro";
-import VerdictBadge from "../../components/sakhtanie/VerdictBadge.astro";
+import ToolBreadcrumbs from "../../components/sakhtanie/ToolBreadcrumbs.astro";
+import ToolHero from "../../components/sakhtanie/ToolHero.astro";
+import ToolSidebar from "../../components/sakhtanie/ToolSidebar.astro";
 import VerdictBlock from "../../components/sakhtanie/VerdictBlock.astro";
 import Card from "../../components/ui/Card.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -39,6 +39,9 @@ const categoryLabels = Object.fromEntries(
   ])
 ) as Record<string, string>;
 
+const categoryLabel =
+  categoryLabels[app.category] ?? app.category;
+
 const verdictState = toVerdictState(app.verdict.value);
 
 const relatedTools = (app.relatedTools ?? []).flatMap(
@@ -49,6 +52,17 @@ const relatedTools = (app.relatedTools ?? []).flatMap(
 );
 
 const faqItems = app.seo?.faq ?? [];
+
+const tocItems = [
+  { href: "#verdict", label: "جواب کوتاه" },
+  { href: "#comparison", label: "نسخه قابل ساخت" },
+  { href: "#build", label: "مسیر ساخت" },
+  { href: "#prompt", label: "Prompt اولیه" },
+  { href: "#scores", label: "امتیازها" },
+  ...(faqItems.length > 0
+    ? [{ href: "#faq", label: "سوالات متداول" }]
+    : []),
+];
 
 const softwareSchema = {
   "@context": "https://schema.org",
@@ -86,65 +100,17 @@ const faqSchema = {
       class="tool-page"
       data-tool-slug={app.slug}
     >
-    <div class="tool-breadcrumb">
-      <a href="/">ساختنیه؟</a>
-      <span>/</span>
+    <ToolBreadcrumbs
+      categoryHref={`/categories/${app.category}`}
+      categoryLabel={categoryLabel}
+      toolName={app.name.en}
+    />
 
-      <a href={`/categories/${app.category}`}>
-        {categoryLabels[app.category] ?? app.category}
-      </a>
-
-      <span>/</span>
-      <strong dir="ltr">{app.name.en}</strong>
-    </div>
-
-    <section class="tool-hero">
-      <div class="tool-hero__main">
-        <div class="tool-identity">
-          <span
-            class="tool-icon"
-            dir="ltr"
-            aria-hidden="true"
-          >
-        <AppLogo app={app} />
-      </span>
-
-          <div>
-            <span class="tool-domain" dir="ltr">
-              {app.domain}
-            </span>
-
-            <h1>
-              آیا می‌شه
-              <bdi class="tool-name" dir="ltr">
-                {app.name.en}
-              </bdi>
-              ساخت؟
-            </h1>
-          </div>
-        </div>
-
-        <p class="tool-summary">{app.summary}</p>
-
-        <div class="tool-meta">
-          <span>
-            دسته:
-            <strong>
-              {categoryLabels[app.category] ?? app.category}
-            </strong>
-          </span>
-        </div>
-
-        <div class="hero-build-score">
-          <BuildScore app={app} compact />
-        </div>
-      </div>
-
-      <aside class="hero-verdict" aria-label="نتیجه نهایی">
-        <VerdictBadge verdict={verdictState} />
-        <p>{app.verdict.short}</p>
-      </aside>
-    </section>
+    <ToolHero
+      app={app}
+      categoryLabel={categoryLabel}
+      verdictState={verdictState}
+    />
 
     <section class="tool-layout">
       <article class="tool-content">
@@ -199,46 +165,11 @@ const faqSchema = {
         <RelatedTools tools={relatedTools} compact />
       </article>
 
-      <aside class="tool-sidebar">
-        <nav class="sidebar-panel">
-          <span>ON THIS PAGE</span>
-
-          <a href="#verdict">جواب کوتاه</a>
-          <a href="#comparison">نسخه قابل ساخت</a>
-          <a href="#build">مسیر ساخت</a>
-          <a href="#prompt">Prompt اولیه</a>
-          <a href="#scores">امتیازها</a>
-
-          {
-            faqItems.length > 0 && (
-              <a href="#faq">سوالات متداول</a>
-            )
-          }
-        </nav>
-
-        <div class="sidebar-panel">
-          <span>TAGS</span>
-
-          <div class="sidebar-tags">
-            {
-              app.tags.map((tag: string) => (
-                <small>{tag}</small>
-              ))
-            }
-          </div>
-        </div>
-
-        <a
-          class="external-link"
-          data-tool-cta
-          href={`https://${app.domain}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          مشاهده وب‌سایت اصلی
-          <span dir="ltr">↗</span>
-        </a>
-      </aside>
+      <ToolSidebar
+        items={tocItems}
+        tags={app.tags}
+        externalUrl={`https://${app.domain}`}
+      />
     </section>
     </div>
   </PageShell>
@@ -325,139 +256,6 @@ const faqSchema = {
     margin: 0 auto;
   }
 
-  .tool-breadcrumb {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding-top: 46px;
-    color: #69736b;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-  }
-
-  .tool-breadcrumb a:hover {
-    color: #22e863;
-  }
-
-  .tool-breadcrumb strong {
-    color: #22e863;
-    font-weight: 500;
-  }
-
-  .tool-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 285px;
-    align-items: stretch;
-    gap: 26px;
-    padding: 38px 0 48px;
-  }
-
-  .tool-hero__main {
-    min-width: 0;
-  }
-
-  .tool-identity {
-    display: grid;
-    grid-template-columns: 62px minmax(0, 1fr);
-    align-items: center;
-    gap: 18px;
-  }
-
-  .tool-icon {
-    width: 62px;
-    height: 62px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 8px;
-    border: 1px solid #2b392e;
-    box-sizing: border-box;
-    border-radius: 15px;
-    background: #172019;
-    color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 23px;
-    font-weight: 800;
-  }
-
-  .tool-domain {
-    display: block;
-    margin-bottom: 8px;
-    color: #6f7971;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-  }
-
-  .tool-identity h1 {
-    margin: 0;
-    color: #f5f5f4;
-    font-size: clamp(34px, 4.5vw, 56px);
-    line-height: 1.35;
-  }
-
-  .tool-identity h1 span {
-    color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-  }
-
-  .tool-summary {
-    max-width: 760px;
-    margin: 26px 0 0;
-    color: #929c94;
-    font-size: 15px;
-    line-height: 2;
-  }
-
-  .tool-meta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 9px;
-    margin-top: 26px;
-  }
-
-  .tool-meta > span {
-    padding: 7px 10px;
-    border: 1px solid #253027;
-    border-radius: 8px;
-    background: #0e120f;
-    color: #778179;
-    font-size: 10px;
-  }
-
-  .tool-meta strong {
-    margin-right: 4px;
-    color: #c8d0ca;
-    font-weight: 500;
-  }
-
-  .hero-build-score {
-    min-width: 0;
-    margin-top: var(--space-5);
-  }
-
-  .hero-verdict {
-    min-width: 0;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space-3);
-    padding: var(--space-5);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-  }
-
-  .hero-verdict p {
-    margin: 0;
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-small);
-    line-height: var(--line-height-small);
-  }
-
   .tool-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 220px;
@@ -472,8 +270,7 @@ const faqSchema = {
     gap: 16px;
   }
 
-  .content-panel,
-  .sidebar-panel {
+  .content-panel {
     border: 1px solid #202a22;
     border-radius: 15px;
     background: #0d110e;
@@ -483,8 +280,7 @@ const faqSchema = {
     padding: 27px;
   }
 
-  .panel-kicker,
-  .sidebar-panel > span {
+  .panel-kicker {
     color: #687269;
     font-family: "JetBrains Mono", monospace;
     font-size: 9px;
@@ -530,119 +326,15 @@ const faqSchema = {
     line-height: var(--line-height-body);
   }
 
-  .sidebar-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-  }
-
-  .sidebar-tags small {
-    padding: 6px 9px;
-    border: 1px solid #2a342c;
-    border-radius: 7px;
-    background: #151b16;
-    color: #a8b0aa;
-    font-size: 10px;
-  }
-
-  .tool-sidebar {
-    position: sticky;
-    top: 84px;
-    display: grid;
-    gap: 12px;
-  }
-
-  .sidebar-panel {
-    display: grid;
-    gap: 5px;
-    padding: 16px;
-  }
-
-  .sidebar-panel > span {
-    margin-bottom: 8px;
-  }
-
-  .sidebar-panel > a {
-    padding: 8px 9px;
-    border-radius: 7px;
-    color: #8f9991;
-    font-size: 11px;
-  }
-
-  .sidebar-panel > a:hover {
-    background: #151b16;
-    color: #f4f4f5;
-  }
-
-  .external-link {
-    min-height: 43px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 9px 13px;
-    border: 1px solid rgba(34, 232, 99, 0.35);
-    border-radius: 10px;
-    background: rgba(34, 232, 99, 0.06);
-    color: #22e863;
-    font-size: 11px;
-  }
-
   @media (max-width: 860px) {
-    .tool-hero {
-      grid-template-columns: 1fr;
-    }
-
     .tool-layout {
       grid-template-columns: 1fr;
-    }
-
-    .tool-sidebar {
-      position: static;
-      grid-row: 1;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .external-link {
-      grid-column: 1 / -1;
     }
   }
 
   @media (max-width: 620px) {
     .tool-page {
       width: min(100% - 28px, 1120px);
-    }
-
-    .tool-breadcrumb {
-      padding-top: 28px;
-    }
-
-    .tool-hero {
-      padding: 28px 0 32px;
-    }
-
-    .tool-identity {
-      grid-template-columns: 48px minmax(0, 1fr);
-      gap: 12px;
-    }
-
-    .tool-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      font-size: 18px;
-    }
-
-    .tool-identity h1 {
-      font-size: 31px;
-    }
-
-    .tool-summary {
-      margin-top: 20px;
-      font-size: 14px;
-    }
-
-    .tool-sidebar {
-      grid-template-columns: 1fr;
     }
 
     .content-panel {
@@ -654,44 +346,5 @@ const faqSchema = {
     }
 
   }
-
-  /* SAK-013.4 MOBILE FIX START */
-
-  .tool-name {
-    display: inline-block;
-    margin-inline: 0.14em;
-    color: #22e863;
-    font-family: "JetBrains Mono", monospace;
-    unicode-bidi: isolate;
-  }
-
-  @media (max-width: 860px) {
-    /*
-     * محتوای اصلی باید قبل از Sidebar نمایش داده شود.
-     * منوی پرش داخلی در موبایل فضای زیادی اشغال می‌کرد.
-     */
-    .tool-sidebar {
-      grid-row: auto;
-      grid-template-columns: 1fr;
-    }
-
-    .tool-sidebar .sidebar-panel:first-child {
-      display: none;
-    }
-  }
-
-  @media (max-width: 620px) {
-    .tool-identity h1 {
-      display: block;
-      font-size: clamp(28px, 8.2vw, 34px);
-      line-height: 1.65;
-    }
-
-    .tool-name {
-      margin-inline: 0.12em;
-    }
-  }
-
-  /* SAK-013.4 MOBILE FIX END */
 
 </style>
