@@ -159,7 +159,8 @@ test("mobile bars stay absent for empty inventory and outside the mobile breakpo
 
 test("mobile bars stay fixed to both viewport edges without obscuring page chrome", () => {
   assert.match(mobileBarSource, /position: fixed/);
-  assert.match(mobileBarSource, /inset-inline: 0/);
+  assert.match(mobileBarSource, /inset-inline-start: 0/);
+  assert.match(mobileBarSource, /inline-size: 100vw/);
   assert.match(
     mobileBarSource,
     /data-global-mobile-sponsors="mobile-top"[\s\S]*inset-block-start: 0/,
@@ -170,6 +171,7 @@ test("mobile bars stay fixed to both viewport edges without obscuring page chrom
   );
   assert.match(mobileBarSource, /body \{[\s\S]*padding-block-start: 42px/);
   assert.match(mobileBarSource, /padding-block-end: 42px/);
+  assert.match(mobileBarSource, /overflow-x: clip/);
   assert.match(
     mobileBarSource,
     /html\[data-global-mobile-sponsors="active"\] \.site-header\)[\s\S]*top: 42px/,

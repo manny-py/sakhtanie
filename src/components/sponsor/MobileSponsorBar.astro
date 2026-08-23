@@ -132,7 +132,10 @@ const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پای
       display: block;
       position: fixed;
       z-index: 120;
-      inset-inline: 0;
+      inset-inline-start: 0;
+      inline-size: 100vw;
+      max-inline-size: 100vw;
+      isolation: isolate;
     }
 
     .mobile-sponsor-bar[data-global-mobile-sponsors="mobile-top"] {
@@ -146,11 +149,14 @@ const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پای
     :global(html[data-global-mobile-sponsors="active"]) {
       scroll-padding-block-start: 122px;
       scroll-padding-block-end: 42px;
+      overflow-x: clip;
     }
 
     :global(html[data-global-mobile-sponsors="active"]) body {
       padding-block-start: 42px;
       padding-block-end: 42px;
+      max-inline-size: 100%;
+      overflow-x: clip;
     }
 
     :global(html[data-global-mobile-sponsors="active"] .site-header) {
