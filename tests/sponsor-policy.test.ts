@@ -85,7 +85,8 @@ test("advertising documentation defines safe assignment, empty inventory, and ve
   assert.match(advertisingDocs, /globalSponsorInventory/);
   assert.match(advertisingDocs, /defineSponsor\(\)/);
   assert.match(advertisingDocs, /Leave unsold placements as `null`/);
-  assert.match(advertisingDocs, /render no block, bar, landmark/);
+  assert.match(advertisingDocs, /open advertising placement/);
+  assert.match(advertisingDocs, /not sponsor impressions, sponsor clicks/);
   assert.match(advertisingDocs, /at or below 50 KB/);
 
   for (const command of [

@@ -16,23 +16,21 @@ interface Props {
 
 const { inventory = globalSponsorInventory } = Astro.props;
 
-function activePlacements(surface: SponsorSurface): readonly ResolvedSponsorPlacement[] {
+function resolvedPlacements(surface: SponsorSurface): readonly ResolvedSponsorPlacement[] {
   return getGlobalSponsorPlacements(surface, inventory)
-    .map((placement) => resolveGlobalSponsorPlacement(placement.id, inventory))
-    .filter((placement) => placement.active);
+    .map((placement) => resolveGlobalSponsorPlacement(placement.id, inventory));
 }
 
 function ordinal(placement: ResolvedSponsorPlacement): string {
   return placement.placement.id.at(-1) ?? "1";
 }
 
-const leftPlacements = activePlacements("desktop-left");
-const rightPlacements = activePlacements("desktop-right");
-const hasActiveDesktopPlacement = leftPlacements.length + rightPlacements.length > 0;
+const leftPlacements = resolvedPlacements("desktop-left");
+const rightPlacements = resolvedPlacements("desktop-right");
 ---
 
 {
-  MONETIZATION_ENABLED && hasActiveDesktopPlacement && (
+  MONETIZATION_ENABLED && (
     <div class="desktop-sponsor-rails" data-global-desktop-sponsors>
       <div class="desktop-sponsor-rail desktop-sponsor-rail--left">
         {leftPlacements.map((placement) => (

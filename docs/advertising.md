@@ -153,12 +153,14 @@ The native premium configuration remains `homepagePrimarySponsor` in
 
 ## Empty inventory behavior
 
-Unassigned or inactive global placements render no block, bar, landmark,
-tracking target, or repeated “advertise here” placeholder. Partial inventory
-preserves configured order without filling unsold positions. The optional
-Homepage Premium placement may independently render its single native sales
-placeholder while monetization is enabled. When monetization is disabled, no
-sponsor UI or sponsor tracking is mounted.
+While monetization is enabled, unassigned or inactive global placements render
+a first-party “open advertising placement” CTA linking to `/advertise/`. These
+CTAs preserve all ten desktop rail positions and all ten mobile bar positions,
+but they are not sponsor impressions, sponsor clicks, or sponsored external
+links. As approved campaigns are assigned, their creative replaces the CTA in
+the same canonical position. The optional Homepage Premium placement keeps its
+independent native sales placeholder. When monetization is disabled, no sponsor
+UI or sponsor tracking is mounted.
 
 ## Editorial and density policy
 
@@ -168,7 +170,7 @@ sponsor UI or sponsor tracking is mounted.
 - Do not automatically assign one campaign to every global placement.
 - Avoid assigning the same campaign to Homepage Premium and many global
   placements unless that exposure is deliberately reviewed and sold.
-- Empty global inventory remains visually absent.
+- Open global inventory remains visibly distinct from paid sponsor creative.
 
 ## Verification checklist
 
