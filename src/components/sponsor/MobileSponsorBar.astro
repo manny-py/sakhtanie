@@ -74,6 +74,12 @@ const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پای
   )
 }
 
+<script>
+  if (document.querySelector("[data-global-mobile-sponsors]")) {
+    document.documentElement.dataset.globalMobileSponsors = "active";
+  }
+</script>
+
 <style>
   .mobile-sponsor-bar {
     display: none;
@@ -124,6 +130,31 @@ const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پای
   @media (max-width: 767px) {
     .mobile-sponsor-bar {
       display: block;
+      position: fixed;
+      z-index: 120;
+      inset-inline: 0;
+    }
+
+    .mobile-sponsor-bar[data-global-mobile-sponsors="mobile-top"] {
+      inset-block-start: 0;
+    }
+
+    .mobile-sponsor-bar[data-global-mobile-sponsors="mobile-bottom"] {
+      inset-block-end: 0;
+    }
+
+    :global(html[data-global-mobile-sponsors="active"]) {
+      scroll-padding-block-start: 122px;
+      scroll-padding-block-end: 42px;
+    }
+
+    :global(html[data-global-mobile-sponsors="active"]) body {
+      padding-block-start: 42px;
+      padding-block-end: 42px;
+    }
+
+    :global(html[data-global-mobile-sponsors="active"] .site-header) {
+      top: 42px;
     }
   }
 

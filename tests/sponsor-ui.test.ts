@@ -157,6 +157,25 @@ test("mobile bars stay absent for empty inventory and outside the mobile breakpo
   assert.doesNotMatch(mobileBarSource, /تبلیغات شما/);
 });
 
+test("mobile bars stay fixed to both viewport edges without obscuring page chrome", () => {
+  assert.match(mobileBarSource, /position: fixed/);
+  assert.match(mobileBarSource, /inset-inline: 0/);
+  assert.match(
+    mobileBarSource,
+    /data-global-mobile-sponsors="mobile-top"[\s\S]*inset-block-start: 0/,
+  );
+  assert.match(
+    mobileBarSource,
+    /data-global-mobile-sponsors="mobile-bottom"[\s\S]*inset-block-end: 0/,
+  );
+  assert.match(mobileBarSource, /body \{[\s\S]*padding-block-start: 42px/);
+  assert.match(mobileBarSource, /padding-block-end: 42px/);
+  assert.match(
+    mobileBarSource,
+    /html\[data-global-mobile-sponsors="active"\] \.site-header\)[\s\S]*top: 42px/,
+  );
+});
+
 test("mobile marquee is continuous and pauses for pointer and keyboard users", () => {
   assert.match(mobileBarSource, /inline-size: max-content/);
   assert.match(mobileBarSource, /animation: sponsor-marquee 40s linear infinite/);
