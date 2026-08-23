@@ -1,8 +1,7 @@
 ---
 import AppLogo from "../../components/AppLogo.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import PageShell from "../../components/layout/PageShell.astro";
 import { apps } from "../../lib/apps";
 import { categoryDefinitions } from "../../lib/categories";
 
@@ -72,9 +71,7 @@ const noCount = categoryApps.filter(
   title={`بررسی ابزارهای ${category.title} | ساختنیه؟`}
   description={category.description}
 >
-  <Header />
-
-  <main tabindex="-1" id="main-content" class="category-page">
+  <PageShell class="category-page">
     <section class="category-hero">
       <div class="category-breadcrumb">
         <a href="/">ساختنیه؟</a>
@@ -331,9 +328,7 @@ const noCount = categoryApps.filter(
         }
       </div>
     </section>
-  </main>
-
-  <Footer />
+  </PageShell>
 </BaseLayout>
 
 <script>

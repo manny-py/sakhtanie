@@ -1,0 +1,49 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type CardVariant = "default" | "elevated" | "interactive";
+
+type Props = HTMLAttributes<"div"> & {
+  variant?: CardVariant;
+};
+
+const {
+  variant = "default",
+  class: className,
+  ...attributes
+} = Astro.props;
+---
+
+<div
+  class:list={["ui-card", `ui-card--${variant}`, className]}
+  {...attributes}
+>
+  <slot />
+</div>
+
+<style>
+  .ui-card {
+    padding: var(--space-5);
+    color: var(--color-text-primary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .ui-card--elevated {
+    background: var(--color-surface-elevated);
+    border-color: var(--color-border-strong);
+  }
+
+  .ui-card--interactive {
+    transition:
+      background-color var(--motion-normal) var(--easing-standard),
+      border-color var(--motion-normal) var(--easing-standard);
+  }
+
+  .ui-card--interactive:hover,
+  .ui-card--interactive:focus-within {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-strong);
+  }
+</style>

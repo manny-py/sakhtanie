@@ -2,7 +2,9 @@
   import { track } from "../lib/analytics";
 
   document
-    .querySelectorAll<HTMLElement>("[data-sponsor-slot]")
+    .querySelectorAll<HTMLElement>(
+      "[data-sponsor-slot]:not([data-global-sponsor-slot])"
+    )
     .forEach((slot) => {
       const sponsorId = slot.dataset.sponsorId;
       const active = slot.dataset.sponsorActive === "true";

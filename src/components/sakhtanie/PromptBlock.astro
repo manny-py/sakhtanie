@@ -1,0 +1,179 @@
+---
+import AnalysisSection from "./AnalysisSection.astro";
+import Button from "../ui/Button.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  prompt: SakhtanieApp["build"]["prompt"];
+  id?: string;
+}
+
+const {
+  prompt,
+  id,
+} = Astro.props;
+---
+
+<div class="prompt-block" data-prompt-block>
+  <AnalysisSection
+    id={id}
+    title={prompt.title}
+    eyebrow="STARTER PROMPT"
+  >
+    <Button
+      slot="trailing"
+      class="prompt-block__copy"
+      type="button"
+      variant="secondary"
+      size="sm"
+      data-copy-prompt
+      aria-live="polite"
+    >
+      کپی Prompt
+    </Button>
+
+    <Card class="prompt-block__card" variant="default">
+      <pre
+        class="prompt-block__content"
+        aria-label="متن Prompt اولیه"
+      ><code dir="ltr" data-prompt-content>{prompt.content}</code></pre>
+
+      <dl class="prompt-block__metadata" aria-label="مشخصات Prompt">
+        <div>
+          <dt>زبان:</dt>
+          <dd dir="ltr">{prompt.language}</dd>
+        </div>
+
+        <div>
+          <dt>وضعیت:</dt>
+          <dd>{prompt.tested ? "تست‌شده" : "تست‌نشده"}</dd>
+        </div>
+
+        <div>
+          <dt>آخرین به‌روزرسانی:</dt>
+          <dd dir="ltr">{prompt.lastUpdated}</dd>
+        </div>
+      </dl>
+    </Card>
+  </AnalysisSection>
+</div>
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>("[data-prompt-block]")
+    .forEach((block) => {
+      const button =
+        block.querySelector<HTMLButtonElement>(
+          "[data-copy-prompt]"
+        );
+
+      if (!button || button.dataset.copyPromptReady === "true") {
+        return;
+      }
+
+      button.dataset.copyPromptReady = "true";
+
+      button.addEventListener("click", async () => {
+        const prompt = block.querySelector<HTMLElement>(
+          "[data-prompt-content]"
+        );
+
+        if (!prompt) {
+          return;
+        }
+
+        const originalText = button.textContent;
+
+        try {
+          await navigator.clipboard.writeText(
+            prompt.textContent ?? ""
+          );
+
+          button.textContent = "کپی شد";
+
+          window.setTimeout(() => {
+            button.textContent = originalText;
+          }, 1500);
+        } catch {
+          button.textContent = "خطا در کپی";
+
+          window.setTimeout(() => {
+            button.textContent = originalText;
+          }, 1500);
+        }
+      });
+    });
+</script>
+
+<style>
+  .prompt-block {
+    min-width: 0;
+  }
+
+  :global(.prompt-block__card) {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  :global(.prompt-block__copy) {
+    max-width: 100%;
+  }
+
+  .prompt-block__content {
+    width: 100%;
+    max-height: calc(var(--space-8) * 7.5);
+    margin: 0;
+    padding: var(--space-5);
+    overflow: auto;
+    direction: ltr;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-body);
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .prompt-block__metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+  }
+
+  .prompt-block__metadata div {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+  }
+
+  .prompt-block__metadata dt,
+  .prompt-block__metadata dd {
+    margin: 0;
+  }
+
+  .prompt-block__metadata dd {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-label);
+  }
+
+  @media (max-width: 767px) {
+    :global(.prompt-block__copy) {
+      width: 100%;
+    }
+
+    .prompt-block__content {
+      padding: var(--space-4);
+    }
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+interface Props {
+  categoryHref: string;
+  categoryLabel: string;
+  toolName: string;
+}
+
+const {
+  categoryHref,
+  categoryLabel,
+  toolName,
+} = Astro.props;
+---
+
+<nav class="tool-breadcrumbs" aria-label="مسیر صفحه">
+  <ol>
+    <li><a href="/">ساختنیه؟</a></li>
+    <li><a href={categoryHref}>{categoryLabel}</a></li>
+    <li aria-current="page"><strong dir="ltr">{toolName}</strong></li>
+  </ol>
+</nav>
+
+<style>
+  .tool-breadcrumbs {
+    min-width: 0;
+    padding-block-start: var(--space-7);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+  }
+
+  .tool-breadcrumbs ol {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tool-breadcrumbs li {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    overflow-wrap: anywhere;
+  }
+
+  .tool-breadcrumbs li + li::before {
+    content: "/";
+    color: var(--color-text-muted);
+  }
+
+  .tool-breadcrumbs a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .tool-breadcrumbs a:hover {
+    color: var(--color-brand-primary);
+  }
+
+  .tool-breadcrumbs a:focus-visible {
+    outline: var(--space-1) solid var(--color-brand-primary);
+    outline-offset: var(--space-1);
+    border-radius: var(--radius-sm);
+  }
+
+  .tool-breadcrumbs strong {
+    color: var(--color-brand-primary);
+    font-weight: var(--font-weight-label);
+  }
+
+  @media (max-width: 767px) {
+    .tool-breadcrumbs {
+      padding-block-start: var(--space-6);
+    }
+  }
+</style>

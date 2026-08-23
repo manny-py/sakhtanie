@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import Header from "../Header.astro";
+import Footer from "../Footer.astro";
+import GlobalSponsorChrome from "../sponsor/GlobalSponsorChrome.astro";
+import MobileSponsorBar from "../sponsor/MobileSponsorBar.astro";
+
+type Props = Omit<HTMLAttributes<"main">, "id" | "tabindex"> & {
+  mainClass?: string;
+};
+
+const {
+  mainClass,
+  class: className,
+  ...mainAttributes
+} = Astro.props;
+
+const forwardedMainAttributes = Object.fromEntries(
+  Object.entries(mainAttributes).filter(
+    ([name]) =>
+      !name.startsWith("data-astro-cid-") ||
+      Boolean(className || mainClass)
+  )
+);
+---
+
+<MobileSponsorBar surface="mobile-top" />
+
+<Header />
+
+<GlobalSponsorChrome />
+
+<main
+  {...forwardedMainAttributes}
+  id="main-content"
+  class:list={["page-shell__main", "ds-content", className, mainClass]}
+  tabindex="-1"
+>
+  <slot />
+</main>
+
+<Footer />
+
+<MobileSponsorBar surface="mobile-bottom" />
