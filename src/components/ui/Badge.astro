@@ -1,0 +1,84 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type BadgeVariant = "default" | "success" | "warning" | "danger" | "info";
+
+type Props = HTMLAttributes<"span"> & {
+  variant?: BadgeVariant;
+};
+
+const {
+  variant = "default",
+  class: className,
+  ...attributes
+} = Astro.props;
+---
+
+<span
+  class:list={["ui-badge", `ui-badge--${variant}`, className]}
+  {...attributes}
+>
+  <slot />
+</span>
+
+<style>
+  .ui-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: var(--space-5);
+    padding-inline: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+    white-space: nowrap;
+  }
+
+  .ui-badge--default {
+    color: var(--color-text-secondary);
+    background: var(--color-surface-elevated);
+  }
+
+  .ui-badge--success {
+    color: var(--color-verdict-build);
+    background: color-mix(
+      in srgb,
+      var(--color-verdict-build) 14%,
+      transparent
+    );
+    border-color: var(--color-verdict-build);
+  }
+
+  .ui-badge--warning {
+    color: var(--color-verdict-kinda);
+    background: color-mix(
+      in srgb,
+      var(--color-verdict-kinda) 14%,
+      transparent
+    );
+    border-color: var(--color-verdict-kinda);
+  }
+
+  .ui-badge--danger {
+    color: var(--color-verdict-no);
+    background: color-mix(
+      in srgb,
+      var(--color-verdict-no) 14%,
+      transparent
+    );
+    border-color: var(--color-verdict-no);
+  }
+
+  .ui-badge--info {
+    color: var(--color-brand-primary);
+    background: color-mix(
+      in srgb,
+      var(--color-brand-primary) 14%,
+      transparent
+    );
+    border-color: var(--color-brand-primary);
+  }
+</style>

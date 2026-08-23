@@ -1,0 +1,37 @@
+---
+import { MONETIZATION_ENABLED } from "../../lib/monetization";
+import {
+  getGlobalSponsorPlacements,
+  globalSponsorInventory,
+  resolveGlobalSponsorPlacement,
+  type GlobalSponsorInventory,
+} from "../../lib/sponsor-placements";
+import DesktopSponsorRails from "./DesktopSponsorRails.astro";
+import SponsorTrackingClient from "./SponsorTrackingClient.astro";
+
+interface Props {
+  inventory?: GlobalSponsorInventory;
+}
+
+const { inventory = globalSponsorInventory } = Astro.props;
+const globalSurfaces = [
+  "desktop-left",
+  "desktop-right",
+  "mobile-top",
+  "mobile-bottom",
+] as const;
+const hasActiveGlobalPlacement = globalSurfaces.some((surface) =>
+  getGlobalSponsorPlacements(surface, inventory).some(
+    (placement) => resolveGlobalSponsorPlacement(placement.id, inventory).active,
+  ),
+);
+---
+
+{
+  MONETIZATION_ENABLED && hasActiveGlobalPlacement && (
+    <>
+      <DesktopSponsorRails inventory={inventory} />
+      <SponsorTrackingClient />
+    </>
+  )
+}

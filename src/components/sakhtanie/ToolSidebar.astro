@@ -1,0 +1,155 @@
+---
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import Card from "../ui/Card.astro";
+
+interface TocItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  items: readonly TocItem[];
+  tags: readonly string[];
+  externalUrl: string;
+}
+
+const {
+  items,
+  tags,
+  externalUrl,
+} = Astro.props;
+---
+
+<aside class="tool-sidebar" aria-label="راهنمای تحلیل ابزار">
+  <nav class="tool-sidebar__toc" aria-label="فهرست این تحلیل">
+    <Card class="tool-sidebar__panel" variant="default">
+      <p class="tool-sidebar__eyebrow">ON THIS PAGE</p>
+      <ul>
+        {
+          items.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))
+        }
+      </ul>
+    </Card>
+  </nav>
+
+  <section class="tool-sidebar__tags" aria-label="برچسب‌های ابزار">
+    <Card class="tool-sidebar__panel" variant="default">
+      <p class="tool-sidebar__eyebrow">TAGS</p>
+      <ul>
+        {
+          tags.map((tag) => (
+            <li>
+              <Badge class="tool-sidebar__tag" variant="default">
+                <span dir="auto">{tag}</span>
+              </Badge>
+            </li>
+          ))
+        }
+      </ul>
+    </Card>
+  </section>
+
+  <Button
+    class="tool-sidebar__cta"
+    href={externalUrl}
+    target="_blank"
+    rel="noreferrer"
+    variant="secondary"
+    size="sm"
+    data-tool-cta
+  >
+    <span>مشاهده وب‌سایت اصلی</span>
+    <span dir="ltr" aria-hidden="true">↗</span>
+  </Button>
+</aside>
+
+<style>
+  .tool-sidebar {
+    position: sticky;
+    top: calc(var(--space-8) + var(--space-5));
+    min-width: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  :global(.tool-sidebar__panel) {
+    min-width: 0;
+    padding: var(--space-4);
+  }
+
+  .tool-sidebar__eyebrow {
+    margin: 0 0 var(--space-2);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+  }
+
+  .tool-sidebar__toc ul,
+  .tool-sidebar__tags ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tool-sidebar__toc ul {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .tool-sidebar__toc a {
+    display: block;
+    padding: var(--space-2);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+    text-decoration: none;
+  }
+
+  .tool-sidebar__toc a:hover {
+    color: var(--color-text-primary);
+    background: var(--color-surface-hover);
+  }
+
+  .tool-sidebar__toc a:focus-visible {
+    outline: var(--space-1) solid var(--color-brand-primary);
+    outline-offset: var(--space-1);
+  }
+
+  .tool-sidebar__tags ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  :global(.tool-sidebar__tag) {
+    max-width: 100%;
+    height: auto;
+    padding-block: var(--space-1);
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  :global(.tool-sidebar__cta) {
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+    white-space: normal;
+  }
+
+  @media (max-width: 860px) {
+    .tool-sidebar {
+      position: static;
+      grid-template-columns: 1fr;
+    }
+
+    .tool-sidebar__toc {
+      display: none;
+    }
+  }
+</style>

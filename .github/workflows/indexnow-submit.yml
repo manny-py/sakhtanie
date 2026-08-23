@@ -72,7 +72,7 @@ jobs:
         run: npm ci
 
       - name: Collect successful Production deployments
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           DEPLOYMENTS_FILE: ${{ runner.temp }}/indexnow-deployments.json
         with:

@@ -1,0 +1,161 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+type ButtonSize = "sm" | "md" | "lg";
+type ButtonType = "button" | "submit" | "reset";
+
+type NativeAttributes = HTMLAttributes<"button"> & HTMLAttributes<"a">;
+
+type Props = Omit<
+  NativeAttributes,
+  "class" | "disabled" | "href" | "size" | "tabindex" | "type"
+> & {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  href?: string;
+  disabled?: boolean;
+  type?: ButtonType;
+  class?: string;
+  tabindex?: number | string;
+};
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  disabled = false,
+  type = "button",
+  class: className,
+  tabindex,
+  ...attributes
+} = Astro.props;
+
+const classes = [
+  "ui-button",
+  `ui-button--${variant}`,
+  `ui-button--${size}`,
+  className,
+];
+---
+
+{
+  href ? (
+    <a
+      class:list={classes}
+      href={disabled ? undefined : href}
+      aria-disabled={disabled ? "true" : undefined}
+      tabindex={disabled ? -1 : tabindex}
+      {...attributes}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      class:list={classes}
+      type={type}
+      disabled={disabled}
+      tabindex={tabindex}
+      {...attributes}
+    >
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .ui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--motion-normal) var(--easing-standard),
+      border-color var(--motion-normal) var(--easing-standard),
+      color var(--motion-normal) var(--easing-standard),
+      opacity var(--motion-fast) var(--easing-standard);
+  }
+
+  .ui-button:focus-visible {
+    outline: var(--space-1) solid var(--color-brand-primary);
+    outline-offset: var(--space-1);
+  }
+
+  .ui-button:active:not(:disabled):not([aria-disabled="true"]) {
+    opacity: 0.8;
+  }
+
+  .ui-button:disabled,
+  .ui-button[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ui-button--sm {
+    min-height: var(--space-6);
+    padding-inline: var(--space-3);
+    font-size: var(--font-size-small);
+  }
+
+  .ui-button--md {
+    min-height: calc(var(--space-6) + var(--space-2));
+    padding-inline: var(--space-4);
+    font-size: var(--font-size-body);
+  }
+
+  .ui-button--lg {
+    min-height: var(--space-7);
+    padding-inline: var(--space-5);
+    font-size: var(--font-size-body-lg);
+  }
+
+  .ui-button--primary {
+    color: var(--color-text-primary);
+    background: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+
+  .ui-button--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+    border-color: var(--color-brand-secondary);
+  }
+
+  .ui-button--secondary {
+    color: var(--color-text-primary);
+    background: var(--color-surface);
+    border-color: var(--color-border-strong);
+  }
+
+  .ui-button--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+    background: var(--color-surface-hover);
+  }
+
+  .ui-button--ghost {
+    color: var(--color-text-secondary);
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .ui-button--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--color-text-primary);
+    background: var(--color-surface-hover);
+  }
+
+  .ui-button--danger {
+    color: var(--color-text-primary);
+    background: var(--color-verdict-no);
+    border-color: var(--color-verdict-no);
+  }
+
+  .ui-button--danger:hover:not(:disabled):not([aria-disabled="true"]) {
+    border-color: var(--color-text-primary);
+  }
+</style>
