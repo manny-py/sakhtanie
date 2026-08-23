@@ -42,11 +42,14 @@ test("SponsorBlock uses the resolved placement ID and secure sponsor-link attrib
   assert.match(sponsorBlockSource, /href=\{sponsor\.href\}/);
 });
 
-test("SponsorBlock renders only active resolved campaigns without sales placeholders", () => {
+test("SponsorBlock renders active campaigns and a distinct sales CTA for open inventory", () => {
   assert.match(sponsorBlockSource, /placement\.active && sponsor !== null/);
   assert.match(sponsorBlockSource, /isActive && sponsor/);
-  assert.doesNotMatch(sponsorBlockSource, /تبلیغات شما/);
-  assert.doesNotMatch(sponsorBlockSource, /data-advertise-cta/);
+  assert.match(sponsorBlockSource, /!isActive &&/);
+  assert.match(sponsorBlockSource, /data-advertise-cta/);
+  assert.match(sponsorBlockSource, /href="\/advertise\/"/);
+  assert.match(sponsorBlockSource, /برندتان را اینجا معرفی کنید/);
+  assert.match(sponsorBlockSource, /data-sponsor-active="false"/);
 });
 
 test("SponsorBlock clone mode is hidden from accessibility and impression observation", () => {
@@ -94,18 +97,17 @@ test("global sponsor tracking preserves sponsor event names and placement-level 
 });
 
 test("desktop rails resolve the two canonical surfaces in deterministic placement order", () => {
-  assert.match(desktopRailsSource, /activePlacements\("desktop-left"\)/);
-  assert.match(desktopRailsSource, /activePlacements\("desktop-right"\)/);
+  assert.match(desktopRailsSource, /resolvedPlacements\("desktop-left"\)/);
+  assert.match(desktopRailsSource, /resolvedPlacements\("desktop-right"\)/);
   assert.match(desktopRailsSource, /getGlobalSponsorPlacements\(surface, inventory\)/);
   assert.match(desktopRailsSource, /resolveGlobalSponsorPlacement\(placement\.id, inventory\)/);
   assert.match(desktopRailsSource, /<SponsorBlock placement=\{placement\} \/>/);
 });
 
-test("desktop rails render no chrome without an active assignment", () => {
-  assert.match(desktopRailsSource, /\.filter\(\(placement\) => placement\.active\)/);
-  assert.match(desktopRailsSource, /hasActiveDesktopPlacement/);
-  assert.match(desktopRailsSource, /MONETIZATION_ENABLED && hasActiveDesktopPlacement/);
-  assert.doesNotMatch(desktopRailsSource, /تبلیغات شما/);
+test("desktop rails preserve open placements as visible advertising CTAs", () => {
+  assert.doesNotMatch(desktopRailsSource, /\.filter\(\(placement\) => placement\.active\)/);
+  assert.match(desktopRailsSource, /MONETIZATION_ENABLED && \(/);
+  assert.match(desktopRailsSource, /<SponsorBlock placement=\{placement\} \/>/);
 });
 
 test("desktop rails activate only for safe wide and tall viewports", () => {
@@ -136,8 +138,9 @@ test("PageShell mounts global desktop chrome exactly once without changing landm
   assert.match(pageShellSource, /id="main-content"/);
 });
 
-test("global chrome mounts one tracking client only when monetization and inventory are active", () => {
-  assert.match(globalChromeSource, /MONETIZATION_ENABLED && hasActiveGlobalPlacement/);
+test("global chrome always mounts monetized rails but tracks only active campaigns", () => {
+  assert.match(globalChromeSource, /MONETIZATION_ENABLED && \(/);
+  assert.match(globalChromeSource, /hasActiveGlobalPlacement && <SponsorTrackingClient \/>/);
   assert.equal((globalChromeSource.match(/<SponsorTrackingClient \/>/g) ?? []).length, 1);
   assert.equal((globalChromeSource.match(/<DesktopSponsorRails inventory=\{inventory\} \/>/g) ?? []).length, 1);
 });
@@ -145,16 +148,14 @@ test("global chrome mounts one tracking client only when monetization and invent
 test("mobile bars resolve five canonical placements for the requested surface", () => {
   assert.match(mobileBarSource, /getGlobalSponsorPlacements\(surface, inventory\)/);
   assert.match(mobileBarSource, /resolveGlobalSponsorPlacement\(placement\.id, inventory\)/);
-  assert.match(mobileBarSource, /\.filter\(\(placement\) => placement\.active\)/);
-  assert.match(mobileBarSource, /Math\.max\(0, 5 - activePlacements\.length\)/);
-  assert.match(mobileBarSource, /repeatPlacements\(activePlacements, 5\)/);
+  assert.doesNotMatch(mobileBarSource, /\.filter\(\(placement\) => placement\.active\)/);
+  assert.match(mobileBarSource, /const duplicateSequence = resolvedPlacements/);
 });
 
-test("mobile bars stay absent for empty inventory and outside the mobile breakpoint", () => {
-  assert.match(mobileBarSource, /MONETIZATION_ENABLED && hasActivePlacement/);
+test("mobile bars advertise open inventory while staying outside the desktop breakpoint", () => {
+  assert.match(mobileBarSource, /MONETIZATION_ENABLED && \(/);
   assert.match(mobileBarSource, /\.mobile-sponsor-bar \{[\s\S]*display: none/);
   assert.match(mobileBarSource, /@media \(max-width: 767px\)/);
-  assert.doesNotMatch(mobileBarSource, /تبلیغات شما/);
 });
 
 test("mobile bars stay fixed to both viewport edges without obscuring page chrome", () => {

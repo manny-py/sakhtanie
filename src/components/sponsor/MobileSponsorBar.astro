@@ -5,7 +5,6 @@ import {
   globalSponsorInventory,
   resolveGlobalSponsorPlacement,
   type GlobalSponsorInventory,
-  type ResolvedSponsorPlacement,
 } from "../../lib/sponsor-placements";
 import SponsorBlock from "./SponsorBlock.astro";
 
@@ -17,27 +16,14 @@ interface Props {
 }
 
 const { surface, inventory = globalSponsorInventory } = Astro.props;
-const activePlacements = getGlobalSponsorPlacements(surface, inventory)
-  .map((placement) => resolveGlobalSponsorPlacement(placement.id, inventory))
-  .filter((placement) => placement.active);
-const hasActivePlacement = activePlacements.length > 0;
-
-function repeatPlacements(
-  placements: readonly ResolvedSponsorPlacement[],
-  count: number,
-): readonly ResolvedSponsorPlacement[] {
-  return Array.from({ length: count }, (_, index) => placements[index % placements.length]);
-}
-
-const canonicalFillers = hasActivePlacement
-  ? repeatPlacements(activePlacements, Math.max(0, 5 - activePlacements.length))
-  : [];
-const duplicateSequence = hasActivePlacement ? repeatPlacements(activePlacements, 5) : [];
+const resolvedPlacements = getGlobalSponsorPlacements(surface, inventory)
+  .map((placement) => resolveGlobalSponsorPlacement(placement.id, inventory));
+const duplicateSequence = resolvedPlacements;
 const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پایین صفحه";
 ---
 
 {
-  MONETIZATION_ENABLED && hasActivePlacement && (
+  MONETIZATION_ENABLED && (
     <aside
       class="mobile-sponsor-bar"
       aria-label={`تبلیغات ${positionLabel}`}
@@ -49,13 +35,8 @@ const positionLabel = surface === "mobile-top" ? "بالای صفحه" : "پای
             class="mobile-sponsor-bar__sequence"
             data-mobile-sponsor-canonical-sequence
           >
-            {activePlacements.map((placement) => (
+            {resolvedPlacements.map((placement) => (
               <SponsorBlock placement={placement} format="bar" />
-            ))}
-            {canonicalFillers.map((placement) => (
-              <span class="mobile-sponsor-bar__filler" aria-hidden="true">
-                <SponsorBlock placement={placement} format="bar" clone />
-              </span>
             ))}
           </div>
 

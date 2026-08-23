@@ -28,10 +28,10 @@ const hasActiveGlobalPlacement = globalSurfaces.some((surface) =>
 ---
 
 {
-  MONETIZATION_ENABLED && hasActiveGlobalPlacement && (
+  MONETIZATION_ENABLED && (
     <>
       <DesktopSponsorRails inventory={inventory} />
-      <SponsorTrackingClient />
+      {hasActiveGlobalPlacement && <SponsorTrackingClient />}
     </>
   )
 }

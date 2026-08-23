@@ -11,6 +11,7 @@ const { placement, clone = false, format = "block" } = Astro.props;
 const sponsor = placement.campaign;
 const isActive = placement.active && sponsor !== null;
 const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
+const availabilityLabel = format === "bar" ? "تبلیغ شما" : "جایگاه آزاد";
 ---
 
 {
@@ -66,6 +67,36 @@ const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
   )
 }
 
+{
+  !isActive && (
+    <article
+      class:list={[
+        "global-sponsor-block",
+        "global-sponsor-block--available",
+        format === "bar" && "global-sponsor-block--bar",
+      ]}
+      data-advertise-cta
+      data-sponsor-active="false"
+      aria-hidden={clone ? "true" : undefined}
+    >
+      <a
+        class="global-sponsor-block__link"
+        href="/advertise/"
+        tabindex={clone ? "-1" : undefined}
+        aria-label={clone ? undefined : "این جایگاه تبلیغاتی آزاد است؛ اطلاعات همکاری تبلیغاتی"}
+      >
+        <span class="global-sponsor-block__disclosure">جایگاه تبلیغاتی</span>
+        <span class="global-sponsor-block__identity">
+          <span class="global-sponsor-block__fallback" aria-hidden="true">+</span>
+          <span class="global-sponsor-block__brand">{availabilityLabel}</span>
+        </span>
+        <span class="global-sponsor-block__title">برندتان را اینجا معرفی کنید</span>
+        <span class="global-sponsor-block__cta">درخواست تبلیغات</span>
+      </a>
+    </article>
+  )
+}
+
 <style>
   .global-sponsor-block {
     inline-size: var(--sponsor-block-size);
@@ -92,6 +123,16 @@ const brandInitial = sponsor?.brand.trim().charAt(0).toUpperCase() ?? "";
 
   .global-sponsor-block__link:hover {
     background: var(--color-surface-hover);
+  }
+
+  .global-sponsor-block--available {
+    border-style: dashed;
+    background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  }
+
+  .global-sponsor-block--available .global-sponsor-block__fallback {
+    border-color: var(--color-brand-primary);
+    color: var(--color-brand-primary);
   }
 
   .global-sponsor-block__link:focus-visible {
