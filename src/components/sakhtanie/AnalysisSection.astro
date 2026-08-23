@@ -1,0 +1,171 @@
+---
+interface Props {
+  id?: string;
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  compact?: boolean;
+  headingLevel?: 2 | 3;
+}
+
+const {
+  id,
+  title,
+  description,
+  eyebrow,
+  compact = false,
+  headingLevel = 2,
+} = Astro.props;
+
+const normalizedId = id?.trim();
+const isSafeAnchorId = (value: string) =>
+  /^[A-Za-z][A-Za-z0-9:._-]*$/.test(value);
+
+if (id !== undefined && (!normalizedId || !isSafeAnchorId(normalizedId))) {
+  throw new Error(
+    "AnalysisSection id must start with a Latin letter and contain only letters, numbers, colon, period, underscore, or hyphen.",
+  );
+}
+
+const sectionId = normalizedId || undefined;
+const headingId = sectionId ? `${sectionId}-title` : undefined;
+const descriptionId = sectionId && description
+  ? `${sectionId}-description`
+  : undefined;
+const Heading = headingLevel === 3 ? "h3" : "h2";
+const hasTrailing = Astro.slots.has("trailing");
+---
+
+<section
+  id={sectionId}
+  class:list={[
+    "analysis-section",
+    compact && "analysis-section--compact",
+  ]}
+  aria-labelledby={headingId}
+  aria-describedby={descriptionId}
+  data-heading-level={headingLevel}
+  data-compact={compact ? "" : undefined}
+>
+  <header class="analysis-section__header">
+    <div class="analysis-section__heading">
+      {eyebrow && <p class="analysis-section__eyebrow">{eyebrow}</p>}
+
+      <Heading id={headingId} class="analysis-section__title">
+        {title}
+      </Heading>
+
+      {description && (
+        <p id={descriptionId} class="analysis-section__description">
+          {description}
+        </p>
+      )}
+    </div>
+
+    {hasTrailing && (
+      <div class="analysis-section__trailing">
+        <slot name="trailing" />
+      </div>
+    )}
+  </header>
+
+  <div class="analysis-section__content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .analysis-section {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    scroll-margin-block-start: var(--space-8);
+  }
+
+  .analysis-section__header {
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-5);
+  }
+
+  .analysis-section__heading {
+    min-width: 0;
+    flex: 1 1 calc(var(--space-8) * 4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .analysis-section__eyebrow {
+    margin: 0;
+    color: var(--color-brand-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    line-height: var(--line-height-label);
+  }
+
+  .analysis-section__title {
+    max-width: 100%;
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    overflow-wrap: anywhere;
+  }
+
+  [data-heading-level="2"] > .analysis-section__header
+    .analysis-section__title {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-h2);
+    line-height: var(--line-height-h2);
+  }
+
+  [data-heading-level="3"] > .analysis-section__header
+    .analysis-section__title {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+  }
+
+  .analysis-section__description {
+    max-width: 100%;
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+  }
+
+  .analysis-section__trailing {
+    min-width: 0;
+    max-width: 100%;
+    flex: 0 1 auto;
+  }
+
+  .analysis-section__content {
+    min-width: 0;
+  }
+
+  .analysis-section--compact {
+    gap: var(--space-4);
+  }
+
+  .analysis-section--compact .analysis-section__header {
+    gap: var(--space-3);
+  }
+
+  .analysis-section--compact .analysis-section__heading {
+    gap: var(--space-1);
+  }
+
+  .analysis-section--compact .analysis-section__description {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+</style>

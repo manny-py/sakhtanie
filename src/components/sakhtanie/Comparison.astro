@@ -1,0 +1,176 @@
+---
+import AnalysisSection from "./AnalysisSection.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  id?: string;
+  compact?: boolean;
+}
+
+const {
+  app,
+  id,
+  compact = false,
+} = Astro.props;
+
+const original = app.comparison?.original?.trim();
+const buildableVersion = app.comparison?.buildableVersion?.trim();
+const missing = (app.comparison?.missing ?? []).flatMap((item) => {
+  const value = item.trim();
+  return value ? [value] : [];
+});
+
+const hasComparison = Boolean(
+  original || buildableVersion || missing.length > 0,
+);
+---
+
+{
+  hasComparison && (
+    <AnalysisSection
+      id={id}
+      title="چه نسخه‌ای می‌شود ساخت؟"
+      eyebrow="مقایسه"
+      compact={compact}
+    >
+      <div
+        class:list={[
+          "comparison",
+          compact && "comparison--compact",
+        ]}
+        data-compact={compact ? "" : undefined}
+      >
+        {(original || buildableVersion) && (
+          <div class="comparison__sides">
+            {original && (
+              <Card class="comparison__side" variant="default">
+                <h3>محصول اصلی</h3>
+                <p dir="auto">{original}</p>
+              </Card>
+            )}
+
+            {buildableVersion && (
+              <Card class="comparison__side" variant="default">
+                <h3>نسخه قابل ساخت</h3>
+                <p dir="auto">{buildableVersion}</p>
+              </Card>
+            )}
+          </div>
+        )}
+
+        {missing.length > 0 && (
+          <section class="comparison__missing">
+            <h3>چه چیزهایی حذف یا محدود می‌شوند؟</h3>
+            <ul>
+              {missing.map((item) => (
+                <li>
+                  <span dir="auto">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </AnalysisSection>
+  )
+}
+
+<style>
+  .comparison {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .comparison__sides {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(var(--space-8) * 4)), 1fr)
+    );
+    gap: var(--space-4);
+  }
+
+  :global(.comparison__side) {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .comparison__side h3,
+  .comparison__missing h3 {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-small);
+  }
+
+  .comparison__side p {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+  }
+
+  .comparison__missing {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-block-start: var(--space-5);
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .comparison__missing ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding-inline-start: var(--space-5);
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-small);
+    line-height: var(--line-height-small);
+  }
+
+  .comparison__missing li {
+    padding-inline-start: var(--space-1);
+    overflow-wrap: anywhere;
+  }
+
+  .comparison--compact {
+    gap: var(--space-3);
+  }
+
+  .comparison--compact .comparison__sides {
+    gap: var(--space-2);
+  }
+
+  .comparison--compact :global(.comparison__side) {
+    gap: var(--space-2);
+    padding: var(--space-3);
+  }
+
+  .comparison--compact .comparison__side p {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+
+  .comparison--compact .comparison__missing {
+    gap: var(--space-2);
+    padding-block-start: var(--space-3);
+  }
+
+  .comparison--compact .comparison__missing ul {
+    gap: var(--space-1);
+  }
+</style>

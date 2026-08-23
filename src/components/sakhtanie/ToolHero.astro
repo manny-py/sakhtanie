@@ -1,0 +1,233 @@
+---
+import AppLogo from "../AppLogo.astro";
+import BuildScore from "./BuildScore.astro";
+import VerdictBadge from "./VerdictBadge.astro";
+import type { VerdictState } from "../../lib/verdict-adapter";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  app: SakhtanieApp;
+  categoryLabel: string;
+  verdictState: VerdictState;
+}
+
+const {
+  app,
+  categoryLabel,
+  verdictState,
+} = Astro.props;
+---
+
+<section class="tool-hero">
+  <div class="tool-hero__main">
+    <div class="tool-hero__identity">
+      <span class="tool-hero__logo" dir="ltr" aria-hidden="true">
+        <AppLogo app={app} />
+      </span>
+
+      <div class="tool-hero__heading">
+        <span class="tool-hero__domain" dir="ltr">
+          {app.domain}
+        </span>
+
+        <h1>آیا می‌شه<bdi class="tool-hero__name" dir="ltr">{app.name.en}</bdi>ساخت؟</h1>
+      </div>
+    </div>
+
+    <p class="tool-hero__summary">{app.summary}</p>
+
+    <div class="tool-hero__meta">
+      <span>
+        دسته:<strong>{categoryLabel}</strong>
+      </span>
+    </div>
+
+    <div class="tool-hero__build-score">
+      <BuildScore app={app} compact />
+    </div>
+  </div>
+
+  <aside class="tool-hero__verdict" aria-label="نتیجه نهایی">
+    <VerdictBadge verdict={verdictState} />
+    <p>{app.verdict.short}</p>
+  </aside>
+</section>
+
+<style>
+  .tool-hero {
+    min-width: 0;
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(calc(var(--space-8) * 4), 0.4fr);
+    align-items: stretch;
+    gap: var(--space-6);
+    padding-block: var(--space-7);
+  }
+
+  .tool-hero__main,
+  .tool-hero__heading,
+  .tool-hero__build-score {
+    min-width: 0;
+  }
+
+  .tool-hero__identity {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: var(--space-8) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .tool-hero__logo {
+    width: var(--space-8);
+    height: var(--space-8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--space-2);
+    box-sizing: border-box;
+    color: var(--color-brand-primary);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
+  }
+
+  .tool-hero__domain {
+    display: block;
+    margin-block-end: var(--space-2);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+    overflow-wrap: anywhere;
+  }
+
+  .tool-hero h1 {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: clamp(
+      var(--font-size-h1),
+      4.5vw,
+      var(--font-size-display)
+    );
+    font-weight: var(--font-weight-display);
+    line-height: var(--line-height-h1);
+    overflow-wrap: anywhere;
+  }
+
+  .tool-hero__name {
+    display: inline;
+    margin-inline: 0.14em;
+    color: var(--color-brand-primary);
+    font-family: var(--font-mono);
+    unicode-bidi: isolate;
+    overflow-wrap: anywhere;
+  }
+
+  .tool-hero__summary {
+    max-width: calc(var(--space-8) * 12);
+    margin: var(--space-5) 0 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body-lg);
+    overflow-wrap: anywhere;
+  }
+
+  .tool-hero__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-block-start: var(--space-5);
+  }
+
+  .tool-hero__meta > span {
+    display: inline-flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+  }
+
+  .tool-hero__meta strong {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-label);
+  }
+
+  .tool-hero__build-score {
+    margin-block-start: var(--space-5);
+  }
+
+  .tool-hero__verdict {
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .tool-hero__verdict p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 1023px) {
+    .tool-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .tool-hero {
+      gap: var(--space-5);
+      padding-block: var(--space-6);
+    }
+
+    .tool-hero__identity {
+      grid-template-columns: var(--space-7) minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    .tool-hero__logo {
+      width: var(--space-7);
+      height: var(--space-7);
+      padding: var(--space-1);
+      border-radius: var(--radius-md);
+    }
+
+    .tool-hero h1 {
+      font-size: clamp(
+        var(--font-size-h2),
+        8.2vw,
+        var(--font-size-h1)
+      );
+      line-height: var(--line-height-h2);
+    }
+
+    .tool-hero__name {
+      margin-inline: 0.12em;
+    }
+
+    .tool-hero__summary {
+      margin-block-start: var(--space-4);
+      font-size: var(--font-size-small);
+    }
+  }
+</style>

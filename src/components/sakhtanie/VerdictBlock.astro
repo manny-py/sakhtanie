@@ -1,0 +1,90 @@
+---
+import Card from "../ui/Card.astro";
+import VerdictBadge from "./VerdictBadge.astro";
+import type { VerdictState } from "../../lib/verdict-adapter";
+
+interface Props {
+  verdict: VerdictState;
+  id?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  verdict,
+  id,
+  title,
+  description,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["verdict-block", `verdict-block--${verdict}`]}
+  aria-label="نتیجه نهایی"
+  data-verdict={verdict}
+>
+  <Card class="verdict-block__card" variant="default">
+    <header class="verdict-block__header">
+      <VerdictBadge verdict={verdict} />
+    </header>
+
+    {title && <h2 class="verdict-block__title">{title}</h2>}
+
+    {
+      description && (
+        <p class="verdict-block__description">{description}</p>
+      )
+    }
+  </Card>
+</section>
+
+<style>
+  .verdict-block {
+    min-width: 0;
+  }
+
+  :global(.verdict-block__card) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-inline-start-width: var(--space-1);
+  }
+
+  .verdict-block--build :global(.verdict-block__card) {
+    border-inline-start-color: var(--color-verdict-build);
+  }
+
+  .verdict-block--kinda :global(.verdict-block__card) {
+    border-inline-start-color: var(--color-verdict-kinda);
+  }
+
+  .verdict-block--no :global(.verdict-block__card) {
+    border-inline-start-color: var(--color-verdict-no);
+  }
+
+  .verdict-block__header {
+    display: flex;
+    align-items: center;
+  }
+
+  .verdict-block__title {
+    margin: 0;
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+    overflow-wrap: anywhere;
+  }
+
+  .verdict-block__description {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import AnalysisSection from "./AnalysisSection.astro";
+import Card from "../ui/Card.astro";
+import type { SakhtanieApp } from "../../types/app";
+
+interface Props {
+  items: SakhtanieApp["seo"]["faq"];
+  id?: string;
+}
+
+const {
+  items,
+  id,
+} = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <AnalysisSection
+      id={id}
+      title="سوالات متداول"
+      eyebrow="FAQ"
+    >
+      <Card class="faq-list__card" variant="default">
+        <div class="faq-list">
+          {items.map((item, index) => (
+            <details open={index === 0}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </Card>
+    </AnalysisSection>
+  )
+}
+
+<style>
+  :global(.faq-list__card) {
+    min-width: 0;
+  }
+
+  .faq-list {
+    display: grid;
+  }
+
+  .faq-list details {
+    padding-block: var(--space-4);
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .faq-list details:first-child {
+    padding-block-start: 0;
+    border-block-start: 0;
+  }
+
+  .faq-list details:last-child {
+    padding-block-end: 0;
+  }
+
+  .faq-list summary {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-body);
+    cursor: pointer;
+    overflow-wrap: anywhere;
+  }
+
+  .faq-list summary:focus-visible {
+    outline: var(--space-1) solid var(--color-brand-primary);
+    outline-offset: var(--space-1);
+    border-radius: var(--radius-sm);
+  }
+
+  .faq-list p {
+    margin: var(--space-3) 0 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-body);
+    overflow-wrap: anywhere;
+  }
+</style>

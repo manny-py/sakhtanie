@@ -1,0 +1,58 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type ContainerSize = "sm" | "md" | "lg" | "full";
+
+type Props = HTMLAttributes<"div"> & {
+  size?: ContainerSize;
+};
+
+const {
+  size = "lg",
+  class: className,
+  ...attributes
+} = Astro.props;
+---
+
+<div
+  class:list={["ui-container", `ui-container--${size}`, className]}
+  {...attributes}
+>
+  <slot />
+</div>
+
+<style>
+  .ui-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+
+  .ui-container--sm {
+    max-width: calc(var(--container-main) / 2);
+  }
+
+  .ui-container--md {
+    max-width: calc(var(--container-main) * 0.75);
+  }
+
+  .ui-container--lg {
+    max-width: var(--container-main);
+  }
+
+  .ui-container--full {
+    max-width: none;
+  }
+
+  @media (min-width: 768px) {
+    .ui-container {
+      padding-inline: var(--space-5);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ui-container {
+      padding-inline: var(--space-6);
+    }
+  }
+</style>

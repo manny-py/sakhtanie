@@ -1,34 +1,29 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+@import "./tokens.css";
+@import "./utilities.css";
 
 :root {
-  --bg: #09090b;
-  --surface: #111113;
-  --surface-elevated: #18181b;
-  --border: #27272a;
+  /* Legacy compatibility aliases. */
+  --bg: var(--color-bg-primary);
+  --surface: var(--color-surface);
+  --surface-hover: var(--color-surface-hover);
+  --surface-elevated: var(--color-surface-elevated);
+  --border: var(--color-border);
+  --border-strong: var(--color-border-strong);
 
-  --text: #f4f4f5;
-  --muted: #a1a1aa;
+  --text: var(--color-text-primary);
+  --muted: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
 
-  --accent: #22c55e;
+  /* Existing components use green as their interaction accent. */
+  --accent: var(--color-verdict-build);
   --accent-hover: #16a34a;
+  --primary: var(--color-verdict-build);
 
-  --build: #22c55e;
-  --kinda: #eab308;
-  --no: #ef4444;
-
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
-
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --build: var(--color-verdict-build);
+  --kinda: var(--color-verdict-kinda);
+  --no: var(--color-verdict-no);
 }
 
 * {
@@ -38,7 +33,7 @@
 html {
   direction: rtl;
   scroll-padding-top: 80px;
-  font-family: "Vazirmatn", sans-serif;
+  font-family: var(--font-primary);
   background: var(--bg);
   color: var(--text);
 }
@@ -67,7 +62,7 @@ a {
 }
 
 .card-terminal {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -78,8 +73,8 @@ a {
 .badge-no {
   display: inline-flex;
   padding: 6px 12px;
-  border-radius: 999px;
-  font-family: "JetBrains Mono", monospace;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
   font-weight: 700;
 }
 
@@ -103,7 +98,7 @@ a {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: var(--space-5);
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   color: var(--accent);
 }
 
@@ -112,22 +107,12 @@ a {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 14px 18px;
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
 }
 
 
 
 /* === SAK-013.1 UI Design System Patch === */
-
-:root {
-  --bg: #090b0a;
-  --surface: #101411;
-  --surface-hover: #151a16;
-  --border: #202820;
-  --primary: #22ff66;
-  --text: #eeeeee;
-  --muted: #8b948b;
-}
 
 body {
   background:
